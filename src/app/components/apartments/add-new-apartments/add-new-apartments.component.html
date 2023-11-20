@@ -1,0 +1,48 @@
+<!-- start header  -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'Apartments'"></app-head>
+</header>
+<!-- end header  -->
+
+
+<div class="row m-0 appartmentOverTest">
+
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'apartments'"></app-sidebar>
+    <!-- end sidebar  -->
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10 ">
+
+        <!--start navigate add new apartments-->
+        <div class="d-flex">
+            <p class="me-4 fw-bold gray"><a style="color: black" class="removeUnderLine" href="./apartments">Apartments</a> </p>
+            <p class="fw-bold me-4">></p>
+            <p class="fw-bold"> {{param}}</p>
+        </div>
+        <!--end navigate add new apartments-->
+        <div class="card p-4 stepper">
+            <div class="d-flex">
+                <i class="pi pi-arrow-left mt-1"></i>
+                <a href="javascript:void(0)" routerLink="/apartments" class="removeUnderLine">
+                    <p class="fw-bold ml-8"> {{param}} </p>
+                </a>
+
+            </div>
+            <p-steps [model]="items" (Responsive)="true" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
+        </div>
+        <!--start form of general info-->
+        <app-first-step *ngIf="activeIndex == 0" (jumbToNextSteb)="changeItem(1)" (jumbToNextSteb2n_ofbedroom)="jumbToNextSteb2($event)" (jumbToNextSteb2_apt_Toilets)="jumbToNextSteb2_apt_Toilets($event)" (getId)="id($event)" (jumbToNextSteb2_n_ofLiving)="jumbToNextSteb2_n_ofLiving($event)"
+            [addApartment]="param" [id]="UUID"></app-first-step>
+        <!--end form of general info-->
+
+        <!--start form of Other Details-->
+        <app-second-step [n_ofbedRoom]="n_ofbedRoom" [n_ofLiving]="n_ofLiving" [id]="UUID" [addApartment]="param" [n_ofToilets]="apt_Toilets" *ngIf="activeIndex == 1" (jumbToNextSteb)="changeItem(2)" (jumbToPrevSteb)="changeItem(0)"></app-second-step>
+        <!--end form of Other Details-->
+        <app-third-step [id]="UUID" *ngIf="activeIndex == 2" (jumbToNextSteb)="changeItem(3)" (jumbToPrevSteb)="changeItem(1)" [addApartment]="param"></app-third-step>
+
+        <!--start form of Backup information-->
+        <app-forth-step [id]="UUID" *ngIf="activeIndex == 3" (jumbToNextSteb)="changeItem(0)" (jumbToPrevSteb)="changeItem(2)" [addApartment]="param"></app-forth-step>
+        <!--end form of Backup information-->
+
+    </main>
+</div>

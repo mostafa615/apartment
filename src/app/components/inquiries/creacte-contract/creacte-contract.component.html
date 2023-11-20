@@ -1,0 +1,162 @@
+<!-- start header  -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="' contract'"></app-head>
+</header>
+<!-- end header  -->
+
+<div class="row m-0">
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="' contract'"></app-sidebar>
+    <!-- end sidebar  -->
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10 ">
+        <!-- start part 1 in page  -->
+        <div class="fw-bold d-flex justify-content-between" style="color: #6c6a6a;">
+            <p class="fw-bold ml-8"> <a style="color: black" class="removeUnderLine" href="./inquiries">Inqueirs </a> > create tenant contract</p>
+
+        </div>
+        <!-- end part 1 in page  -->
+        <!-- start part 2 in page  -->
+
+        <!-- start part 3 to display paroduct Apartment details in page  -->
+        <div class="row paroductApartment  px-1">
+            <div class="bg-white p-3">
+                <div>
+                    <p class="fw-bold mb-0">create contract</p>
+                    <p class="gray">this is a legally contract between buyer and seller</p>
+                </div>
+                <p-toast></p-toast>
+
+
+                <form>
+                    <div class="row">
+                        <div class="mb-3 col-12 col-md-6">
+                            <label for="exampleInputPricepermonth" class="form-label gray fw-bold"> landlord name  </label>
+                            <input type="text" [value]="'ashraf salah'" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+                        </div>
+                        <div class="mb-3 col-12 col-md-6">
+                            <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold"> tenant name  </label>
+                            <input type="text" value="ahmed osama" class=" form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit" />
+
+                        </div>
+                    </div>
+                    <div>
+                        <div class="mb-3 me-4 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">section 1</label>
+                            <input type="text" class="form-control rounded-2 py-2 fs-6" value="1 Rentalobject" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label gray">Description</label>
+                            <textarea class="border p-3 rounded-2 w-100" rows="5" style="resize: inherit">The landlord rents to the tenant the in the ............ street, 1 Berlin occupied premises in _____ floor, consisting of _______room(s), kitchen/kitchenette, bath/shower/WC.
+The tenant will be handed over the following keys by the landlord for the rental period:
+...................... House-...................... Housing-...................... Rooms keys
+The living area is approx._____ m².
+The apartment is rented furnished. The apartment serves to cover the temporary special needs of the tenan
+                            </textarea>
+
+                        </div>
+
+                    </div>
+                    <div>
+                        <div class="mb-3 me-4 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">section 2</label>
+                            <input type="text" class="form-control rounded-2 py-2 fs-6" value="2 Rentalobject" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label gray">Description</label>
+                            <textarea class="border p-3 rounded-2 w-100" rows="5" style="resize: inherit">The landlord rents to the tenant the in the ............ street, 1 Berlin occupied premises in _____ floor, consisting of _______room(s), kitchen/kitchenette, bath/shower/WC.
+The tenant will be handed over the following keys by the landlord for the rental period:
+                             </textarea>
+
+                        </div>
+
+                    </div>
+                    <!-- <div class="row">
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">Contract start date</label>
+                            <p-calendar [(ngModel)]="date" [ngModelOptions]="{standalone: true}"></p-calendar>
+                        </div>
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">Contract end date</label>
+                            <p-calendar [(ngModel)]="date" [ngModelOptions]="{standalone: true}"></p-calendar>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="mb-3 col-12 col-md-6">
+                            <label for="exampleInputPricepermonth" class="form-label gray fw-bold"> section 3 </label>
+                            <input type="text" [value]="' 1 redfdg  '" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+                        </div>
+                        <div class="mb-3 col-12 col-md-6">
+                            <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold">price per month </label>
+                            <input type="number" value="1" class=" form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit" />
+
+                        </div>
+                    </div>
+
+                    <div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label gray">Description</label>
+                            <textarea class="border p-3 rounded-2 w-100" rows="5" style="resize: inherit">The landlord rents to the tenant the in the ............ street, 1 Berlin occupied premises in _____ floor, consisting of _______room(s), kitchen/kitchenette, bath/shower/WC.
+The tenant will be handed over the following keys by the landlord for the rental period:
+...................... House-...................... Housing-...................... Rooms keys
+The living area is approx._____ m².
+The apartment is rented furnished. The apartment serves to cover the temporary special needs of the tenan
+                        </textarea>
+
+                        </div>
+
+                    </div>
+                    <!--all bills included ?-->
+
+
+                    <div>
+                        <div class="mb-3 me-4 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">section 3</label>
+                            <input type="text" class="form-control rounded-2 py-2 fs-6" value="1 Rentalobject" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label gray">Description</label>
+                            <textarea class="border p-3 rounded-2 w-100" rows="5" style="resize: inherit">The landlord rents to the tenant the in the ............ street, 1 Berlin occupied premises in _____ floor, consisting of _______room(s), kitchen/kitchenette, bath/shower/WC.
+The tenant will be handed over the following keys by the landlord for the rental period:
+...................... House-...................... Housing-...................... Rooms keys
+
+                          </textarea>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <div class="div-4">
+                        <div class="div-5">
+                            <a style="    border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvdd">
+                        Back
+          </a>
+                            <div class="div-6">
+                                <!-- <button class="auto-layout-button"><div class="label-2">Cancel</div></button> -->
+                                <a style="    border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvdd">
+                      Cancel
+        </a>
+
+                                <button class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                                save
+                  </button>
+                                <!-- <button class="label-wrapper"><div class="label-3">save</div>
+                    </button> -->
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+        <!-- end part 3 to display paroduct Apartment details in page  -->
+    </main>
+    <!-- end content page  -->
+</div>

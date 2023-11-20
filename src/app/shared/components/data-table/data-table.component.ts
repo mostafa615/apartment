@@ -1,0 +1,127 @@
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
+
+@Component({
+  selector: 'app-data-table',
+  templateUrl: './data-table.component.html',
+  styleUrls: ['./data-table.component.scss'],
+  encapsulation: ViewEncapsulation.None
+})
+export class DataTableComponent {
+
+  /** products */
+  @Input() products!: Array<any>;
+  /** fullRespone */
+  @Input() fullRespone: any = [];
+  /** selectedProducts */
+  @Input() selectedProducts: Array<object> = [];
+  /** headerData */
+  @Input() headerData: Array<any> = [];
+  /** pagePerson */
+  @Input() pagePerson: string = '';
+  /** dataSelectionKey */
+  @Input() dataSelectionKey: string = '';
+  /** onPageChange */
+  @Output() onPageChange: EventEmitter<number> = new EventEmitter<number>();
+  /** searchTextChange */
+  @Output() searchTextChange: EventEmitter<string> = new EventEmitter<string>();
+  /** searchTextChange */
+  @Output() deleteItemDetails: EventEmitter<string> = new EventEmitter<string>();
+  /** showEdit */
+  showEdit: Array<boolean> = [];
+  /** search  */
+  search: boolean = false;
+  /** searchText  */
+  searchText: string = '';
+  /**dropdownOption */
+  dropdownOption: Array<any> = [];
+
+
+
+  constructor(public confirmationService: ConfirmationService) { }
+  ngOnInit() {
+    // console.log(this.headerData);
+  }
+
+  initDropdown() {
+    this.dropdownOption = [
+      { label: 'Edit', value: 'edit' },
+      { label: 'Delete', value: 'delete' },
+    ]
+  }
+
+  onActionSelected(action: any) {
+    console.log('Selected Action:', action.value);
+    // Handle the selected action here
+  }
+
+  openDropdown(event: Event) {
+    event.stopPropagation(); // Prevents the dropdown from closing when clicking the button
+  }
+
+
+
+  searchAction() {
+    this.searchTextChange.emit(this.searchText);
+    this.search = false;
+  }
+
+  /**
+   * tiggerPageChange
+   * @description calculate the page number and update the onpage change emitter
+   * @param event 
+   */
+  tiggerPageChange(event: any) {
+    
+    const calcPageNumber = Math.floor(event.first / event.rows) + 1;
+    console.log(calcPageNumber);
+    this.onPageChange.emit(calcPageNumber);
+  }
+
+  /**
+  * GetSelectedItem
+  * @returns void
+  */
+  GetSelectedItem(): void {
+    console.log(this.selectedProducts);
+  }
+
+  /**
+  * show dropdown edit or delet button
+  * @param id:number
+  * @returns void
+  */
+  detailperson(id: number): void {
+    this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
+
+  }
+  /**
+   * confirmDelte
+   * @param event 
+   */
+  confirmDelete(event: any, product: any) {
+    console.log('product', product);
+
+    this.confirmationService.confirm({
+      target: event.target,
+      message: 'Are you sure you want to delete this?',
+      icon: 'pi pi-trash', // Change the icon to a trash icon or another suitable delete icon
+      accept: () => {
+        // Delete action
+        this.deleteItem(product);
+      },
+      reject: () => {
+        // Cancel or reject action
+      }
+    });
+  }
+
+  /**
+   * deleteItem
+   * @param product 
+   */
+  private deleteItem(product: string): void {
+    this.deleteItemDetails.emit(product);
+  }
+
+}

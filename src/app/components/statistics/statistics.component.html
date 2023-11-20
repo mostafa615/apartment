@@ -1,0 +1,132 @@
+<!-- start header -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'statistics'"></app-head>
+  </header>
+  <!-- end header -->
+  <div class="row m-0">
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'statistics'"></app-sidebar>
+    <!-- end sidebar  -->
+    <!-- start content page  -->
+    <main class=" p-4 col-lg-10">
+      
+      <div class="d-md-flex justify-content-between dashboard">
+        <p class="fw-bold" style="color: #6c6a6a;">statistics</p>
+        <div class="d-md-flex justify-content-lg-between  ">
+          <div class="d-flex mb-2 me-3">
+            <button class="month rounded-start px-3 py-2 text-white border-0 outline-none">This Month</button>
+            <button class="week rounded-end px-3 py-2 outline-none bg-white">Last Week</button>
+          </div>
+          <!-- start dropdown button  -->
+          <app-dropdown class="" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
+          <!-- end dropdown button  -->
+        </div>
+      </div>
+      
+      <div class="row mt-3 mb-3">
+        <!--Apartment ratings table-->
+        <div class="col-12 col-md-7 mb-3">
+            <app-statistics-table [headTitle]="headTitleRating" [listDropDown]="listDropDownRating"
+             [headTableList]="headTableListRating"
+            [rowDatalist]="rowDatalistRating">
+          </app-statistics-table>
+        </div>
+        <!--Vacancy rate chart-->
+        <div class="col-12 col-md-5 mb-3">
+           <div class="p-3 border rounded bg-white h-350" >
+           </div>
+        </div>
+     </div>
+     <!--charts-->
+     <div class="row">
+      <!--Total revenue chart-->
+        <div class="col-12 col-md-6  mb-3 ">
+           <div class=" bg-white border rounded p-3">
+            Chart
+           <!--chart-->
+           </div>
+        </div>
+        <!--area location-->
+        <div class="col-12 col-md-6  mb-3">
+            <!--chart-->
+            <div class="bg-white border rounded p-3">
+                Chart
+            </div>
+           
+        </div>
+     </div>
+
+     <div class="row mt-3">
+        <!--Apartments requests table-->
+        <div class="col-12 col-md-5  mb-3">
+            <app-statistics-table1 [headTitle]="headTitleRequests"
+            [listDropDown]="listDropDownRequests" [headTableList]="headTableListRequests"
+            [rowDatalist]="rowDatalistRequests"></app-statistics-table1>
+        </div>
+        <!--Tenant payment history table-->
+        <div class="col-12 col-md-7  mb-3">
+            <app-statistics-table [headTitle]="headTitleTenantpaymenthistory"
+            [listDropDown]="listDropDownTenantpaymenthistory"
+             [headTableList]="headTableListTenantpaymenthistory"
+            [rowDatalist]="rowDatalistTenantpaymenthistory"></app-statistics-table>
+        </div>
+     </div>
+
+     <div class="row mt-3">
+        <!--Apartment sizes table-->
+        <div class="col-12 col-md-7  mb-3">
+            <app-statistics-table [headTitle]="headTitleApartmentsizes"
+            [listDropDown]="listDropDownApartmentsizes"
+            [headTableList]="headTableListTenantpaymenthistory"
+            [rowDatalist]="rowDatalistTenantpaymenthistory"></app-statistics-table>
+        </div>
+        <!--Apartment demands table-->
+        <div class="col-12 col-md-5  mb-3">
+            <app-statistics-table1 [headTitle]="headTitleApartmentdemands"
+            [listDropDown]="listDropDownApartmentdemands"
+            [headTableList]="headTableListApartmentdemands"
+            [rowDatalist]="rowDatalistApartmentdemands"></app-statistics-table1>
+        </div>
+       
+     </div>
+
+     <!--User report problems table-->
+     <div class="p-3 table-abrtment bg-white border rounded overflow-overlay  mb-3 h-350">
+            <app-header-table [headTitle]="'User report problems'" [listDropDown]="listDropDownApartmentdemands"></app-header-table>
+            <table class="table table-hover mt-2">
+              <thead>
+                <tr>
+                  <th class="fs-16 gray fw-bold"scope="col" *ngFor="let datahead of headTableListUserreportproblems">{{datahead}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of rowdataListUserreportproblems">
+                  <th scope="row" class="d-md-flex ">
+                    <img [src]="data.img" class="me-3" />
+                    <div>
+                      <p class="pf fw-bold mb-0">{{data.name}}</p>
+                    </div>
+                  </th>
+                  <td  >
+                    <div class="d-md-flex ">
+                        <img [src]="data.img1" class="me-3" />
+                        <div>
+                          <p class="pf fw-bold mb-0">{{data.name1}}</p>
+                          <p class="gray mb-0">{{data.title}}</p>
+                        </div>
+                    </div>
+                   
+                  </td>
+                  <td class="gray">{{data.numberofproblem}}</td>
+                </tr>
+                
+              </tbody>
+            </table>
+     </div>
+    
+
+    </main>
+    <!-- end content page  -->
+  </div>
+
+ 

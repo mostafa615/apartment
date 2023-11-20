@@ -1,0 +1,261 @@
+<div class="bg-white p-3">
+    <!--Backup information-->
+    <div>
+        <p class="fw-bold mb-0">Backup information</p>
+        <p class="gray">Add backup information to your property.</p>
+    </div>
+    <p-toast></p-toast>
+
+    <form [formGroup]="PostBackupInfo" (ngSubmit)="Create_PostBackupInfo(PostBackupInfo)">
+
+        <div>
+            <div class="row">
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label gray fw-bold">Electricity meter number</label>
+                    <input formControlName='elec_Meter_Num' type="string" [class.is-invalid]="PostBackupInfo.get('elec_Meter_Num')!.invalid && PostBackupInfo.get('elec_Meter_Num')!.touched " class="form-control rounded-2 py-2 fs-6">
+                    <span class="text-danger d-block m-2 " *ngIf="PostBackupInfo.get('elec_Meter_Num')!.invalid && PostBackupInfo.get('elec_Meter_Num')!.touched ">
+                        this field is required
+                    </span>
+                </div>
+                <div class="mb-3 col-12 col-md-6">
+                    <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold">Electricity meter
+                        consumption</label>
+                    <input formControlName='elec_Meter_Cons' type="number" [class.is-invalid]="PostBackupInfo.get('elec_Meter_Cons')!.invalid && PostBackupInfo.get('elec_Meter_Cons')!.touched " class="form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit">
+                    <span class="text-danger d-block m-2 " *ngIf="PostBackupInfo.get('elec_Meter_Cons')!.invalid && PostBackupInfo.get('elec_Meter_Cons')!.touched ">
+                        this field is required
+                    </span>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label gray fw-bold">Water meter number</label>
+                    <input formControlName='water_Meter_Num' type="text" [class.is-invalid]="PostBackupInfo.get('water_Meter_Num')!.invalid && PostBackupInfo.get('water_Meter_Num')!.touched " class="form-control rounded-2 py-2 fs-6">
+                    <span class="text-danger d-block m-2 " *ngIf="PostBackupInfo.get('water_Meter_Num')!.invalid && PostBackupInfo.get('water_Meter_Num')!.touched ">
+                        this field is required
+                    </span>
+                </div>
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label gray fw-bold">Water meter consumption</label>
+                    <input formControlName='water_Meter_Cons' type="number" [class.is-invalid]="PostBackupInfo.get('water_Meter_Cons')!.invalid && PostBackupInfo.get('water_Meter_Cons')!.touched " class="form-control rounded-2 py-2 fs-6">
+                    <span class="text-danger d-block m-2 " *ngIf="PostBackupInfo.get('water_Meter_Cons')!.invalid && PostBackupInfo.get('water_Meter_Cons')!.touched ">
+                        this field is required
+                    </span>
+                </div>
+
+            </div>
+            <div class="row" *ngIf="addApartment != 'Edit Apartment Name' ">
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label gray fw-bold">Gas meter number</label>
+                    <input formControlName='gas_Meter_Num' type="text" [class.is-invalid]="PostBackupInfo.get('gas_Meter_Num')!.invalid && PostBackupInfo.get('gas_Meter_Num')!.touched " class="form-control rounded-2 py-2 fs-6">
+                    <span class="text-danger d-block m-2 " *ngIf="PostBackupInfo.get('gas_Meter_Num')!.invalid && PostBackupInfo.get('gas_Meter_Num')!.touched ">
+                        this field is required
+                    </span>
+                </div>
+                <div class="mb-3  col-12 col-md-6">
+                    <label class="form-label gray fw-bold">Gas meter consumption</label>
+                    <input formControlName='gas_Meter_Cons' type="number" [class.is-invalid]="PostBackupInfo.get('gas_Meter_Cons')!.invalid && PostBackupInfo.get('gas_Meter_Cons')!.touched " class="form-control rounded-2 py-2 fs-6">
+                    <span class="text-danger d-block m-2 " *ngIf="PostBackupInfo.get('gas_Meter_Cons')!.invalid && PostBackupInfo.get('gas_Meter_Cons')!.touched ">
+                        this field is required
+                    </span>
+                </div>
+
+            </div>
+            <!-- <div class="row" *ngIf="addApartment == 'Edit Apartment Name' ">
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label gray fw-bold">Wi-Fi Name</label>
+                    <input type="number" disabled [(ngModel)]="wifi.wifi_Name" [ngModelOptions]="{standalone: true}" class="form-control rounded-2 py-2 fs-6">
+                </div>
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label gray fw-bold">Wi-Fi password</label>
+                    <input type="text" disabled [(ngModel)]="wifi.wifi_Password" [ngModelOptions]="{standalone: true}" class="form-control rounded-2 py-2 fs-6">
+                </div>
+
+            </div> -->
+            <!-- <div class="row" *ngIf="addApartment == 'Edit Apartment Name' ">
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label gray fw-bold">Contract start date</label>
+                    <p-calendar></p-calendar>
+                </div>
+                <div class="mb-3  col-12 col-md-6">
+                    <label class="form-label gray fw-bold">Contract end date</label>
+                    <p-calendar></p-calendar>
+                </div>
+
+            </div> -->
+
+            <!-- create new field-->
+            <ng-container>
+                <div class="row" *ngFor="let data  of inputField ">
+                    <div class="mb-3 col-12 col-md-6">
+                        <label class="form-label gray fw-bold">{{data.field_Name}} </label>
+                        <input type="text" value="{{data.field_Content}}" class="form-control rounded-2 py-2 fs-6" />
+                    </div>
+
+
+                </div>
+            </ng-container>
+            <!-- <app-input-field [labelinputs]="Labelfield" (inputField)="saveInputField($event)" [textButton]="'Create New Field'"></app-input-field> -->
+            <app-input-create-field [labelinputs]="Labelfield" (inputField)="saveInputField($event)" [textButton]="'Create new field'"></app-input-create-field>
+
+        </div>
+
+        <div>
+            <p class="d-md-inline-block gray fw-bold mb-0 me-3">Does apartment currently have any existing damage?</p>
+            <div class="form-check d-inline-block mb-2" *ngFor="let data of apartmentCurrentlyExisting">
+                <input class="form-check-input " [checked]="CreateapartmentCurrentlyExisting === data" type="radio" name="createContract" value="{{data}}" id="createContract" (change)="DoyouapartmentCurrentlyExisting($event)">
+                <label class="fw-bold me-2" for="createContract"> {{data}} </label>
+            </div>
+        </div>
+        <div *ngIf="CreateapartmentCurrentlyExisting == 'Yes'">
+            <p class="gray fw-bold">Upload pictures for current damage</p>
+
+            <div class="row">
+                <div>
+                    <div class="position-relative h-124px mb-3">
+                        <!-- start single img upload and preview -->
+                        <ng-container>
+                            <input type="file" accept="image/*" multiple="multiple" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                            <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute" width="100%">
+                        </ng-container>
+
+                        <!-- end single img upload and preview -->
+                    </div>
+                </div>
+            </div>؛
+            <div class="row" style="margin-bottom: 13px;">
+                <div class="col-8 bomar">
+
+                    <button type="button" style="background-color: #1f4068 !important;margin-left: 10px;" class="rounded-2 text-white rounded-2 border-0 py-2 px-4  " [disabled]="!selectedFiles" (click)="upload()">
+  Confirm
+</button>
+                </div>
+            </div>
+            <div class="card1">
+                <div class="row">
+                    <div class="col-md-2 card33" *ngFor="let image of ListFiles;  index as i ">
+                        <a (click)="removeItem(image.name)" style="      border: none;   margin-bottom: 10px; position: absolute;">
+                            <img class="imageRemove" src="../../../../../../assets/images/delete.svg" width="32px" height="32px;">
+                        </a>
+                        <!-- <input type="checkbox" id="st{{i}}" (change)="checkValue($event,image)" />
+                        <label for="st{{i}}"></label> -->
+                        <a (click)="opencloseModal(urls[i])">
+                            <img [src]="urls[i]" alt="Avatar" style="width:339px;height:205px ; ">
+
+                        </a>
+
+                    </div>
+                </div>
+                <div class="row" *ngIf="storedImages!=null||storedImages!=''">
+                    <div class="col-md-2 card33" *ngFor="let image of storedImages;  index as i ">
+
+                        <a (click)="opencloseModal(image.apt_imgs)">
+                            <img [src]="image.apt_imgs" alt="Avatar" style="width:339px;height:205px ; ">
+
+                        </a>
+
+                    </div>
+                </div>
+                <div class="row" *ngIf="edit=='EditForm'">
+                    <div class="col-md-2 card33" *ngFor="let image of aprt_details_Edit?.dmgs_Imgs;  index as i ">
+
+                        <a (click)="opencloseModal(image.pic_URL)">
+                            <img [src]="image.pic_URL" alt="Avatar" style="width:339px;height:205px ; ">
+
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <!-- <div>
+                <p class="gray fw-bold">Upload pictures for current damage</p>
+                <div *ngIf="addApartment != 'Edit Apartment Name'">
+                    <div class="position-relative h-124px mb-3">
+                        <ng-container *ngIf="!selectedContract">
+                            <input type="file" accept="image/*" multiple="onUploadContract($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                            <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute" width="100%">
+                        </ng-container>
+                        <ng-container *ngIf="selectedContract">
+                            <input type="file" accept="image/*" (change)="onUploadContract($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                            <img [src]="selectedContract ? selectedContract.url : null" class="position-absolute imgPreviewUploader" width="100%">
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="mb-4" *ngIf="addApartment == 'Edit Apartment Name'">
+                    <div>
+                        <div class="d-flex">
+                            <div class="w-145px me-2 h-124px">
+                                <img class="w-100 h-100" src="assets/images/apartmentImages/photo.svg" />
+                            </div>
+                            <div class="w-145px me-2 h-124px">
+                                <img class="w-100 h-100" src="assets/images/apartmentImages/photo.svg" />
+                            </div>
+                            <div class="w-145px me-2 h-124px">
+                                <img class="w-100 h-100" src="assets/images/apartmentImages/photo.svg" />
+                            </div>
+                            <div class="w-145px me-2 h-124px">
+                                <img class="w-100 h-100" src="assets/images/apartmentImages/photo.svg" />
+                            </div>
+                            <div class="w-145px me-2 h-124px">
+                                <div class="position-relative h-124px mb-3">
+                                    <input type="file" accept="image/*" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                    <img src="assets/images/apartmentImages/File upload1.svg" class="position-absolute">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div>
+                <div class="mb-3 mt-2">
+                    <label for="exampleFormControlTextarea1" class="form-label gray">Description</label>
+                    <textarea formControlName="apt_Dmgs_Desc" class=" border p-3 rounded-2 w-100" rows="5" style="resize: inherit;"></textarea>
+                </div>
+
+            </div>
+        </div>
+
+        <hr>
+        <!--payments-->
+        <div>
+            <div class="row mb-4">
+                <div class="col-12 col-md-6 mb-2">
+                    <p class="fw-bold blue mb-0">Payments</p>
+                    <div class="gray col-12 col-md-6 blue">
+                        Select payment methods to Receive money when rental income or security deposit payments are made
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="d-flex">
+                        <p-inputSwitch [(ngModel)]="checkedstripe" [ngModelOptions]="{standalone: true}"></p-inputSwitch>
+                        <p class="ms-2 mt-1 fw-bold gray">stripe</p>
+                    </div>
+                    <div class="d-flex">
+                        <p-inputSwitch [(ngModel)]="checkedPayPal" [ngModelOptions]="{standalone: true}"></p-inputSwitch>
+                        <p class="ms-2 mt-1 fw-bold gray">PayPal</p>
+                    </div>
+                    <div class="d-flex">
+                        <p-inputSwitch [(ngModel)]="checkedCash" [ngModelOptions]="{standalone: true}"></p-inputSwitch>
+                        <p class="ms-2 mt-1 fw-bold gray">Cash</p>
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+            <!-- General comment -->
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label gray">General comment</label>
+                <textarea formControlName='apt_General_Comments' class=" border p-3 rounded-2 w-100" rows="5" style="resize: inherit;"></textarea>
+            </div>
+        </div>
+
+        <!--cancel or publish button-->
+        <div class="d-flex justify-content-between">
+            <button (click)="PrevPage()" class="backcancel bg-white rounded-2 py-2 px-3 fw-bold">Back</button>
+            <div class="d-flex justify-content-between">
+                <button class="backcancel bg-white rounded-2 py-2 px-3 fw-bold me-4">save and close</button>
+                <button class="rounded-2 text-white outline-0 border-0  rounded-2 py-2 px-4" style="background-color:#1F4068 !important;">Publish</button>
+            </div>
+        </div>
+    </form>
+</div>

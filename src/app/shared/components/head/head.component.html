@@ -1,0 +1,31 @@
+<div class="d-lg-flex header border py-3 px-3 justify-content-between">
+
+    <div class="header-logo col-md-2 d-none d-lg-block"><img class="h-100" src="assets/images/logo.svg"></div>
+    <div class="col-lg-10 col-sm-12 row justify-content-between">
+        <div class="col-lg-7 col-8 mt-2 ms-lg-0 row ">
+            <p class=" col-lg-3 pd d-none d-lg-block">{{titleModule}}</p>
+            <div (click)="showSidebar()" class="d-lg-none col-1 ms-4 me-2 fs-4"><i class="fa fa-bars"
+                    aria-hidden="true"></i></div>
+            <!-- start search button -->
+            <div class="p-input-icon-left col-9 col-lg-8">
+                <i *ngIf="value==''" style="margin-top: -17px;"><img src="assets/images/search.svg" /></i>
+                <input class="form-control" [class.ps-35px]="value==''" type="text" pInputText placeholder="Search"
+                    [(ngModel)]="value" />
+            </div>
+            <!-- end search button -->
+        </div>
+        <div class="col-4 mt-2 col-lg-3 d-flex justify-content-end">
+            <div class="d-flex pe-lg-4">
+                <!-- start notification -->
+                <span class="me-1"><img src="assets/images/notification.svg" /></span>
+                <!-- end notification -->
+                <div class="d-flex" style="margin-top: -10px;">
+                    <div class="mt-2 me-1"><img src="assets/images/One.svg" /></div>
+                    <p class="pname mt-3">Umar</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

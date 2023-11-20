@@ -1,0 +1,524 @@
+<div class="bg-white p-3">
+    <div>
+        <p class="fw-bold mb-0">Contract</p>
+        <p class="gray">Add Contract info to your property.</p>
+
+    </div>
+    <p-toast></p-toast>
+
+    <form [formGroup]="create_Apart_contract" (ngSubmit)="Create_Apart_Contract(create_Apart_contract)">
+        <div class="mt-4">
+            <p class="gray fw-bold mb-2">Upload contract</p>
+
+            <div>
+                <div class="position-relative h-124px mb-3">
+                    <!-- start single img upload and preview -->
+                    <ng-container *ngIf="!selectedContractImg">
+                        <input type="file" accept=".pdf, image/*" (change)="onUploadContract($event,'contract_Path')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                        <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute h-100" width="100%">
+                    </ng-container>
+                    <ng-container *ngIf="selectedContractImg">
+                        <div *ngIf="selectedContractImg.type !== 'application/pdf'">
+                            <input type="file" accept=".pdf, image/*" (change)="onUploadContract($event,'contract_Path')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                            <img [src]="selectedContractImg.url" class="position-absolute imgPreviewUploader" width="100%">
+                        </div>
+                        <div *ngIf="selectedContractImg.type === 'application/pdf'">
+                            <a [href]="selectedContractImg.url" target="_blank" style="font-size: large;">View PDF</a>
+                            <input type="file" accept=".pdf, image/*" (change)="onUploadContract($event,'contract_Path')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                        </div>
+
+                    </ng-container>
+                    <!-- end single img upload and preview -->
+
+                </div>
+                <img *ngIf="edit=='EditForm'&&afterUploadImage=='false'&&dataEdit.c_Type!='File'" [src]="passContract" style="margin-bottom: 25px;" class=" imgPreviewUploader" width="100%">
+                <a [href]="passContract" *ngIf="edit=='EditForm'&&afterUploadImage=='false'&&dataEdit.c_Type=='File'" style="font-size: large;" target="_blank">View PDF</a>
+
+            </div>
+
+            <!-- <div *ngIf="addApartment == 'Edit Apartment Name' ">
+                <div class="d-md-flex justify-content-between rounded uploadedContractBorder mb-3 py-2 px-3">
+                    <div>
+                        <p class="fw-bold mb-2">view uploaded contract</p>
+                        <p class="col-md-8">
+                            This contract includes all the necessary information.
+                        </p>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <a class="me-3 cursor" routerLink="/apartments/contract/{{ 'user-contract' }}"><img src="assets/images/apartmentImages/delete.svg" /></a>
+                        <a class="me-3 cursor" routerLink=""><img src="assets/images/apartmentImages/share.svg" /></a>
+                        <a class="me-3 cursor" routerLink=""><img src="assets/images/apartmentImages/move.svg" /></a>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <!--Create Contract-->
+        <div>
+            <p class="d-md-inline-block gray fw-bold mb-0 me-2">
+                Do you want create contract ?
+            </p>
+            <div class="form-check d-inline-block mb-2 me-3" *ngFor="let data of listRadiobutton">
+                <input class="form-check-input" type="radio" [checked]="CreateContract === data" name="createContract" value="{{ data }}" id="createContract" (change)="DoyouCreateContract($event)" />
+                <label class="fw-bold" for="createContract"> {{ data }} </label>
+            </div>
+        </div>
+
+        <div class="mb-4" *ngIf="CreateContract == 'Yes'">
+            <div>
+                <p class="fw-bold mb-0" *ngIf="createcontractpage">create contract</p>
+                <p class="gray" *ngIf="createcontractpage">this is a legally contract between buyer and seller</p>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label gray fw-bold">landlord name</label>
+                    <input [ngModelOptions]="{standalone: true}" [(ngModel)]="nameOwner" disabled="text" class="form-control rounded-2 py-2 fs-6" />
+                    <!-- <span class="text-danger d-block m-2 " *ngIf="create_Apart_contract.get('landLord')!.invalid && create_Apart_contract.get('landLord')!.touched ">
+            this field is required
+          </span> -->
+                </div>
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label gray fw-bold">tenant name</label>
+                    <input formControlName="tenantName" type="text" [class.is-invalid]="create_Apart_contract.get('tenantName')!.invalid && create_Apart_contract.get('tenantName')!.touched " class="form-control rounded-2 py-2 fs-6" />
+                    <span class="text-danger d-block m-2 " *ngIf="create_Apart_contract.get('tenantName')!.invalid && create_Apart_contract.get('tenantName')!.touched ">
+            this field is required
+          </span>
+                </div>
+            </div>
+            <div class="row" *ngIf="createcontractpage">
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label gray fw-bold">Contract start date</label>
+                    <p-calendar formControlName="contractDate_Start"></p-calendar>
+                </div>
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label gray fw-bold">Contract end date</label>
+                    <p-calendar formControlName="contractDate_End"></p-calendar>
+                </div>
+            </div>
+            <div class="mb-3 me-4 col-12 col-md-6" *ngIf="createcontractpage">
+                <label class="form-label gray fw-bold">price per month</label>
+                <input type="number" formControlName="rent_Fees" [class.is-invalid]="create_Apart_contract.get('rent_Fees')!.invalid && create_Apart_contract.get('rent_Fees')!.touched " class="form-control rounded-2 py-2 fs-6" />
+                <span class="text-danger d-block m-2 " *ngIf="create_Apart_contract.get('rent_Fees')!.invalid && create_Apart_contract.get('rent_Fees')!.touched ">
+            this field is required
+          </span>
+            </div>
+
+            <!--Sections-->
+
+            <div *ngFor="let data of contractDetails;let index=index">
+                <app-create-contract-sections [contractDetails]="data" [index]="index+1"></app-create-contract-sections>
+                <div class=" col-md-12 " style="margin-bottom: 50px;">
+                    <div class="d-flex" style="float:right">
+                        <button class="backcancel outline-0 bg-white rounded-2 py-2 px-3 fw-bold me-4" (click)="removeSection(index)">
+      Remove
+    </button>
+
+                    </div>
+                </div>
+
+            </div>
+            <app-create-contract-sections [index]="contractDetails.length+1" [contractDetails]="contractDetails[contractDetails.length+1]" [ActionButtonField]="!ActionButtonContractSection"></app-create-contract-sections>
+            <div>
+                <a class="bg-transparent cursor text-decoration-none outline-0 border-0 blue fw-bold mb-4" (click)="ActionButtonContractSectionbutton()">
+                    <img src="assets/images/apartmentImages/ic_baseline-add.svg" /> create new section
+                </a>
+            </div>
+        </div>
+        <div lass="mb-4" *ngIf="CreateContract != 'Yes'">
+
+
+            <div class="row">
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label gray fw-bold">Contract start date</label>
+                    <p-calendar formControlName="contractDate_Start"></p-calendar>
+                </div>
+                <div class="mb-3 col-12 col-md-6">
+                    <label class="form-label gray fw-bold">Contract end date</label>
+                    <p-calendar formControlName="contractDate_End"></p-calendar>
+                </div>
+            </div>
+            <div class="mb-3 me-4 col-12 col-md-6">
+                <label class="form-label gray fw-bold">price per month</label>
+                <input type="number" formControlName="rent_Fees" [class.is-invalid]="create_Apart_contract.get('rent_Fees')!.invalid && create_Apart_contract.get('rent_Fees')!.touched " class="form-control rounded-2 py-2 fs-6" />
+                <span class="text-danger d-block m-2 " *ngIf="create_Apart_contract.get('rent_Fees')!.invalid && create_Apart_contract.get('rent_Fees')!.touched ">
+          this field is required
+        </span>
+            </div>
+
+        </div>
+        <!--check in sheet section-->
+        <div style="margin-top:48px">
+            <div>
+                <p class="fw-bold mb-0">check in sheet</p>
+                <p class="gray">Add check in sheet details.</p>
+            </div>
+            <div>
+                <p class="d-md-inline-block gray fw-bold mb-0 me-3">check in type</p>
+                <div class="form-check d-inline-block mb-2" *ngFor="let data of checkintypelist">
+                    <input class="form-check-input" type="radio" [checked]="Createcheckintype === data" name="Createapartmentcurre" value="{{ data }}" id="createContract" (change)="DoyouCreateacheckintype($event)" />
+                    <label class="fw-bold me-3" for="createContract"> {{ data }} </label>
+                </div>
+            </div>
+            <div *ngIf="Createcheckintype == 'self check in'">
+                <div>
+                    <!-- <div class="row" *ngIf="addApartment == 'Edit Apartment Name'">
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">Apartment name</label>
+                            <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="nameApartment" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">Apartment full address</label>
+                            <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="nameAddress" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">Wi-Fi name</label>
+                            <input formControlName="wifi_Name" type="text" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">Wi-Fi password</label>
+                            <input formControlName="wifi_Password" type="text" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3  col-12 col-md-6">
+                            <label class="form-label gray fw-bold"> Number Of The Door (if found)
+              </label>
+                            <input type="number" formControlName="numof_Doors" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                        <div class="mb-3  col-12 col-md-6">
+                            <label class="form-label gray fw-bold">The mailbox number (if found)
+              </label>
+                            <input type="number" formControlName="mailBox_Num" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            <p class="gray fw-bold">Upload pictures for trash Location</p>
+
+                            <div class="row">
+                                <div>
+                                    <div class="position-relative h-124px mb-3">
+                                        <!-- start single img upload and preview -->
+                                        <ng-container>
+                                            <input type="file" accept="image/*" multiple="multiple" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                            <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute" width="100%">
+                                        </ng-container>
+
+                                        <!-- end single img upload and preview -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 13px;">
+                                <div class="col-8 bomar">
+
+                                    <button type="button" style="background-color: #1f4068 !important;margin-left: 10px;" class="rounded-2 text-white rounded-2 border-0 py-2 px-4  " [disabled]="!selectedFiles" (click)="upload()">
+              Confirm
+            </button>
+                                </div>
+                            </div>
+                            <div class="card1">
+                                <div class="row">
+                                    <div class="col-md-2 card33" *ngFor="let image of ListFiles;  index as i ">
+                                        <a (click)="removeItem(image.name)" style="      border: none;   margin-bottom: 10px; position: absolute;">
+                                            <img class="imageRemove" src="../../../../../../assets/images/delete.svg" width="32px" height="32px;">
+                                        </a>
+
+                                        <a>
+                                            <img [src]="urls[i]" alt="Avatar" style="width:339px;height:205px ; ">
+
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="storedImages!=null||storedImages!=''">
+                                    <div class="col-md-2 card33" *ngFor="let image of storedImages;  index as i ">
+
+                                        <a (click)="opencloseModal(image.pic_URL)">
+                                            <img [src]="image.pic_URL" alt="Avatar" style="width:339px;height:205px ; ">
+
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="edit=='EditForm'">
+                                    <div class="col-md-2 card33" *ngFor="let image of aprt_details_Edit?.tarsh_Pin_Imgs;  index as i ">
+
+                                        <a (click)="opencloseModal(image.pic_URL)">
+                                            <img [src]="image.pic_URL" alt="Avatar" style="width:339px;height:205px ; ">
+
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="mb-3 mt-2">
+                                    <label for="exampleFormControlTextarea1" class="form-label gray">Description of trash Location</label>
+                                    <textarea formControlName="trash_Location" class=" border p-3 rounded-2 w-100" rows="5" style="resize: inherit;"></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <!-- <div class="mb-3  col-12 col-md-6">
+                            <label class="form-label gray fw-bold">Trash bin location </label>
+                            <input formControlName="trash_Location" type="text" class="form-control rounded-2 py-2 fs-6" />
+                        </div> -->
+                        <div class="mb-3  col-12 col-md-6">
+                            <label class="form-label gray fw-bold">The Location of the apartment on the floor</label>
+                            <input formControlName="apt_Location" type="text" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="addApartment == 'Edit Apartment Name'">
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">The nearest transportation station</label>
+                            <input type="text" class="form-control rounded-2  fs-6" />
+                        </div>
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">Floor number</label>
+                            <!-- <app-dropdown [list]="listDropDownFloorNumber" (selected)="selectedfromDropDownFloorNumber($event)"></app-dropdown> -->
+
+                            <!-- <app-dropdown [list]="listDropDownFloor" [holder]="selectFloor" (selected)="selectedfromDropDownFloor($event)"></app-dropdown> -->
+                            <select class="s-cont" name="apt_FloorNo" id="apt_FloorNo" [ngModelOptions]="{standalone: true}" [(ngModel)]="apt_FloorNo">
+                                <option value="null"    disabled hidden selected>  &nbsp; select Floor   </option>
+
+                              <option *ngFor="let type of listDropDownFloorNumber" value="{{type.name}}"> {{type.name}} </option>
+                              </select>
+                            <!-- end dropdown button  -->
+                            <!--  -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">the safe code </label>
+                            <input formControlName="safe_Code" type="text" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">the safe image</label>
+                            <div class="position-relative h-124px mb-3">
+                                <!-- start single img upload and preview -->
+                                <ng-container *ngIf="!selectedSafeImg">
+                                    <input type="file" accept="image/*" (change)="onUploadContract($event,'safe_Img')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                    <img src="assets/images/apartmentImages/File upload.svg" class="position-absolute">
+                                </ng-container>
+                                <ng-container *ngIf="selectedSafeImg">
+                                    <input type="file" accept="image/*" (change)="onUploadContract($event,'safe_Img')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                    <img [src]="selectedSafeImg ? selectedSafeImg.url : null" class="position-absolute imgPreviewUploader" width="100%">
+                                </ng-container>
+                                <!-- end single img upload and preview -->
+
+                            </div>
+                            <div *ngIf="addApartment == 'Edit Apartment Name'" class="h-124px mb-3">
+                                <img [src]="safe_Img" *ngIf="issshowsafe=='safe'" class="position-absolute imgPreviewUploader">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">picture of the apartment door</label>
+                            <div class="position-relative h-124px mb-3">
+                                <!-- start single img upload and preview -->
+                                <ng-container *ngIf="!selectedDoorImg">
+                                    <input type="file" accept="image/*" (change)="onUploadContract($event,'door_Img')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                    <img src="assets/images/apartmentImages/File upload.svg" class="position-absolute">
+                                </ng-container>
+                                <ng-container *ngIf="selectedDoorImg">
+                                    <input type="file" accept="image/*" (change)="onUploadContract($event,'door_Img')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                    <img [src]="selectedDoorImg ? selectedDoorImg.url : null" class="position-absolute imgPreviewUploader" width="100%">
+                                </ng-container>
+                                <!-- end single img upload and preview -->
+                            </div>
+                            <div *ngIf="addApartment == 'Edit Apartment Name'" class="h-124px mb-3">
+                                <img [src]="door_Img" *ngIf="issshowdoor=='door'" class="position-absolute imgPreviewUploader">
+                            </div>
+                        </div>
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">picture of a building's door</label>
+                            <div class="position-relative h-124px mb-3">
+                                <!-- start single img upload and preview -->
+                                <ng-container *ngIf="!selectedBuildingImg">
+                                    <input type="file" accept="image/*" (change)="onUploadContract($event,'building_Img')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                    <img src="assets/images/apartmentImages/File upload.svg" class="position-absolute">
+                                </ng-container>
+                                <ng-container *ngIf="selectedBuildingImg">
+                                    <input type="file" accept="image/*" (change)="onUploadContract($event,'building_Img')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                    <img [src]="selectedBuildingImg ? selectedBuildingImg.url : null" class="position-absolute imgPreviewUploader" width="100%">
+                                </ng-container>
+                                <!-- end single img upload and preview -->
+                            </div>
+
+                            <div *ngIf="addApartment == 'Edit Apartment Name'" class="h-124px mb-3">
+
+                                <img [src]="building_Img" *ngIf="issshowbuilding=='building'" class="position-absolute imgPreviewUploader">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <ng-container>
+                            <div class="row" *ngFor="let data  of apt_inputfields ">
+                                <div class="mb-3 col-12 col-md-6">
+                                    <label class="form-label gray fw-bold">{{data.field_Name}} </label>
+                                    <input type="text" value="{{data.field_Content}}" class="form-control rounded-2 py-2 fs-6" />
+                                </div>
+
+                                <!-- <div class="mb-3 col-12 col-md-6">
+                                    <label class="form-label gray fw-bold">input field name </label>
+                                    <input type="text" value="{{data.field_Name}}" class="form-control rounded-2 py-2 fs-6" />
+                                </div>
+                                <div class="mb-3 col-12 col-md-6">
+                                    <label class="form-label gray fw-bold">
+                    input field content </label>
+                                    <input type="text" value="{{data.field_Content}}" class="form-control rounded-2 py-2 fs-6" />
+                                </div> -->
+
+                            </div>
+                        </ng-container>
+                        <!-- <app-input-field [labelinputs]="Labelapt_inputfields" [show]="true" (inputField)="pushinputfields($event)" [textButton]="'Create new field'"></app-input-field> -->
+                        <app-input-create-field [labelinputs]="Labelapt_inputfields" [show]="true" (inputField)="pushinputfields($event)" [textButton]="'Create new field'"></app-input-create-field>
+
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="Createcheckintype == 'service check in'">
+                <div>
+
+                    <div class="row">
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">Wi-Fi name</label>
+                            <input formControlName="wifi_Name" type="text" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">Wi-Fi password</label>
+                            <input formControlName="wifi_Password" type="text" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3  col-12 col-md-6">
+                            <label class="form-label gray fw-bold"> Door number (if found)
+              </label>
+                            <input formControlName="numof_Doors" type="number" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                        <div class="mb-3  col-12 col-md-6">
+                            <label class="form-label gray fw-bold">The mailbox number (if found)
+              </label>
+                            <input formControlName="mailBox_Num" type="number" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3  col-12 col-md-6">
+                            <label class="form-label gray fw-bold">Trash bin location </label>
+                            <input formControlName="trash_Location" type="text" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                        <div class="mb-3  col-12 col-md-6">
+                            <label class="form-label gray fw-bold">Floor number</label>
+                            <input type="number" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                    </div>
+                    <div>
+                        <p class=" gray fw-bold">Picture of a buildings door </p>
+
+                        <!--upload image-->
+                    </div>
+                    <div>
+                        <ng-container>
+                            <div class="row" *ngFor="let data  of apt_inputfields ">
+                                <div class="mb-3 col-12 col-md-6">
+                                    <label class="form-label gray fw-bold">{{data.field_Name}} </label>
+                                    <input type="text" value="{{data.field_Content}}" class="form-control rounded-2 py-2 fs-6" />
+                                </div>
+                                <!-- <div class="mb-3 col-12 col-md-6">
+                                    <label class="form-label gray fw-bold">input field name </label>
+                                    <input type="text" value="{{data.field_Name}}" class="form-control rounded-2 py-2 fs-6" />
+                                </div>
+                                <div class="mb-3 col-12 col-md-6">
+                                    <label class="form-label gray fw-bold">
+                    input field content </label>
+                                    <input type="text" value="{{data.field_Content}}" class="form-control rounded-2 py-2 fs-6" />
+                                </div> -->
+
+                            </div>
+                        </ng-container>
+                        <app-input-create-field [labelinputs]="Labelapt_inputfields" [show]="true" (inputField)="pushinputfields($event)" [textButton]="'Create new field'"></app-input-create-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Rental Roles section-->
+        <div class="mt-3">
+            <div>
+                <p class="fw-bold mb-0">Rental Roles</p>
+                <p class="gray">Add rental roles for the apartment</p>
+            </div>
+            <div class="row ">
+                <ng-container *ngFor="let data of apt_roles">
+
+                    <div class="mb-3 col-12 col-md-6 ">
+                        <label class="form-label gray fw-bold">{{data.label}}</label>
+                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="data.rule_Desc" type="text" class="form-control bg-white rounded-2 py-2 fs-6">
+                    </div>
+
+                </ng-container>
+            </div>
+            <div class="row mb-3" *ngIf="ActionButtonapt_roles==true">
+                <div class=" col-12 col-md-6 ">
+                    <label class="form-label gray fw-bold">role {{apt_roles.length+1}}</label>
+                    <input [ngModelOptions]="{standalone: true}" [(ngModel)]="descriptionOfrole" type="text" class="form-control bg-white rounded-2 py-2 fs-6">
+                </div>
+                <div class="mb-0 mt-4 col-12 col-md-6 d-flex align-items-center ">
+                    <div>
+                        <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="ActionButtonapt_roles=false">cancel</button>
+                        <button style="    background-color: #1f4068 !important;" class="rounded-2 text-decoration-none cursor text-white border-0 rounded-2 border-0 outline-0 py-2 px-4" (click)="saveActionButtonnewapt_rules()">save</button>
+                    </div>
+                </div>
+
+            </div>
+            <a class="bg-transparent cursor text-decoration-none outline-0 border-0 blue fw-bold mb-4" (click)="ActionButtonapt_roles=true">
+                <img src="assets/images/apartmentImages/ic_baseline-add.svg" /> Add New Role
+            </a>
+        </div>
+        <hr />
+        <!--save or cancel button-->
+        <div class="d-flex justify-content-between">
+            <button (click)="PrevPage()" class="backcancel bg-white border-0 rounded-2 py-2 px-3 fw-bold">
+        Back
+      </button>
+            <div class="d-flex justify-content-between">
+                <button class="backcancel bg-white rounded-2 border-0 py-2 px-3 fw-bold mx-2 blue">
+          save and close
+        </button>
+                <button type="submit" class="rounded-2 outline-0 text-white border-0 rounded-2 py-2 px-4" style="background-color: #1f4068 !important">
+          next
+        </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display22}" style="background-color: rgba(90,90,90,0.5);">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img [src]="imageSize" style="width:100%" />
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white bbtclose" (click)="oncloseModal()">
+close
+</button>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

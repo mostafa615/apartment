@@ -1,0 +1,26 @@
+<div class="p-3 bg-white border  rounded h-350 overflow-overlay">
+    <app-header-table [headTitle]="headTitle" [listDropDown]="listDropDown"></app-header-table>
+
+    <table class="table table-hover mt-2">
+      <thead>
+        <tr>
+          <th class="fs-16 gray fw-bold" scope="col" *ngFor="let datahead of headTableList">{{datahead}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of rowDatalist">
+          <th scope="row" class="d-md-flex ">
+            <img [src]="data.img" class="me-3" />
+            <div>
+              <h5 class="pf fw-bold mb-0">{{data.name}}</h5>
+              <p class="gray mb-0">{{data.title}}</p>
+            </div>
+          </th>
+          <td class="gray">{{data.location}}</td>
+          <td class="gray">{{data.rating}}</td>
+          
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>

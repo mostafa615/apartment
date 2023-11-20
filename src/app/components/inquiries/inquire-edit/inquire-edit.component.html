@@ -1,0 +1,99 @@
+<!-- start header  -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'Apartments'"></app-head>
+</header>
+<!-- end header  -->
+
+<div class="row m-0">
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'Apartments'"></app-sidebar>
+    <!-- end sidebar  -->
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10 ">
+        <!-- start part 1 in page  -->
+        <div class="fw-bold d-flex justify-content-between" style="color: #6c6a6a;">
+            <p class="fw-bold ml-8"> <a style="color: black" class="removeUnderLine" href="./inquiries">Inqueirs </a> > edit Inqueirs</p>
+
+        </div>
+        <!-- end part 1 in page  -->
+        <!-- start part 2 in page  -->
+
+        <!-- start part 3 to display paroduct Apartment details in page  -->
+        <div class="row paroductApartment  px-1">
+            <!-- <p-progressSpinner *ngIf="spinner == true"></p-progressSpinner> -->
+
+            <div class="frame">
+                <div class="div">
+                    <div class="div">
+                        <div class="text-and-supporting">
+                            <div class="text">General info</div>
+                            <p class="supporting-text">Add property photo and general details.</p>
+                        </div>
+                        <div class="frame-wrapper">
+                            <form [formGroup]="generalInfoForm">
+
+                                <div class="div-2">
+                                    <div class="div-3">
+                                        <div class="input-field">
+                                            <div class="input-with-label">
+                                                <div class="label">Price per month</div>
+                                                <input formControlName="apt_Price" type="number" class="form-control rounded-2 py-2 fs-6" />
+                                                <!-- <span class="text-danger d-block m-2 ">
+            this field is required
+          </span> -->
+
+                                            </div>
+                                        </div>
+                                        <div class="input-field">
+                                            <div class="input-with-label">
+                                                <div class="label">Security deposit</div>
+                                                <input formControlName="apt_SecuirtyDep" type="number" class="form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit" />
+                                                <!-- <span class="text-danger d-block m-2 ">
+                                        this field is required
+                                    </span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-field-wrapper">
+                                        <div class="input-field">
+                                            <div class="input-with-label">
+                                                <div class="label">Max. number of guests</div>
+                                                <input formControlName="apt_MaxGuest" type="number" class="form-control rounded-2 py-2 fs-6" id="exampleInput" style="width: 92%;" />
+                                                <!-- <span class="text-danger d-block m-2 " *ngIf="generalInfoForm.get('apt_MaxGuest')!.invalid && generalInfoForm.get('apt_MaxGuest')!.touched ">
+            this field is required
+          </span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="div-4">
+                    <img class="divider" src="img/divider.svg" />
+                    <div class="div-5">
+                        <a style="    border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvdd">
+                        Back
+          </a>
+                        <div class="div-6">
+                            <!-- <button class="auto-layout-button"><div class="label-2">Cancel</div></button> -->
+                            <a style="    border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvdd">
+                      Cancel
+        </a>
+
+                            <button class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                                save
+                  </button>
+                            <!-- <button class="label-wrapper"><div class="label-3">save</div>
+                    </button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- end part 3 to display paroduct Apartment details in page  -->
+    </main>
+    <!-- end content page  -->
+</div>

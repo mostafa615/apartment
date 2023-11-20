@@ -1,0 +1,187 @@
+<!-- start header  -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'inquires'"></app-head>
+</header>
+<!-- end header  -->
+
+<div class="row m-0">
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'send offer'"></app-sidebar>
+    <!-- end sidebar  -->
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10 ">
+        <!-- start part 1 in page  -->
+        <div class="fw-bold d-flex justify-content-between" style="color: black;">
+            <p> <a style="color: black" class="removeUnderLine" href="./inquiries">inquires </a> > send offer</p>
+            <!-- start add button (add new apartment) in page  -->
+            <!-- <app-add-new-button [id]="'apartments/page/add-new-apartments'"></app-add-new-button> -->
+            <!-- end add button (add new apartment) in page  -->
+        </div>
+        <!-- end part 1 in page  -->
+        <!-- start part 2 in page  -->
+        <div class="d-block d-md-flex justify-content-between my-2 bg-white p-3">
+            <!-- start apartmentLists button  -->
+            <!-- <div class="d-flex align-items-center mb-4">
+              <div *ngFor="let data of apartmentFillterLists;let index=index;">
+                  <div class="d-flex ">
+                      <button class="apartmentList border-0 bg-transparent pb-2 mx-2" [class.clickApartmentList]="apartmentFillterSelected[index]==true" (click)="clickApartmentList(index)">{{data}}</button>
+                      <div class="none">
+                          <img src="assets/images/line.svg" [class.d-none]=" index == apartmentFillterLists.length-1">
+                      </div>
+
+                  </div>
+
+              </div>
+
+          </div> -->
+            <!-- end apartmentLists button  -->
+            <!-- start dropdown button  -->
+            <!-- <app-dropdown [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown> -->
+            <!-- end dropdown button  -->
+        </div>
+        <!-- start part 3 to display paroduct Apartment details in page  -->
+        <div class="row paroductApartment  px-1">
+            <!-- <p-progressSpinner *ngIf="spinner == true"></p-progressSpinner> -->
+
+            <ng-container *ngIf="apartmentList">
+                <ng-container *ngFor="let item of apartmentList;">
+
+                    <div class=" col-12 col-md-6 col-lg-3 mb-4  position-relative px-2 mb-4 h-100" style="height: 393px !important;">
+
+                        <a routerLink="/apartments/apartments-details/{{item.apt_UUID}}" style="height: 46% !important;" class="d-block  ">
+                            <img [src]="item.apt_ThumbImg.includes('http') ? item.apt_ThumbImg : '../../../assets/images/apartmentImages/default_apartment.jpg'" class="w-100 h-100 apartmentImage">
+                            <p class="fw-bold position-absolute rentedORavailable rounded-pill top-0 m-2 py-1 px-3 " [class.available]="item.statusString != 'Rented'">{{item.statusString}}</p>
+                        </a>
+                        <div class="bg-white p-3 details h-50 rounded-bottom" style="border: 1px solid #dfdfdf;max-height: 220px;">
+                            <div class="fw-bold  ">{{item.apt_Name }}</div>
+                            <div class="d-flex">
+                                <img src="assets/images/apartmentImages/location.svg" class="my-3">
+                                <p class="fw-bold mt-3 text-left mx-1">{{item.apt_StName}}</p>
+                            </div>
+                            <div class="d-flex" style="margin: -25px 0 -10px 0;">
+                                <div class="d-flex justify-content-between">
+                                    <img src="assets/images/apartmentImages/room_bed.svg">
+                                    <p class="fw-bold mt-4 mx-2">{{item.apt_Bedrooms}}</p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <img src="assets/images/apartmentImages/user.svg">
+                                    <p class="fw-bold mt-4 mx-2">{{item.apt_AptNo}}</p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div class="Price">
+                                    ${{item.apt_Price}} <span class="time">/ month</span>
+                                </div>
+                                <div>
+                                    <button class="border-0 outlin-0 bg-transparent" (click)="detailperson(item.apt_UUID)">
+                                    <img src="assets/images/edit.svg">
+                                </button>
+                                    <div *ngIf="showEdit[item.apt_UUID]" style="width:200px;z-index:999 ;  right: 38px;;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                                        <button class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/inquire-edit/{{item.apt_UUID}}">Edit</button>
+                                        <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" (click)="openModel1()">Send as offer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </ng-container>
+                <!-- <p-paginator *ngIf="apartmentList" (onPageChange)="tiggerPageChange($event)" [rows]="itemsPerPage" [totalRecords]="fullRespone?.totalRecords"></p-paginator> -->
+                <div style="width: 100%; height: 72px; padding-top: 12px; padding-bottom: 16px; padding-left: 24px; padding-right: 24px;   justify-content: space-between; align-items: center; display: inline-flex">
+                    <div style="border-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                        <!-- <a style="cursor: pointer;">
+                        <div style="padding-left: 24px; padding-right: 24px; padding-top: 12px; padding-bottom: 12px; box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05); border-radius: 8px; overflow: hidden; border: 1px #8FA0B4 solid; justify-content: flex-start; align-items: center; gap: 10px; display: flex">
+
+                            <div style="text-align: center; color: #1F4068; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 20px; word-wrap: break-word">Previous</div>
+
+                        </div>
+                    </a> -->
+                        <button (click)="decreamentPage( )" [disabled]="disableperv" class="  cvxs" style="text-align: center; color: #1F4068; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 20px; word-wrap: break-word">
+                      Previous
+        </button>
+                    </div>
+                    <div style="color: #484649; font-size: 14px; font-family: Poppins; font-weight: 400; line-height: 20px; word-wrap: break-word">Page {{pageNumber}} of {{totalofPages}}</div>
+                    <div style="border-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                        <!-- <div style="padding-left: 24px; padding-right: 24px; padding-top: 12px; padding-bottom: 12px; box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05); border-radius: 8px; overflow: hidden; border: 1px #8FA0B4 solid; justify-content: flex-start; align-items: center; gap: 10px; display: flex">
+                            <div style="text-align: center; color: #1F4068; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 20px; word-wrap: break-word">Next</div>
+                        </div> -->
+                        <button [disabled]="disablenext" (click)="incrementpage( )" class="  cvxs" style="text-align: center; color: #1F4068; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 20px; word-wrap: break-word">
+                          Next
+            </button>
+                    </div>
+                </div>
+            </ng-container>
+
+
+        </div>
+        <!-- end part 3 to display paroduct Apartment details in page  -->
+    </main>
+    <!-- end content page  -->
+</div>
+<div class="modal " tabindex="-1 " role="dialog " [ngStyle]="{ 'display':display1} " style=" background-color: rgb(23 22 22 / 50%);; ">
+    <div class="modal-dialog " role="document ">
+        <div class="modal-content " style=" margin-top: 150px; ">
+            <!-- <div class="modal-header " style="background-color:#ffffff; border-bottom: none !important; ">
+                <p class="modal-title " style="color: #1C1B1F; font-size: 20px; font-weight: 600; line-height: 24px; word-wrap: break-word ">
+                    <span class="form-label gray fw-bold " style="vertical-align: middle; padding-left:8px ">
+                  Reject inquire
+            </span>
+                </p>
+                <button type="button " style="border:none;background-color: #ffffff;width: 68px;height: 50px; " class="close " aria-label="Close " (click)="onCloseModal1() ">
+<span aria-hidden="true " style="color: #000000;font-size: 35px; ">&times;</span>
+</button>
+
+
+
+            </div> -->
+
+            <div class="modal-body ">
+
+
+                <div class="modal-successfull">
+                    <div class="modal-header">
+                        <div class="content">
+                            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="4" width="48" height="48" rx="24" fill="#D1FADF"/>
+                            <rect x="4" y="4" width="48" height="48" rx="24" stroke="#ECFDF3" stroke-width="8"/>
+                            <path d="M26.6 29.8L24.45 27.65C24.2667 27.4667 24.0333 27.375 23.75 27.375C23.4667 27.375 23.2333 27.4667 23.05 27.65C22.8667 27.8333 22.775 28.0667 22.775 28.35C22.775 28.6333 22.8667 28.8667 23.05 29.05L25.9 31.9C26.1 32.1 26.3333 32.2 26.6 32.2C26.8667 32.2 27.1 32.1 27.3 31.9L32.95 26.25C33.1333 26.0667 33.225 25.8333 33.225 25.55C33.225 25.2667 33.1333 25.0333 32.95 24.85C32.7667 24.6667 32.5333 24.575 32.25 24.575C31.9667 24.575 31.7333 24.6667 31.55 24.85L26.6 29.8ZM28 38C26.6167 38 25.3167 37.7375 24.1 37.2125C22.8833 36.6875 21.825 35.975 20.925 35.075C20.025 34.175 19.3125 33.1167 18.7875 31.9C18.2625 30.6833 18 29.3833 18 28C18 26.6167 18.2625 25.3167 18.7875 24.1C19.3125 22.8833 20.025 21.825 20.925 20.925C21.825 20.025 22.8833 19.3125 24.1 18.7875C25.3167 18.2625 26.6167 18 28 18C29.3833 18 30.6833 18.2625 31.9 18.7875C33.1167 19.3125 34.175 20.025 35.075 20.925C35.975 21.825 36.6875 22.8833 37.2125 24.1C37.7375 25.3167 38 26.6167 38 28C38 29.3833 37.7375 30.6833 37.2125 31.9C36.6875 33.1167 35.975 34.175 35.075 35.075C34.175 35.975 33.1167 36.6875 31.9 37.2125C30.6833 37.7375 29.3833 38 28 38ZM28 36C30.2333 36 32.125 35.225 33.675 33.675C35.225 32.125 36 30.2333 36 28C36 25.7667 35.225 23.875 33.675 22.325C32.125 20.775 30.2333 20 28 20C25.7667 20 23.875 20.775 22.325 22.325C20.775 23.875 20 25.7667 20 28C20 30.2333 20.775 32.125 22.325 33.675C23.875 35.225 25.7667 36 28 36Z" fill="#12B76A"/>
+                            </svg>
+                            <div class="text-and-supporting">
+                                <div class="text">Offer Sent Successfully!</div>
+                                <p class="supporting-text">offer has been sent successfully, go back to inquiries.</p>
+                            </div>
+                        </div>
+                        <div class="button-close-x"> <button type="button " style="border:none;background-color: #ffffff;width: 68px;height: 50px; " class="close " aria-label="Close " (click)="onCloseModal1() ">
+                          <span aria-hidden="true " style="color: #000000;font-size: 35px; ">&times;</span>
+                          </button></div>
+                    </div>
+                    <div class="modal-actions">
+                        <div class="primary-button-wrapper">
+                            <div class="primary-button">
+                                <div class="auto-layout-button">
+                                    <div class="label">
+
+                                        <button class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                                        Back To Inquiries
+                          </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

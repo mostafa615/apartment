@@ -1,0 +1,108 @@
+<!-- start header  -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'Messages'"></app-head>
+</header>
+<!-- end header  -->
+
+<div class="row m-0">
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2 " [showSide]="showSide" [titlepage]="'users'"></app-sidebar>
+    <!-- end sidebar  -->
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10">
+        <div class="d-flex">
+            <p class="fw-bold me-2" style="color: #6c6a6a">Users</p>
+            <img src="assets/images/user/right-arrow.svg" class="me-2" style="margin-top: -15px">
+            <p class="fw-bold" style="color: #6c6a6a">Create new</p>
+        </div>
+
+
+        <div class="mt-3 row border bg-white rounded-3 py-3 ">
+            <aside class="col-2 p-0 ps-1 position-fixed d-none d-md-block">
+                <a class="d-block text-decoration-none fw-bold px-2 py-3 text-black mb-1 active"
+                    *ngFor="let listAnchor of listAnchors ; let index=index"
+                    style="color: #605D62 !important; cursor: pointer;" (click)="onClick(listAnchor.id)"
+                    [class.active]="link[index]==true" (click)="changeAnchor(index)">{{listAnchor.link}}</a>
+            </aside>
+
+            <div class="col-12 col-md-10 content-details">
+                <!--General info-->
+                <app-general-info-user></app-general-info-user>
+                <!--start General info form-->
+                <form>
+                    <div class="row mb-4">
+                        <div class="col-12 col-md-6 mb-3">
+                            <label class="fw-bold" style="color: #605D62;">First name</label>
+                            <input class="form-control w-100" type="text">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="fw-bold" style="color: #605D62">Last name</label>
+                            <input class="form-control w-100" type="text">
+                        </div>
+
+                    </div>
+                    <div class="mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Email</label>
+                        <img src="assets/images/user/mail.svg" class="position-relative top-icon-input"
+                            style="right: 20px;">
+                        <input class="form-control w-100 ps-5" type="email">
+                    </div>
+                    <div>
+                        <label class="fw-bold" style="color: #605D62;">About</label>
+                        <textarea class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"
+                            placeholder="Enter a description"></textarea>
+                    </div>
+                </form>
+                <!--end General info form-->
+                <hr>
+                <!--Other Details-->
+                <div id="OtherDetails">
+                    <p class="fw-bold mb-0">Other Details</p>
+                    <p style="color: #605D62 !important;">Add other details relevant to your property.</p>
+                </div>
+                <!--start Other Details form-->
+                <form>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <label class="fw-bold" style="color: #605D62;">Date of birth</label>
+                            <input class="form-control w-100" type="date">
+                        </div>
+                        <div class="col-6">
+                            <label class="fw-bold" style="color: #605D62">Phone number</label>
+                            <input class="form-control w-100" type="number">
+                        </div>
+
+                    </div>
+                    <div class="mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Time zone</label>
+                        <img src="assets/images/user/schedule time.svg" class="position-relative top-icon-input"
+                            style="right: 55px;">
+                        <input class="form-control w-100 ps-5" type="text">
+                    </div>
+                    <div class="mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Country</label>
+                        <div class="w-100">
+                            <app-dropdown></app-dropdown>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <label class="fw-bold" style="color: #605D62;">Address</label>
+                        <input class="form-control w-100" type="text">
+                    </div>
+                </form>
+                <!--end Other Details form-->
+                <hr>
+                <!--save or cancel dataOfUser-->
+                <div class="d-flex justify-content-end mb-3">
+                    <div class="d-flex">
+                        <button class="me-3 border-0 outline-0 bg-transparent rounded px-3 py-2"
+                            style="border:1px solid #798CA4 !important;">Cancel</button>
+                        <button class="border-0 outline-0 text-white rounded px-4 py-2"
+                            style="background-color: #1f4068;">Add User</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- end content page  -->
+</div>

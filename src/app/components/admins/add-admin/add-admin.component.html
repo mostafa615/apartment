@@ -1,0 +1,142 @@
+<!-- start header  -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'admins'"></app-head>
+</header>
+<!-- end header  -->
+
+<p-toast></p-toast>
+
+<div class="row m-0">
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'admins'"></app-sidebar>
+    <!-- end sidebar  -->
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10">
+        <div class="d-md-flex justify-content-between">
+            <div class="d-flex">
+                <p class="fw-bold me-2" style="color: #6c6a6a">add new admin</p>
+                <!-- <p class="fw-bold me-2">></p>
+        <p class="fw-bold" style="color: #6c6a6a">Create admin</p> -->
+            </div>
+
+        </div>
+
+        <div class="mt-3 row border bg-white rounded-3 py-3 ">
+            <aside class="col-2 p-0 ps-1 position-fixed d-none d-md-block">
+                <a class="d-block text-decoration-none fw-bold px-2 py-3 text-black mb-1 active" *ngFor="let listAnchor of listAnchors ; let index=index" style="color: #605D62 !important; cursor: pointer;" (click)="onClick(listAnchor.id)" [class.active]="link[index]==true"
+                    (click)="changeAnchor(index)">{{listAnchor.link}}</a>
+            </aside>
+
+            <form class="col-md-10 content-details " [formGroup]="createAdmin" (ngSubmit)="CreateAdmin(createAdmin)">
+                <div class="d-flex mb-5 d-md-block d-flex justify-content-center justify-md-content-start ">
+                    <div class=" d-md-flex  align-items-center justify-md-content-start ">
+                        <div class="rounded-circle imageOfPerson me-4" style="box-shadow: 0 2px 6px #d1d1d1;">
+                            <img class="imageOfPerson rounded-circle" style="border: 3px solid white;" [src]="imageUrl ? imageUrl : defaultImageUrl()">
+                        </div>
+                        <div class="d-flex mt-4">
+                            <div class="d-flex  justify-content-between ">
+
+                                <div class="btn-container">
+                                    <p-button class="btn-style sendDataPButton" label="Update picture" [loading]="loadingButton" type="button"></p-button>
+                                    <input type="file" #fileInput (change)="uploadPic($event)">
+                                </div>
+
+                                <button type="button" class="outline-none border-0 py-2 px-3 rounded-3 delete" (click)="uploadPic('delete')">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--General info-->
+                <!-- <app-general-info-user [imageUrl]="createAdmin.value.owner_Photo"></app-general-info-user> -->
+                <!--start General info form-->
+                <div class="row ">
+                    <div class="col-12 col-md-12 mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Full name</label>
+                        <input formControlName='full_Name' class="form-control w-100" type="text">
+                    </div>
+
+
+                </div>
+                <div class="mb-4">
+                    <label class="fw-bold" style="color: #605D62;">Email</label>
+                    <img src="assets/images/user/mail.svg" class="position-relative top-icon-input" style="right: 20px;">
+                    <input formControlName='email' class="form-control w-100 ps-5" type="email">
+                </div>
+                <div class="row ">
+                    <div>
+                        <label class="fw-bold" style="color: #605D62;">About</label>
+                        <textarea formControlName='about' class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
+                    </div>
+                </div>
+
+                <!--end General info form-->
+                <!--Other Details-->
+                <div id="OtherDetails" style="margin-top:20px">
+                    <p class="fw-bold mb-0">Other Details</p>
+                    <p style="color: #605D62 !important;">Add other details relevant to your property.</p>
+                </div>
+                <!--start Other Details form-->
+                <div class="row ">
+                    <div class="col-12 col-md-12 mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Phone number</label>
+                        <input formControlName='phone' class="form-control w-100" type="number">
+                    </div>
+                </div>
+                <div class="row ">
+
+                    <div class="col-12 col-md-12">
+                        <label class="fw-bold" style="color: #605D62">whatsapp number</label>
+                        <input formControlName='wA_Number' class="form-control w-100" type="number">
+                    </div>
+
+                </div>
+                <div class="row ">
+                    <div class="mb-3 col-12 col-md-12">
+                        <label class="form-label gray fw-bold">Role</label>
+                        <div class="selectForm">
+                            <select class="s-cont form-select form-select-sm mb-3" style="font-size: 19px;" name="role" id="role" formControlName="role">
+                          <option value="null" disabled hidden selected>select role</option>
+
+                         <option *ngFor="let type of roles" value="{{type.name}}"> {{type.name}} </option>
+                    </select>
+
+                        </div>
+                        <!-- end dropdown button  -->
+                    </div>
+                </div>
+
+                <!--end Other Details form-->
+                <!--Owned apartments-->
+                <div id="passwords" style="margin-top:20px">
+                    <p class="fw-bold mb-0">Password</p>
+                    <p style="color: #605D62 !important;">Add Password</p>
+                </div>
+
+                <div class="row ">
+                    <div class="col-12 col-md-12 mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Password</label>
+                        <input formControlName='password' class="form-control w-100" type="text">
+                    </div>
+                </div>
+                <div class="row ">
+
+                    <div class="col-12 col-md-12">
+                        <label class="fw-bold" style="color: #605D62">Confirm Password</label>
+                        <input formControlName='confirm_Password' (keyup)="checkConfirm()" class="form-control w-100" type="text">
+                    </div>
+                    <p style="color: red" *ngIf="showEror=='true'"> password not match</p>
+                </div>
+
+                <div class="d-flex justify-content-between" style="margin-top:35px">
+                    <button class="outlet-0 bg-transparent rounded-3 px-4 py-2 fw-bold downloadAll">Cancel</button>
+                    <p-button class="outlet-0 text-white border-0 px-4 py-2 rounded-3 sendDataPButton" label="Save" type="submit"></p-button>
+
+                    <!-- <button class="outlet-0 text-white border-0 px-4 py-2 rounded-3" style="background-color: #1f4068;"
+            type="submit">Save</button> -->
+                </div>
+
+            </form>
+        </div>
+    </main>
+    <!-- end content page  -->
+</div>

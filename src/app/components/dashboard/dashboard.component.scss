@@ -1,0 +1,68 @@
+// @import url('../../../assets/scss/now-ui-dashboard/_variables.scss');
+.month,
+.week {
+    color: #757a82;
+    background-color: white;
+    border: 1px solid #ebebeb;
+}
+
+.table-abrtment,
+.recentActivity {
+    background-color: white;
+    border: 1px solid #ebebeb;
+    // height: 484px;
+}
+
+.recentActivity {
+    @media (min-width: 1200px) {
+        width: 320px;
+    }
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.fs-1rem {
+    font-size: 1rem;
+}
+
+.color-gray {
+    color: #939094;
+}
+
+.blue {
+    color: #344054;
+}
+
+.viewAll-button {
+    height: 35px;
+}
+
+.table {
+    .pf {
+        font-size: 0.8rem;
+    }
+    .rented {
+        color: #027A48;
+        background-color: #ECFDF3;
+        ;
+    }
+}
+
+.line-height {
+    line-height: 0.1;
+}
+
+@media (min-width: 993px) {
+    .recentActivity {
+        width: 30% !important;
+    }
+    .table-abrtment {
+        width: 70% !important; // islam
+    }
+}

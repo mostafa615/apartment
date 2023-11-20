@@ -1,0 +1,347 @@
+<!-- start header  -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'Users'"></app-head>
+</header>
+<!-- end header  -->
+
+<div class="row m-0">
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'users'"></app-sidebar>
+    <!-- end sidebar  -->
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10">
+        <div class="d-md-flex justify-content-between">
+            <div class="d-flex">
+                <p class="fw-bold me-2" style="color: #6c6a6a"><a style="color: black" class="removeUnderLine" href="./users">Users </a></p>
+
+                <p class="fw-bold me-2">></p>
+                <p class="fw-bold" style="color: black">edit user </p>
+            </div>
+            <div>
+                <button class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold" style="background-color: #EBEBEB; color:#1F4068"><img src="assets/images/user/share.png"> Share</button>
+                <button class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold" style="background-color: #EBEBEB; color:#1F4068"><img src="assets/images/user/delete.svg"> Delete</button>
+                <button class="outline-0 border-0 rounded-3 py-2 px-3 text-white fw-bold" style="background-color:#1F4068"><img
+            src="assets/images/user/edit.svg"> Edit</button>
+            </div>
+        </div>
+
+        <div class="mt-3 row border bg-white rounded-3 py-3 ">
+            <aside class="col-2 p-0 ps-1 position-fixed d-none d-md-block">
+                <a class="d-block text-decoration-none fw-bold px-2 py-3 text-black mb-1 active" *ngFor="let listAnchor of listAnchors ; let index=index" style="color: #605D62 !important; cursor: pointer;" (click)="onClick(listAnchor.id)" [class.active]="link[index]==true"
+                    (click)="changeAnchor(index)">{{listAnchor.link}}</a>
+            </aside>
+
+            <div class="col-md-10 content-details ">
+                <!--General info-->
+                <!-- <app-general-info-user></app-general-info-user> -->
+                <div id="Generalinfo">
+                    <p class="fw-bold mb-0">General info</p>
+                    <p style="color: #605D62 !important;">Update your photo and personal details.</p>
+                </div>
+                <div class="d-flex mb-5 d-md-block d-flex justify-content-center justify-md-content-start ">
+                    <div class=" d-md-flex  align-items-center justify-md-content-start ">
+                        <div class="rounded-circle imageOfPerson me-4" style="box-shadow: 0 2px 6px #d1d1d1;">
+                            <img class="imageOfPerson rounded-circle" style="border: 3px solid white;" [src]="Tenant_details.user_Photo">
+                        </div>
+                        <div class="d-flex mt-4">
+                            <div class="d-flex  justify-content-between ">
+
+                                <div class="btn-container" *ngIf="titlePage!='Owner details'">
+                                    <p-button class="btn-style sendDataPButton" label="Update picture" [loading]="loadingButton" type="button"></p-button>
+                                    <input type="file" #fileInput (change)="uploadPic($event)">
+                                </div>
+
+                                <button type="button" class="outline-none border-0 py-2 px-3 rounded-3 delete" *ngIf="titlePage!='Owner details'" (click)="uploadPic('delete')">Delete</button>
+                                <button class="me-3 outline-none border-0 text-white py-2 px-3 rounded-3" *ngIf="titlePage=='Owner details'" style="background-color: #1f4068;">Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--start General info form-->
+                <!-- <form> -->
+                <p-toast></p-toast>
+
+                <div class="row ">
+                    <div class="col-12 col-md-6 mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Full Name</label>
+                        <input class="form-control w-100" [(ngModel)]="Tenant_details.user_FullName" type="text">
+                    </div>
+
+                </div>
+                <div class="mb-4">
+                    <label class="fw-bold" style="color: #605D62;">Email</label>
+                    <img src="assets/images/user/mail.svg" class="position-relative top-icon-input" style="right: 20px;">
+                    <input class="form-control w-100 ps-5" [(ngModel)]="Tenant_details.email" type="email">
+                </div>
+                <div>
+                    <label class="fw-bold" style="color: #605D62;">About</label>
+                    <textarea class="border rounded-3 w-100 p-2" rows="5" [(ngModel)]="Tenant_details.user_About" style="resize: unset;" placeholder="Enter a description"></textarea>
+                </div>
+                <!-- </form> -->
+                <!--end General info form-->
+                <hr>
+                <!--Other Details-->
+                <div id="OtherDetails">
+                    <p class="fw-bold mb-0">Other Details</p>
+                    <p style="color: #605D62 !important;">Add other details relevant to your property.</p>
+                </div>
+                <!--start Other Details form-->
+
+                <div class="row ">
+                    <div class="col-12 col-md-6 mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Date of birth</label>
+                        <input class="form-control w-100" [(ngModel)]="Tenant_details.date_of_Birth" type="date">
+                    </div>
+
+                    <div class="col-12 col-md-6 mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Phone number</label>
+                        <input class="form-control w-100" [(ngModel)]="Tenant_details.user_Phone" type="number">
+                    </div>
+
+                </div>
+                <div class="mb-4">
+                    <label class="fw-bold" style="color: #605D62;">Nationality</label>
+                    <input class="form-control w-100" [(ngModel)]="Tenant_details.user_Nationality" type="text">
+                </div>
+                <div class="mb-4">
+                    <label class="fw-bold" style="color: #605D62;">Gender</label>
+                    <input type="text" [(ngModel)]="Tenant_details.user_Gender" class="form-control w-100">
+                </div>
+                <div class="mb-4">
+                    <label class="fw-bold" style="color: #605D62;">Number of Guests</label>
+                    <input type="number" class="form-control w-100">
+                </div>
+                <div class="mb-4">
+                    <label class="fw-bold" style="color: #605D62;">Guest 1</label>
+                    <input type="text" class="form-control w-100">
+                </div>
+                <div class="mb-4">
+                    <label class="fw-bold" style="color: #605D62;">Guest 2</label>
+                    <input type="text" class="form-control w-100">
+                </div>
+                <div class="mb-4">
+                    <label class="fw-bold" style="color: #605D62;">Select Your Role*</label>
+                    <input type="text" class="form-control w-100">
+                </div>
+                <div class="mb-4">
+                    <label class="fw-bold" style="color: #605D62;">Purpose of Coming to Germany</label>
+                    <textarea class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;" placeholder="Enter a description"></textarea>
+                </div>
+                <!--end Other Details form-->
+                <hr>
+                <!--Currently living-->
+                <div>
+                    <p class="fw-bold mb-0" id="Currentlyliving">Currently living</p>
+                    <p style="color: #605D62 !important;">Past user rental histories</p>
+                </div>
+                <!--Cards of Currently living-->
+                <div class="row paroductApartment">
+
+                    <div class="col-12 col-md-6 col-lg-4 mb-4 ">
+                        <div class="position-relative">
+                            <img src="assets/images/apartmentImages/img1.svg" class="w-100 h-100 ">
+                            <p class="fw-bold position-absolute rentedORavailable rounded-pill top-0 m-3 py-1 px-3 " [class.available]="available">Available</p>
+                        </div>
+                        <div class="bg-white px-2 py-3 details border rounded-bottom">
+                            <div class="fw-bold">Salt Lake City, Apartment Salt Lake City, Apartment </div>
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-between">
+                                    <img src="assets/images/apartmentImages/location.svg">
+                                    <p class="fw-bold mt-3 ms-2">Alt-Moabit</p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <img src="assets/images/apartmentImages/room_bed.svg">
+                                    <p class="fw-bold mt-3 ms-2">3</p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <img src="assets/images/apartmentImages/user.svg">
+                                    <p class="fw-bold mt-3 ms-2">2</p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div><img src="assets/images/Price.svg"></div>
+                                <div><img class="pointer" src="assets/images/more_vert_FILL.svg"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <div class="position-relative">
+                            <img src="assets/images/apartmentImages/img1.svg" class="w-100 h-100 ">
+                            <p class="fw-bold position-absolute rentedORavailable rounded-pill top-0 m-3 py-1 px-3 rented">rented</p>
+                        </div>
+                        <div class="bg-white px-2 py-3 details border rounded-bottom">
+                            <div class="fw-bold">Salt Lake City, Apartment Salt Lake City, Apartment </div>
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-between">
+                                    <img src="assets/images/apartmentImages/location.svg">
+                                    <p class="fw-bold mt-3 ms-2">Alt-Moabit</p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <img src="assets/images/apartmentImages/room_bed.svg">
+                                    <p class="fw-bold mt-3 ms-2">3</p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <img src="assets/images/apartmentImages/user.svg">
+                                    <p class="fw-bold mt-3 ms-2">2</p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div><img src="assets/images/Price.svg"></div>
+                                <div><img class="pointer" src="assets/images/more_vert_FILL.svg"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <hr>
+                <!--Document  details-->
+                <div class="w-50">
+                    <p class="fw-bold mb-0" id="Documentdetails">Document details</p>
+                    <p style="color: #605D62 !important;">Documents, issue reports, and payment behaviour</p>
+                </div>
+                <!--Accordion-->
+                <app-accordion></app-accordion>
+                <!--Rental history (5)-->
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p class="fw-bold mb-0" id="Rentalhistory">Rental history (5)</p>
+                        <p style="color: #605D62 !important;">Past user rental histories</p>
+                    </div>
+                    <div>
+                        <button class="px-3 py-2 fw-bold bg-transparent outline-0 border-0 rounded-3 " style="border: 1px solid #939094 !important;color: #1F4068;"><img src="assets/images/user/download.svg">
+              Download all</button>
+                    </div>
+
+                </div>
+                <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="products">
+                    <ng-template pTemplate="header" class="text-center">
+                        <tr>
+                            <ng-container>
+
+
+                                <th class="td-name">
+                                    Invoice
+
+                                </th>
+                                <th class="td-name">
+                                    Duration
+
+                                </th>
+                                <th class="td-name">
+                                    Amount
+
+                                </th>
+                                <th class="td-name">
+                                    Behaviour
+
+                                </th>
+
+
+                                <th class="td-name">
+
+
+                                </th>
+                            </ng-container>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-Tenant>
+
+                        <tr style="cursor: pointer;">
+
+                            <td>
+                                {{Tenant?.Invoice}}
+
+                            </td>
+                            <td>
+                                {{Tenant?.date}}
+                            </td>
+                            <td>
+                                {{Tenant?.Amount}}
+                            </td>
+
+
+                            <td>
+                                <div>
+                                    <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;" [class.active]="Tenant?.user_Behavior=='Approved'">
+
+                        <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem;"></i> God
+                    </span>
+
+
+                                </div>
+                            </td>
+
+                            <td class="cursor position-relative">
+                                <button class="border-0 outlin-0 bg-transparent">
+                  <img src="assets/images/edit.svg">
+              </button>
+
+
+                            </td>
+
+                        </tr>
+
+                    </ng-template>
+
+
+                    <ng-template pTemplate="emptymessage">
+                        <div class="container text-center mt-4">
+                            <p class="mb-0">No data found.</p>
+                        </div>
+                    </ng-template>
+
+                </p-table>
+                <!--table-->
+                <div></div>
+
+                <!--user information-->
+                <div>
+                    <p class="fw-bold mb-0" id="userinformation">user information</p>
+                    <p style="color: #605D62 !important;">this section display for admins only</p>
+                </div>
+                <!-- start user information form-->
+                <div class="row">
+                    <div class="col-12 col-md-6 mb-4">
+                        <label class="fw-bold" style="color: #605D62;">First name</label>
+                        <input class="form-control w-100" [(ngModel)]="FName" type="text">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="fw-bold" style="color: #605D62">Last name</label>
+                        <input [(ngModel)]="LName" class="form-control w-100" type="text">
+                    </div>
+
+                </div>
+                <div class="mb-4">
+                    <label class="fw-bold" style="color: #605D62;">Passport ID</label>
+                    <input [(ngModel)]="PassportID" class="form-control w-100 ps-5" type="text">
+                </div>
+                <div class="mb-4">
+                    <label class="fw-bold" style="color: #605D62;">About</label>
+                    <textarea [(ngModel)]="About" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;" placeholder="Enter a description"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="fw-bold" style="color: #605D62;">user images</label>
+
+                    <div class="position-relative h-124px mb-3">
+
+                        <input #fileInput (change)="uploadPic($event)" type="file" accept="image/*" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                        <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute w-100 h-100">
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <button class="outlet-0 bg-transparent rounded-3 px-4 py-2 fw-bold downloadAll">Cancel</button>
+                    <button (click)="UpdateTenantInfo()" class="outlet-0 text-white border-0 px-4 py-2 rounded-3" style="background-color: #1f4068;" type="submit">Save</button>
+                </div>
+                <!-- end user information form-->
+
+
+            </div>
+        </div>
+    </main>
+    <!-- end content page  -->
+</div>

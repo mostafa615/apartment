@@ -1,0 +1,17 @@
+.active{
+    color: #1f4068 !important;
+    background-color: #FAFCFF;
+    border-left: 3px solid #1f4068;
+}
+
+.top-icon-input{
+    top: 30px;
+}
+.p-dropdown{width: 100% !important;}
+.content-details{
+   
+    @media (min-width:992px) {
+        margin-left: 17%;
+        padding: 0 10% !important; 
+    }
+}

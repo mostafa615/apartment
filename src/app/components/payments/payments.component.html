@@ -1,0 +1,11 @@
+<!-- start header  -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'payments'"></app-head>
+</header>
+<!-- end header  -->
+
+<div class="row m-0">
+
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'payments'"></app-sidebar>
+</div>

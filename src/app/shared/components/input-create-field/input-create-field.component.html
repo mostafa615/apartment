@@ -1,0 +1,39 @@
+<!-- <ng-container *ngIf="list">
+  <div class="row" *ngFor="let data of list">
+      <div class="mb-3 col-12 col-md-6">
+          <label class="form-label gray fw-bold">{{data.text1}}</label>
+          <input type="text" value="{{data.content1}}" class="form-control rounded-2 py-2 fs-6" />
+      </div>
+      <div class="mb-3 col-12 col-md-6">
+          <label class="form-label gray fw-bold">{{data.text2}}
+    </label>
+          <input type="text" value="{{data.content2}}" class="form-control rounded-2 py-2 fs-6" />
+      </div>
+  </div>
+</ng-container> -->
+
+<div class="row" *ngIf="show">
+    <div class="mb-3 col-12 col-md">
+        <label class="form-label gray fw-bold">{{labelinputs.text1}}</label>
+        <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="content1" class="form-control rounded-2 py-2 fs-6" />
+
+    </div>
+    <div class="mb-3 col-12 col-md">
+        <label class="form-label gray fw-bold">{{labelinputs.text2}}
+  </label>
+        <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="content2" class="form-control rounded-2 py-2 fs-6" />
+    </div>
+    <div class="col-12 col-md-2 ms-3 mt-1 mb-2 pt-3 d-flex justify-content-md-end align-items-md-center">
+        <div class="d-flex">
+            <button class="backcancel outline-0 bg-white rounded-2 py-2 px-3 fw-bold me-4" (click)="RemoveActionButton()">
+      Cancel
+    </button>
+            <a class="rounded-2 text-decoration-none cursor text-white border-0 rounded-2 border-0 outline-0 py-2 px-4" style="background-color: #1f4068 !important" (click)="saveActionButton()">
+      Save
+    </a>
+        </div>
+    </div>
+</div>
+<a class="bg-transparent outline-0 my-5 text-decoration-none cursor border-0 blue fw-bold " (click)="show=true">
+    <img src="assets/images/apartmentImages/ic_baseline-add.svg"> {{textButton}}
+</a>

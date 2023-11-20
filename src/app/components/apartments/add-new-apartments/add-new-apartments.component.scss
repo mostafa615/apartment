@@ -1,0 +1,30 @@
+.grayLabel {
+    color: #605D62;
+}
+
+.backcancel {
+    border: 1px solid#798CA4;
+    color: #0C1A2A;
+    ;
+}
+
+.p-inputtext {
+    padding: 7px;
+}
+
+.p-calendar {
+    width: 100%
+}
+
+
+.appartmentOverTest {
+    overflow: hidden !important;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .stepper {
+        display: none !important;
+    }
+
+}

@@ -1,0 +1,105 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ESideBar } from './constant';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
+
+@Component({
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss']
+})
+export class SidebarComponent implements OnInit {
+  /** SideBarConstant */
+  SideBarConstant = ESideBar;
+
+  constructor(
+    private router: Router,private       authenticationService: AuthenticationService
+
+  ) { }
+  /** listAnchors */
+  listAnchors: Array<any> = [
+    { text: "dashboard", img: "assets/images/navigation/dashboard.svg" },
+    { text: "apartments", img: "assets/images/navigation/apartment.svg" },
+    { text: "users", img: "assets/images/navigation/users.svg" },
+    { text: "owners", img: "assets/images/navigation/owner 2.svg" },
+    { text: "payments", img: "assets/images/navigation/payments.svg" },
+    { text: "messages", img: "assets/images/navigation/messages.svg" },
+    { text: "statistics", img: "assets/images/navigation/stats.svg" },
+    { text: "inquiries", img: "assets/images/navigation/help.svg" },
+
+    { text: "Issue_Reports", img: "assets/images/navigation/reports.svg" }];
+
+  listAnchorsOther: Array<any> = [
+    { text: "Help", img: "assets/images/navigation/help.svg" },
+    { text: "Settings", img: "assets/images/navigation/setting.svg" },
+    { text: "Logout", img: "assets/images/navigation/logout.svg" },
+
+  ]
+  /** link */
+  link: Array<boolean> = [];
+  /** param */
+  param: number = 0;
+
+  /** showSide */
+  @Input() showSide: string = '';
+  @Input() titlepage: string = '';
+
+  ngOnInit(): void {
+    if(this.router.url=='/admins'||this.router.url=='/roles'){
+      this.isFreeze=true
+    }
+
+    this.listAnchors.concat(this.listAnchorsOther).forEach(element => {
+      if (element.text === this.titlepage) { this.link[this.param] = true }
+      else this.param++
+      console.log(this.titlepage)
+    });
+
+  }
+
+  /**
+   * changeAnchor
+   * @description ....
+   * @returns void
+   **/
+  isShow="false"
+  changeAnchor(index: number): void {
+    debugger
+    if(index=10){
+    this.isShow="true"
+    // this.param = index
+    // this.link = this.link.map(el => el == true ? false : false)
+    // this.link[index] = true
+    // if (index == this.SideBarConstant.Logout) {
+    //   console.log('sssssssssssss');
+
+    //   this.router.navigate(['/login']);
+    // }
+    }else{
+      this.isShow="false"
+      this.param = index
+      this.link = this.link.map(el => el == true ? false : false)
+      this.link[index] = true
+      if (index == this.SideBarConstant.Logout) {
+        console.log('sssssssssssss');
+
+        this.router.navigate(['/login']);
+      }
+    }
+
+  }
+  color_image:any=false
+  changeAnchor2(name:any){
+    debugger
+    this.color_image = true
+  }
+  isFreeze: boolean = false;
+  setfraze(){
+    this.isFreeze=true
+  }
+  onSubmitModal2(){
+    this.authenticationService.logout() ;
+
+
+}
+}

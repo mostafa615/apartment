@@ -1,0 +1,32 @@
+<!-- start header  -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'Issue Reports'"></app-head>
+</header>
+<!-- end header  -->
+
+<div class="row m-0">
+
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'Issue_Reports'"></app-sidebar>
+    <!-- end sidebar  -->
+
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10">
+        <div class="d-md-flex justify-content-between dashboard">
+            <p class="fw-bold" style="color: #6c6a6a;">Issue Reports</p>
+            <div class="d-md-flex justify-content-lg-between  ">
+              <div class="d-flex mb-2 me-3">
+                <button class="month rounded-start px-3 py-2 text-white border-0 outline-none">This Month</button>
+                <button class="week rounded-end px-3 py-2 outline-none bg-white">Last Week</button>
+              </div>
+              <!-- start dropdown button  -->
+              <app-dropdown class="" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
+              <!-- end dropdown button  -->
+            </div>
+          </div>
+        <app-data-table [products]="products" [pagePerson]="'Reports'"
+        [selectedProducts]="selectedProducts" [headerData]="headerData"></app-data-table>
+        
+    </main>
+    <!-- end content page  -->
+</div>

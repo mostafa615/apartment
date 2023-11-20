@@ -1,0 +1,89 @@
+.apartmentList {
+    color: #787579;
+    &:hover {
+        border-bottom: 2px solid #1f4068 !important;
+        font-weight: 600;
+        color: #1f4068 !important;
+    }
+}
+
+.paroductApartment {
+    p {
+        color: #605d62;
+    }
+    .details {
+        border: 1px solid #dfdfdf;
+        max-height: 220px;
+    }
+    .apartmentImage {
+        border-radius: 8px 8px 0px 0px;
+        max-height: 184px;
+    }
+    .Price {
+        color: #1F4068;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 33.6px;
+        .time {
+            font-size: 16px;
+            line-height: 16px;
+            position: relative;
+            top: -2px;
+        }
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.rentedORavailable {
+    background-color: rgb(255 255 255 / 70%);
+    color: #1f4068 !important;
+}
+
+.rented {
+    color: #1f4068 !important;
+}
+
+.available {
+    color: #12b76a !important;
+}
+
+.clickApartmentList {
+    color: #1f4068 !important;
+    font-weight: 600;
+    border-bottom: 2px solid #1f4068 !important;
+}
+
+.none {
+    @media (max-width: 992px) {
+        display: none;
+    }
+}
+
+.p-fileupload-buttonbar .p-button {
+    margin-bottom: 10px !important;
+}
+
+.cvxs {
+    text-align: center;
+    color: #1019c6 !important;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 500;
+    line-height: 20px;
+    word-wrap: break-word;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px #8FA0B4 solid;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+}

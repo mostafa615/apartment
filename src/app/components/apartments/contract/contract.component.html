@@ -1,0 +1,33 @@
+<!-- start header  -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'Apartments'"></app-head>
+</header>
+<!-- end header  -->
+<div class="row m-0">
+
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'apartments'"></app-sidebar>
+    <!-- end sidebar  -->
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10 ">
+
+        
+        <div class="d-flex justify-content-between mb-4 mx-2">
+            <div class="d-flex pt-2">
+                <p class="me-4 fw-bold gray">Apartments</p>
+                <p class="fw-bold me-4">></p>
+                <p class="fw-bold gray">{{paramintab}}</p>
+            </div>
+            <div>
+                <app-share-button class="me-3"></app-share-button>
+                <app-print-button></app-print-button>
+                <app-download-pdfbutton></app-download-pdfbutton>
+            </div>
+        </div>
+       <div>
+        <img src="assets/images/apartmentImages/Frame 1261154516.svg" style=" box-shadow: 0 0 6px #d2d9e1;">
+       </div>
+       
+     
+    </main>
+</div>

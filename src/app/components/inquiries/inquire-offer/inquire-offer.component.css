@@ -1,0 +1,465 @@
+.cvxs {
+    text-align: center;
+    color: #1F4068 !important;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 500;
+    line-height: 20px;
+    word-wrap: break-word;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px #8FA0B4 solid;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+}
+
+.apartmentList {
+    color: #787579;
+    &:hover {
+        border-bottom: 2px solid #1f4068 !important;
+        font-weight: 600;
+        color: #1f4068 !important;
+    }
+}
+
+.paroductApartment {
+    .details {
+        border: 1px solid #dfdfdf;
+        max-height: 220px;
+    }
+    .apartmentImage {
+        border-radius: 8px 8px 0px 0px;
+        max-height: 184px;
+    }
+    .Price {
+        color: #1F4068;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 33.6px;
+        .time {
+            font-size: 16px;
+            line-height: 16px;
+            position: relative;
+            top: -2px;
+        }
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.rentedORavailable {
+    background-color: rgb(255 255 255 / 70%);
+    color: #1f4068 !important;
+}
+
+.rented {
+    color: #1f4068 !important;
+}
+
+.available {
+    color: #12b76a !important;
+}
+
+.clickApartmentList {
+    color: #1f4068 !important;
+    font-weight: 600;
+    border-bottom: 2px solid #1f4068 !important;
+}
+
+.none {
+    @media (max-width: 992px) {
+        display: none;
+    }
+}
+
+.p-fileupload-buttonbar .p-button {
+    margin-bottom: 10px !important;
+}
+
+.modal-successfull {
+    display: flex;
+    flex-direction: column;
+    width: 460px;
+    align-items: center;
+    position: relative;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+}
+
+.modal-successfull .modal-header {
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.modal-successfull .content {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 24px 0px;
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.modal-successfull .featured-icon {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    margin-top: -4px;
+    background-color: rgba(209, 250, 223, 1);
+    border-radius: 28px;
+    border: 8px solid;
+    border-color: rgba(236, 253, 243, 1);
+}
+
+.modal-successfull .icon-tick-done {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 12px;
+    left: 12px;
+}
+
+.modal-successfull .text-and-supporting {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.modal-successfull .text {
+    position: relative;
+    align-self: stretch;
+    margin-top: -1px;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-weight: 600;
+    color: rgba(16, 24, 40, 1);
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 28px;
+}
+
+.modal-successfull .supporting-text {
+    position: relative;
+    width: fit-content;
+    margin-left: -1.5px;
+    margin-right: -1.5px;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    color: rgba(71, 84, 103, 1);
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 20px;
+    white-space: nowrap;
+}
+
+.modal-successfull .button-close-x {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    position: absolute;
+    top: 16px;
+    left: 340px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.modal-successfull .icon-close {
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.modal-successfull .modal-actions {
+    /* padding: 32px 0px 0px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.modal-successfull .primary-button-wrapper {
+    align-items: flex-start;
+    justify-content: center;
+    gap: 12px;
+    padding: 0px 24px 24px;
+    display: flex;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.modal-successfull .primary-button {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    flex: 0 0 auto;
+    border-radius: 4px;
+}
+
+.modal-successfull .auto-layout-button {
+    display: inline-flex;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    position: relative;
+    flex: 0 0 auto;
+    background-color: rgba(31, 64, 104, 1);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+.modal-successfull .label {
+    position: relative;
+    width: fit-content;
+    margin-top: -1px;
+    font-family: "SF Pro Text-Semibold", Helvetica;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 20px;
+    white-space: nowrap;
+}
+
+
+/* :root {
+    --white-100: rgba(255, 255, 255, 1);
+    --error-40: rgba(179, 38, 30, 1);
+    --primary-40: rgba(31, 64, 104, 1);
+    --secondary-40: rgba(255, 185, 0, 1);
+    --tertiary: rgba(143, 132, 52, 1);
+    --surface-0: rgba(248, 251, 255, 1);
+     --success-200: rgba(2, 122, 72, 1);
+     --purple-10: rgba(219, 0, 255, 1);
+    --purple-95: rgba(252, 234, 255, 1);
+    --primary-shadesprimary0: rgba(0, 0, 0, 1);
+    --primary-shadesprimary10: rgba(6, 13, 21, 1);
+    --primary-shadesprimary20: rgba(12, 26, 42, 1);
+    --primary-shadesprimary30: rgba(19, 38, 62, 1);
+    --primary-shadesprimary40: rgba(31, 64, 104, 1);
+    --primary-shadesprimary50: rgba(53, 83, 119, 1);
+    --primary-shadesprimary60: rgba(76, 102, 134, 1);
+    --primary-shadesprimary70: rgba(121, 140, 164, 1);
+    --primary-shadesprimary80: rgba(143, 160, 180, 1);
+    --primary-shadesprimary90: rgba(188, 198, 210, 1);
+    --primary-shadesprimary95: rgba(210, 217, 225, 1);
+    --primary-shadesprimary99: rgba(250, 252, 255, 1);
+    --primary-shadesprimary100: rgba(255, 255, 255, 1);
+    --neutralneutral-0: rgba(0, 0, 0, 1);
+    --neutralneutral-10: rgba(28, 27, 31, 1);
+    --neutralneutral-20: rgba(49, 48, 51, 1);
+    --neutralneutral-30: rgba(72, 70, 73, 1);
+    --neutralneutral-40: rgba(96, 93, 98, 1);
+    --neutralneutral-50: rgba(120, 117, 121, 1);
+    --neutralneutral-60: rgba(147, 144, 148, 1);
+    --neutralneutral-70: rgba(175, 175, 175, 1);
+    --neutralneutral-80: rgba(206, 206, 206, 1);
+    --neutralneutral-90: rgba(235, 235, 235, 1);
+    --neutralneutral-95: rgba(246, 246, 246, 1);
+    --neutralneutral-99: rgba(253, 253, 253, 1);
+    --neutralneutral-100: rgba(255, 255, 255, 1);
+    --secondary-shadessecondary0: rgba(0, 0, 0, 1);
+    --secondary-shadessecondary10: rgba(76, 60, 0, 1);
+    --secondary-shadessecondary20: rgba(153, 119, 0, 1);
+    --secondary-shadessecondary30: rgba(230, 179, 0, 1);
+    --secondary-shadessecondary40: rgba(255, 185, 0, 1);
+    --secondary-shadessecondary50: rgba(255, 210, 51, 1);
+    --secondary-shadessecondary60: rgba(255, 216, 77, 1);
+    --secondary-shadessecondary70: rgba(255, 221, 102, 1);
+    --secondary-shadessecondary80: rgba(255, 227, 128, 1);
+    --secondary-shadessecondary90: rgba(255, 233, 153, 1);
+    --secondary-shadessecondary95: rgba(255, 238, 179, 1);
+    --secondary-shadessecondary99: rgba(255, 249, 230, 1);
+    --secondary-shadessecondary100: rgba(255, 255, 255, 1);
+    --tertiary-shadestertiary0: rgba(0, 0, 0, 1);
+    --tertiary-shadestertiary10: rgba(29, 26, 10, 1);
+    --tertiary-shadestertiary20: rgba(43, 40, 16, 1);
+    --tertiary-shadestertiary30: rgba(86, 79, 31, 1);
+    --tertiary-shadestertiary40: rgba(143, 132, 52, 1);
+    --tertiary-shadestertiary50: rgba(154, 144, 72, 1);
+    --tertiary-shadestertiary60: rgba(165, 157, 93, 1);
+    --tertiary-shadestertiary70: rgba(177, 169, 113, 1);
+    --tertiary-shadestertiary80: rgba(199, 194, 154, 1);
+    --tertiary-shadestertiary90: rgba(210, 206, 174, 1);
+    --tertiary-shadestertiary95: rgba(221, 218, 194, 1);
+    --tertiary-shadestertiary99: rgba(244, 243, 234, 1);
+    --tertiary-shadestertiary100: rgba(255, 255, 255, 1);
+    --error-shadeserror0: rgba(0, 0, 0, 1);
+    --error-shadeserror10: rgba(65, 14, 11, 1);
+    --error-shadeserror20: rgba(96, 20, 16, 1);
+    --error-shadeserror30: rgba(140, 29, 24, 1);
+    --error-shadeserror40: rgba(179, 38, 30, 1);
+    --error-shadeserror50: rgba(239, 32, 17, 1);
+    --error-shadeserror60: rgba(228, 105, 98, 1);
+    --error-shadeserror70: rgba(236, 146, 142, 1);
+    --error-shadeserror80: rgba(242, 184, 181, 1);
+    --error-shadeserror90: rgba(249, 222, 220, 1);
+    --error-shadeserror95: rgba(252, 238, 238, 1);
+    --error-shadeserror99: rgba(255, 251, 249, 1);
+    --error-shadeserror100: rgba(255, 255, 255, 1);
+     --gray-900: rgba(16, 24, 40, 1);
+    --gray-600: rgba(71, 84, 103, 1);
+    rgba(236, 253, 243, 1);: rgba(236, 253, 243, 1);
+    --type-style-heading4xl-font-family: "Poppins-Bold", Helvetica;
+    --type-style-heading4xl-font-weight: 700;
+    --type-style-heading4xl-font-size: 40px;
+    --type-style-heading4xl-letter-spacing: 0px;
+    --type-style-heading4xl-line-height: 48px;
+    --type-style-heading4xl-font-style: normal;
+    --type-style-heading3xl-font-family: "Poppins-SemiBold", Helvetica;
+    --type-style-heading3xl-font-weight: 600;
+    --type-style-heading3xl-font-size: 32px;
+    --type-style-heading3xl-letter-spacing: 0px;
+    --type-style-heading3xl-line-height: 40px;
+    --type-style-heading3xl-font-style: normal;
+    --type-style-heading2xl-font-family: "Poppins-SemiBold", Helvetica;
+    --type-style-heading2xl-font-weight: 600;
+    --type-style-heading2xl-font-size: 28px;
+    --type-style-heading2xl-letter-spacing: 0px;
+    --type-style-heading2xl-line-height: 139.9999976158142%;
+    --type-style-heading2xl-font-style: normal;
+    --type-style-headingxl-font-family: "Poppins-SemiBold", Helvetica;
+    --type-style-headingxl-font-weight: 600;
+    --type-style-headingxl-font-size: 24px;
+    --type-style-headingxl-letter-spacing: 0px;
+    --type-style-headingxl-line-height: 139.9999976158142%;
+    --type-style-headingxl-font-style: normal;
+    --type-style-headinglg-font-family: "Poppins-SemiBold", Helvetica;
+    --type-style-headinglg-font-weight: 600;
+    --type-style-headinglg-font-size: 20px;
+    --type-style-headinglg-letter-spacing: 0px;
+    --type-style-headinglg-line-height: 24px;
+    --type-style-headinglg-font-style: normal;
+    --type-style-headingmd-font-family: "Poppins-SemiBold", Helvetica;
+    --type-style-headingmd-font-weight: 600;
+    --type-style-headingmd-font-size: 16px;
+    --type-style-headingmd-letter-spacing: 0px;
+    --type-style-headingmd-line-height: 24px;
+    --type-style-headingmd-font-style: normal;
+    --type-style-headingsm-font-family: "Poppins-SemiBold", Helvetica;
+    --type-style-headingsm-font-weight: 600;
+    --type-style-headingsm-font-size: 14px;
+    --type-style-headingsm-letter-spacing: 0px;
+    --type-style-headingsm-line-height: 20px;
+    --type-style-headingsm-font-style: normal;
+    --type-style-headingxs-font-family: "Poppins-SemiBold", Helvetica;
+    --type-style-headingxs-font-weight: 600;
+    --type-style-headingxs-font-size: 12px;
+    --type-style-headingxs-letter-spacing: 0px;
+    --type-style-headingxs-line-height: 16px;
+    --type-style-headingxs-font-style: normal;
+    --type-style-bodylg-font-family: "Poppins-Regular", Helvetica;
+    --type-style-bodylg-font-weight: 400;
+    --type-style-bodylg-font-size: 16px;
+    --type-style-bodylg-letter-spacing: 0px;
+    --type-style-bodylg-line-height: 20px;
+    --type-style-bodylg-font-style: normal;
+    --type-style-bodyrg-regular-font-family: "Poppins-Regular", Helvetica;
+    --type-style-bodyrg-regular-font-weight: 400;
+    --type-style-bodyrg-regular-font-size: 12px;
+    --type-style-bodyrg-regular-letter-spacing: 0px;
+    --type-style-bodyrg-regular-line-height: 16px;
+    --type-style-bodyrg-regular-font-style: normal;
+    --type-style-bodylg-medium-font-family: "Poppins-Medium", Helvetica;
+    --type-style-bodylg-medium-font-weight: 500;
+    --type-style-bodylg-medium-font-size: 16px;
+    --type-style-bodylg-medium-letter-spacing: 0px;
+    --type-style-bodylg-medium-line-height: 20px;
+    --type-style-bodylg-medium-font-style: normal;
+    --type-style-bodylg-underline-font-family: "Poppins-Regular", Helvetica;
+    --type-style-bodylg-underline-font-weight: 400;
+    --type-style-bodylg-underline-font-size: 16px;
+    --type-style-bodylg-underline-letter-spacing: 0px;
+    --type-style-bodylg-underline-line-height: 20px;
+    --type-style-bodylg-underline-font-style: normal;
+    --type-style-bodymd-medium-font-family: "Poppins-Medium", Helvetica;
+    --type-style-bodymd-medium-font-weight: 500;
+    --type-style-bodymd-medium-font-size: 14px;
+    --type-style-bodymd-medium-letter-spacing: 0px;
+    --type-style-bodymd-medium-line-height: 20px;
+    --type-style-bodymd-medium-font-style: normal;
+    --type-style-bodymd-semibold-font-family: "Poppins-SemiBold", Helvetica;
+    --type-style-bodymd-semibold-font-weight: 600;
+    --type-style-bodymd-semibold-font-size: 14px;
+    --type-style-bodymd-semibold-letter-spacing: 0px;
+    --type-style-bodymd-semibold-line-height: 20px;
+    --type-style-bodymd-semibold-font-style: normal;
+    --type-style-bodymd-underline-font-family: "Poppins-Regular", Helvetica;
+    --type-style-bodymd-underline-font-weight: 400;
+    --type-style-bodymd-underline-font-size: 14px;
+    --type-style-bodymd-underline-letter-spacing: 0px;
+    --type-style-bodymd-underline-line-height: 20px;
+    --type-style-bodymd-underline-font-style: normal;
+    --type-style-bodymd-mono-font-family: "Poppins-Regular", Helvetica;
+    --type-style-bodymd-mono-font-weight: 400;
+    --type-style-bodymd-mono-font-size: 14px;
+    --type-style-bodymd-mono-letter-spacing: 0px;
+    --type-style-bodymd-mono-line-height: 16px;
+    --type-style-bodymd-mono-font-style: normal;
+    --text-lg-semibold-font-family: "Inter-SemiBold", Helvetica;
+    --text-lg-semibold-font-weight: 600;
+    --text-lg-semibold-font-size: 18px;
+    --text-lg-semibold-letter-spacing: 0px;
+    --text-lg-semibold-line-height: 28px;
+    --text-lg-semibold-font-style: normal;
+    --text-sm-regular-font-family: "Inter-Regular", Helvetica;
+    --text-sm-regular-font-weight: 400;
+    --text-sm-regular-font-size: 14px;
+    --text-sm-regular-letter-spacing: 0px;
+    --text-sm-regular-line-height: 20px;
+    --text-sm-regular-font-style: normal;
+    --bodylg-medium-font-family: "SFPro Text-Medium", Helvetica;
+    --bodylg-medium-font-weight: 500;
+    --bodylg-medium-font-size: 16px;
+    --bodylg-medium-letter-spacing: 0px;
+    --bodylg-medium-line-height: 20px;
+    --bodylg-medium-font-style: normal;
+    --ds1: 0px 70px 80px 2px rgba(0, 0, 0, 0.2);
+    --ds2: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+    --ds3: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+    --ds4: 0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+    --ds5: 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+    --ds6: 0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+    --ds7: 0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1);
+    --ds8: 0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08);
+    --buttons-ds1: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+    --model-DS-9: 0px 70px 80px 2px rgba(0, 0, 0, 0.2);
+ } */

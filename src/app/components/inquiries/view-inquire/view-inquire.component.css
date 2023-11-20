@@ -1,0 +1,13 @@
+.blue {
+    color: #1f4068;
+}
+
+.file {
+    z-index: 3 !important;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.h-124px {
+    height: 124px !important;
+}

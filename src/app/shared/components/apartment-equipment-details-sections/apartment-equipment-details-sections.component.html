@@ -1,0 +1,24 @@
+<div class="row ">
+    <ng-container  *ngFor="let data of FieldData;let index=index">
+        <div class="mb-3 col-12 col-md-6 ">
+            <label class="form-label gray fw-bold">{{label}} {{index+1}}</label>
+            <input type="text" class="form-control bg-white rounded-2 py-2 fs-6" >
+        </div>
+    </ng-container>
+</div>
+<div class="row mb-3"  *ngIf="ActionButtonField">
+    <div class=" col-12 col-md-6 ">
+        <label class="form-label gray fw-bold">room detail {{FieldData.length+1}}</label>
+        <input type="text" class="form-control bg-white rounded-2 py-2 fs-6" >
+    </div>
+    <div class="mb-0 mt-4 col-12 col-md-6 d-flex align-items-center ">
+        <div>
+            <app-status-new-field-apartment (RemoveActionButtonField)="RemoveActionButtonFieldSection()"
+            (saveActionButtonField)="saveActionButtonFieldSection(FieldData.length+1)"></app-status-new-field-apartment>
+        </div>
+    </div>
+
+</div>
+<app-add-new-field-apartment-button [text]="textbutton" 
+(ActionButton)="ActionButtonField=true">
+</app-add-new-field-apartment-button>

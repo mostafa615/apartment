@@ -1,0 +1,23 @@
+.month,
+.week {
+    color: #757a82;
+    background-color: white;
+    border: 1px solid #ebebeb;
+}
+
+@media (min-width: 768px) {
+    .xcvdd {
+        margin-right: 257px !important;
+    }
+    .cvvvvvvv {
+        margin-right: -898px;
+    }
+}
+
+td {
+    font-size: 14px !important;
+}
+
+th {
+    font-size: 14px !important
+}
