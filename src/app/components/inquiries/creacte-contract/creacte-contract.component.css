@@ -73,3 +73,7 @@ span {
     all: unset;
     box-sizing: border-box;
 }
+
+* {
+    font-family: 'Montserrat'!important
+}

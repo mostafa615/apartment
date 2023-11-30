@@ -17,6 +17,8 @@
             </a>
 
         </div>
+        <p-toast></p-toast>
+
         <!-- end part 1 in page  -->
         <div class="bg-white border rounded-3 mt-3 p-3">
             <div class="row">
@@ -36,6 +38,7 @@
 
                             </div>
                         </div>
+
                     </ng-container>
 
                     <div class="d-flex">
@@ -523,19 +526,21 @@
                         </div>
                     </div>
                     <div class="mx-2">
-                        <button class="outline-0 w-100 p-2 mb-3 border-0 text-white d-block rounded" style="background-color: #1f4068" (click)="RentedSuccessfully = true" *ngIf="!RentedSuccessfully">
+                        <!-- (click)="RentedSuccessfully = true" *ngIf="!RentedSuccessfully" -->
+                        <button (click)="MarkRented()" class="outline-0 w-100 p-2 mb-3 border-0 text-white d-block rounded" style="background-color: #1f4068">
               Mark as rented
             </button>
-                        <button class="outline-0 w-100 p-2 mb-3 d-block rounded bg-transparent" style="color: #0cb30c; border: 1px solid #1f4068" *ngIf="RentedSuccessfully">
+                        <!-- <button class="outline-0 w-100 p-2 mb-3 d-block rounded bg-transparent" style="color: #0cb30c; border: 1px solid #1f4068" *ngIf="RentedSuccessfully">
               Rented Successfully
-            </button>
-                        <button class="outline-0 w-100 p-2 mb-3 border-0 text-white d-block rounded" style="background-color: #1f4068" (click)="markAvailable = true" *ngIf="!markAvailable">
+            </button> -->
+                        <!-- (click)="markAvailable = true" *ngIf="!markAvailable" -->
+                        <button (click)="MarkAvaliablePublish()" class="outline-0 w-100 p-2 mb-3 border-0 text-white d-block rounded" style="background-color: #1f4068">
               Mark as available
             </button>
-                        <button class="outline-0 w-100 p-2 mb-3 d-block rounded bg-transparent" style="color: #0cb30c; border: 1px solid #1f4068" *ngIf="markAvailable">
-              Rented Successfully
-            </button>
-                        <button class="outline-0 border-0 d-block w-100 p-2 blue rounded" style="background-color: #d2d9e1">
+                        <!-- <button class="outline-0 w-100 p-2 mb-3 d-block rounded bg-transparent" style="color: #0cb30c; border: 1px solid #1f4068" *ngIf="markAvailable">
+                          available Successfully
+            </button> -->
+                        <button (click)="MarkDraft()" class="outline-0 border-0 d-block w-100 p-2 blue rounded" style="background-color: #d2d9e1">
               Unpublish
             </button>
                     </div>

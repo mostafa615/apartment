@@ -434,6 +434,13 @@ debugger
     localStorage.setItem("generalInfoForm", JSON.stringify({ ...this.generalInfoForm.value, apt_Transports: this.Createtransport, bills: this.bills }))
 
     if(this.addApartment !="add new apartments" ){
+      // const formData = new FormData();
+      // for (let i = 0; i < this.ListFiles.length; i++) {
+      //   formData.append('Files', this.ListFiles[i], this.ListFiles[i].name);
+      // }
+      // formData.append('Name',data.value.name );
+      // formData.append('Name',data.value.name );
+
       this._ApartmentService.createPostSec1({ ...data.value, apt_Transports: this.Createtransport },this.idParamterEdit).subscribe((res) => {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Success First Step'}` });
         this.n_ofbedroom = data.value.apt_Bedrooms
@@ -545,7 +552,7 @@ counter=0;
   }
     readFile(file: File): Observable<string> {
       debugger
-    return new Observable(obs => {
+      return new Observable(obs => {
       const reader = new FileReader();
       reader.onload = (e: any) => {
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AdminsService } from 'src/app/_services/admins/admins.service';
 
 @Component({
   selector: 'app-main-file',
@@ -7,122 +8,75 @@ import { Component } from '@angular/core';
 })
 export class MainFileComponent {
   showSide: string = '';
+  showEdit: Array<boolean> = [];
+
   products!: Array<object>;
+  issues:any=[];
   selectedProducts: Array<object> = [];
   headerData: Array<any> = [];
   loading: boolean = true;
   search:boolean=false
   listDropDown:Array<object>=[{name:'Today'},{name:'Last week'},{name:'This month'},{name:'This year'}]
 
-  constructor() { }
-
+  constructor(public _adminservices:AdminsService ) { }
+  totalofPages=0;
   ngOnInit() {
-    this.products = this.initFakeDate();
-    this.headerData = this.initHeadersData();
+
+    this.getAllIssues(  )
+   }
+   Date=""
+
+   getAllIssues(  ) {
+    this.issues=[]
+    this.numberissues=0
+    this._adminservices.ListAllIssues( this.pageNumber,this.pagesize,this.Date).subscribe((res:any) => {
+      this.issues = res["data"];
+      this.totalRecords=res["totalRecords"]
+
+      this.numberissues = this.issues.length;
+      this.totalofPages=res["totalPages"]
+
+
+     }, (error) => {
+       console.error('Error fetching owners:', error);
+    })
   }
- 
-  /**
-   * addItem
-   * @param value string
-   * @returns void
-   */
+  detailperson(event:any,id: any): void {
+    this.showEdit=[]
+    event.stopPropagation()
+
+    this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
+
+
+
+   }
+   hidecard( ){
+    this.showEdit=[]
+
+ }
+ totalRecords=0
+ pageNumber=1;
+ numberissues=0;
+ pagesize=10;
+tiggerPageChange(event: any) {
+  debugger
+      const calcPageNumber = Math.floor(event.first / event.rows) + 1;
+      this.pageNumber=calcPageNumber;
+      console.log(calcPageNumber);
+      this.getAllIssues();
+      }
+
   addItem(value: string): void {
     this.showSide = value
   }
 
-  /**
-   * addItem
-   * @param value string
-   * @returns void
-   */
-  initHeadersData(): Array<object> {
-    return [
-      { Name: '', SortableColumn: '', tableHeaderCheckbox: true, sortIcon: false },
-      { Name: 'Report ID', SortableColumn: 'Report_ID', tableHeaderCheckbox: false, sortIcon: false},
-      { Name: 'Requested by', SortableColumn: 'Requested_by', tableHeaderCheckbox: false,sortIcon: false },
-      { Name: 'Table header', SortableColumn: 'Table_header', tableHeaderCheckbox: false ,sortIcon: false},
-      { Name: 'Date Reported', SortableColumn: 'Date_Reported', tableHeaderCheckbox: false, sortIcon: true },
-      { Name: 'Descriptions', SortableColumn: 'Descriptions', tableHeaderCheckbox: false, sortIcon: false },
-      { Name: 'Status', SortableColumn: 'Status', tableHeaderCheckbox: false, sortIcon: true },
-      { Name: 'Actions', SortableColumn: 'Actions', tableHeaderCheckbox: false, sortIcon: false },
-      { Name: '', SortableColumn: '', tableHeaderCheckbox: false,sortIcon: false}
-     
-    ]
-  }
 
-  /**
-   * selectedfromDropDown
-   * @param $event string
-   * @returns void
-   */
   selectedfromDropDown(value:any){
+    debugger
+    this.Date=value.name;
+    this.getAllIssues()
     console.log(value)
   }
 
-  /**
-   * initFakeDate
-   * @returns array of products
-   */
-  initFakeDate(): Array<object> {
-    return [
-      {
-        id:1,
-        Report_ID:'0012345',
-        Requested_by: 'Bamboo Watch',
-        Table_header:"assets/images/person.svg",
-        Date_Reported: 'sara',
-        Descriptions: 'Accessories',
-        Status:'Scheduled',
-   
-     
-      },
-      {
-        id:2,
-        Report_ID:'0012345',
-        Requested_by: 'Bamboo Watch',
-        Table_header:"assets/images/person.svg",
-        Date_Reported: 'sara',
-        Descriptions: 'Accessories',
-        Status:'In Progress',
 
-     
-      },
-      {
-        id:3,
-        Report_ID:'0012345',
-        Requested_by: 'Bamboo Watch',
-        Table_header:"assets/images/person.svg",
-        Date_Reported: 'sara',
-        Descriptions: 'Accessories',
-        Status:'Completed',
-
-     
-      },
-      {
-        id:4,
-        Report_ID:'0012345',
-        Requested_by: 'Bamboo Watch',
-        Table_header:"assets/images/person.svg",
-        Date_Reported: 'sara',
-        Descriptions: 'Accessories',
-        Status:'Scheduled',
-
-     
-      },
-      {
-        id:5,
-        Report_ID:'0012345',
-        Requested_by: 'Bamboo Watch',
-        Table_header:"assets/images/person.svg",
-        Date_Reported: 'sara',
-        Descriptions: 'Accessories',
-        Status:'Completed',
-
-     
-      },
-     
-     
-    ];
-  }
- 
 }

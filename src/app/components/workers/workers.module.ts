@@ -1,6 +1,9 @@
  import { CommonModule } from '@angular/common';
 import { WorkersComponent } from './workers.component';
 
+import { AddWorkerComponent } from './add-worker/add-worker.component';
+import { EditWorkerComponent } from './edit-worker/edit-worker.component';
+import { WorkerProfileComponent } from './worker-profile/worker-profile.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
  import { DropdownModule } from 'primeng/dropdown';
@@ -43,6 +46,6 @@ const routes: Routes = [
   providers: [MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
-  declarations: [WorkersComponent]
+  declarations: [WorkersComponent,AddWorkerComponent,EditWorkerComponent,WorkerProfileComponent]
 })
 export class WorkersModule { }

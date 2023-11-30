@@ -15,18 +15,111 @@
         <div class="d-md-flex justify-content-between dashboard">
             <p class="fw-bold" style="color: #6c6a6a;">Issue Reports</p>
             <div class="d-md-flex justify-content-lg-between  ">
-              <div class="d-flex mb-2 me-3">
-                <button class="month rounded-start px-3 py-2 text-white border-0 outline-none">This Month</button>
-                <button class="week rounded-end px-3 py-2 outline-none bg-white">Last Week</button>
-              </div>
-              <!-- start dropdown button  -->
-              <app-dropdown class="" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
-              <!-- end dropdown button  -->
+                <!-- <div class="d-flex mb-2 me-3">
+                    <button class="month rounded-start px-3 py-2 text-white border-0 outline-none">This Month</button>
+                    <button class="week rounded-end px-3 py-2 outline-none bg-white">Last Week</button>
+                </div> -->
+                <!-- start dropdown button  -->
+                <app-dropdown class="" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
+                <!-- end dropdown button  -->
             </div>
-          </div>
-        <app-data-table [products]="products" [pagePerson]="'Reports'"
-        [selectedProducts]="selectedProducts" [headerData]="headerData"></app-data-table>
-        
+        </div>
+        <p-toast></p-toast>
+        <div class="card mt-4">
+
+            <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="issues">
+                <ng-template pTemplate="header" class="text-center">
+                    <tr *ngIf="headerData">
+                        <ng-container>
+
+
+                            <th class="td-name">
+                                Report ID
+
+                            </th>
+                            <th class="td-name">
+                                Requested by
+
+                            </th>
+                            <th class="td-name">
+                                Apartment Number
+
+                            </th>
+                            <th class="td-name">
+                                Date Reported
+
+                            </th>
+                            <th class="td-name">
+                                Descriptions
+
+                            </th>
+                            <th class="td-name">
+                                Status
+
+                            </th>
+                            <th class="td-name">
+
+                                actions
+                            </th>
+                        </ng-container>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-issue>
+
+                    <tr style="cursor: pointer;" (click)="hidecard()">
+
+
+                        <td>
+                            {{issue?.issue_Code}}
+                        </td>
+                        <td>
+                            {{issue?.requsted_By}}
+                        </td>
+                        <td>
+                            {{issue?.apartment_Number}}
+                        </td>
+
+                        <td>
+                            {{issue?.date_Reported}}
+                        </td>
+                        <td>
+                            {{issue?.desc}}
+                        </td>
+                        <td>
+                            {{issue?.issue_Status}}
+                        </td>
+
+
+                        <td class="cursor position-relative">
+                            <button class="border-0 outlin-0 bg-transparent" (click)="detailperson($event,issue.issue_ID)">
+              <img src="assets/images/edit.svg">
+          </button>
+                            <div *ngIf="showEdit[issue.issue_ID] " style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/Report-view/{{issue.issue_ID}}">view details</button>
+
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" routerLink="/assgin-issue/{{issue.issue_ID}}"> assign worker  </button>
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2">Delete </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </ng-template>
+
+
+                <ng-template pTemplate="emptymessage">
+                    <div class="container text-center mt-4">
+                        <p class="mb-0">No data found.</p>
+                    </div>
+                </ng-template>
+
+            </p-table>
+            <p-paginator (onPageChange)="tiggerPageChange($event)" [rows]="pagesize" [totalRecords]="totalRecords"></p-paginator>
+
+
+        </div>
+
     </main>
-    <!-- end content page  -->
 </div>

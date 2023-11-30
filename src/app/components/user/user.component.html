@@ -72,7 +72,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-Tenant>
 
-                    <tr style="cursor: pointer;">
+                    <tr style="cursor: pointer;" (click)="hidecard(Tenant.request_ID)">
 
                         <td>
                             <img [src]="Tenant?.user_Photo" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;"> {{Tenant?.user_Name}}
@@ -114,7 +114,7 @@
                             </div>
                         </td>
                         <td class="cursor position-relative">
-                            <button class="border-0 outlin-0 bg-transparent" (click)="detailperson(Tenant.user_ID)">
+                            <button class="border-0 outlin-0 bg-transparent" (click)="detailperson($event,Tenant.user_ID)">
               <img src="assets/images/edit.svg">
           </button>
                             <div *ngIf="showEdit[Tenant.user_ID] " style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
@@ -147,14 +147,14 @@
         <!-- <div style="width: 100%; height: 72px; padding-top: 12px; padding-bottom: 16px; padding-left: 24px; padding-right: 24px;   justify-content: space-between; align-items: center; display: inline-flex">
             <div style="border-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
 
-                <button (click)="decreamentPage( )" [disabled]="disableperv" class="  cvxs" style="text-align: center; color: #1F4068; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 20px; word-wrap: break-word">
+                <button (click)="decreamentPage( )" [disabled]="disableperv" class="  cvxs" style="text-align: center; color: #1F4068; font-size: 16px; font-family: 'Montserrat'; font-weight: 500; line-height: 20px; word-wrap: break-word">
                 Previous
   </button>
             </div>
-            <div style="color: #484649; font-size: 14px; font-family: Poppins; font-weight: 400; line-height: 20px; word-wrap: break-word">Page {{pageNumber}} of {{totalofPages}}</div>
+            <div style="color: #484649; font-size: 14px; font-family: 'Montserrat'; font-weight: 400; line-height: 20px; word-wrap: break-word">Page {{pageNumber}} of {{totalofPages}}</div>
             <div style="border-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
 
-                <button [disabled]="disablenext" (click)="   incrementpage( )" class="  cvxs" style="text-align: center; color: #1F4068; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 20px; word-wrap: break-word">
+                <button [disabled]="disablenext" (click)="   incrementpage( )" class="  cvxs" style="text-align: center; color: #1F4068; font-size: 16px; font-family: 'Montserrat'; font-weight: 500; line-height: 20px; word-wrap: break-word">
                     Next
       </button>
             </div>

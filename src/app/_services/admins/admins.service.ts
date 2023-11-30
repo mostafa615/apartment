@@ -97,4 +97,65 @@ UpdateTenantInfo( User_ID: any, FName: any,LName:any,PassportID:any,About:any,im
   return this.http.post<any>(url,image, { headers:  headers2 , params: params });
 
 }
+GetAllWorkers(PageNo:any, PageSize:any): Observable<any[]> {
+  const url = environment.apiUrl+"/Workers/GetAllWorkers?PageNo="+PageNo+"&PageSize="+PageSize;
+  return this.http.get<any[]>(url, {  headers: this.headers });
+
+}
+InsertWorker(data: any ): Observable<any> {
+  const url = environment.apiUrl+"/Workers/InsertWorker ";
+  return this.http.post<any>(url,data, {  headers: this.headers });
+
+}
+UpdateWorker(data: any,id:any ): Observable<any> {
+  const url = environment.apiUrl+"/Workers/UpdateWorker?id="+id;
+  return this.http.put<any>(url,data, {  headers: this.headers });
+
+}
+
+ListJobs( ): Observable<any[]> {
+  const url = environment.apiUrl+"/Workers/ListJobs";
+  return this.http.get<any[]>(url, {  headers: this.headers });
+
+}
+
+GetWorkerByid(id: any ): Observable<any> {
+  const url = environment.apiUrl+"/Workers/GetWorker?id="+id;
+  return this.http.get<any[]>(url, {  headers: this.headers });
+
+}
+PostJob(data: any ): Observable<any> {
+  const url = environment.apiUrl+"/Workers/PostJob?JobName="+data;
+  return this.http.post<any>(url,data, {  headers: this.headers });
+
+}
+DeleteWorker(id: any ): Observable<any> {
+  const url = environment.apiUrl+"/Workers/DeleteWorker?id="+id;
+  return this.http.delete<any>(url, {  headers: this.headers });
+
+}
+ListAllIssues( PageNumber: number, PageSize: number,Date:any ): Observable<any[]> {
+  const url = environment.apiUrl+"/Issues/ListAllIssues";
+  const params = new HttpParams()
+    .set('PageNo', PageNumber)
+    .set('PageSize', PageSize)
+    .set('Date', Date)
+  return this.http.get<any[]>(url, { headers: this.headers , params: params });
+
+}
+GetIssueDetails(id: any ): Observable<any> {
+  const url = environment.apiUrl+"/Issues/GetIssueDetails?Issue_ID="+id;
+  return this.http.get<any>(url, {  headers: this.headers });
+
+}
+AssignWorker(Issue_ID: any,idworker:any ): Observable<any> {
+  let body={
+    Issue_ID:Issue_ID,idworker:idworker
+  }
+  const url = environment.apiUrl+"/Issues/AssignWorker?Issue_ID="+Issue_ID+"&Worker_ID="+idworker;
+  return this.http.put<any>(url,body, {  headers: this.headers });
+
+}
+
+
 }

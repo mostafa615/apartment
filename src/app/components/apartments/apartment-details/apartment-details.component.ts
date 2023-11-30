@@ -3,6 +3,7 @@ import { ApartmentService } from '../../../_services/apartments/apartment.servic
 import { ActivatedRoute } from '@angular/router';
 import { OnwerService } from 'src/app/_services/Onwers/onwer.service';
 import { DomSanitizer } from "@angular/platform-browser";
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-apartment-details',
@@ -26,7 +27,7 @@ export class ApartmentDetailsComponent implements OnInit {
   /** apt_UUID */
   apt_UUID: any;
 
-  constructor(public _ApartmentService: ApartmentService, public _ActivatedRoute: ActivatedRoute,
+  constructor(public _ApartmentService: ApartmentService, public _ActivatedRoute: ActivatedRoute,private messageService: MessageService,
     public _OnwerService :OnwerService,private sanitizer: DomSanitizer)
    {
     this.apt_UUID = _ActivatedRoute.snapshot.paramMap.get('id');
@@ -150,5 +151,29 @@ export class ApartmentDetailsComponent implements OnInit {
   oncloseModal() {
 this.display22="none"
 
+  }
+  MarkRented() {
+    this._ApartmentService.MarkRented( this.apt_UUID).subscribe((res) => {
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Rented Mark Successfuly'}` });
+
+    }, (error) => {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
+    })
+  }
+  MarkAvaliablePublish() {
+    this._ApartmentService.MarkAvaliablePublish( this.apt_UUID).subscribe((res) => {
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Avaliable Mark Successfuly'}` });
+
+    }, (error) => {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
+    })
+  }
+  MarkDraft() {
+    this._ApartmentService.MarkDraft( this.apt_UUID).subscribe((res) => {
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Draft Mark Successfuly'}` });
+
+    }, (error) => {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
+    })
   }
 }

@@ -12,9 +12,12 @@ export class InputFieldComponent {
   @Input() show: boolean = true
   @Input() list: Array<any> = []
   @Input() labelinputs: any = {}
+
   @Input() textButton: string = ''
   @Output() transport = new EventEmitter<object>();
   @Output() inputField = new EventEmitter<object>();
+  @Output() skill = new EventEmitter<object>();
+
   Createtransport: any
   text1: string = ''
   text2: string = ''
@@ -34,6 +37,7 @@ export class InputFieldComponent {
     this.show = false
     this.transport.emit({t_Name:this.content1,t_Distance:this.content2});
     this.inputField.emit({field_Name:this.content1,field_Content:this.content2});
+    this.skill.emit({skill_Name:this.content1,skill_Content:this.content2});
 
     this.content1 = ''
     this.content2 = ''

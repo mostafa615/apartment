@@ -21,7 +21,7 @@ export class WorkersComponent implements OnInit {
   constructor( public _adminservices:AdminsService ,private messageService: MessageService,) { }
 
   ngOnInit() {
-    // this.getAllworkers(  )
+    this.getAllworkers(  )
   }
 
    /**
@@ -73,49 +73,32 @@ export class WorkersComponent implements OnInit {
     // this.getAllworkers( );
 
   }
-  workers=[{
-    Name:"Jean Pha",Email:"s@gmail.com",Phone_number:"0124545454",WhatsApp:"0124545454",job:"developer",user_type:"individual "
-  },
-  {Name:"Jean Pha",Email:"s@gmail.com",Phone_number:"0124545454",WhatsApp:"0124545454",job:"developer",user_type:"individual "
-},  {Name:"Jean Pha",Email:"s@gmail.com",Phone_number:"0124545454",WhatsApp:"0124545454",job:"developer",user_type:"individual "
-},  {Name:"Jean Pha",Email:"s@gmail.com",Phone_number:"0124545454",WhatsApp:"0124545454",job:"developer",user_type:"individual "
-}, {Name:"Jean Pha",Email:"s@gmail.com",Phone_number:"0124545454",WhatsApp:"0124545454",job:"developer",user_type:"individual "
-},  {Name:"Jean Pha",Email:"s@gmail.com",Phone_number:"0124545454",WhatsApp:"0124545454",job:"developer",user_type:"individual "
-},
-]
+workers=[]
 totalRecords=0
 tiggerPageChange(event: any) {
   debugger
       const calcPageNumber = Math.floor(event.first / event.rows) + 1;
       this.pageNumber=calcPageNumber;
       console.log(calcPageNumber);
+      this.getAllworkers(  )
      }
   numberworkers=0;
   Date:any="All"
-  //  getAllworkers(  ) {
-  //   this.workers=[]
-  //   this.numberworkers=0
-  //   this._adminservices.TenantList( this.pageNumber,this.pagesize,this.Date).subscribe((res:any) => {
-  //     this.workers = res["data"];
-  //     this.numberworkers = this.workers.length;
-  //     this.totalofPages=res["totalPages"]
-  //     if(this.totalofPages==this.pageNumber){
-  //       this.disablenext=true
-  //     }else{
-  //       this.disablenext=false
+   getAllworkers(  ) {
+    this.workers=[]
+    this.numberworkers=0
+    this._adminservices.GetAllWorkers( this.pageNumber,this.pagesize).subscribe((res:any) => {
+      this.workers = res["data"];
+      this.totalRecords=res["totalRecords"]
 
-  //     }
-  //     if(this.pageNumber==1){
-  //       this.disableperv=true
-  //     }else{
-  //       this.disableperv=false
+      this.numberworkers = this.workers.length;
+      this.totalofPages=res["totalPages"]
 
-  //     }
 
-  //    }, (error) => {
-  //      console.error('Error fetching owners:', error);
-  //   })
-  // }
+     }, (error) => {
+       console.error('Error fetching owners:', error);
+    })
+  }
   // DeleteUser(id :any){
   //   this._adminservices.DeleteTenant( id).subscribe((res:any) => {
   //     this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Deleted Successfuly'}` });
@@ -137,11 +120,33 @@ tiggerPageChange(event: any) {
   //     this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
   //   })
   // }
-  detailperson(id: any): void {
+  detailperson(event:any,id: any): void {
+    this.showEdit=[]
+    event.stopPropagation()
 
     this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
 
 
 
    }
+   hidecard( ){
+    this.showEdit=[]
+
+ }
+ PostJob( id:any) {
+
+  this._adminservices.DeleteWorker(id ).subscribe((res) => {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: `${' worker has been Successfully deleted into DB  '}` });
+
+
+    this.getAllworkers()
+
+  }, (err: any) => {
+    debugger
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+
+  })
+
+
+}
 }

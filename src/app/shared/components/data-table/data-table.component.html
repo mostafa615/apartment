@@ -40,7 +40,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-product>
 
-            <tr style="cursor: pointer;">
+            <tr style="cursor: pointer;" (click)="hidecard( )">
                 <!-- <td>
                     <p-tableCheckbox [value]="product" (click)="GetSelectedItem()"></p-tableCheckbox>
                 </td> -->
@@ -54,7 +54,7 @@
                 <td *ngIf="pagePerson=='Owners'">{{product.gender}}</td>
                 <td *ngIf="pagePerson=='Owners'">{{product.owner_About}}</td>
                 <td *ngIf="pagePerson=='Owners' " class="cursor position-relative">
-                    <button class="border-0 outlin-0 bg-transparent" (click)="detailperson(product.owner_ID)">
+                    <button class="border-0 outlin-0 bg-transparent" (click)="detailperson($event,product.owner_ID)">
                   <img src="assets/images/edit.svg">
               </button>
                     <div *ngIf="showEdit[product.owner_ID]" class="position-absolute z-3 rounded-3 bg-white border edit-button">
@@ -111,7 +111,7 @@
                 </td> -->
 
                 <td class="cursor position-relative" *ngIf="product.Name == 'action'">
-                    <button class="border-0 outlin-0 bg-transparent" (click)="detailperson(product.id)">
+                    <button class="border-0 outlin-0 bg-transparent" (click)="detailperson($event,product.id)">
                         <img src="assets/images/edit.svg">
                     </button>
                     <div *ngIf="showEdit[product.id]" class="position-absolute z-3 rounded-3 bg-white border edit-button">

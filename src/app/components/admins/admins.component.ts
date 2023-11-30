@@ -84,14 +84,22 @@ export class AdminsComponent implements OnInit {
 
 
 
-  detailperson(id: any): void {
+  detailperson(event:any, id: any){
+    this.showEdit=[]
+event.stopPropagation()
 
-   this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
+    this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
 
 
 
-  }
-  display2="none";
+
+
+   }
+   hidecard(){
+    this.showEdit=[]
+
+   }
+   display2="none";
   onCloseModal2(){
     this.display2="none";
   }

@@ -129,7 +129,9 @@ export class UserComponent {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
     })
   }
-  detailperson(id: any): void {
+  detailperson(event:any,id: any): void {
+    this.showEdit=[]
+    event.stopPropagation()
 
     this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
 
@@ -138,5 +140,8 @@ export class UserComponent {
    }
 
     showEdit: Array<boolean> = [];
+    hidecard(id:any){
+      this.showEdit=[]
 
+   }
 }

@@ -81,9 +81,14 @@ export class InquiriesComponent implements OnInit {
         console.log(calcPageNumber);
         this.getAllInquires(this.statusinquire);
       }
-  detailperson(id: any): void {
+      ids:any=[]
+  detailperson(event:any, id: any){
+    this.showEdit=[]
+event.stopPropagation()
 
     this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
+
+
 
 
 
@@ -164,5 +169,9 @@ export class InquiriesComponent implements OnInit {
      }, (error) => {
       this.messageService.add({   severity: 'error', summary: 'error', detail: 'error' });
     })
+  }
+  hidecard(id:any){
+     this.showEdit=[]
+
   }
 }

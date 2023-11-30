@@ -76,7 +76,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-role>
 
-                    <tr style="cursor: pointer;">
+                    <tr style="cursor: pointer;" (click)="hidecard()">
 
                         <td>
                             {{role.id}}
@@ -85,7 +85,7 @@
 
 
                         <td class="cursor position-relative">
-                            <button class="border-0 outlin-0 bg-transparent" (click)="detailperson(role.id)">
+                            <button class="border-0 outlin-0 bg-transparent" (click)="detailperson($event,role.id)">
                       <img src="assets/images/edit.svg">
                   </button>
                             <div *ngIf="showEdit[role.id]" style="width:200px;z-index:999 ; right: 200px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">

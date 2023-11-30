@@ -11,3 +11,7 @@
 .h-124px {
     height: 124px !important;
 }
+
+* {
+    font-family: 'Montserrat'!important
+}

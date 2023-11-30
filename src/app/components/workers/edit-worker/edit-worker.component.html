@@ -1,0 +1,285 @@
+<!-- start header  -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'workers'"></app-head>
+</header>
+<!-- end header  -->
+
+<p-toast></p-toast>
+
+<div class="row m-0">
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'workers'"></app-sidebar>
+    <!-- end sidebar  -->
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10">
+        <div class="d-md-flex justify-content-between">
+            <div class="d-flex">
+
+                <p class="fw-bold me-2" style="color: #6c6a6a"><a style="color: black" class="removeUnderLine" href="./workers">workers </a></p>
+                <p class="fw-bold me-2">></p>
+                <p class="fw-bold" style="color: black">update workers</p>
+            </div>
+            <!-- <div *ngIf="param != 'edit owner name details'">
+              <button class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold" style="background-color: #EBEBEB; color:#1F4068">
+      <img src="assets/images/user/share.png"> Share</button>
+              <button class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold" style="background-color: #EBEBEB; color:#1F4068">
+      <img src="assets/images/user/delete.svg"> Delete</button>
+              <button class="outline-0 border-0 rounded-3 py-2 px-3 text-white fw-bold" style="background-color:#1F4068"><img
+        src="assets/images/user/edit.svg"> Edit</button>
+          </div> -->
+        </div>
+
+        <div class="mt-3 row border bg-white rounded-3 py-3 ">
+            <aside class="col-2 p-0 ps-1 position-fixed d-none d-md-block">
+                <a class="d-block text-decoration-none fw-bold px-2 py-3 text-black mb-1 active" *ngFor="let listAnchor of listAnchors ; let index=index" style="color: #605D62 !important; cursor: pointer;" (click)="onClick(listAnchor.id)" [class.active]="link[index]==true"
+                    (click)="changeAnchor(index)">{{listAnchor.link}}</a>
+            </aside>
+            <!-- (ngSubmit)="Createworker(createworker)" -->
+            <form class="col-md-10 content-details " [formGroup]="createworker" (ngSubmit)="createworkerpost(createworker)">
+
+                <!--General info-->
+                <!-- (changeImageUrl)="updateUserImage($event)" -->
+                <app-general-info-user [titlePage]="param" [imageUrl]="createworker.value.worker_Img" (changeImageUrl)="updateUserImage($event)"></app-general-info-user>
+                <!--start General info form-->
+                <div class="row ">
+                    <div class="col-12 col-md-6 mb-4">
+                        <label class="fw-bold" style="color: #605D62;">First name</label>
+                        <input formControlName='worker_FName' class="form-control w-100" type="text">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="fw-bold" style="color: #605D62">Last name</label>
+                        <input formControlName='worker_LName' class="form-control w-100" type="text">
+                    </div>
+
+                </div>
+                <div class="mb-4">
+                    <label class="fw-bold" style="color: #605D62;">Email</label>
+                    <img src="assets/images/user/mail.svg" class="position-relative top-icon-input" style="right: 20px;">
+                    <input formControlName='worker_Email' class="form-control w-100 ps-5" type="email">
+                </div>
+                <div class="mb-4">
+                    <label class="fw-bold" style="color: #605D62;">Address</label>
+
+                    <input formControlName='worker_Address' class="form-control w-100" type="text">
+                </div>
+                <div class="mb-4">
+                    <label class="form-label gray fw-bold">job name</label>
+                    <a class="px-3 py-2 rounded border text-white text-decoration-none" (click)="onOpenModal2()" style="background-color:#1F4068; cursor: pointer; margin-left: 20px;">
+                        <img src="assets/images/plus.svg" class="me-2 "> Add New Job
+                    </a>
+                    <div class="selectForm">
+                        <select class="s-cont form-select form-select-sm mb-3" name="worker_Job" id="worker_Job" formControlName="worker_Job">
+                      <option value="null" disabled hidden selected>please select a job</option>
+
+                     <option  *ngFor="let job of jobs"  value="{{job.job_Name}}">{{job.job_Name}}  </option>
+
+
+                </select>
+
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label gray fw-bold">user type</label>
+                    <div class="selectForm">
+                        <select class="s-cont form-select form-select-sm mb-3" name="worker_Type" id="worker_Type" formControlName="worker_Type">
+                        <option value="null" disabled hidden selected>select user type</option>
+
+                       <option   value="individual"> individual </option>
+                       <option   value="company"> company </option>
+
+                  </select>
+
+                    </div>
+                </div>
+                <div>
+                    <label class="fw-bold" style="color: #605D62;">About</label>
+                    <textarea formControlName='worker_About' class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
+                </div>
+                <div>
+                    <hr>
+
+                    <!--Other Details-->
+                    <div style="margin-top:66px">
+                        <p class="fw-bold mb-0">worker skills</p>
+                        <p style="color: #605D62 !important;">Add worker skills</p>
+                    </div>
+                    <!-- <div class="row" *ngIf="show">
+                      <div class="mb-3 col-12 col-md">
+                          <label class="form-label gray fw-bold">Skill 1</label>
+                          <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="content1" class="form-control rounded-2 py-2 fs-6" />
+
+                      </div>
+                      <div class="mb-3 col-12 col-md">
+                          <label class="form-label gray fw-bold">Skill2
+                    </label>
+                          <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="content2" class="form-control rounded-2 py-2 fs-6" />
+                      </div>
+                      <div class="col-12 col-md-2 ms-3 mt-1 mb-2 pt-3 d-flex justify-content-md-end align-items-md-center">
+                          <div class="d-flex">
+
+                              <a class="rounded-2 text-decoration-none cursor text-white border-0 rounded-2 border-0 outline-0 py-2 px-4" style="background-color: #1f4068 !important" (click)="saveActionButton()">
+                        Save
+                      </a>
+                          </div>
+                      </div>
+                  </div>
+                  <a class="bg-transparent outline-0 my-5 text-decoration-none cursor border-0 blue fw-bold " (click)="show=true">
+                      <img src="assets/images/apartmentImages/ic_baseline-add.svg"> Add New skills
+                  </a> -->
+                    <div class="row">
+                        <div class="mb-3 col-12 col-md-6" *ngFor="let transportData of localapt_Transports">
+                            <label class="form-label gray fw-bold">skill   </label>
+                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="transportData.skill_Name" type="text" class="form-control rounded-2 py-2 fs-6" />
+
+                        </div>
+                        <!-- <div class="mb-3 col-12 col-md-6" style="margin-right: 55px;">
+                            <label class="form-label gray fw-bold"> skill 2
+          </label>
+                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="transportData.skill_Name" type="text" class="form-control rounded-2 py-2 fs-6" />
+                        </div> -->
+                    </div>
+                    <app-input-field [labelinputs]="LabelTransport" (skill)="Skills($event)" [textButton]="'Add New skills'"></app-input-field>
+                </div>
+                <!--end General info form-->
+                <hr>
+                <!--Other Details-->
+                <div id="OtherDetails" style="margin-top:66px">
+                    <p class="fw-bold mb-0">Other Details</p>
+                    <p style="color: #605D62 !important;">Add other details relevant to your property.</p>
+                </div>
+                <!--start Other Details form-->
+
+                <div class="row ">
+                    <div class="col-12 col-md-6 mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Phone number</label>
+                        <input formControlName='worker_PhoneNum' class="form-control w-100" type="number">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="fw-bold" style="color: #605D62">whatsapp number</label>
+                        <input formControlName='worker_WANum' class="form-control w-100" type="number">
+                    </div>
+                    <div class="mt-4">
+                        <p class="gray fw-bold mb-2"> Passport or national ID</p>
+
+                        <div>
+                            <div class="position-relative h-124px mb-3">
+                                <!-- start single img upload and preview -->
+                                <ng-container *ngIf="!selectedContractImg">
+                                    <input type="file" accept=".pdf, image/*" (change)="onUploadContract($event,'contract_Path')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                    <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute h-100" width="100%">
+                                </ng-container>
+                                <ng-container *ngIf="selectedContractImg">
+                                    <div>
+                                        <input type="file" accept=".pdf, image/*" (change)="onUploadContract($event,'contract_Path')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                        <img [src]="selectedContractImg.url" class="position-absolute imgPreviewUploader" width="100%">
+
+                                    </div>
+
+
+                                </ng-container>
+                                <!-- end single img upload and preview -->
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <hr>
+
+                <div id="Bankdetails" style="margin-top:66px">
+                    <p class="fw-bold mb-0"> Bank account information</p>
+                    <p style="color: #605D62 !important;">Add other details relevant to your property.</p>
+                </div>
+                <!--start Other Details form-->
+
+                <div class="row ">
+                    <div class="col-12 col-md-6 mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Bank Name</label>
+                        <input formControlName='worker_BankName' class="form-control w-100" type="text">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="fw-bold" style="color: #605D62">Account Number</label>
+                        <input formControlName='worker_AccountNo' class="form-control w-100" type="text">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="fw-bold" style="color: #605D62">Swift Number</label>
+                        <input formControlName='worker_Swift' class="form-control w-100" type="text">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between" *ngIf="param!='Owner details'">
+                    <button class="outlet-0 bg-transparent rounded-3 px-4 py-2 fw-bold downloadAll">Cancel</button>
+                    <p-button class="outlet-0 text-white border-0 px-4 py-2 rounded-3 sendDataPButton" label="Save" [loading]="loadingButton" type="submit"></p-button>
+
+
+                </div>
+
+            </form>
+        </div>
+    </main>
+    <!-- end content page  -->
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display2}" style=" background-color: rgb(23 22 22 / 50%);;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="    margin-top: 150px;">
+            <div class="modal-header" style="background-color:#ffffff; border-bottom: none !important;">
+                <p class="modal-title" style="color: #1C1B1F; font-size: 20px;   font-weight: 600; line-height: 24px; word-wrap: break-word">
+                    <span class="form-label gray fw-bold" style="vertical-align: middle; padding-left:8px">
+Add New Job
+          </span>
+                </p>
+                <button type="button" style="border:none;background-color: #ffffff;width: 68px;height: 50px;" class="close" aria-label="Close" (click)="onCloseModal2()">
+<span aria-hidden="true" style="color: #000000;font-size: 35px;">&times;</span>
+</button>
+
+
+
+            </div>
+
+            <div class="modal-body">
+
+
+                <div class="row">
+                    <div class="mb-3 col-12 col-md-12">
+                        <label for="exampleInputPricepermonth" class="form-label gray fw-bold">Job name</label>
+                        <input type="text" [(ngModel)]="Jobname" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+
+                    </div>
+                    <!-- <div class="mb-3 col-12 col-md-12">
+                    <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold">Role discerption</label>
+                    <textarea class="border p-3 pt-3 rounded-2 w-100" rows="5" style="resize: inherit"></textarea>
+
+                </div> -->
+                </div>
+
+            </div>
+
+
+
+
+            <div class="modal-footer">
+
+                <div class="d-flex justify-content-between">
+                    <div class="py-2 px-3 fw-bold"></div>
+                    <div class="d-flex justify-content-between">
+                        <a (click)="onCloseModal2()" style="    border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvdd">
+                    Cancel
+      </a>
+                        <button (click)="PostJob()" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                    confirm
+      </button>
+                    </div>
+                </div>
+                <!-- Confirm -->
+
+            </div>
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

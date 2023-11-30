@@ -21,6 +21,7 @@ import { AuthorizationModule } from './components/authorization/authorization.mo
 
 import { OwnersModule } from './components/owners/owners.module';
 import { InquiriesModule } from './components/inquiries/inquiries.module';
+import { IssuReportsModule } from './components/issueReports/issu-reports.module';
 
 import { AuthModule } from './components/auth/auth.module';
 import { UserModule } from './components/user/user.module';
@@ -32,11 +33,10 @@ import { GoogleMapsModule } from '@angular/google-maps'
   declarations: [
     AppComponent,
     StatisticsComponent,
-    MainFileComponent,
-    ReportsDetailsComponent
+
   ],
   imports: [
-    AppRoutingModule,
+    AppRoutingModule,IssuReportsModule,
     BrowserModule,AuthorizationModule,
     AdminsModule,
     HttpClientModule,

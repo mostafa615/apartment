@@ -1,0 +1,89 @@
+.p-rating .p-rating-icon.p-rating-icon-active {
+    color: #ffce00;
+}
+
+.gray {
+    color: #605D62
+}
+
+.blue {
+    color: #1F4068
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.aboutOwner {
+    @media (min-width: 993px) {
+        margin-top: -16%;
+    }
+}
+
+.maxImg {
+    max-width: 178px !important;
+    max-height: 134px !important;
+}
+
+@media (min-width:769px) {
+    video {
+        width: 500px;
+        height: 270px
+    }
+}
+
+.mapouter {
+    position: relative;
+    text-align: right;
+    width: 500px;
+    height: 300px;
+}
+
+.gmap_canvas {
+    overflow: hidden;
+    background: none!important;
+    width: 500px;
+    height: 300px;
+}
+
+.gmap_iframe {
+    width: 500px!important;
+    height: 300px!important;
+}
+
+@media (min-width: 768px) {
+    .map-container {
+        width: 500px !important;
+        height: 300px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        width: 320px !important;
+        height: 300px !important;
+    }
+}
+
+.scrollmage {
+    height: 151px;
+    overflow: scroll;
+}
+
+.testimonial-group>.row {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.testimonial-group>.row>.col-md-4 {
+    display: inline-block;
+    float: none;
+}
+
+.vcrr {
+    display: block;
+}
+
+* {
+    font-family: 'Montserrat'!important
+}

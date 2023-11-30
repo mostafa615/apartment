@@ -83,6 +83,16 @@ export class ApartmentService {
   getApartDetail(id: string): Observable<any> {
     return this.http.get(`${environment.apiUrl + '/Apartment/GetApartment?' + `id=${id}`}`, { headers: this.headers })
   }
+
+  MarkRented(id: string): Observable<any> {
+    return this.http.put(`${environment.apiUrl + '/Apartment/MarkRented?' + `Apt_ID=${id}`}`,id, { headers: this.headers })
+  }
+  MarkAvaliablePublish(id: string): Observable<any> {
+    return this.http.put(`${environment.apiUrl + '/Apartment/MarkAvaliablePublish?' + `Apt_ID=${id}`}`,id, { headers: this.headers })
+  }
+  MarkDraft(id: string): Observable<any> {
+    return this.http.put(`${environment.apiUrl + '/Apartment/MarkDraft?' + `Apt_ID=${id}`}`,id, { headers: this.headers })
+  }
   createContract(data: any): Observable<any> {
     return this.http.post(`${environment.apiUrl + '/Apartment/PostContract'}`, data, { headers: this.headers })
   }

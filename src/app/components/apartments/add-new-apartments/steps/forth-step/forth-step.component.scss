@@ -1,13 +1,25 @@
-.gray {color: #6c6a6a;}
-.blue{color:#1F4068}
-.file{
+.gray {
+    color: #6c6a6a;
+}
+
+.blue {
+    color: #1F4068
+}
+
+.file {
     z-index: 3 !important;
     opacity: 0;
     cursor: pointer;
 }
-.h-124px{
+
+.h-124px {
     height: 124px !important;
 }
-.w-145px{
-    width: 145px ;
+
+.w-145px {
+    width: 145px;
+}
+
+* {
+    font-family: 'Montserrat'!important
 }

@@ -69,10 +69,10 @@ export class DataTableComponent {
   /**
    * tiggerPageChange
    * @description calculate the page number and update the onpage change emitter
-   * @param event 
+   * @param event
    */
   tiggerPageChange(event: any) {
-    
+
     const calcPageNumber = Math.floor(event.first / event.rows) + 1;
     console.log(calcPageNumber);
     this.onPageChange.emit(calcPageNumber);
@@ -91,13 +91,19 @@ export class DataTableComponent {
   * @param id:number
   * @returns void
   */
-  detailperson(id: number): void {
+  detailperson(event:any,id: any): void {
+    this.showEdit=[]
+    event.stopPropagation()
     this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
+   }
 
-  }
+   hidecard( ){
+      this.showEdit=[]
+
+   }
   /**
    * confirmDelte
-   * @param event 
+   * @param event
    */
   confirmDelete(event: any, product: any) {
     console.log('product', product);
@@ -118,7 +124,7 @@ export class DataTableComponent {
 
   /**
    * deleteItem
-   * @param product 
+   * @param product
    */
   private deleteItem(product: string): void {
     this.deleteItemDetails.emit(product);

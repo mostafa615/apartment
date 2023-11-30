@@ -137,11 +137,21 @@ display2="none"
 
 
 
-  detailperson(id: number): void {
+  detailperson(event:any, id: any){
+    this.showEdit=[]
+event.stopPropagation()
+
     this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
 
-  }
 
+
+
+
+   }
+   hidecard(){
+    this.showEdit=[]
+
+   }
 
 
 }

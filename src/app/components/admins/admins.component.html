@@ -94,7 +94,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-admin>
 
-                    <tr style="cursor: pointer;">
+                    <tr style="cursor: pointer;" (click)="hidecard()">
 
                         <td>
                             {{admin?.userName}}
@@ -127,7 +127,7 @@
                             </div>
                         </td>
                         <td class="cursor position-relative">
-                            <button class="border-0 outlin-0 bg-transparent" (click)="detailperson(admin.user_ID)">
+                            <button class="border-0 outlin-0 bg-transparent" (click)="detailperson($event,admin.user_ID)">
                       <img src="assets/images/edit.svg">
                   </button>
                             <div *ngIf="showEdit[admin.user_ID]" style="width:200px;z-index:999 ; right:89px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
