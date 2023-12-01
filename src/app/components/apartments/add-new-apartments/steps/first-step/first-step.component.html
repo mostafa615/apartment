@@ -192,6 +192,8 @@
                 <div>
                     <label class="form-label gray fw-bold"> Add property Image
                   </label>
+                    <p-progressSpinner *ngIf="spinner == true"></p-progressSpinner>
+
                     <div class="position-relative h-124px mb-3">
                         <!-- start single img upload and preview -->
 
@@ -207,13 +209,13 @@
             <div class="row" style="margin-bottom: 13px;">
                 <div class="col-8 bomar">
 
-                    <button type="button" style="background-color: #1f4068 !important;margin-left: 10px;" class="rounded-2 text-white rounded-2 border-0 py-2 px-4  " [disabled]="!selectedFiles" (click)="upload()">
+                    <!-- <button type="button" style="background-color: #1f4068 !important;margin-left: 10px;" class="rounded-2 text-white rounded-2 border-0 py-2 px-4  " [disabled]="!selectedFiles" (click)="upload()">
       Confirm
-    </button>
+    </button> -->
                 </div>
             </div>
             <div class="card1">
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-2 card33" *ngFor="let image of ListFiles;  index as i ">
                         <a (click)="removeItem(image.name)" style="      border: none;   margin-bottom: 10px; position: absolute;">
                             <img class="imageRemove" src="../../../../../../assets/images/delete.svg" width="32px" height="32px;">
@@ -226,10 +228,17 @@
                         </a>
 
                     </div>
-                </div>
-                <div class="row" *ngIf="storedImages!=null||storedImages!=''">
-                    <div class="col-md-2 card33" *ngFor="let image of storedImages;  index as i ">
+                </div> -->
+                <!-- *ngIf="storedImages!=null||storedImages!=''" -->
+                <div class="row">
+                    <div class="col-md-2 card33" *ngFor="let image of apt_imgs;  index as i ">
+                        <a (click)="removeItem(image.apt_imgs)" style="      border: none;   margin-bottom: 10px; position: absolute;">
+                            <img class="imageRemove" src="../../../../../../assets/images/delete.svg" width="32px" height="32px;">
+                        </a>
+                        <!-- <input type="checkbox" id="st{{i}}" (change)="checkValue($event,image)" /> -->
+                        <input type="radio" name="color" id="st{{i}}" (change)="checkValue($event,image.apt_imgs)">
 
+                        <label for="st{{i}}"></label>
                         <a (click)="opencloseModal(image.apt_imgs)">
                             <img [src]="image.apt_imgs" alt="Avatar" style="width:339px;height:205px ; ">
 
@@ -237,7 +246,7 @@
 
                     </div>
                 </div>
-                <div class="row" *ngIf="edit=='EditForm'">
+                <!-- <div class="row" *ngIf="edit=='EditForm'">
                     <div class="col-md-2 card33" *ngFor="let image of aprt_details_Edit?.property_Imgs;  index as i ">
 
                         <a (click)="opencloseModal(image.apt_imgs)">
@@ -246,7 +255,7 @@
                         </a>
 
                     </div>
-                </div>
+                </div> -->
             </div>
             <!-- end -->
 
@@ -342,14 +351,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="mb-3 col-12 col-md-6" *ngIf="edit=='EditForm'&&aprt_details_Edit.apt_types=='Apartment'">
+                <div class="mb-3 col-12 col-md-6" *ngIf="edit=='EditForm'&&aprt_details_Edit?.apt_types=='Apartment'">
                     <label class="form-label gray fw-bold">No. of bedrooms</label>
                     <input formControlName="apt_Bedrooms" type="number" [class.is-invalid]="generalInfoForm.get('apt_Bedrooms')!.invalid && generalInfoForm.get('apt_Bedrooms')!.touched " class="form-control rounded-2 py-2 fs-6" />
                     <span class="text-danger d-block m-2 " *ngIf="generalInfoForm.get('apt_Bedrooms')!.invalid && generalInfoForm.get('apt_Bedrooms')!.touched ">
           this field is required
         </span>
                 </div>
-                <div class="mb-3 col-12 col-md-6" *ngIf="edit=='EditForm'&&aprt_details_Edit.apt_types=='Apartment'">
+                <div class="mb-3 col-12 col-md-6" *ngIf="edit=='EditForm'&&aprt_details_Edit?.apt_types=='Apartment'">
                     <label class="form-label gray fw-bold">No. of toilets</label>
                     <input formControlName="apt_Toilets" type="number" [class.is-invalid]="generalInfoForm.get('apt_Toilets')!.invalid && generalInfoForm.get('apt_Toilets')!.touched " class="form-control rounded-2 py-2 fs-6" />
                     <span class="text-danger d-block m-2 " *ngIf="generalInfoForm.get('apt_Toilets')!.invalid && generalInfoForm.get('apt_Toilets')!.touched ">
@@ -365,7 +374,7 @@
             this field is required
           </span>
                 </div>
-                <div class="mb-3 col-12 col-md-6" *ngIf="edit=='EditForm'&&aprt_details_Edit.apt_types=='Apartment'">
+                <div class="mb-3 col-12 col-md-6" *ngIf="edit=='EditForm'&&aprt_details_Edit?.apt_types=='Apartment'">
                     <label class="form-label gray fw-bold">No. of livingroom</label>
                     <input formControlName="apt_Living" type="number" [class.is-invalid]="generalInfoForm.get('apt_Living')!.invalid && generalInfoForm.get('apt_Living')!.touched " class="form-control rounded-2 py-2 fs-6" />
                     <span class="text-danger d-block m-2 " *ngIf="generalInfoForm.get('apt_Living')!.invalid && generalInfoForm.get('apt_Living')!.touched ">

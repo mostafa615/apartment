@@ -95,7 +95,7 @@
                     <tr style="cursor: pointer;" (click)="hidecard(inquire.request_ID)">
 
                         <td>
-                            {{inquire?.userName}}
+                            <img [src]="inquire?.profileImg" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;"> {{inquire?.userName}}
                         </td>
                         <td>
                             {{inquire?.requested_Apt}}

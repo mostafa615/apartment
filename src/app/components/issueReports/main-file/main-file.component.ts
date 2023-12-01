@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { AdminsService } from 'src/app/_services/admins/admins.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class MainFileComponent {
   search:boolean=false
   listDropDown:Array<object>=[{name:'Today'},{name:'Last week'},{name:'This month'},{name:'This year'}]
 
-  constructor(public _adminservices:AdminsService ) { }
+  constructor(public _adminservices:AdminsService , private messageService: MessageService,) { }
   totalofPages=0;
   ngOnInit() {
 
@@ -77,6 +78,20 @@ tiggerPageChange(event: any) {
     this.getAllIssues()
     console.log(value)
   }
+  cancelissue(id:any){
+    this._adminservices.CancelIssue(id ).subscribe((res) => {
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'The Issue Canceled '}` });
+      this.getAllIssues()
 
+
+
+    }, (err: any) => {
+      debugger
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+
+    })
+
+
+  }
 
 }

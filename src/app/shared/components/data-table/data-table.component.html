@@ -46,7 +46,8 @@
                 </td> -->
                 <!-- in owner case -->
                 <td *ngIf="pagePerson =='Owners'  " routerLink="/owner/owner_details/{{product.owner_ID}}">
-                    <p class="d-flex align-items-center fw-bold mt-2">{{product.owner_FirstName}} {{product.owner_LastName }}</p>
+                    <p class="d-flex align-items-center fw-bold mt-2">
+                        <img [src]="product?.owner_Photo" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;"> {{product.owner_FirstName}} {{product.owner_LastName }}</p>
                 </td>
                 <td *ngIf="pagePerson =='Owners' && product.owner_BankAccoun">{{product.owner_BankAccoun}}</td>
                 <td *ngIf="pagePerson =='Owners' && product.owner_Mail">{{product.owner_Mail}}</td>

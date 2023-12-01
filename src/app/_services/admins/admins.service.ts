@@ -156,6 +156,13 @@ AssignWorker(Issue_ID: any,idworker:any ): Observable<any> {
   return this.http.put<any>(url,body, {  headers: this.headers });
 
 }
+CancelIssue(Issue_ID: any ): Observable<any> {
+  let body={
+    Issue_ID:Issue_ID
+  }
+  const url = environment.apiUrl+"/Issues/CancelIssue?Issue_ID="+Issue_ID;
+  return this.http.put<any>(url,body, {  headers: this.headers });
 
+}
 
 }

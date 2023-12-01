@@ -86,7 +86,18 @@
                             {{issue?.desc}}
                         </td>
                         <td>
-                            {{issue?.issue_Status}}
+                            <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;" *ngIf="issue?.issue_Status=='Cancelled'" [class.Deactivated]="issue?.issue_Status=='Cancelled'">
+                             Cancelled
+
+                             </span>
+                            <span class="rounded-5 px-3 py-1" style="background-color: #FFFAEB;color: #FFB900;" *ngIf="issue?.issue_Status=='Pending'" [class.Deactivated]="issue?.issue_Status=='Pending'">
+                              Pending
+
+                              </span>
+                            <span class="rounded-5 px-3 py-1" style="background-color: #ECFDF3;color: #12B76A;" *ngIf="issue?.issue_Status=='Completed'" [class.Deactivated]="issue?.issue_Status=='Completed'">
+                                Completed
+
+                                </span>
                         </td>
 
 
@@ -98,7 +109,7 @@
                                 <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/Report-view/{{issue.issue_ID}}">view details</button>
 
                                 <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" routerLink="/assgin-issue/{{issue.issue_ID}}"> assign worker  </button>
-                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2">Delete </button>
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="cancelissue(issue.issue_ID)">cancel </button>
 
                             </div>
 

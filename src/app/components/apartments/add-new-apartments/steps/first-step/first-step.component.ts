@@ -139,18 +139,20 @@ export class FirstStepComponent implements OnInit {
 
   }
   Address:any=""
-  aprt_details_Edit:any
+  aprt_details_Edit:any={}
   apt_types_show:any=""
 getApartmentDetails() {
-
+debugger
     this._ApartmentService.getApartDetail(this.idParamterEdit).subscribe((res) => {
+      this.aprt_details_Edit = res.general_Info
+      this.apt_imgs=res.general_Info["property_Imgs"]
+      this.generalInfoForm.get('apt_Imgs')?.patchValue(res.general_Info["property_Imgs"]);
+
       this._ApartmentService.getOwnerDropList().subscribe(res => {
         this.listDropDownPropertyowner = res.list
       })
-      this.aprt_details_Edit = res.general_Info
 
        this.generalInfoForm.patchValue(res.general_Info);
-       this.generalInfoForm.get('apt_Imgs')?.setValue(res.general_Info["property_Imgs"]);
         this.Address=res.general_Info["apt_Address"]
        this.localapt_Transports=res.trasponrts
        debugger
@@ -393,9 +395,9 @@ getApartmentDetails() {
       // 'apt_Long': new FormControl('', [Validators.required]),
       //  'UUID': new FormControl(this.id ),
 
-      'apt_Bedrooms': new FormControl(null, [Validators.required]),
-      'apt_Toilets': new FormControl(null, [Validators.required]),
-      'apt_Living': new FormControl(null, [Validators.required]),
+      'apt_Bedrooms': new FormControl(0, [Validators.required]),
+      'apt_Toilets': new FormControl(0, [Validators.required]),
+      'apt_Living': new FormControl(0, [Validators.required]),
       'apt_AllBillsIncludes': new FormControl(true, [Validators.required]),//true
       'apt_Elevator': new FormControl(null, [Validators.required]),
       // 'apt_Lat': new FormControl('', [Validators.required]),//0
@@ -423,7 +425,10 @@ getApartmentDetails() {
 debugger
 
     this.checkValidData()
-
+if(data.value.apt_ThumbImg==''||data.value.apt_ThumbImg==null){
+     this.generalInfoForm.get('apt_ThumbImg')?.patchValue(this.apt_imgs[0].apt_imgs);
+     data.value.apt_ThumbImg=this.apt_imgs[0].apt_imgs;
+}
     data.value.apt_AllBillsIncludes = true
     // data.value.apt_Lat = 0
      data.value.apt_Status = "Rented"
@@ -434,12 +439,7 @@ debugger
     localStorage.setItem("generalInfoForm", JSON.stringify({ ...this.generalInfoForm.value, apt_Transports: this.Createtransport, bills: this.bills }))
 
     if(this.addApartment !="add new apartments" ){
-      // const formData = new FormData();
-      // for (let i = 0; i < this.ListFiles.length; i++) {
-      //   formData.append('Files', this.ListFiles[i], this.ListFiles[i].name);
-      // }
-      // formData.append('Name',data.value.name );
-      // formData.append('Name',data.value.name );
+
 
       this._ApartmentService.createPostSec1({ ...data.value, apt_Transports: this.Createtransport },this.idParamterEdit).subscribe((res) => {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Success First Step'}` });
@@ -549,7 +549,9 @@ counter=0;
         reader.readAsDataURL(file);
       }
     }
-  }
+    this.upload()
+    this.ListFiles=[]
+   }
     readFile(file: File): Observable<string> {
       debugger
       return new Observable(obs => {
@@ -564,19 +566,24 @@ counter=0;
     });
 }
 
+
   ListFiles:any=[]
 imageList:any={}
+spinner: boolean = false;
+
   upload(): void {
 debugger
+this.spinner=true;
         this.uploadService.uploadMultiFile(this.convertFileToFormData(this.ListFiles)).subscribe(data => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Images Upload Successfully'}` });
 
           for (let file of data) {
             this.apt_imgs.push({ 'apt_imgs': file.name });
           }
-          this.generalInfoForm.get('apt_ThumbImg')?.patchValue(data[0].name);
+          // this.generalInfoForm.get('apt_ThumbImg')?.patchValue(data[0].name);
           this.generalInfoForm.get('apt_Imgs')?.patchValue(this.apt_imgs);
           localStorage.setItem("imagesAPT", JSON.stringify(this.apt_imgs));
+          this.spinner=false;
 
         });
       }
@@ -595,8 +602,10 @@ this.display22="none"
       removeItem(imageName:any){
         debugger
 
-     let index2343 = this.ListFiles.findIndex((element:any) => element.name   == imageName);
-     this.ListFiles.splice(index2343, 1);
+     let index2343 = this.apt_imgs.findIndex((element:any) => element.apt_imgs   == imageName);
+     this.apt_imgs.splice(index2343, 1);
+
+    //  this.ListFiles.splice(index2343, 1);
      this.urls.splice(index2343, 1);
       }
 isSelected=true;
@@ -612,6 +621,7 @@ isSelected=true;
       checkValue(event: any,file:any){
         debugger
           if(event.target.checked==true){
+            this.generalInfoForm.get('apt_ThumbImg')?.patchValue(file[0].name);
 
           }else{
 
