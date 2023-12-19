@@ -102,13 +102,13 @@
                         </td>
                         <td>
                             <div>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;border-left: none; font-size: 12px!important;" *ngIf="Tenant?.status==true" [class.active]="Tenant?.status==true">
+                                <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;border-left: none; font-size: 12px!important;" *ngIf="Tenant?.status==true">
 
-                <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem;"></i> Active
+                <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem !important;"></i> Active
             </span>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;border-left: none;font-size: 12px !important;" *ngIf="Tenant?.status==false" [class.active]="Tenant?.status==false">
+                                <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;border-left: none;font-size: 12px !important;" *ngIf="Tenant?.status==false">
 
-              <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem;"></i> Suspended
+              <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem !important;"></i> Suspended
           </span>
 
                             </div>
@@ -118,9 +118,9 @@
               <img src="assets/images/edit.svg">
           </button>
                             <div *ngIf="showEdit[Tenant.user_ID] " style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
-                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/app-edite-user-details/{{Tenant.user_ID}}">Edit</button>
+                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" *ngIf="TantsRole?.p_Update==true || is_Super==true" routerLink="/app-edite-user-details/{{Tenant.user_ID}}">Edit</button>
 
-                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="DeleteUser(Tenant.user_ID)"> Delete </button>
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="DeleteUser(Tenant.user_ID)" *ngIf="TantsRole?.p_Delete==true || is_Super==true"> Delete </button>
                                 <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="SuspendUser(Tenant.user_ID)">Suspend User </button>
 
                             </div>

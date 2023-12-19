@@ -4,6 +4,7 @@ import { OnwerService } from 'src/app/_services/Onwers/onwer.service';
 import { EChildernName } from 'src/app/shared/models/childernName';
 import { IOnwer } from 'src/app/models/onwer';
 import { ITableHeader } from 'src/app/shared/components/table/table/tableHeader';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-owners',
@@ -41,14 +42,41 @@ export class OwnersComponent implements OnInit {
   /** listDropDown */
   listDropDown: Array<object> = [{ name: 'Today' }, { name: 'Last week' }, { name: 'This month' }, { name: 'This year' }];
 
-  constructor(private ownerSer: OnwerService) {
+  constructor(private ownerSer: OnwerService,public router: Router) {
   }
 
   ngOnInit() {
     this.headerData = this.initHeadersData();
     this.getAllOwners(1, this.itemsPerPage, this.searchValue);
+    this.checkRole();
   }
+  OwnersRole:any
+  is_Super:any
+  checkRole(){
+    const data = localStorage.getItem("user");
+     if (data !== null) {
 
+      let parsedData = JSON.parse(data);
+       this.is_Super=parsedData.is_Super
+      if(parsedData.is_Super==false) {
+  for(let i=0; i<parsedData.permissions.length;i++){
+    if(parsedData.permissions[i].page_Name=="Owners"){
+      this.OwnersRole=parsedData.permissions[i];
+    }
+
+  }
+  if(this.OwnersRole.p_View==false &&this.is_Super==false) {
+    this.gotopage( )
+  }
+}
+
+
+    }
+  }
+  gotopage( ){
+    let url: string = "unlegal";
+      this.router.navigateByUrl(url);
+  }
   /**
    * getAllOwners
    * @returns void
@@ -65,7 +93,7 @@ export class OwnersComponent implements OnInit {
   }
   /**
    * deleteOwner
-   * @param event 
+   * @param event
    */
   deleteOwner(event: any): void {
     this.ownerSer.deleteOwner(event.owner_ID).subscribe((res: IOnwer[] | any) => {
@@ -74,7 +102,7 @@ export class OwnersComponent implements OnInit {
   }
   /**
    * searchInOwner
-   * @param event 
+   * @param event
    */
   searchInOwner(event: any) {
     this.searchValue = event
@@ -84,7 +112,7 @@ export class OwnersComponent implements OnInit {
 
   /**
    * updateDataPerPage
-   * @param PageNumber 
+   * @param PageNumber
    */
   updateDataPerPage(PageNumber: any): void {
     this.pageNumber = PageNumber;
@@ -109,7 +137,7 @@ export class OwnersComponent implements OnInit {
   /**
    * addItem
    * @param value string
-   * @returns void 
+   * @returns void
    */
   initHeadersData(): Array<ITableHeader> {
     return [
@@ -128,7 +156,7 @@ export class OwnersComponent implements OnInit {
 
   /**
    * getSeverity
-   * @param status 
+   * @param status
    * @returns string
    */
   getSeverity(status: string): string {

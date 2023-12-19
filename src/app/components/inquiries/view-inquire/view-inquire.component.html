@@ -199,7 +199,20 @@
                                 <input type="file" accept="image/*" multiple="multiple" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
                                 <img src="../../../../assets/images/apartmentImages/11.png" class="position-absolute" width="100%" style="    border: 1px solid #c3bcbcc9;border-radius: 5px;">
                             </ng-container>
+                            <ng-container *ngIf="selectedContractImg">
+                                <div *ngIf="selectedContractImg.type !== 'application/pdf'">
+                                    <input type="file" accept=".pdf, image/*" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                    <img [src]="selectedContractImg.url" class="position-absolute imgPreviewUploader" width="100%">
 
+                                </div>
+                                <div *ngIf="selectedContractImg.type === 'application/pdf'">
+                                    <a [href]="selectedContractImg.url" target="_blank" style="font-size: large;">View PDF</a>
+                                    <input type="file" accept=".pdf, image/*" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                    <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute h-100" width="90%" style="margin-left: 21px;">
+
+                                </div>
+
+                            </ng-container>
                             <!-- end single img upload and preview -->
                         </div>
                     </div>

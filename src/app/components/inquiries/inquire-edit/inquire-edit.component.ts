@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OnwerService } from 'src/app/_services/Onwers/onwer.service';
 import { ApartmentService } from 'src/app/_services/apartments/apartment.service';
 
@@ -16,7 +16,7 @@ export class InquireEditComponent implements OnInit {
   apt_UUID: any;
 
   constructor(public _ApartmentService: ApartmentService, public _ActivatedRoute: ActivatedRoute,
-    public _OnwerService :OnwerService,private sanitizer: DomSanitizer)
+    public _OnwerService :OnwerService,private sanitizer: DomSanitizer,public router: Router)
    {
     this.apt_UUID = _ActivatedRoute.snapshot.paramMap.get('id');
   }
@@ -24,7 +24,34 @@ export class InquireEditComponent implements OnInit {
   ngOnInit() {
     this.bindCreateGeneral();
     this. getApartmentDetails();
+    this.checkRole();
   }
+  inquiresRole:any
+is_Super:any
+checkRole(){
+  const data = localStorage.getItem("user");
+   if (data !== null) {
+
+    let parsedData = JSON.parse(data);
+     this.is_Super=parsedData.is_Super
+    if(parsedData.is_Super==false) {
+for(let i=0; i<parsedData.permissions.length;i++){
+  if(parsedData.permissions[i].page_Name=="Inquiries"){
+    this.inquiresRole=parsedData.permissions[i];
+  }
+}
+if(this.inquiresRole.p_Update==false &&this.is_Super==false) {
+  this.gotopage( )
+}
+}
+
+
+  }
+}
+gotopage( ){
+  let url: string = "unlegal";
+    this.router.navigateByUrl(url);
+}
   showSide: string = '';
 
   addItem(value: string): void {
@@ -46,7 +73,7 @@ export class InquireEditComponent implements OnInit {
 
     this._ApartmentService.getApartDetail(this.apt_UUID).subscribe((res) => {
       this.aprt_details = res["general_Info"]
-      debugger
+
       this.generalInfoForm.get("apt_Price")?.setValue(res["general_Info"].apt_Price)
       this.generalInfoForm.get("apt_SecuirtyDep")?.setValue(res["general_Info"].apt_SecuirtyDep)
       this.generalInfoForm.get("apt_MaxGuest")?.setValue(res["general_Info"].apt_MaxGuest)

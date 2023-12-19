@@ -21,7 +21,7 @@ export class UploadFileService {
   uploadSingleFile(file: any): Observable<any[]> {
     // UploadSingleFile
     const url = `${environment.apiUrl}/Basics/UploadSingleFile`;
-    debugger
+
     // const url = "https://d4a7-196-221-165-195.ngrok-free.app/api/Basics/UploadSingleFile";
      return this.http.post<any>(url, file, { headers: this.headers });
   }

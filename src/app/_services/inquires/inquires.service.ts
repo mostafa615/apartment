@@ -24,13 +24,17 @@ export class InquiresService {
 
   }
   GetRequestDetails( id:any ): Observable<any> {
-
-
     const url = environment.apiUrl+"/Requests/GetInquiryDetails?ID="+id;
     return this.http.get<any>(url, {  headers: this.headers });
-
   }
 
+  UploadReqContract( id:any,file:any ): Observable<any> {
+  let  headerss = new HttpHeaders({
+       'Authorization': `Bearer ${this.token}`
+    });
+    const url = environment.apiUrl+"/Requests/UploadReqContract?Req_ID="+id;
+    return this.http.post<any>(url,file, {headers:headerss });
+  }
   AddWaitingList( id:any ): Observable<any> {
 
 
@@ -71,6 +75,19 @@ export class InquiresService {
 
     const url = environment.apiUrl+"/Requests/CancelRequest?Req_ID="+id+"&Reason="+reason;
     return this.http.put<any>(url,reason, {  headers: this.headers });
+
+  }
+  SendOffer( Old_Req_ID:any,Apt_ID:any,Rent_Price:any,Security_Deposit:any ): Observable<any> {
+let body={
+  Old_Req_ID:Old_Req_ID,
+  Apt_ID:Apt_ID,
+  Rent_Price:Rent_Price,
+  Security_Deposit:Security_Deposit,
+
+};
+
+    const url = environment.apiUrl+"/Requests/SendOffer?Old_Req_ID="+Old_Req_ID+"&Apt_ID="+Apt_ID+"&Rent_Price="+Rent_Price+"&Security_Deposit="+Security_Deposit;
+    return this.http.post<any>(url,body, {  headers: this.headers });
 
   }
 }

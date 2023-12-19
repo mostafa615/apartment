@@ -69,7 +69,7 @@ export class ForthStepComponent {
   getApartmentDetails() {
 
     this._ApartmentService.getApartDetail(this.idParamterEdit).subscribe((res) => {
-debugger
+
       this.aprt_details_Edit = res.backup_Info
       this.wifi = res.rent_Rules
 
@@ -221,7 +221,7 @@ debugger
       this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Congrats! Success Creation'}` });
       this.router.navigate(['apartments']);
     }, (err: any) => {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
     })
   }
   saveInputField(value: any): void {
@@ -236,7 +236,7 @@ debugger
   urls = new Array<string>();
 
   selectFile(event: any): void {
-    debugger
+
     this.message = '';
     this.preview = '';
     this.progress = 0;
@@ -250,7 +250,7 @@ debugger
         this.ListFiles.push(file);
          let reader = new FileReader();
         reader.onload = (e: any) => {
-          debugger
+
            this.urls.push(e.target.result);
         }
         reader.readAsDataURL(file);
@@ -270,7 +270,7 @@ this.display22="none"
    this.imageSize=photo
       }
       removeItem(imageName:any){
-        debugger
+
 
      let index2343 = this.ListFiles.findIndex((element:any) => element.name   == imageName);
      this.ListFiles.splice(index2343, 1);
@@ -287,7 +287,7 @@ isSelected=true;
       }
 
       checkValue(event: any,file:any){
-        debugger
+
           if(event.target.checked==true){
 
           }else{

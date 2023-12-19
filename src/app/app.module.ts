@@ -1,3 +1,4 @@
+import { PaginatorModule } from 'primeng/paginator';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,6 +23,8 @@ import { AuthorizationModule } from './components/authorization/authorization.mo
 import { OwnersModule } from './components/owners/owners.module';
 import { InquiriesModule } from './components/inquiries/inquiries.module';
 import { IssuReportsModule } from './components/issueReports/issu-reports.module';
+import { UnlegalModule } from './components/unlegal/unlegal.module';
+import { PartnerModule } from './components/partner/partner.module';
 
 import { AuthModule } from './components/auth/auth.module';
 import { UserModule } from './components/user/user.module';
@@ -38,9 +41,9 @@ import { GoogleMapsModule } from '@angular/google-maps'
   imports: [
     AppRoutingModule,IssuReportsModule,
     BrowserModule,AuthorizationModule,
-    AdminsModule,
+    AdminsModule,UnlegalModule,
     HttpClientModule,
-    InquiriesModule,
+    InquiriesModule,PartnerModule,
     WorkersModule,
     PaymentsModule,
     RolesModule,

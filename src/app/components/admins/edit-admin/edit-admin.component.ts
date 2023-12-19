@@ -32,6 +32,33 @@ export class EditAdminComponent implements OnInit   {
     this.bindCreateAdmin();
     this.getAllRolles();
     this.GetProfile() ;
+    this.checkRole();
+  }
+  AdminRole:any
+  is_Super:any
+  checkRole(){
+    const data = localStorage.getItem("user");
+     if (data !== null) {
+
+      let parsedData = JSON.parse(data);
+       this.is_Super=parsedData.is_Super
+      if(parsedData.is_Super==false) {
+  for(let i=0; i<parsedData.permissions.length;i++){
+    if(parsedData.permissions[i].page_Name=="Settings"){
+      this.AdminRole=parsedData.permissions[i];
+    }
+  }
+  if(this.AdminRole.p_Update==false &&this.is_Super==false) {
+    this.gotopage( )
+  }
+  }
+
+
+    }
+  }
+  gotopage( ){
+    let url: string = "unlegal";
+      this.router.navigateByUrl(url);
   }
   listAnchors: any = [];
 
@@ -54,7 +81,7 @@ export class EditAdminComponent implements OnInit   {
   GetProfile() {
     this.adminsData
      this._adminservices.GetProfile(this.param).subscribe((res) => {
-      debugger
+
       this.adminsData = res[0];
       this.createAdmin.patchValue(res[0]);
       this.imageUrl=this.createAdmin.get("user_Img")?.value;
@@ -105,6 +132,10 @@ export class EditAdminComponent implements OnInit   {
       this.loadingButton = false;
     }
   }
+  gotopage2( ){
+    let url: string = "admins";
+      this.router.navigateByUrl(url);
+  }
   UpdateAdmin(data: any) {
 
       this.showEror="false"
@@ -118,7 +149,7 @@ export class EditAdminComponent implements OnInit   {
         }, (err) => {
           this.loadingButton = false;
           console.error('Error fetching CreateOwner:', err);
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.details}` });
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
         })
 
 
@@ -136,7 +167,7 @@ export class EditAdminComponent implements OnInit   {
   }
   showEror="false"
   checkConfirm(){
-    debugger
+
     if(    this.createAdmin.get('password')?.value == this.createAdmin.get('confirm_Password')?.value   ){
 
       this.showEror="false"

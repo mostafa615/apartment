@@ -117,11 +117,11 @@
 
                         <td>
                             <div>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;" *ngIf="payment?.user_type=='paid'" [class.active]="payment?.status=='paid'">
+                                <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;" *ngIf="payment?.user_type=='paid'">
 
                         <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem;"></i> Paid
                     </span>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;" *ngIf="payment?.user_type=='Failed'" [class.Deactivated]="payment?.status=='Failed'">
+                                <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;" *ngIf="payment?.user_type=='Failed'">
                       <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem;"></i>  Failed
 
                        </span>

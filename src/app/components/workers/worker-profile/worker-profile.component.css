@@ -87,3 +87,40 @@
 * {
     font-family: 'Montserrat'!important
 }
+
+.profile1 {
+    width: 1130px;
+    height: 1717px;
+    padding: 24px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px #EBEBEB solid;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 24px;
+    display: inline-flex
+}
+
+@media (max-width: 768px) {
+    .profile1 {
+        width: auto;
+        display: block !important;
+    }
+    .ptof11 {
+        display: block!important;
+    }
+    .ptof12 {
+        display: block!important;
+    }
+}
+
+.ptof11 {
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 24px;
+    display: inline-flex
+}

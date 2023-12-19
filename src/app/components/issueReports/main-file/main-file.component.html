@@ -27,7 +27,7 @@
         <p-toast></p-toast>
         <div class="card mt-4">
 
-            <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="issues">
+            <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem','height':' 161px'}" [value]="issues">
                 <ng-template pTemplate="header" class="text-center">
                     <tr *ngIf="headerData">
                         <ng-container>
@@ -64,7 +64,7 @@
                         </ng-container>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-issue>
+                <ng-template pTemplate="body" let-issue style="height: 200px !important;">
 
                     <tr style="cursor: pointer;" (click)="hidecard()">
 
@@ -86,18 +86,23 @@
                             {{issue?.desc}}
                         </td>
                         <td>
-                            <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;" *ngIf="issue?.issue_Status=='Cancelled'" [class.Deactivated]="issue?.issue_Status=='Cancelled'">
+                            <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;" *ngIf="issue?.issue_Status=='Cancelled'">
                              Cancelled
 
                              </span>
-                            <span class="rounded-5 px-3 py-1" style="background-color: #FFFAEB;color: #FFB900;" *ngIf="issue?.issue_Status=='Pending'" [class.Deactivated]="issue?.issue_Status=='Pending'">
+                            <span class="rounded-5 px-3 py-1" style="background-color: #FFFAEB;color: #FFB900;" *ngIf="issue?.issue_Status=='Pending'">
                               Pending
 
                               </span>
-                            <span class="rounded-5 px-3 py-1" style="background-color: #ECFDF3;color: #12B76A;" *ngIf="issue?.issue_Status=='Completed'" [class.Deactivated]="issue?.issue_Status=='Completed'">
+                            <span class="rounded-5 px-3 py-1" style="background-color: #ECFDF3;color: #12B76A;" *ngIf="issue?.issue_Status=='Completed'">
                                 Completed
 
                                 </span>
+                            <span class="rounded-5 px-3 py-1" style="background-color: #EFF8FF;color: #175CD3;" *ngIf="issue?.issue_Status=='InProgress'">
+                                  InProgress
+
+                                  </span>
+
                         </td>
 
 
@@ -109,6 +114,14 @@
                                 <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/Report-view/{{issue.issue_ID}}">view details</button>
 
                                 <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" routerLink="/assgin-issue/{{issue.issue_ID}}"> assign worker  </button>
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="OpenModal1(issue.issue_ID) ">mark it as in-progress
+
+
+                                </button>
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="OpenModal2(issue.issue_ID)">mark it as solved
+
+                                   </button>
+
                                 <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="cancelissue(issue.issue_ID)">cancel </button>
 
                             </div>
@@ -133,4 +146,161 @@
         </div>
 
     </main>
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display1}" style=" background-color: rgb(23 22 22 / 50%);;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="    margin-top: 150px;">
+            <div class="modal-header" style="background-color:#ffffff; border-bottom: none !important;">
+                <p class="modal-title" style="color: #1C1B1F; font-size: 20px;   font-weight: 600; line-height: 24px; word-wrap: break-word">
+                    <span class="form-label gray fw-bold" style="vertical-align: middle; padding-left:8px">
+                    mark it as in-progress
+              </span>
+                </p>
+                <button type="button" style="border:none;background-color: #ffffff;width: 68px;height: 50px;" class="close" aria-label="Close" (click)="onCloseModal1()">
+  <span aria-hidden="true" style="color: #000000;font-size: 35px;">&times;</span>
+</button>
+
+
+
+            </div>
+
+            <div class="modal-body">
+
+
+                <div id="Bankdetails">
+                    <!-- <p class="fw-bold mb-0"> Bank account information</p> -->
+                    <p style="color: #605D62 !important;">please select an appointment to go and solve this problem </p>
+                </div>
+                <!--start Other Details form-->
+
+                <div class="row ">
+
+                    <div class="col-12 col-md-9 mb-4 cardss" *ngFor="let item of appointement;let i=index">
+                        <input type="radio" name="drone2" (change)="handleChange(item)">
+
+                        <label class="fw-bold" style="color: #605D62; margin-left: 10px;">appointement ( {{i+1}})
+                          <br>
+                          {{item.appo_Date}} {{item.appo_Time}} </label>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="modal-footer">
+
+                <div class="d-flex justify-content-between">
+                    <div class="py-2 px-3 fw-bold"></div>
+                    <div class="d-flex justify-content-between">
+                        <a (click)="onCloseModal1()" style="    border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvdd">
+                        Cancel
+          </a>
+                        <button (click)="  MarkasProgress( )" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                        confirm
+          </button>
+                    </div>
+                </div>
+                <!-- Confirm -->
+
+            </div>
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display2}" style=" background-color: rgb(23 22 22 / 50%);;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="    margin-top: 150px;">
+            <div class="modal-header" style="background-color:#ffffff; border-bottom: none !important;">
+                <p class="modal-title" style="color: #1C1B1F; font-size: 20px;   font-weight: 600; line-height: 24px; word-wrap: break-word">
+                    <span class="form-label gray fw-bold" style="vertical-align: middle; padding-left:8px">
+                      mark it as solved
+            </span>
+                </p>
+                <button type="button" style="border:none;background-color: #ffffff;width: 68px;height: 50px;" class="close" aria-label="Close" (click)="onCloseModal2()">
+<span aria-hidden="true" style="color: #000000;font-size: 35px;">&times;</span>
+</button>
+
+
+
+            </div>
+
+            <div class="modal-body">
+
+
+                <div class="row">
+
+                    <div class="col-12 col-md-12 mb-4 cards">
+                        <p style="color: #605D62 !important;margin-bottom: 0px;"> who will pay
+                        </p>
+
+                        <input type="radio" name="drone" checked (change)="handleChange2('studiflats')">
+
+                        <label class="fw-bold" style="color: #605D62; margin-left: 10px;"> studiflats
+
+                           </label>
+                        <input type="radio" name="drone" (change)="handleChange2('tenant')">
+
+                        <label class="fw-bold" style="color: #605D62; margin-left: 10px;"> tenant
+
+                           </label>
+                        <input type="radio" name="drone" (change)="handleChange2('owner')">
+
+                        <label class="fw-bold" style="color: #605D62; margin-left: 10px;"> cost by owner
+
+                              </label>
+                    </div>
+                    <div class="mb-3 col-12 col-md-12">
+                        <label for="exampleInputPricepermonth" class="form-label gray fw-bold">Total cost</label>
+                        <input type="number" [(ngModel)]="Total_cost" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+
+                    </div>
+                    <div class="mb-3 col-12 col-md-12">
+                        <label for="exampleInputPricepermonth" class="form-label gray fw-bold">worker cost</label>
+                        <input type="number" [(ngModel)]="worker_cost" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+
+                    </div>
+                    <div class="mb-3 col-12 col-md-12">
+                        <label for="exampleInputPricepermonth" class="form-label gray fw-bold">Company gain</label>
+                        <input type="number" [(ngModel)]="Company_gain" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+
+                    </div>
+                    <div class="mb-3 col-12 col-md-12">
+                        <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold">Description</label>
+                        <textarea class="border p-3 pt-3 rounded-2 w-100" [(ngModel)]="discerption" rows="3" style="resize: inherit"></textarea>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="modal-footer">
+
+                <div class="d-flex justify-content-between">
+                    <div class="py-2 px-3 fw-bold"></div>
+                    <div class="d-flex justify-content-between">
+                        <a (click)="onCloseModal2()" style="    border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvdd">
+                      Cancel
+        </a>
+                        <button (click)="MarkAsSolved()" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                      confirm
+        </button>
+                    </div>
+                </div>
+                <!-- Confirm -->
+
+            </div>
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>

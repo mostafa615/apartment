@@ -1,12 +1,12 @@
 <!-- start header  -->
 <header>
-    <app-head (newItemEvent)="addItem($event)" [titleModule]="'Users'"></app-head>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'report-details'"></app-head>
 </header>
 <!-- end header  -->
 
 <div class="row m-0">
     <!-- start sidebar  -->
-    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'users'"></app-sidebar>
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'issue-details'"></app-sidebar>
     <!-- end sidebar  -->
     <!-- start content page  -->
     <main class="p-4 col-lg-10">
@@ -14,11 +14,11 @@
             <div class="d-flex">
                 <p class=" me-2" style="color: #6c6a6a">Issue Reports</p>
                 <p class="fw-bold me-2">></p>
-                <p class="fw-bold" style="color: #6c6a6a">{{param}}</p>
+                <p class="fw-bold" style="color: #6c6a6a">Reports View</p>
             </div>
             <div>
                 <button class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold" style="background-color: #EBEBEB; color:#1F4068"><img src="assets/images/user/share.png"> Share</button>
-                <button class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold " *ngIf="param != 'Edit Reports View'" style="background-color: #EBEBEB; color:#1F4068"> <img src="assets/images/print.svg"> Print </button>
+                <button class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold " *ngIf="param != 'Edit Reports View'" style="background-color: #EBEBEB; color:#1F4068" routerLink="/Report-print/{{paramid}}"> <img src="assets/images/print.svg"> Print </button>
                 <button class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold" style="background-color: #EBEBEB; color:#1F4068" *ngIf="param == 'Edit Reports View'"> <img src="assets/images/report.svg"> Edit </button>
 
                 <button class="outline-0 border-0 rounded-3 py-2 px-3 text-white fw-bold" *ngIf="param == 'Edit Reports View'" style="background-color:#1F4068">
@@ -57,14 +57,14 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="fw-bold" style="color: #605D62">Requested by</label>
-                        <input class="form-control w-100" [(ngModel)]="detialIssue.issue_Code" type="text">
+                        <input class="form-control w-100" [(ngModel)]="detialIssue.requsted_By" type="text">
                     </div>
 
                 </div>
                 <div class="row ">
                     <div class="col-12 col-md-6 mb-4">
                         <label class="fw-bold" style="color: #605D62;">Apartment number</label>
-                        <input class="form-control w-100" [(ngModel)]="detialIssue.issue_Code" type="number">
+                        <input class="form-control w-100" [(ngModel)]="detialIssue.apartment_Number" type="text">
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="fw-bold" style="color: #605D62">Name on the Ringbell</label>
@@ -85,48 +85,68 @@
                 </div>
                 <div class="col-12 mb-4">
                     <label class="fw-bold" style="color: #605D62;">Apartment address</label>
-                    <input class="form-control w-100" [(ngModel)]="detialIssue.issue_Desc" type="text">
+                    <input class="form-control w-100" [(ngModel)]="detialIssue.apt_Address" type="text">
                 </div>
                 <div class="row ">
                     <div class="col-12 col-md-6 mb-4">
                         <label class="fw-bold" style="color: #605D62;">Floor no.</label>
-                        <input class="form-control w-100" type="number">
+                        <input class="form-control w-100" [(ngModel)]="detialIssue.apt_FloorNo" type="number">
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="fw-bold" style="color: #605D62">Side</label>
-                        <input class="form-control w-100" type="text">
+                        <input class="form-control w-100" [(ngModel)]="detialIssue.side" type="text">
                     </div>
 
                 </div>
                 <div class="row ">
                     <div class="col-12 col-md-6 mb-4">
                         <label class="fw-bold form-label d-block mb-0" style="color: #605D62;">Date reported</label>
-                        <p-calendar></p-calendar>
+                        <!-- <p-calendar [(ngModel)]="detialIssue.date_Reported"></p-calendar> -->
+                        <input class="form-control w-100" [(ngModel)]="detialIssue.date_Reported" type="text">
+
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="fw-bold" style="color: #605D62">Status</label>
-                        <input class="form-control w-100" type="text">
+                        <select style="font-size: 16PX;" class="s-cont form-control   form-select form-select-sm mb-3" name="issue_Status" id="issue_Status" [(ngModel)]="detialIssue.issue_Status">
+
+                         <option   value="InProgress"> InProgress</option>
+                         <option  value="Pending">Pending</option>
+                         <option  value="Completed">Completed</option>
+                         <option  value="Cancelled">Cancelled</option>
+
+                    </select>
+                        <!-- <input class="form-control w-100" [(ngModel)]="detialIssue.issue_Status" type="text"> -->
                     </div>
 
                 </div>
                 <div class="mb-3">
                     <label class="fw-bold" style="color: #605D62;">Descriptions</label>
-                    <textarea class="border rounded-3 w-100 p-2" rows="5" [(ngModel)]="detialIssue.issue_Desc" style="resize: unset;" placeholder="Enter a description"></textarea>
+                    <textarea class="border rounded-3 w-100 p-2" rows="5" [(ngModel)]="detialIssue.desc" style="resize: unset;" placeholder="Enter a description"></textarea>
                 </div>
 
                 <div>
                     <p class="fw-bold mb-0" style="color: #605D62;">Pictures</p>
                     <div class="accordion-body mb-3">
-                        <img src="assets/images/user/File upload base.svg" class="me-2">
-                        <img src="assets/images/user/File upload base.svg" class="me-2">
-                        <img src="assets/images/user/File upload base.svg" class="me-2">
-                        <img src="assets/images/user/File upload base.svg" class="me-2">
+                        <img *ngFor="let item of detialIssue.issue_Images;let i=index" style="width: 100px;" [src]="item.img_Url" class="me-2">
+
                     </div>
                 </div>
+                <div id="OtherDetails" style="margin-top:20px">
+                    <p class="fw-bold mb-0">Suggested dates</p>
+                    <p style="color: #605D62 !important;">view all available appointments </p>
+                </div>
+                <div class="row ">
 
-                <div class="d-flex justify-content-end" *ngIf="param == 'Edit Reports View'">
+                    <div class="col-12 col-md-6 mb-4" *ngFor="let item of detialIssue.appointement;let i=index">
+                        <label class="fw-bold" style="color: #605D62;">appointement ( {{i+1}}) </label>
+                        <input class="form-control w-100" [(ngModel)]="item.appo_Date+' ' +item.appo_Time " type="text">
+                    </div>
+
+
+                </div>
+                <div class="d-flex justify-content-end">
                     <div class="d-flex justify-content-between">
-                        <button class="backcancel bg-white rounded-2 py-2 px-3 fw-bold mx-2">
+                        <button (click)="gotopage2()" class="backcancel bg-white rounded-2 py-2 px-3 fw-bold mx-2">
                   Cancel
                 </button>
                         <button (click)="submitForm()" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">

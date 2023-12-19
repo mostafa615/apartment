@@ -53,8 +53,30 @@ export class EditWorkerComponent implements OnInit{
     this.bindCreateworker()
 
     this.GetWorkerByid();
+    this.checkRole();
  }
+ workersRole:any
+ is_Super:any
+ checkRole(){
+   const data = localStorage.getItem("user");
+    if (data !== null) {
 
+     let parsedData = JSON.parse(data);
+      this.is_Super=parsedData.is_Super
+     if(parsedData.is_Super==false) {
+ for(let i=0; i<parsedData.permissions.length;i++){
+   if(parsedData.permissions[i].page_Name=="workers"){
+     this.workersRole=parsedData.permissions[i];
+   }
+ }
+ if(this.workersRole.p_Update==false &&this.is_Super==false) {
+  let url: string = "unlegal";
+  this.router.navigateByUrl(url); }
+}
+
+
+   }
+ }
  checkPage(): void {
 
     this.listAnchors = [
@@ -72,7 +94,7 @@ joddd2:any={ }
 
 worker_Skills: Array<any> = []
 Skills(value: any): void {
-  debugger
+
   this.joddd2.skill_Name=value.skill_Name;
    this.worker_Skills.push( this.joddd2);
    this.joddd.skill_Name=value.skill_Content;
@@ -138,19 +160,19 @@ ListJobs( ) {
   this._adminservices.ListJobs( ).subscribe((res) => {
     this.jobs=res
   }, (err: any) => {
-    debugger
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
   })
 }
 GetWorkerByid( ) {
 
   this._adminservices.GetWorkerByid(this.param).subscribe((res) => {
     this.createworker.patchValue(res[0]);
-    this.localapt_Transports=res[0].worker_Skills
+    this.localapt_Transports=res[0]?.worker_Skills
      this.selectedContractImg = { 'url':res[0].worker_Passport };
   }, (err: any) => {
-    debugger
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
   })
 
 
@@ -166,8 +188,8 @@ createworkerpost(data: any) {
 
 
         }, (err: any) => {
-          debugger
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
         })
 
 
@@ -232,12 +254,17 @@ createworkerpost(data: any) {
         this.onCloseModal2()
 
       }, (err: any) => {
-        debugger
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
         this.Jobname=""
 
       })
 
 
   }
+  gotopage( ){
+    let url: string = "workers";
+      this.router.navigateByUrl(url);
+  }
+
 }

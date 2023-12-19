@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AdminsService } from 'src/app/_services/admins/admins.service';
 
@@ -17,19 +18,45 @@ export class UserComponent {
   search:boolean=false
   listDropDown:Array<object>=[{name:'All'},{name:'Today'},{name:'Last Week'},{name:'This month'},{name:'This year'}]
 
-  constructor( public _adminservices:AdminsService ,private messageService: MessageService,) { }
+  constructor( public _adminservices:AdminsService ,private messageService: MessageService,public router: Router) { }
 
   ngOnInit() {
     this.getAllTenants(  )
+    this.checkRole();
   }
+  TantsRole:any
+  is_Super:any
+  checkRole(){
+    const data = localStorage.getItem("user");
+     if (data !== null) {
 
+      let parsedData = JSON.parse(data);
+       this.is_Super=parsedData.is_Super
+      if(parsedData.is_Super==false) {
+  for(let i=0; i<parsedData.permissions.length;i++){
+    if(parsedData.permissions[i].page_Name=="Users"){
+      this.TantsRole=parsedData.permissions[i];
+    }
+  }
+  if(this.TantsRole.p_View==false &&this.is_Super==false) {
+    this.gotopage( )
+  }
+}
+
+
+    }
+  }
+  gotopage( ){
+    let url: string = "unlegal";
+      this.router.navigateByUrl(url);
+  }
    /**
    * selectedfromDropDown
    * @param $event string
    * @returns void
    */
   selectedfromDropDown(value:any){
-    debugger
+
     this.Date=value.name;
     this.getAllTenants()
     console.log(value)
@@ -102,7 +129,7 @@ export class UserComponent {
     })
   }
   tiggerPageChange(event: any) {
-    debugger
+
         const calcPageNumber = Math.floor(event.first / event.rows) + 1;
         this.pageNumber=calcPageNumber;
         console.log(calcPageNumber);

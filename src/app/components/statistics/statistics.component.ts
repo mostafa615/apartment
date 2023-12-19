@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApartmentService } from 'src/app/_services/apartments/apartment.service';
 
 @Component({
   selector: 'app-statistics',
@@ -43,7 +45,7 @@ export class StatisticsComponent {
   rowDatalistRequests:Array<any>=[{img:'assets/images/Avatar.svg',name:'Willow Creek Apartments',title:'Alt-Moabit',location:'23'},
   {img:'assets/images/Avatar.svg',name:'Willow Creek Apartments',title:'Alt-Moabit',location:'23'},
   {img:'assets/images/Avatar.svg',name:'Willow Creek Apartments',title:'Alt-Moabit',location:'23'},]
-  
+
   rowDatalistApartmentdemands:Array<any>=[{img:'assets/images/Avatar.svg',name:'Willow Creek Apartments',title:'Alt-Moabit'},
   {img:'assets/images/Avatar.svg',name:'Willow Creek Apartments',title:'Alt-Moabit'},
   {img:'assets/images/Avatar.svg',name:'Willow Creek Apartments',title:'Alt-Moabit'},]
@@ -52,10 +54,36 @@ export class StatisticsComponent {
     {img:'assets/images/Avatar.svg',name:'Willow Creek Apartments',img1:'assets/images/Avatar.svg',name1:'Willow Creek Apartments',title:'Alt-Moabit',numberofproblem:'22'},
     {img:'assets/images/Avatar.svg',name:'Willow Creek Apartments',img1:'assets/images/Avatar.svg',name1:'Willow Creek Apartments',title:'Alt-Moabit',numberofproblem:'22'},
     {img:'assets/images/Avatar.svg',name:'Willow Creek Apartments',img1:'assets/images/Avatar.svg',name1:'Willow Creek Apartments',title:'Alt-Moabit',numberofproblem:'22'},
-    
+
   ]
 
-  
+  constructor(private apartmentSer: ApartmentService,public router: Router) {
+    this.checkRole();
+  }
+
+  StatisticsRole:any
+ is_Super:any
+ checkRole(){
+   const data = localStorage.getItem("user");
+    if (data !== null) {
+
+     let parsedData = JSON.parse(data);
+      this.is_Super=parsedData.is_Super
+     if(parsedData.is_Super==false) {
+ for(let i=0; i<parsedData.permissions.length;i++){
+   if(parsedData.permissions[i].page_Name=="Statistics"){
+     this.StatisticsRole=parsedData.permissions[i];
+   }
+ }
+ if(this.StatisticsRole.p_Add==false &&this.is_Super==false) {
+  let url: string = "unlegal";
+  this.router.navigateByUrl(url); }
+}
+
+
+   }
+ }
+
 
   addItem(value: any) {
     this.showSide = value

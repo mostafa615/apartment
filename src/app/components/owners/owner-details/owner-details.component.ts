@@ -43,10 +43,10 @@ export class OwnerDetailsComponent {
 
   /**
    * constructor
-   * @param viewportScroller 
-   * @param router 
-   * @param _ActivatedRoute 
-   * @param _OnwerService 
+   * @param viewportScroller
+   * @param router
+   * @param _ActivatedRoute
+   * @param _OnwerService
    * @param uploadfile
    */
   constructor(
@@ -121,8 +121,42 @@ export class OwnerDetailsComponent {
       ]
     }
     else {
-    
+
     }
+  }
+  OwnersRole:any
+  is_Super:any
+  checkRole(){
+    const data = localStorage.getItem("user");
+     if (data !== null) {
+
+      let parsedData = JSON.parse(data);
+       this.is_Super=parsedData.is_Super
+      if(parsedData.is_Super==false) {
+  for(let i=0; i<parsedData.permissions.length;i++){
+    if(parsedData.permissions[i].page_Name=="Owners"){
+      this.OwnersRole=parsedData.permissions[i];
+    }
+  }
+  if(this.OwnersRole.p_Add==false &&this.is_Super==false&&this.param == "owner/create_new") {
+    this.gotopage( )
+  }
+  else if(this.OwnersRole.p_Update==false &&this.is_Super==false&&this.pageTitle== "edit_owner") {
+    this.gotopage( )
+
+  }
+}
+
+
+    }
+  }
+  gotopage( ){
+    let url: string = "unlegal";
+      this.router.navigateByUrl(url);
+  }
+  gotopage2( ){
+    let url: string = "owners";
+      this.router.navigateByUrl(url);
   }
   /**
    * initCities
@@ -140,7 +174,7 @@ export class OwnerDetailsComponent {
 
   /**
    * addItem
-   * @param value 
+   * @param value
    */
   addItem(value: string) {
     this.showSide = value
@@ -174,7 +208,7 @@ export class OwnerDetailsComponent {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.title}` });
       })
     }
-    
+
     else {
       const editData = { ...data.value, ...{ "nationality": "AF", "owner_ID": this.id, "Gender": "UnSpecified", "Country": "UnSpecified" } }
 
@@ -210,7 +244,7 @@ export class OwnerDetailsComponent {
       'owner_Photo': new FormControl('', [Validators.required]),
     });
   }
-  
+
   /**
    * scrollTop
    * to make screen scroll to top

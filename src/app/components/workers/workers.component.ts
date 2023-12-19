@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AdminsService } from 'src/app/_services/admins/admins.service';
 
@@ -18,10 +19,12 @@ export class WorkersComponent implements OnInit {
   search:boolean=false
   listDropDown:Array<object>=[{name:'All'},{name:'Today'},{name:'Last Week'},{name:'This month'},{name:'This year'}]
 
-  constructor( public _adminservices:AdminsService ,private messageService: MessageService,) { }
+  constructor( public _adminservices:AdminsService ,public router: Router,private messageService: MessageService,) { }
 
   ngOnInit() {
+
     this.getAllworkers(  )
+    this.checkRole();
   }
 
    /**
@@ -30,7 +33,7 @@ export class WorkersComponent implements OnInit {
    * @returns void
    */
   selectedfromDropDown(value:any){
-    debugger
+
     this.Date=value.name;
     // this.getAllworkers()
     console.log(value)
@@ -76,7 +79,7 @@ export class WorkersComponent implements OnInit {
 workers=[]
 totalRecords=0
 tiggerPageChange(event: any) {
-  debugger
+
       const calcPageNumber = Math.floor(event.first / event.rows) + 1;
       this.pageNumber=calcPageNumber;
       console.log(calcPageNumber);
@@ -133,7 +136,7 @@ tiggerPageChange(event: any) {
     this.showEdit=[]
 
  }
- PostJob( id:any) {
+ deleteworker( id:any) {
 
   this._adminservices.DeleteWorker(id ).subscribe((res) => {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: `${' worker has been Successfully deleted into DB  '}` });
@@ -142,11 +145,37 @@ tiggerPageChange(event: any) {
     this.getAllworkers()
 
   }, (err: any) => {
-    debugger
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
 
   })
 
 
+}
+workersRole:any
+is_Super:any
+checkRole(){
+  const data = localStorage.getItem("user");
+   if (data !== null) {
+
+    let parsedData = JSON.parse(data);
+     this.is_Super=parsedData.is_Super
+    if(parsedData.is_Super==false) {
+for(let i=0; i<parsedData.permissions.length;i++){
+  if(parsedData.permissions[i].page_Name=="workers"){
+    this.workersRole=parsedData.permissions[i];
+  }
+}
+if(this.workersRole.p_View==false &&this.is_Super==false) {
+  this.gotopage( )
+}
+}
+
+
+  }
+}
+gotopage( ){
+  let url: string = "unlegal";
+    this.router.navigateByUrl(url);
 }
 }

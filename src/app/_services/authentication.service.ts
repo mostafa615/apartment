@@ -12,13 +12,14 @@ import { IUser } from '../models/user';
 export class AuthenticationService {
     private userSubject: BehaviorSubject<IUser | null>;
     public user: Observable<IUser | null>;
-
+    public permissions:any | null;
     constructor(
         private router: Router,
         private http: HttpClient
     ) {
         this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
         this.user = this.userSubject.asObservable();
+        this.permissions=[]
     }
 
     public get userValue() {
@@ -29,10 +30,11 @@ export class AuthenticationService {
     let  url=environment.apiUrl+"/Admin/Login?UserMail="+username+"&Password="+password
         return this.http.post<any>(url, { username, password })
             .pipe(map(user => {
-              debugger
+
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
                 localStorage.setItem("tokenKey", user.token);
+                localStorage.setItem("permissions", user);
 
                 this.userSubject.next(user);
                 return user;
@@ -47,10 +49,35 @@ export class AuthenticationService {
 
         // remove user from local storage to log user out
         localStorage.removeItem('user');
+        localStorage.removeItem('permissions');
+
+
         this.userSubject.next(null);
         this.router.navigate(['/login']);
+
     }
     public getToken(): string | null {
       return this.isLoggedIn() ? localStorage.getItem("tokenKey") : null;
     }
-}
+    public  can(permissiolln:any) {
+      const data = localStorage.getItem("user");
+      if (data !== null) {
+
+       let parsedData = JSON.parse(data);
+        parsedData.permissions;
+   for(let i=0; i< parsedData.permissions.length;i++){
+     if( parsedData.permissions[i].page_Name==permissiolln){
+       if( parsedData.permissions[i].p_View==true){
+        return true
+       }
+       else{
+        return false
+       }
+     }
+
+
+    }
+return true
+}else{
+  return false
+}}}

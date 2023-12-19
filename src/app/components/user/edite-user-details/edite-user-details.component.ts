@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { InquiresService } from 'src/app/_services/inquires/inquires.service';
 import { AdminsService } from 'src/app/_services/admins/admins.service';
@@ -35,12 +35,43 @@ export class EditeUserDetailsComponent {
   ngOnInit() {
     this.initCities();
     this.GetRequestDetails(  );
+    this. checkRole();
   }
 
    param:any
-  constructor(private uploadFile: UploadFileService, public _adminservices:AdminsService ,private viewportScroller: ViewportScroller,private _inquiresService:InquiresService,private _ActivatedRoute:ActivatedRoute,private messageService: MessageService,) {
+  constructor(private uploadFile: UploadFileService, public _adminservices:AdminsService ,private viewportScroller: ViewportScroller,private _inquiresService:InquiresService,private _ActivatedRoute:ActivatedRoute,private messageService: MessageService,public router: Router) {
     this.param = _ActivatedRoute.snapshot.paramMap.get('id');
 
+  }
+  TantsRole:any
+  is_Super:any
+  checkRole(){
+    const data = localStorage.getItem("user");
+     if (data !== null) {
+
+      let parsedData = JSON.parse(data);
+       this.is_Super=parsedData.is_Super
+      if(parsedData.is_Super==false) {
+  for(let i=0; i<parsedData.permissions.length;i++){
+    if(parsedData.permissions[i].page_Name=="Users"){
+      this.TantsRole=parsedData.permissions[i];
+    }
+  }
+  if(this.TantsRole.p_Update==false &&this.is_Super==false) {
+    this.gotopage( )
+  }
+}
+
+
+    }
+  }
+  gotopage( ){
+    let url: string = "unlegal";
+      this.router.navigateByUrl(url);
+  }
+  gotopage2( ){
+    let url: string = "users";
+      this.router.navigateByUrl(url);
   }
   /**
    * initCities
@@ -100,7 +131,7 @@ UpdateTenantInfo() {
   }
   formData2 = new FormData();
   uploadPic(event: any) {
-    debugger
+
     this.loadingButton = true;
     if (event != 'delete') {
       const selectedFile = event.target.files[0];

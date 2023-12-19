@@ -298,7 +298,7 @@ this.imageSize=image
   listDropDownPropertyowner:any=[]
   nameOwner:any=""
   getAowners(id:any) {
-    debugger
+
     this._ApartmentService.getOwnerDropList().subscribe(res => {
       this.listDropDownPropertyowner = res.list
       for(let i=0; i<this.listDropDownPropertyowner.length; i++){
@@ -312,7 +312,7 @@ this.imageSize=image
   // get  local storage
   getLocalStorage(): void {
     this.storedImages =[]
-debugger
+
     this.storedImages = JSON.parse(localStorage.getItem("imagesAPT12")||'{}');
     const data = localStorage.getItem("contract")
     if (data !== null) {
@@ -348,7 +348,7 @@ debugger
     const data1 = localStorage.getItem("generalInfoForm");
 
     if (data1 !== null) {
-      debugger
+
       let parsedData1 = JSON.parse(data1) ;
            this.idwner=  parsedData1.apt_Owner
            this.getAowners(this.idwner)
@@ -387,7 +387,7 @@ debugger
         this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Success Second Step'}` });
         this.submitSecondForm();
       }, (err: any) => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
       })
     }else{
       this._ApartmentService.createPostSec3({ ...this.create_Apart_contract.value, ...res }, this.id).subscribe((res) => {
@@ -395,7 +395,7 @@ debugger
         this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Success Second Step'}` });
         this.submitSecondForm();
       }, (err: any) => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
       })
     }
 
@@ -410,7 +410,7 @@ debugger
     this.jumbToNextSteb.emit();
   }
   pushinputfields(value: any): void {
-    debugger
+
     this.apt_inputfields.push(value);
 
     console.log(this.apt_inputfields)
@@ -432,7 +432,7 @@ debugger
   urls = new Array<string>();
 
   selectFile(event: any): void {
-    debugger
+
     this.message = '';
     this.preview = '';
     this.progress = 0;
@@ -446,7 +446,7 @@ debugger
         this.ListFiles.push(file);
          let reader = new FileReader();
         reader.onload = (e: any) => {
-          debugger
+
            this.urls.push(e.target.result);
         }
         reader.readAsDataURL(file);
@@ -466,7 +466,7 @@ debugger
    this.imageSize=photo
       }
       removeItem(imageName:any){
-        debugger
+
 
      let index2343 = this.ListFiles.findIndex((element:any) => element.name   == imageName);
      this.ListFiles.splice(index2343, 1);
@@ -483,7 +483,7 @@ isSelected=true;
       }
 
       checkValue(event: any,file:any){
-        debugger
+
           if(event.target.checked==true){
 
           }else{
@@ -530,7 +530,7 @@ storedImages:any
               uploadedFiles: any[] = [];
 
               removeSection(number:any){
-                debugger;
+                 ;
                 this.contractDetails.splice(number, 1);
                 }
 }

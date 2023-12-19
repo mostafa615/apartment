@@ -87,6 +87,12 @@ export class ApartmentService {
   MarkRented(id: string): Observable<any> {
     return this.http.put(`${environment.apiUrl + '/Apartment/MarkRented?' + `Apt_ID=${id}`}`,id, { headers: this.headers })
   }
+  AddtoBest(id: string): Observable<any> {
+    return this.http.put(`${environment.apiUrl + '/Apartment/AddtoBest?' + `Apt_ID=${id}`}`,id, { headers: this.headers })
+  }
+  RemoveBest(id: string): Observable<any> {
+    return this.http.put(`${environment.apiUrl + '/Apartment/RemoveBest?' + `Apt_ID=${id}`}`,id, { headers: this.headers })
+  }
   MarkAvaliablePublish(id: string): Observable<any> {
     return this.http.put(`${environment.apiUrl + '/Apartment/MarkAvaliablePublish?' + `Apt_ID=${id}`}`,id, { headers: this.headers })
   }

@@ -39,16 +39,77 @@ export class SidebarComponent implements OnInit {
   link: Array<boolean> = [];
   /** param */
   param: number = 0;
-
+  permissions:any=[]
   /** showSide */
   @Input() showSide: string = '';
   @Input() titlepage: string = '';
-
+  workers:any={}
+  Statistics:any={}
+  Messages:any={}
+  Owners:any={}
+  Issue:any={}
+  Users:any={}
+  partners:any={}
+  Apartments:any={}
+  Settings:any={}
+  Payments:any={}
+  Inquiries:any={}
+  Dashboard:any={}
+  is_Super:any
   ngOnInit(): void {
+
     if(this.router.url=='/admins'||this.router.url=='/roles'){
       this.isFreeze=true
     }
 
+
+   const data = localStorage.getItem("user");
+   if (data !== null) {
+
+    let parsedData = JSON.parse(data);
+    this.permissions=parsedData.permissions;
+    this.is_Super=parsedData.is_Super
+    if(parsedData.is_Super==false) {
+for(let i=0; i<this.permissions.length;i++){
+  if(this.permissions[i].page_Name=="workers"){
+    this.workers=this.permissions[i];
+  }
+
+  else if(this.permissions[i].page_Name=="Messages"){
+    this.Messages=this.permissions[i];
+  }
+  else if(this.permissions[i].page_Name=="Statistics"){
+    this.Statistics=this.permissions[i];
+  }
+  else if(this.permissions[i].page_Name=="Owners"){
+    this.Owners=this.permissions[i];
+  }
+  else if(this.permissions[i].page_Name=="Issue Reports"){
+    this.Issue=this.permissions[i];
+  }
+  else if(this.permissions[i].page_Name=="Users"){
+    this.Users=this.permissions[i];
+  }
+  else if(this.permissions[i].page_Name=="partners"){
+    this.partners=this.permissions[i];
+  }
+  else if(this.permissions[i].page_Name=="Apartments"){
+    this.Apartments=this.permissions[i];
+  }
+  else if(this.permissions[i].page_Name=="Settings"){
+    this.Settings=this.permissions[i];
+  }
+  else if(this.permissions[i].page_Name=="Inquiries"){
+    this.Inquiries=this.permissions[i];
+  }
+  else if(this.permissions[i].page_Name=="Payments"){
+    this.Payments=this.permissions[i];
+  }
+  else if(this.permissions[i].page_Name=="Dashboard"){
+    this.Dashboard=this.permissions[i];
+  }
+}}
+  }
     this.listAnchors.concat(this.listAnchorsOther).forEach(element => {
       if (element.text === this.titlepage) { this.link[this.param] = true }
       else this.param++
@@ -64,7 +125,7 @@ export class SidebarComponent implements OnInit {
    **/
   isShow="false"
   changeAnchor(index: number): void {
-    debugger
+
     if(index=10){
     this.isShow="true"
     // this.param = index
@@ -90,7 +151,7 @@ export class SidebarComponent implements OnInit {
   }
   color_image:any=false
   changeAnchor2(name:any){
-    debugger
+
     this.color_image = true
   }
   isFreeze: boolean = false;

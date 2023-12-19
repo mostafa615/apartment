@@ -45,6 +45,37 @@ export class ReportsDetailsComponent {
   ngOnInit() {
     this.initCities();
     this.GetIssueByid( )
+    this.checkRole()
+  }
+  IssueRole:any
+  is_Super:any
+  checkRole(){
+    const data = localStorage.getItem("user");
+     if (data !== null) {
+
+      let parsedData = JSON.parse(data);
+       this.is_Super=parsedData.is_Super
+      if(parsedData.is_Super==false) {
+  for(let i=0; i<parsedData.permissions.length;i++){
+    if(parsedData.permissions[i].page_Name=="Issue Reports"){
+      this.IssueRole=parsedData.permissions[i];
+    }
+  }
+  if(this.IssueRole.p_View==false &&this.is_Super==false) {
+    this.gotopage( )
+  }
+  }
+
+
+    }
+  }
+  gotopage( ){
+    let url: string = "unlegal";
+      this.router.navigateByUrl(url);
+  }
+  gotopage2( ){
+    let url: string = "Issue_Reports";
+      this.router.navigateByUrl(url);
   }
   detialIssue:any={}
   GetIssueByid( ) {
@@ -55,8 +86,8 @@ export class ReportsDetailsComponent {
       //  this.createissue.patchValue(res);
       //  this.createissue.get('issue_Images')?.setValue(res["issue_Images"]);
      }, (err: any) => {
-      debugger
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
     })
 
 

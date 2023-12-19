@@ -20,7 +20,7 @@ headers = new HttpHeaders({
 });
 
 getAllAdmins(  ): Observable<any[]> {
-  debugger
+
 
   const url = `${environment.apiUrl}/Admin/GetAllAdmins`;
   return this.http.get<any[]>(url, {  headers: this.headers });
@@ -144,7 +144,7 @@ ListAllIssues( PageNumber: number, PageSize: number,Date:any ): Observable<any[]
 
 }
 GetIssueDetails(id: any ): Observable<any> {
-  const url = environment.apiUrl+"/Issues/GetIssueDetails?Issue_ID="+id;
+  const url = environment.apiUrl+"/Issues/IssueInDetails?Issue_ID="+id;
   return this.http.get<any>(url, {  headers: this.headers });
 
 }
@@ -164,5 +164,73 @@ CancelIssue(Issue_ID: any ): Observable<any> {
   return this.http.put<any>(url,body, {  headers: this.headers });
 
 }
+MarkAsSolved(Issue_ID: any,issue_CostBy:any, worker_Gain:any,issue_Cost:any,company_Gain:any,solve_Desc:any): Observable<any> {
+   let body={
+    issue_ID: Issue_ID,
+    issue_CostBy: issue_CostBy,
+    issue_Cost: issue_Cost,
+    worker_Gain: worker_Gain,
+    company_Gain: company_Gain,
+    solve_Desc: solve_Desc
+  }
 
+  const url = environment.apiUrl+"/Issues/MarkAsSolved";
+  return this.http.put<any>(url,body, {  headers: this.headers });
+
+}
+MarkasProgress(Issue_ID: any,Apointment: any ): Observable<any> {
+  let body={
+    Issue_ID:Issue_ID,
+    Apointment:Apointment
+  }
+  const url = environment.apiUrl+"/Issues/MarkasProgress?Issue_ID="+Issue_ID+"&Apointment="+Apointment;
+  return this.http.put<any>(url,body, {  headers: this.headers });
+
+}
+
+ListPartners( PageNumber: number, PageSize: number,Date:any ): Observable<any> {
+  const url = environment.apiUrl+"/Partners/ListPartners";
+  const params = new HttpParams()
+    .set('PageNo', PageNumber)
+    .set('PageSize', PageSize)
+    .set('Date', Date)
+  return this.http.get<any>(url, { headers: this.headers , params: params });
+
+}
+
+PostPartner(data: any ): Observable<any> {
+  const url = environment.apiUrl+"/Partners/PostPartner";
+  return this.http.post<any>(url,data, {  headers: this.headers });
+
+}
+UpdatePartner(data: any,id:any ): Observable<any> {
+  const url = environment.apiUrl+"/Partners/UpdatePartner?id="+id;
+  return this.http.put<any>(url,data, {  headers: this.headers });
+
+}
+DeletePartners(id: any ): Observable<any> {
+  const url = environment.apiUrl+"/Partners/DeletePartners?id="+id;
+  return this.http.delete<any>(url, {  headers: this.headers });
+
+}
+GetPartnerProfile(id: any ): Observable<any> {
+  const url = environment.apiUrl+"/Partners/GetPartnerProfile?id="+id;
+  return this.http.get<any>(url, {  headers: this.headers });
+
+}
+GetCountries( ): Observable<any> {
+  const url = environment.apiUrl+"/Partners/GetCountries";
+  return this.http.get<any>(url, {  headers: this.headers });
+
+}
+GetAgencyCode( ) {
+
+  var headers2 = new HttpHeaders({
+     'responseType':'text',
+    'Authorization': `Bearer ${this.token}`
+  });
+  const url = environment.apiUrl+"/Partners/GetAgencyCode";
+  return this.http.get(url, {  headers: headers2 ,responseType: 'text'});
+
+}
 }

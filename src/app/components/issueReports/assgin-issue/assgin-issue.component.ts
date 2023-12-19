@@ -26,15 +26,41 @@ export class AssginIssueComponent implements OnInit {
 
  ngOnInit() {
    this.getAllworkers(  )
+   this.checkRole();
+ }
+ IssueRole:any
+ is_Super:any
+ checkRole(){
+   const data = localStorage.getItem("user");
+    if (data !== null) {
+
+     let parsedData = JSON.parse(data);
+      this.is_Super=parsedData.is_Super
+     if(parsedData.is_Super==false) {
+ for(let i=0; i<parsedData.permissions.length;i++){
+   if(parsedData.permissions[i].page_Name=="Issue Reports"){
+     this.IssueRole=parsedData.permissions[i];
+   }
+ }
+ if(this.IssueRole.p_View==false &&this.is_Super==false) {
+   this.gotopage2( )
+ }
  }
 
+
+   }
+ }
+ gotopage2( ){
+   let url: string = "unlegal";
+     this.router.navigateByUrl(url);
+ }
   /**
   * selectedfromDropDown
   * @param $event string
   * @returns void
   */
  selectedfromDropDown(value:any){
-   debugger
+
    this.Date=value.name;
    // this.getAllworkers()
    console.log(value)
@@ -49,7 +75,7 @@ export class AssginIssueComponent implements OnInit {
  }
  idworkerassigin:any=""
  handleChange(evt:any,idworker:any) {
-  debugger
+
   this.idworkerassigin=idworker
   var target = evt.target;
   if (target.checked) {
@@ -88,7 +114,7 @@ export class AssginIssueComponent implements OnInit {
 workers=[]
 totalRecords=0
 tiggerPageChange(event: any) {
- debugger
+
      const calcPageNumber = Math.floor(event.first / event.rows) + 1;
      this.pageNumber=calcPageNumber;
      console.log(calcPageNumber);
@@ -154,8 +180,8 @@ PostJob( id:any) {
    this.getAllworkers()
 
  }, (err: any) => {
-   debugger
-   this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+
+   this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
 
  })
 
@@ -173,8 +199,8 @@ AssignWorker(  ) {
 
 
   }, (err: any) => {
-    debugger
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
 
   })
 

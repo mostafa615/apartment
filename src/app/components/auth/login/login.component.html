@@ -1,6 +1,3 @@
-<div *ngIf="messageSuccess == 'true'" style="width:30%;    right: 0px;left: 1000px;" class="alert alert-danger" role="alert">
-    {{error}}
-</div>
 <div class="d-flex justify-content-center align-items-center mb-3 login">
     <div class="w-sm-50">
 
@@ -9,6 +6,8 @@
             <h2 class="text-center fw-bold ">Log in to your account</h2>
             <p class="text-center text-color text-weight">Welcome back! Please enter your details.</p>
         </div>
+        <p-toast></p-toast>
+
         <!-- start form log in -->
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">

@@ -4,17 +4,17 @@
 </header>
 <!-- end header  -->
 
-<div class="row m-0">
+<div class="row m-0 CCCCFSMILY">
     <!-- start sidebar  -->
     <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'apartments'"></app-sidebar>
     <!-- end sidebar  -->
     <!-- start content page  -->
-    <main class="p-4 col-lg-10 ">
+    <main class="p-4 col-lg-10 " (click)="hidecard()">
         <!-- start part 1 in page  -->
         <div class="fw-bold d-flex justify-content-between" style="color: #6c6a6a;">
             <p>Apartments</p>
             <!-- start add button (add new apartment) in page  -->
-            <app-add-new-button [id]="'apartments/page/add-new-apartments'"></app-add-new-button>
+            <app-add-new-button *ngIf="ApartmentsRole?.p_Add==true || is_Super==true" [id]="'apartments/page/add-new-apartments'"></app-add-new-button>
             <!-- end add button (add new apartment) in page  -->
         </div>
         <!-- end part 1 in page  -->
@@ -34,6 +34,8 @@
                 </div>
 
             </div>
+            <p-toast></p-toast>
+
             <!-- end apartmentLists button  -->
             <!-- start dropdown button  -->
             <app-dropdown [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
@@ -73,7 +75,24 @@
                                     ${{item.apt_Price}} <span class="time">/ month</span>
                                 </div>
                                 <div>
-                                    <img class="pointer h-100" src="assets/images/more_vert_FILL.svg">
+                                    <div class="cursor position-relative">
+                                        <button class="border-0 outlin-0 bg-transparent" (click)="detailperson( $event,item.apt_UUID)">
+                            <img src="assets/images/edit.svg">
+                        </button>
+                                        <div *ngIf="xx==item.apt_UUID" style="width: 191px;z-index: 999;right: 10px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                                            <button class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100">view bookings </button>
+                                            <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/apartments/page/{{item.apt_UUID}}">Edit</button>
+                                            <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" routerLink="/apartments/apartments-details/{{item.apt_UUID}}">View details </button>
+
+                                            <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="AddtoBest(item.apt_UUID)">Add to best offers </button>
+
+                                            <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="RemoveBest(item.apt_UUID)">Remove  Best  offer </button>
+
+                                            <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2"> Delete   </button>
+
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>

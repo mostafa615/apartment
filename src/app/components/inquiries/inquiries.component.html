@@ -112,11 +112,11 @@
                       </td> -->
                         <td>
                             <div>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;" *ngIf="inquire?.status=='Approved'" [class.active]="inquire?.status=='Approved'">
+                                <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;" *ngIf="inquire?.status=='Approved'">
 
                           <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem;"></i> {{inquire?.status}}
                       </span>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;" *ngIf="inquire?.status=='Cancelled'" [class.Deactivated]="inquire?.status=='Cancelled'">
+                                <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;" *ngIf="inquire?.status=='Cancelled'">
                         <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem;"></i> {{inquire?.status}}
 
                          </span>
@@ -136,7 +136,7 @@
                     <img src="assets/images/edit.svg">
                 </button>
                             <div *ngIf="showEdit[inquire.request_ID] &&checkindex!=1" style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
-                                <button class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/inquire-offer">Send Offer  </button>
+                                <button class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/inquire-offer/{{inquire.request_ID}}">Send Offer  </button>
                                 <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/view-inquire/{{inquire.request_ID}}">View  inquire</button>
 
                                 <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="AddWaitingList(inquire.request_ID)">Add to waiting list  </button>

@@ -2,43 +2,54 @@
     color: #1f4068 !important;
     background-color: #fafcff;
     border-left: 3px solid #1f4068;
-  }
-  .content-details{
-     
-      @media (min-width:992px) {
-          margin-left: 17%;
-          padding: 0 10% !important; 
-      }
-  }
-  
-  .top-icon-input {
-    top: 30px;
-  }
-  .rentedORavailable {
-    background-color: rgb(255 255 255 / 70%);
-    color: #1f4068 !important;
-  }
-  .rented {
-    color: #1f4068 !important;
-  }
-  .available {
-    color: #12b76a !important;
-  }
-  .p-dropdown{
-      width:100% !important;
-  }
-  .gray {
-    color: #484649;
 }
-.p-calendar{
-    display: inline-block !important;
-    width: 100% !important;
-    .p-inputtext{
-      width: 100% !important;
-      height: 40px;
+
+.content-details {
+    @media (min-width: 992px) {
+        margin-left: 17%;
+        padding: 0 10% !important;
     }
 }
+
+.top-icon-input {
+    top: 30px;
+}
+
+.rentedORavailable {
+    background-color: rgb(255 255 255 / 70%);
+    color: #1f4068 !important;
+}
+
+.rented {
+    color: #1f4068 !important;
+}
+
+.available {
+    color: #12b76a !important;
+}
+
+.p-dropdown {
+    width: 100% !important;
+}
+
+.gray {
+    color: #484649;
+}
+
+.p-calendar {
+    display: inline-block !important;
+    width: 100% !important;
+    .p-inputtext {
+        width: 100% !important;
+        height: 40px;
+    }
+}
+
 .backcancel {
-  border: 1px solid#798CA4 !important ;
-  color: #0C1A2A !important;
+    border: 1px solid#798CA4 !important;
+    color: #0C1A2A !important;
+}
+
+option {
+    padding: 5px
 }

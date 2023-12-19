@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-add-new-apartments',
@@ -30,15 +30,41 @@ export class AddNewApartmentsComponent {
   UUID: string = ''
    constructor(
     public _ActivatedRoute: ActivatedRoute,
-    private messageService: MessageService
+    private messageService: MessageService,public router: Router
   ) {
 
     this.param = _ActivatedRoute.snapshot.paramMap.get('id');
     this.param == 'add-new-apartments' ? this.param = 'add new apartments' : this.param = 'Edit Apartment Name';
     this.initStpper();
+    this.checkRole()
   }
 
+  ApartmentsRole:any
+  is_Super:any
+  checkRole(){
+    const data = localStorage.getItem("user");
+     if (data !== null) {
 
+      let parsedData = JSON.parse(data);
+       this.is_Super=parsedData.is_Super
+      if(parsedData.is_Super==false) {
+  for(let i=0; i<parsedData.permissions.length;i++){
+    if(parsedData.permissions[i].page_Name=="Apartments"){
+      this.ApartmentsRole=parsedData.permissions[i];
+    }
+  }
+  if(this.ApartmentsRole.p_Add==false &&this.is_Super==false) {
+    this.gotopage( )
+  }
+}
+
+
+    }
+  }
+  gotopage( ){
+    let url: string = "unlegal";
+      this.router.navigateByUrl(url);
+  }
   /**
    * addItem
    * @param value

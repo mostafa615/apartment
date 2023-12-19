@@ -32,7 +32,7 @@ export class InputFieldComponent {
 
   }
   saveActionButton() {
-    debugger
+
     this.list.push({ text1: this.labelinputs.text1, content1: this.content1, text2: this.labelinputs.text2, content2: this.content2 })
     this.show = false
     this.transport.emit({t_Name:this.content1,t_Distance:this.content2});

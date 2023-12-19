@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { InquiresService } from 'src/app/_services/inquires/inquires.service';
@@ -11,15 +11,41 @@ import { InquiresService } from 'src/app/_services/inquires/inquires.service';
 })
 export class ViewInquireComponent implements OnInit {
   param:any
-  constructor(private _inquiresService:InquiresService,private _ActivatedRoute:ActivatedRoute,private messageService: MessageService,) {
+  constructor(private _inquiresService:InquiresService,private _ActivatedRoute:ActivatedRoute,private messageService: MessageService,public router: Router) {
     this.param = _ActivatedRoute.snapshot.paramMap.get('id');
 
   }
 
   ngOnInit() {
     this.GetRequestDetails(  );
+    this.checkRole();
   }
+  inquiresRole:any
+is_Super:any
+checkRole(){
+  const data = localStorage.getItem("user");
+   if (data !== null) {
 
+    let parsedData = JSON.parse(data);
+     this.is_Super=parsedData.is_Super
+    if(parsedData.is_Super==false) {
+for(let i=0; i<parsedData.permissions.length;i++){
+  if(parsedData.permissions[i].page_Name=="Inquiries"){
+    this.inquiresRole=parsedData.permissions[i];
+  }
+}
+if(this.inquiresRole.p_View==false &&this.is_Super==false) {
+  this.gotopage( )
+}
+}
+
+
+  }
+}
+gotopage( ){
+  let url: string = "unlegal";
+    this.router.navigateByUrl(url);
+}
   inquire_details:any
   showSide: string = '';
   value:any;
@@ -38,6 +64,17 @@ export class ViewInquireComponent implements OnInit {
        console.error('Error fetching owners:', error);
     })
   }
+  UploadReqContract() {
+    this._inquiresService.UploadReqContract(this.param,this.convertFileToFormData(this.ListFiles)).subscribe((res) => {
+       this.messageService.add({   severity: 'success', summary: 'Success', detail:res["message"] });
+       this.display1="none";
+
+
+     }, (error) => {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "error" });
+    })
+}
+selectedContractImg:any
   OwnerDtail:any
   onCloseModal1(){
     this.display1="none";
@@ -105,14 +142,14 @@ message = '';
 preview = '';
 imageInfos?:   any =[];
 chooseFile(files:any) {
-  debugger;
+   ;
   this.imageList.push(files[0])
 
 }
 urls = new Array<string>();
 counter=0;
 selectFile(event: any): void {
-  debugger
+  this.ListFiles=null
   this.message = '';
   this.preview = '';
   this.progress = 0;
@@ -121,20 +158,33 @@ selectFile(event: any): void {
    let files = event.target.files;
 
   if (files) {
+    this.selectedContractImg = files  ;
+
     for (let file of files) {
 
-      this.ListFiles.push(file);
+      this.ListFiles=file;
        let reader = new FileReader();
       reader.onload = (e: any) => {
-        debugger
+
          this.urls.push(e.target.result);
       }
       reader.readAsDataURL(file);
     }
   }
+  this.UploadReqContract();
 }
+convertFileToFormData(files: any) {
+  const formData = new FormData();
+
+
+    formData.append('Contract', files, files.name);
+
+
+  return formData;
+}
+
   readFile(file: File): Observable<string> {
-    debugger
+
   return new Observable(obs => {
     const reader = new FileReader();
     reader.onload = (e: any) => {

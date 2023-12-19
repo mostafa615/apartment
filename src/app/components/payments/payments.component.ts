@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payments',
@@ -7,10 +8,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
     this.initFakeData();
+    this.checkRole();
+  }
+  PaymentsRole:any
+  is_Super:any
+  checkRole(){
+    const data = localStorage.getItem("user");
+     if (data !== null) {
+
+      let parsedData = JSON.parse(data);
+       this.is_Super=parsedData.is_Super
+      if(parsedData.is_Super==false) {
+  for(let i=0; i<parsedData.permissions.length;i++){
+    if(parsedData.permissions[i].page_Name=="Payments"){
+      this.PaymentsRole=parsedData.permissions[i];
+    }
+  }
+  if(this.PaymentsRole.p_View==false &&this.is_Super==false) {
+    this.gotopage( )
+  }
+}
+
+
+    }
+  }
+  gotopage( ){
+    let url: string = "unlegal";
+      this.router.navigateByUrl(url);
   }
   initFakeData(): void {
     this.paymentFillterLists = ["All Payments", "Rent", "Security Deposit","Other payments"];
@@ -54,7 +82,7 @@ event.stopPropagation()
   totalofPages=1 ;
   totalRecords=10;
   tiggerPageChange(event: any) {
-    debugger
+
         const calcPageNumber = Math.floor(event.first / event.rows) + 1;
         this.pageNumber=calcPageNumber;
         console.log(calcPageNumber);

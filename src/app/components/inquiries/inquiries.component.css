@@ -123,3 +123,7 @@ th {
     font-size: 14px !important;
     font-family: 'Montserrat'!important
 }
+
+i {
+    font: normal normal normal 14px/1 FontAwesome !important;
+}

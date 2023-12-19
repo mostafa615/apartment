@@ -40,9 +40,35 @@ export class DataTableComponent {
 
   constructor(public confirmationService: ConfirmationService) { }
   ngOnInit() {
+    this.checkRole()
     // console.log(this.headerData);
   }
+  OwnersRole:any
+  is_Super:any
+  checkRole(){
+    const data = localStorage.getItem("user");
+     if (data !== null) {
 
+      let parsedData = JSON.parse(data);
+       this.is_Super=parsedData.is_Super
+      if(parsedData.is_Super==false) {
+  for(let i=0; i<parsedData.permissions.length;i++){
+    if(parsedData.permissions[i].page_Name=="Owners"){
+      this.OwnersRole=parsedData.permissions[i];
+    }
+  }
+  if(this.OwnersRole.p_View==false &&this.is_Super==false) {
+    this.gotopage( )
+  }
+}
+
+
+    }
+  }
+  gotopage( ){
+    let url: string = "unlegal";
+      // this.router.navigateByUrl(url);
+  }
   initDropdown() {
     this.dropdownOption = [
       { label: 'Edit', value: 'edit' },

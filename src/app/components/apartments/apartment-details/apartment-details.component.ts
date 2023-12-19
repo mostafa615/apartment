@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ApartmentService } from '../../../_services/apartments/apartment.service'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OnwerService } from 'src/app/_services/Onwers/onwer.service';
 import { DomSanitizer } from "@angular/platform-browser";
 import { MessageService } from 'primeng/api';
@@ -28,7 +28,7 @@ export class ApartmentDetailsComponent implements OnInit {
   apt_UUID: any;
 
   constructor(public _ApartmentService: ApartmentService, public _ActivatedRoute: ActivatedRoute,private messageService: MessageService,
-    public _OnwerService :OnwerService,private sanitizer: DomSanitizer)
+    public _OnwerService :OnwerService,private sanitizer: DomSanitizer,public router: Router)
    {
     this.apt_UUID = _ActivatedRoute.snapshot.paramMap.get('id');
   }
@@ -37,8 +37,34 @@ export class ApartmentDetailsComponent implements OnInit {
     this.getApartmentDetails();
 
     this.scrollTop();
+    this.checkRole();
   }
+  ApartmentsRole:any
+  is_Super:any
+  checkRole(){
+    const data = localStorage.getItem("user");
+     if (data !== null) {
 
+      let parsedData = JSON.parse(data);
+       this.is_Super=parsedData.is_Super
+      if(parsedData.is_Super==false) {
+  for(let i=0; i<parsedData.permissions.length;i++){
+    if(parsedData.permissions[i].page_Name=="Apartments"){
+      this.ApartmentsRole=parsedData.permissions[i];
+    }
+  }
+  if(this.ApartmentsRole.p_View==false &&this.is_Super==false) {
+    this.gotopage( )
+  }
+}
+
+
+    }
+  }
+  gotopage( ){
+    let url: string = "unlegal";
+      this.router.navigateByUrl(url);
+  }
   /**
    * getApartmentDetails
    */
@@ -131,7 +157,7 @@ export class ApartmentDetailsComponent implements OnInit {
   center : any;
   zoom = 10;
   moveMap(event: google.maps.MapMouseEvent) {
-    debugger
+
       if (event.latLng != null) this.display1 = (event.latLng.toJSON());
       this.center.lat=this.display1.lat
       this.center.lng=this.display1.lng
@@ -152,6 +178,7 @@ export class ApartmentDetailsComponent implements OnInit {
 this.display22="none"
 
   }
+
   MarkRented() {
     this._ApartmentService.MarkRented( this.apt_UUID).subscribe((res) => {
       this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Rented Mark Successfuly'}` });

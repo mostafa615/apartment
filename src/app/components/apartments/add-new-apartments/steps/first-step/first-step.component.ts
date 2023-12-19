@@ -73,7 +73,7 @@ export class FirstStepComponent implements OnInit {
   /** n_ofLiving */
   n_ofLiving: number = 0;
   /** apt_imgs */
-  apt_imgs: Array<any> = [];
+  apt_imgs: any = [];
   /** uploadedFiles */
   uploadedFiles: any[] = [];
   // transport in local storage
@@ -101,7 +101,7 @@ export class FirstStepComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
+
     this.idParamterEdit = this._ActivatedRoute.snapshot.params['id']
 
  if(this.addApartment !="add new apartments" ){
@@ -117,10 +117,11 @@ export class FirstStepComponent implements OnInit {
         this.getApartmentDetails()
 
  }else{
+
   this.edit=""
   this.apt_UUID= localStorage.getItem("apt_UUID");
     this.storedImages = JSON.parse(localStorage.getItem("imagesAPT")||'{}');
-
+    // this.apt_imgs= JSON.parse(localStorage.getItem("imagesAPT")||'{}');
         this.initFakeData();
         this.bindCreateGeneral();
         this.getAowners();
@@ -142,8 +143,9 @@ export class FirstStepComponent implements OnInit {
   aprt_details_Edit:any={}
   apt_types_show:any=""
 getApartmentDetails() {
-debugger
+
     this._ApartmentService.getApartDetail(this.idParamterEdit).subscribe((res) => {
+
       this.aprt_details_Edit = res.general_Info
       this.apt_imgs=res.general_Info["property_Imgs"]
       this.generalInfoForm.get('apt_Imgs')?.patchValue(res.general_Info["property_Imgs"]);
@@ -155,7 +157,7 @@ debugger
        this.generalInfoForm.patchValue(res.general_Info);
         this.Address=res.general_Info["apt_Address"]
        this.localapt_Transports=res.trasponrts
-       debugger
+
       // this.Createtransport=this.localapt_Transports
     })
   }
@@ -166,7 +168,7 @@ debugger
     const data2 = localStorage.getItem("Createtransport");
 
     if (data !== null) {
-      debugger
+
       let parsedData = JSON.parse(data);
         if(parsedData.apt_types=="Apartment"){
         this.isShow=true
@@ -177,10 +179,11 @@ debugger
         }
       this.generalInfoForm.patchValue(parsedData);
       this.generalInfoForm.get('apt_Imgs')?.patchValue(parsedData.apt_Imgs);
+      this.apt_imgs=parsedData.apt_Imgs
       this.bills = parsedData.bills;
       this.generalInfoForm.get('apt_Area')?.setValue(parsedData.apt_Area);
       this.selectedfromDropDownArea(parsedData.apt_Area,"update")
-      debugger
+
       this.localapt_Transports = parsedData.apt_Transports;
        //this.Createtransport== parsedData.apt_Transports;
     }
@@ -214,7 +217,7 @@ debugger
    * @param value
    */
   selectedfromDropDownPropertyowner(value: any): void {
-    debugger
+
     this.generalInfoForm.get('apt_Owner')?.setValue(value.id);
   };
 
@@ -233,7 +236,7 @@ debugger
    */
   selectedfromDropDownArea(value: any,ifUpdaa:any): void {
 
-    debugger
+
     if(ifUpdaa=="update"){
       this.generalInfoForm.get('apt_Area')?.setValue(value);
 
@@ -422,13 +425,13 @@ debugger
   }
   Create_Apart_General(data: any) {
 
-debugger
 
-    this.checkValidData()
-if(data.value.apt_ThumbImg==''||data.value.apt_ThumbImg==null){
-     this.generalInfoForm.get('apt_ThumbImg')?.patchValue(this.apt_imgs[0].apt_imgs);
-     data.value.apt_ThumbImg=this.apt_imgs[0].apt_imgs;
-}
+
+    // this.checkValidData()
+// if(data.value.apt_ThumbImg==''||data.value.apt_ThumbImg==null||data.value.apt_ThumbImg==undefined){
+//      this.generalInfoForm.get('apt_ThumbImg')?.patchValue(this.apt_imgs[0].apt_imgs);
+//      data.value.apt_ThumbImg=this.apt_imgs[0].apt_imgs;
+// }
     data.value.apt_AllBillsIncludes = true
     // data.value.apt_Lat = 0
      data.value.apt_Status = "Rented"
@@ -453,8 +456,8 @@ if(data.value.apt_ThumbImg==''||data.value.apt_ThumbImg==null){
         this.jumbToNextSteb2_n_ofLiving.emit(this.n_ofLiving)
         this.getId.emit(res.uuid)
       }, (err: any) => {
-        debugger
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
       })
     }else{
       this._ApartmentService.createPostSec1({ ...data.value, apt_Transports: this.Createtransport },this.id).subscribe((res) => {
@@ -469,8 +472,8 @@ if(data.value.apt_ThumbImg==''||data.value.apt_ThumbImg==null){
         this.jumbToNextSteb2_n_ofLiving.emit(this.n_ofLiving)
         this.getId.emit(res.uuid)
       }, (err: any) => {
-        debugger
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
       })
     }
 
@@ -486,7 +489,7 @@ if(data.value.apt_ThumbImg==''||data.value.apt_ThumbImg==null){
   }
 
   transport(value: object): void {
-    debugger
+
     console.log(this.localapt_Transports)
      this.Createtransport.push(value)
   }
@@ -501,7 +504,7 @@ if(data.value.apt_ThumbImg==''||data.value.apt_ThumbImg==null){
   };
   zoom = 6;
   moveMap(event: google.maps.MapMouseEvent) {
-    debugger
+
       if (event.latLng != null) this.display1 = (event.latLng.toJSON());
       this.center.lat=this.display1.lat
       this.center.lng=this.display1.lng
@@ -522,14 +525,14 @@ if(data.value.apt_ThumbImg==''||data.value.apt_ThumbImg==null){
   preview = '';
   imageInfos?:   any =[];
   chooseFile(files:any) {
-    debugger;
+     ;
     this.imageList.push(files[0])
 
   }
   urls = new Array<string>();
 counter=0;
   selectFile(event: any): void {
-    debugger
+
     this.message = '';
     this.preview = '';
     this.progress = 0;
@@ -543,7 +546,7 @@ counter=0;
         this.ListFiles.push(file);
          let reader = new FileReader();
         reader.onload = (e: any) => {
-          debugger
+
            this.urls.push(e.target.result);
         }
         reader.readAsDataURL(file);
@@ -553,7 +556,7 @@ counter=0;
     this.ListFiles=[]
    }
     readFile(file: File): Observable<string> {
-      debugger
+
       return new Observable(obs => {
       const reader = new FileReader();
       reader.onload = (e: any) => {
@@ -572,7 +575,7 @@ imageList:any={}
 spinner: boolean = false;
 
   upload(): void {
-debugger
+
 this.spinner=true;
         this.uploadService.uploadMultiFile(this.convertFileToFormData(this.ListFiles)).subscribe(data => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Images Upload Successfully'}` });
@@ -600,7 +603,7 @@ this.display22="none"
    this.imageSize=photo
       }
       removeItem(imageName:any){
-        debugger
+
 
      let index2343 = this.apt_imgs.findIndex((element:any) => element.apt_imgs   == imageName);
      this.apt_imgs.splice(index2343, 1);
@@ -619,9 +622,9 @@ isSelected=true;
       }
 
       checkValue(event: any,file:any){
-        debugger
+
           if(event.target.checked==true){
-            this.generalInfoForm.get('apt_ThumbImg')?.patchValue(file[0].name);
+            this.generalInfoForm.get('apt_ThumbImg')?.patchValue(file);
 
           }else{
 

@@ -9,6 +9,7 @@ import { DropdownModule } from 'primeng/dropdown';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PaymentsComponent } from './payments.component';
+
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
  import { ProgressSpinnerModule } from 'primeng/progressspinner';

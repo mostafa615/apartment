@@ -2,35 +2,39 @@
     <!--main navigation-->
 
     <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/dashboard">
-        <img src="../../../../assets/images/navigation/dashboard.svg"> dashboard
+        <img src="../../../../assets/images/navigation/dashboard.svg"> Dashboard
     </a>
-    <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/apartments">
-        <img src="../../../../assets/images/navigation/apartment.svg"> apartments
+    <a tabindex="1" *ngIf="Apartments.p_View==true||is_Super==true" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/apartments">
+        <img src="../../../../assets/images/navigation/apartment.svg"> Apartments
     </a>
-    <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/users">
+    <a tabindex="1" *ngIf="Users.p_View==true||is_Super==true" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/users">
         <img src="../../../../assets/images/navigation/users.svg"> Tenants
     </a>
-    <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/owners">
-        <img src="../../../../assets/images/navigation/owner 2.svg"> owners
+    <a tabindex="1" *ngIf="Owners.p_View==true||is_Super==true" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/owners">
+        <img src="../../../../assets/images/navigation/owner 2.svg"> Owners
     </a>
-    <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/payments">
-        <img src="../../../../assets/images/navigation/payments.svg"> payments
+    <a tabindex="1" *ngIf="Payments.p_View==true||is_Super==true" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/payments">
+        <img src="../../../../assets/images/navigation/payments.svg"> Payments
     </a>
-    <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/messages">
-        <img src="../../../../assets/images/navigation/messages.svg"> messages
+    <a tabindex="1" *ngIf="Messages.p_View==true||is_Super==true" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/messages">
+        <img src="../../../../assets/images/navigation/messages.svg"> Messages
     </a>
-    <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/statistics">
-        <img src="../../../../assets/images/navigation/stats.svg"> statistics
+    <a tabindex="1" *ngIf="Statistics.p_View==true||is_Super==true" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/statistics">
+        <img src="../../../../assets/images/navigation/stats.svg"> Statistics
     </a>
-    <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/inquiries">
-        <img src="../../../../assets/images/navigation/help.svg"> inquiries
+    <a tabindex="1" *ngIf="Inquiries.p_View==true||is_Super==true" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/inquiries">
+        <img src="../../../../assets/images/navigation/help.svg"> Inquiries
     </a>
-    <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/Issue_Reports">
+    <a tabindex="1" *ngIf="Issue.p_View==true||is_Super==true" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/Issue_Reports">
         <img src="../../../../assets/images/navigation/reports.svg"> Issue_Reports
     </a>
-    <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/workers">
+    <a tabindex="1" *ngIf="workers.p_View==true||is_Super==true" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/workers">
         <img src="../../../../assets/images/navigation/owner 2.svg"> Workers
     </a>
+    <a tabindex="1" *ngIf="partners.p_View==true||is_Super==true" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/partner">
+        <img src="../../../../assets/images/navigation/owner 2.svg"> Partners
+    </a>
+
     <!-- <div *ngFor="let listAnchor of listAnchors ; let index=index">
         <a class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" :routerLink="/{{listAnchor.text}}" (click)="changeAnchor(index)" [class.chang-style-anchor]="link[index]==true">
             <img [src]="listAnchor.img" [class.chang-img-color]="link[index]==true"> {{listAnchor.text}}
@@ -42,24 +46,26 @@
         <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="#">
             <img src="../../../../assets/images/navigation/help.svg"> Help
         </a>
-        <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" :routerLink="/admins" routerLinkActive="active" (click)="isFreeze = !isFreeze">
-            <img src="../../../../assets/images/navigation/setting.svg"> Settings
-        </a>
-        <div class="sidebar-submenu" *ngIf="isFreeze">
-            <ul class="list-none">
-                <li class="list-none">
-                    <a class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" (click)="setfraze()" routerLinkActive="active1" :routerLink="/admins">Admins
+        <div *ngIf="Settings.p_View==true||is_Super==true">
+            <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" :routerLink="/admins" routerLinkActive="active" (click)="isFreeze = !isFreeze">
+                <img src="../../../../assets/images/navigation/setting.svg"> Settings
+            </a>
+            <div class="sidebar-submenu" *ngIf="isFreeze">
+                <ul class="list-none">
+                    <li class="list-none">
+                        <a class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" (click)="setfraze()" routerLinkActive="active1" :routerLink="/admins">Admins
              </a>
-                </li>
-                <li class="list-none">
-                    <a class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active1" :routerLink="/roles">System roles</a>
-                </li>
-                <li class="list-none">
-                    <a class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active1">Notifications</a>
-                </li>
-            </ul>
+                    </li>
+                    <li class="list-none">
+                        <a class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active1" :routerLink="/roles">System roles</a>
+                    </li>
+                    <li class="list-none">
+                        <a class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active1">Notifications</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" (click)="onSubmitModal2()">
+        <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" style="cursor: pointer" routerLinkActive="active" (click)="onSubmitModal2()">
             <img src="../../../../assets/images/navigation/logout.svg"> Logout
         </a>
         <!--APPs navigation-->

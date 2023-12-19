@@ -30,15 +30,23 @@ import { EditWorkerComponent } from './components/workers/edit-worker/edit-worke
 import { WorkerProfileComponent } from './components/workers/worker-profile/worker-profile.component';
 import { MainFileComponent } from './components/issueReports/main-file/main-file.component';
 import { ReportsDetailsComponent } from './components/issueReports/reports-details/reports-details.component';
+import { ReportPrintComponent } from './components/issueReports/report-print/report-print.component';
+import { AddPartnerComponent } from './components/partner/add-partner/add-partner.component';
+import { EditPartnerComponent } from './components/partner/edit-partner/edit-partner.component';
+import { ViewPartnerComponent } from './components/partner/view-partner/view-partner.component';
+
 import { AssginIssueComponent } from './components/issueReports/assgin-issue/assgin-issue.component';
+import { UnlegalComponent } from './components/unlegal/unlegal.component';
+import { PartnerComponent } from './components/partner/partner.component';
 
 import { AuthGuard } from './_helpers/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
-  { path: "dashboard", component: DashboardComponent,canActivate: [AuthGuard] },
+  { path: "dashboard", component: DashboardComponent,canActivate: [AuthGuard]
+},
   { path: "login", component: LoginComponent },
-  { path: "apartments", component: ApartmentsComponent,canActivate: [AuthGuard], },
+  { path: "apartments", component: ApartmentsComponent,canActivate: [AuthGuard],},
   { path: "apartments/page/:id", component: AddNewApartmentsComponent,canActivate: [AuthGuard] },
   { path: "apartments/apartments-details/:id", component: ApartmentDetailsComponent,canActivate: [AuthGuard] },
   { path: "apartments/:id", component: ContractComponent,canActivate: [AuthGuard] },
@@ -60,7 +68,7 @@ const routes: Routes = [
 
   { path: "view-inquire/:id", component: ViewInquireComponent ,canActivate: [AuthGuard]},
 
-  { path: "inquire-offer", component: InquireOfferComponent ,canActivate: [AuthGuard]},
+  { path: "inquire-offer/:id", component: InquireOfferComponent ,canActivate: [AuthGuard]},
   { path: "inquire-edit/:id", component: InquireEditComponent ,canActivate: [AuthGuard]},
   { path: "create-contract", component: CreacteContractComponent ,canActivate: [AuthGuard]},
   { path: "workers", component:   WorkersComponent,canActivate: [AuthGuard]},
@@ -70,8 +78,15 @@ const routes: Routes = [
   { path: "worker-profile/:id", component: WorkerProfileComponent,canActivate: [AuthGuard]},
   { path: "Issue_Reports", component: MainFileComponent,canActivate: [AuthGuard]},
   { path: "Report-view/:id", component: ReportsDetailsComponent,canActivate: [AuthGuard]},
-  { path: "assgin-issue/:id", component: AssginIssueComponent,canActivate: [AuthGuard]},
+  { path: "Report-print/:id", component: ReportPrintComponent,canActivate: [AuthGuard]},
 
+  { path: "assgin-issue/:id", component: AssginIssueComponent,canActivate: [AuthGuard]},
+  { path: "unlegal", component: UnlegalComponent,canActivate: [AuthGuard]},
+  { path: "partner", component: PartnerComponent,canActivate: [AuthGuard]},
+
+  { path: "add-partner", component: AddPartnerComponent,canActivate: [AuthGuard]},
+  { path: "edit-partner/:id", component: EditPartnerComponent,canActivate: [AuthGuard]},
+  { path: "view-partner/:id", component: ViewPartnerComponent,canActivate: [AuthGuard]},
 
 ];
 @NgModule({

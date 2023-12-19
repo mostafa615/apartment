@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 const routes: Routes = [
@@ -14,10 +16,11 @@ const routes: Routes = [
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
   imports: [
-    CommonModule,
+    CommonModule,ToastModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
-  ]
+  ],exports: [ ],
+  providers: [MessageService],
 })
 export class AuthModule { }

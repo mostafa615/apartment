@@ -2,6 +2,7 @@ import { RolesService } from './../../_services/roles/roles.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
  import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-roles',
@@ -45,10 +46,37 @@ numberRoles=0;
 display1="none"
 display2="none"
 
-  constructor( public _rolesService:RolesService,    private messageService: MessageService,
+  constructor( public _rolesService:RolesService,    private messageService: MessageService, public router : Router
     ) { }
   ngOnInit() {
     this.getAllRolles();
+    this.checkRole();
+  }
+  AdminRole:any
+  is_Super:any
+  checkRole(){
+    const data = localStorage.getItem("user");
+     if (data !== null) {
+
+      let parsedData = JSON.parse(data);
+       this.is_Super=parsedData.is_Super
+      if(parsedData.is_Super==false) {
+  for(let i=0; i<parsedData.permissions.length;i++){
+    if(parsedData.permissions[i].page_Name=="Settings"){
+      this.AdminRole=parsedData.permissions[i];
+    }
+  }
+  if(this.AdminRole.p_View==false &&this.is_Super==false) {
+    this.gotopage( )
+  }
+  }
+
+
+    }
+  }
+  gotopage( ){
+    let url: string = "unlegal";
+      this.router.navigateByUrl(url);
   }
   getAllRolles() {
     this.roles=[]
@@ -66,9 +94,9 @@ display2="none"
   createRole() {
 
     this._rolesService.createRole(this.data).subscribe((res) => {
-      debugger
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Images Upload Successfully'}` });
-      debugger
+
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'ٌRoles Upload Successfully'}` });
+
       this.getAllRolles();
       this.data="";
       this.display2="none"
@@ -78,7 +106,7 @@ display2="none"
     })
   }
   DeleteRole(id:any) {
-    debugger
+
     this._rolesService.deleteRole(id).subscribe((res) => {
       this.getAllRolles();
       this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Deleted Successfuly'}` });

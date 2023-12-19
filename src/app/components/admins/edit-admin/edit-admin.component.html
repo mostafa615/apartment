@@ -38,7 +38,7 @@
                             <div class="d-flex  justify-content-between ">
 
                                 <div class="btn-container">
-                                    <p-button class="btn-style sendDataPButton" label="Update picture" [loading]="loadingButton" type="button"></p-button>
+                                    <p-button class="btn-style sendDataPButton" label="Upload picture" [loading]="loadingButton" type="button"></p-button>
                                     <input type="file" #fileInput (change)="uploadPic($event)">
                                 </div>
 
@@ -129,7 +129,7 @@
                 </div> -->
 
                 <div class="d-flex justify-content-between" style="margin-top:35px">
-                    <button class="outlet-0 bg-transparent rounded-3 px-4 py-2 fw-bold downloadAll">Cancel</button>
+                    <button (click)="gotopage2()" class="outlet-0 bg-transparent rounded-3 px-4 py-2 fw-bold downloadAll">Cancel</button>
                     <p-button class="outlet-0 text-white border-0 px-4 py-2 rounded-3 sendDataPButton" label="Save" type="submit"></p-button>
 
                     <!-- <button class="outlet-0 text-white border-0 px-4 py-2 rounded-3" style="background-color: #1f4068;"

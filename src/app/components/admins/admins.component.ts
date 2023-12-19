@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AdminsService } from 'src/app/_services/admins/admins.service';
 
@@ -25,11 +26,38 @@ export class AdminsComponent implements OnInit {
   display1="none"
   statusAdmin:any
   adminDataToModel:any
-  constructor( public _adminservices:AdminsService , private messageService: MessageService,) { }
+  constructor( public _adminservices:AdminsService , private messageService: MessageService,public router:Router) { }
 
   ngOnInit() {
     this.getAllRolles();
+    this.checkRole();
   }
+   AdminRole:any
+is_Super:any
+checkRole(){
+  const data = localStorage.getItem("user");
+   if (data !== null) {
+
+    let parsedData = JSON.parse(data);
+     this.is_Super=parsedData.is_Super
+    if(parsedData.is_Super==false) {
+for(let i=0; i<parsedData.permissions.length;i++){
+  if(parsedData.permissions[i].page_Name=="Settings"){
+    this.AdminRole=parsedData.permissions[i];
+  }
+}
+if(this.AdminRole.p_View==false &&this.is_Super==false) {
+  this.gotopage( )
+}
+}
+
+
+  }
+}
+gotopage( ){
+  let url: string = "unlegal";
+    this.router.navigateByUrl(url);
+}
   onCloseModal1(){
     this.display1="none"
   }

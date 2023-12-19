@@ -21,7 +21,7 @@
                 <!-- end dropdown button  -->
                 <!-- start add button (add new owner) in page  -->
                 <!-- <app-add-new-button [id]="'/owner/create_new'" class="mt-2"></app-add-new-button> -->
-                <a (click)="addOpenRole()" class="px-3 py-2 rounded border text-white text-decoration-none" style="background-color:#1F4068; cursor: pointer;">
+                <a *ngIf="AdminRole?.p_Add==true || is_Super==true" (click)="addOpenRole()" class="px-3 py-2 rounded border text-white text-decoration-none" style="background-color:#1F4068; cursor: pointer;">
                     <img src="assets/images/plus.svg" class="me-2 ">Add New
                 </a>
                 <!-- end add button (add new owner) in page  -->
@@ -89,10 +89,10 @@
                       <img src="assets/images/edit.svg">
                   </button>
                             <div *ngIf="showEdit[role.id]" style="width:200px;z-index:999 ; right: 200px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
-                                <button class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" (click)="UpdateOpenRole(role)">update Role</button>
+                                <button class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" *ngIf="AdminRole?.p_Update==true || is_Super==true" (click)="UpdateOpenRole(role)">update Role</button>
                                 <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/authorization/{{role.id}}">Give authorization</button>
                                 <!-- <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100">Assigned users</button> -->
-                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="DeleteRole(role.id)"> Delete  </button>
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" *ngIf="AdminRole?.p_Delete==true || is_Super==true" (click)="DeleteRole(role.id)"> Delete  </button>
                             </div>
                         </td>
 

@@ -7,6 +7,7 @@ import { MainFileComponent } from './main-file/main-file.component';
 
 import { AssginIssueComponent } from './assgin-issue/assgin-issue.component';
 
+import { ReportPrintComponent } from './report-print/report-print.component';
 
 
   import { DropdownModule } from 'primeng/dropdown';
@@ -26,13 +27,14 @@ import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast'
 import { PaginatorModule } from 'primeng/paginator';
+
 const routes: Routes = [
 ];
 
 @NgModule({
   declarations: [
 
-     ReportsDetailsComponent,MainFileComponent,AssginIssueComponent
+     ReportsDetailsComponent,MainFileComponent,AssginIssueComponent,ReportPrintComponent
 
   ],
   imports: [

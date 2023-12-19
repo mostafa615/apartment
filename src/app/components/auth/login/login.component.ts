@@ -57,18 +57,15 @@ export class LoginComponent {
         next: () => {
           // get return url from route parameters or default to '/'
           console.log('ssssssssssssssssssssssssucesssssssssssssss');
-          debugger
+
           // const returnUrl = this.route.dsnapshot.queryParams['returnUrl'] || '/';
           this.router.navigate(['/dashboard']);
         },
         error: error => {
-          debugger
-          this.messageSuccess = "true";
 
-            setTimeout(()=>{                           // <<<---using ()=> syntax
-                this.messageSuccess = "false";
-            }, 3000);
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: ` ${error.error.errorMessage}` });
+
+
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: `login failed` });
 
           this.error = error.error.errorMessage;
           this.loading = false;

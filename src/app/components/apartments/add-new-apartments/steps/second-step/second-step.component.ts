@@ -131,13 +131,13 @@ export class SecondStepComponent {
   getApartmentDetails() {
 
       this._ApartmentService.getApartDetail(this.idParamterEdit).subscribe((res) => {
-        debugger
+
         this.aprt_details_Edit = res.general_Info
         this.getDataFromEdit(res);
       })
     }
   getLocalStorage(): void {
-debugger
+
     if ("create_Apart_Equ" in localStorage) {
       const data =JSON.parse(localStorage.getItem("create_Apart_Equ")!);
       let parsedData = data ;
@@ -183,7 +183,7 @@ debugger
         arrBathroom=[]
 
       }
-      debugger
+
       // section of living room
       this.arraynewFieldLivingRoomDetails=[]
        let arrLiving=[]
@@ -239,7 +239,7 @@ debugger
     }
   }
   getDataFromEdit(data:any) {
-    debugger
+
           //  const data =JSON.parse(localStorage.getItem("create_Apart_Equ")!);
           let parsedData = data ;
           this.roomType=[]
@@ -284,7 +284,7 @@ debugger
             arrBathroom=[]
 
           }
-          debugger
+
           // section of living room
            this.arraynewFieldLivingRoomDetails=[]
            let arrLiving=[]
@@ -342,7 +342,7 @@ debugger
         }
 
   drowNumberOfEntries() {
-    debugger
+
     for (let i = 0; i < this.n_ofbedRoom; i++) {
       this.arraynewFieldRoomDetails[i] = [{ label: 'room detail 1', contentnewFieldRoomDetails: '' }, { label: 'room detail 2', contentnewFieldRoomDetails: '' }]
     }
@@ -390,7 +390,7 @@ debugger
     return Array.from({ length: n })
   }
   rooms() {
-    debugger
+
     for (let i = 1; i <= this.n_ofbedRoom; i++) {
       this.listOfBedRooms.push([{}])
     }
@@ -408,7 +408,7 @@ debugger
     })
   }
   Create_Apart_Equipment(data: any) {
-debugger
+
     for (let j = 0; j < this.arraynewFieldRoomDetails.length; j++) {
       let obj = {
         "room_Name":  this.arrNamesbedroom[j],
@@ -495,7 +495,7 @@ debugger
         this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Success Second Step'}` });
         this.submitSecondForm()
       }, (err: any) => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
       })
     }else{
       this._ApartmentService.createPostSec2(objectData, this.id).subscribe(res => {
@@ -505,7 +505,7 @@ debugger
         this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Success Second Step'}` });
         this.submitSecondForm()
       }, (err: any) => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.detail}` });
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
       })
     }
 
@@ -576,7 +576,7 @@ debugger
   }
   arrNamesLiving:any=[]
   modelChanged(inputName:any) {
-    debugger
+
     this.arrNamesLiving.push(this.Living_name)
 
   }

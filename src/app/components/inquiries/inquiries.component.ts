@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {InquiresService} from '../../_services/inquires/inquires.service'
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-inquiries',
   templateUrl: './inquiries.component.html',
@@ -12,12 +13,39 @@ export class InquiriesComponent implements OnInit {
   showEdit: Array<boolean> = [];
 
   numberInquires=0;
-  constructor(private _inquiresService:InquiresService ,private messageService: MessageService) { }
+  constructor(private _inquiresService:InquiresService ,private messageService: MessageService,public router: Router) { }
 
   ngOnInit() {
     this.initFakeData();
     this. getAllInquires(this.statusinquire);
+    this.checkRole();
   }
+  inquiresRole:any
+is_Super:any
+checkRole(){
+  const data = localStorage.getItem("user");
+   if (data !== null) {
+
+    let parsedData = JSON.parse(data);
+     this.is_Super=parsedData.is_Super
+    if(parsedData.is_Super==false) {
+for(let i=0; i<parsedData.permissions.length;i++){
+  if(parsedData.permissions[i].page_Name=="Inquiries"){
+    this.inquiresRole=parsedData.permissions[i];
+  }
+}
+if(this.inquiresRole.p_View==false &&this.is_Super==false) {
+  this.gotopage( )
+}
+}
+
+
+  }
+}
+gotopage( ){
+  let url: string = "unlegal";
+    this.router.navigateByUrl(url);
+}
   statusinquire:any=""
   pageNumber=1;
   pagesize=10;
@@ -75,7 +103,7 @@ export class InquiriesComponent implements OnInit {
     })
   }
   tiggerPageChange(event: any) {
-    debugger
+
         const calcPageNumber = Math.floor(event.first / event.rows) + 1;
         this.pageNumber=calcPageNumber;
         console.log(calcPageNumber);
@@ -121,7 +149,7 @@ event.stopPropagation()
       this.getAllInquires(this.statusinquire);
     }
     if(index == 1){
-      this.statusinquire="Waiting"
+      this.statusinquire="Pending"
 
       this.getAllInquires(this.statusinquire);
     }
@@ -132,7 +160,7 @@ event.stopPropagation()
 
     }
     if(index == 3){
-      this.statusinquire="Acepting"
+      this.statusinquire="Approved"
 
       this.getAllInquires(this.statusinquire);
 

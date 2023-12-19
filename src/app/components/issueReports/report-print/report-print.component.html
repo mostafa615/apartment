@@ -1,0 +1,192 @@
+<!-- start header  -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'report-details'"></app-head>
+</header>
+<!-- end header  -->
+
+<div class="row m-0">
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'issue-details'"></app-sidebar>
+    <!-- end sidebar  -->
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10">
+        <div class="d-md-flex justify-content-between">
+            <div class="d-flex">
+                <p class=" me-2" style="color: #6c6a6a">Issue Reports</p>
+                <p class="fw-bold me-2">></p>
+                <p class="fw-bold" style="color: #6c6a6a">Reports View</p>
+            </div>
+            <div>
+                <button class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold" style="background-color: #EBEBEB; color:#1F4068"><img src="assets/images/user/share.png"> Share</button>
+                <button (click)="print()" class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold " *ngIf="param != 'Edit Reports View'" style="background-color: #EBEBEB; color:#1F4068"> <img src="assets/images/print.svg"> Print </button>
+                <!-- <button class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold" style="background-color: #EBEBEB; color:#1F4068" *ngIf="param == 'Edit Reports View'"> <img src="assets/images/report.svg"> Edit </button> -->
+                <!--
+              <button class="outline-0 border-0 rounded-3 py-2 px-3 text-white fw-bold" *ngIf="param == 'Edit Reports View'" style="background-color:#1F4068">
+          <img src="assets/images/pdf.svg">  Generate PDF </button> -->
+                <button (click)="exportAsPDF('MyDIv');" class="outline-0 border-0 rounded-3 py-2 px-3 text-white fw-bold" style="background-color:#1F4068">
+          <img src="assets/images/Vector.svg">  Download PDF </button>
+            </div>
+        </div>
+        <!-- id="MyDIv" -->
+        <div class="mt-3 pt-4 row border bg-white rounded-3 py-3 " id="MyDIv">
+            <!-- <aside class="col-2 p-0 ps-1 position-fixed d-none d-md-block">
+                <div class="ms-4">
+                    <p class="fw-bold mb-0 ">Issue report details</p>
+                    <p class="gray">Issue details user has reported</p>
+                </div>
+
+
+            </aside> -->
+            <!-- <form [formGroup]="createissue" (ngSubmit)="createissuepost(createissue)"> -->
+
+            <div class="col-md-12 content-details ">
+
+                <div class="d-flex justify-content-between mb-4">
+                    <img src="assets/images/logo.svg" alt="">
+                    <div>
+                        <p class="mb-0">Customer ID: {{detialIssue?.customer_ID}} </p>
+                        <p class="mb-0">Prepared Date: {{detialIssue?.date_Reported}}</p>
+                        <p class="mb-0">Phone Number: {{detialIssue?.phone_Number}}</p>
+                    </div>
+                </div>
+
+                <div class="row ">
+                    <div class="col-12 col-md-6 mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Issue reports ID</label>
+                        <div class="form-control w-100 fs-6  pt-2">{{detialIssue.issue_Code}}</div>
+
+                        <!-- <input class="form-control w-100" [(ngModel)]="detialIssue.issue_Code" type="text"> -->
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="fw-bold" style="color: #605D62">Requested by</label>
+                        <div class="form-control w-100 fs-6 pt-2">{{detialIssue.requsted_By}}</div>
+
+                        <!-- <input class="form-control w-100" [(ngModel)]="detialIssue.requsted_By" type="text"> -->
+                    </div>
+
+                </div>
+                <div class="row ">
+                    <div class="col-12 col-md-6 mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Apartment number</label>
+                        <div class="form-control w-100 fs-6 pt-2">{{detialIssue.apartment_Number}}</div>
+
+                        <!-- <input class="form-control w-100" [(ngModel)]="detialIssue.apartment_Number" type="text"> -->
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="fw-bold" style="color: #605D62">Name on the Ringbell</label>
+                        <div class="form-control w-100 fs-6 pt-2">{{detialIssue.name_RingBell}}</div>
+
+                        <!-- <input class="form-control w-100" [(ngModel)]="detialIssue.name_RingBell" type="text"> -->
+                    </div>
+
+                </div>
+                <div class="row ">
+                    <div class="col-12 col-md-6 mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Phone Number</label>
+                        <div class="form-control w-100 fs-6 pt-2">{{detialIssue.phone_Number}}</div>
+
+                        <!-- <input class="form-control w-100" [(ngModel)]="detialIssue.phone_Number" type="number"> -->
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="fw-bold" style="color: #605D62">Alternative Phone Number</label>
+                        <div class="form-control w-100 fs-6 pt-2">{{detialIssue.phone_Number2}}</div>
+
+                        <!-- <input class="form-control w-100" [(ngModel)]="detialIssue.phone_Number2" type="number"> -->
+                    </div>
+
+                </div>
+                <div class="col-12 mb-4">
+                    <label class="fw-bold" style="color: #605D62;">Apartment address</label>
+                    <div class="form-control w-100 fs-6 pt-2">{{detialIssue.apt_Address}}</div>
+
+                    <!-- <input class="form-control w-100" [(ngModel)]="detialIssue.apt_Address" type="text"> -->
+                </div>
+                <div class="row ">
+                    <div class="col-12 col-md-6 mb-4">
+                        <label class="fw-bold" style="color: #605D62;">Floor no.</label>
+                        <div class="form-control w-100 fs-6 pt-2">{{detialIssue.apt_FloorNo}}</div>
+
+                        <!-- <input class="form-control w-100" [(ngModel)]="detialIssue.apt_FloorNo" type="number"> -->
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="fw-bold" style="color: #605D62">Side</label>
+                        <div class="form-control w-100 fs-6 pt-2">{{detialIssue.side}}</div>
+
+                        <!-- <input class="form-control w-100" [(ngModel)]="detialIssue.side" type="text"> -->
+                    </div>
+
+                </div>
+                <div class="row ">
+                    <div class="col-12 col-md-6 mb-4">
+                        <label class="fw-bold form-label d-block mb-0" style="color: #605D62;">Date reported</label>
+                        <!-- <p-calendar [(ngModel)]="detialIssue.date_Reported"></p-calendar> -->
+                        <!-- <input class="form-control w-100" [(ngModel)]="detialIssue.date_Reported" type="text"> -->
+                        <div class="form-control w-100 fs-6 pt-2">{{detialIssue.date_Reported}}</div>
+
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="fw-bold" style="color: #605D62">Status</label>
+                        <div class="form-control w-100 fs-6 pt-2">{{detialIssue.issue_Status}}</div>
+
+                        <!-- <select style="font-size: 16PX;" class="s-cont form-control   form-select form-select-sm mb-3" name="issue_Status" id="issue_Status" [(ngModel)]="detialIssue.issue_Status">
+
+                       <option   value="InProgress"> InProgress</option>
+                       <option    value="Pending">Pending</option>
+                       <option  value="Completed">Completed</option>
+                       <option   value="Cancelled">Cancelled</option>
+
+                  </select> -->
+                        <!-- <input class="form-control w-100" [(ngModel)]="detialIssue.issue_Status" type="text"> -->
+                    </div>
+
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold" style="color: #605D62;">Descriptions</label>
+                    <div style="resize: unset;height: 144px;" class="form-control w-100 fs-6 border rounded-3 w-100 p-2 pt-2">{{detialIssue.desc}}</div>
+
+                    <!-- <textarea class="border rounded-3 w-100 p-2" rows="5" [(ngModel)]="detialIssue.desc" style="resize: unset;" placeholder="Enter a description"></textarea> -->
+                </div>
+
+                <div>
+                    <p class="fw-bold mb-0" style="color: #605D62;">Pictures</p>
+                    <div class="accordion-body mb-3">
+                        <img *ngFor="let item of detialIssue.issue_Images;let i=index" style="width: 100px;" [src]="item.img_Url" class="me-2">
+
+                    </div>
+                </div>
+                <div id="OtherDetails" style="margin-top:20px">
+                    <p class="fw-bold mb-0">Suggested dates</p>
+                    <p style="color: #605D62 !important;">view all available appointments </p>
+                </div>
+                <div class="row ">
+
+                    <div class="col-12 col-md-6 mb-4" *ngFor="let item of detialIssue.appointement;let i=index">
+                        <label class="fw-bold" style="color: #605D62;">appointement ( {{i+1}}) </label>
+                        <div class="form-control w-100 fs-6 pt-2">{{item.appo_Date}} {{item.appo_Time}} </div>
+
+                        <!-- <input class="form-control w-100" [(ngModel)]="item.appo_Date+' ' +item.appo_Time " type="text"> -->
+                    </div>
+
+
+                </div>
+                <!-- <div class="d-flex justify-content-end">
+                    <div class="d-flex justify-content-between">
+                        <button (click)="gotopage2()" class="backcancel bg-white rounded-2 py-2 px-3 fw-bold mx-2">
+                Cancel
+              </button>
+                        <button (click)="submitForm()" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                Update
+              </button>
+                    </div>
+                </div> -->
+                <p class="gray text-center">
+                    his document is confidential and intended for the recipient only. Any unauthorized distribution or reproduction is prohibited. his document is confidential and intended for the recipient only. Any unauthorized distribution or reproduction is prohibited.
+                    his document is confidential and intended for the recipient only
+                </p>
+
+            </div>
+            <!-- </form> -->
+        </div>
+    </main>
+    <!-- end content page  -->
+</div>

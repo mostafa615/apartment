@@ -1,4 +1,6 @@
 import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 import { ApartmentService } from 'src/app/_services/apartments/apartment.service';
 import { IApartments } from 'src/app/models/apartment';
@@ -19,13 +21,40 @@ export class ApartmentsComponent implements OnInit {
   listDropDown: Array<object> = [];
   apartmentList: IApartments[] = [];
 
-  constructor(private apartmentSer: ApartmentService) { }
+  constructor(private apartmentSer: ApartmentService,public router: Router,private messageService: MessageService,) { }
 
   ngOnInit() {
     this.getAllApartment();
     this.initFakeData();
     this.clearAllCookie();
+    this.checkRole()
   }
+  ApartmentsRole:any
+is_Super:any
+checkRole(){
+  const data = localStorage.getItem("user");
+   if (data !== null) {
+
+    let parsedData = JSON.parse(data);
+     this.is_Super=parsedData.is_Super
+    if(parsedData.is_Super==false) {
+for(let i=0; i<parsedData.permissions.length;i++){
+  if(parsedData.permissions[i].page_Name=="Apartments"){
+    this.ApartmentsRole=parsedData.permissions[i];
+  }
+}
+if(this.ApartmentsRole.p_View==false &&this.is_Super==false) {
+  this.gotopage( )
+}
+}
+
+
+  }
+}
+gotopage( ){
+  let url: string = "unlegal";
+    this.router.navigateByUrl(url);
+}
   clearAllCookie() {
     const keysToRemove = ['generalInfoForm', 'PostBackupInfo', 'create_Apart_Equ', 'contract','imagesAPT','imagesAPT12','imagesAPT11'];
 
@@ -78,6 +107,26 @@ export class ApartmentsComponent implements OnInit {
     this.getAllApartment();
 
   }
+  messagemessage:any
+  AddtoBest(apt_UUID:any) {
+    this.apartmentSer.AddtoBest( apt_UUID).subscribe((res) => {
+      this.messagemessage=res["message"]
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${this.messagemessage}` });
+
+    }, (error) => {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
+    })
+  }
+  messagemessage2:any
+  RemoveBest(apt_UUID:any) {
+    this.apartmentSer.RemoveBest( apt_UUID).subscribe((res) => {
+      this.messagemessage2=res["message"]
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${this.messagemessage2}` });
+
+    }, (error) => {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
+    })
+  }
   getAllApartment(): void {
     this.apartmentList=[];
     this.apartmentSer.FilterApartmentsFront("",this.pageNumber, this.itemsPerPage,this.filterStatus).subscribe((res) => {
@@ -100,7 +149,7 @@ export class ApartmentsComponent implements OnInit {
     })
   }
   tiggerPageChange(event: any) {
-debugger
+
     const calcPageNumber = Math.floor(event.first / event.rows) + 1;
     this.pageNumber=calcPageNumber;
     console.log(calcPageNumber);
@@ -160,5 +209,22 @@ debugger
 
     }
   }
+  xx:any
+  showEdit: Array<boolean> = [];
+   detailperson(event:any,id: any): void {
+    this.xx=id;
+    this.showEdit=[]
+    event.stopPropagation()
+
+    this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
+
+
+
+   }
+   hidecard( ){
+    this.xx=""
+    this.showEdit=[]
+
+ }
 }
 

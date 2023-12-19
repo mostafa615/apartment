@@ -87,7 +87,7 @@
                         <p class="gray mt-3 ms-2">Published: 27/04/2023 • 04: 14 PM</p>
                     </div>
                     <div class="row">
-                        <a class="col-7 border-0 outline-0 rounded-3 me-3 py-2 blue text-decoration-none text-center" routerLink="/apartments/page/{{this.apt_UUID}}" style="background-color: #d2d9e1"><img src="assets/images/apartmentImages/edit.svg" />Edit </a>
+                        <a *ngIf="ApartmentsRole?.p_Update==true || is_Super==true" class="col-7 border-0 outline-0 rounded-3 me-3 py-2 blue text-decoration-none text-center" routerLink="/apartments/page/{{this.apt_UUID}}" style="background-color: #d2d9e1"><img src="assets/images/apartmentImages/edit.svg" />Edit </a>
 
                         <div class="col-4">
                             <app-share-button></app-share-button>

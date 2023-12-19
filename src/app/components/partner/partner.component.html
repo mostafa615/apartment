@@ -1,0 +1,147 @@
+<!-- <app-edite-user-details></app-edite-user-details> -->
+<!-- start header  -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'partners'"></app-head>
+</header>
+<!-- end header  -->
+
+<div class="row m-0">
+
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'partners'"></app-sidebar>
+    <!-- end sidebar  -->
+
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10 ">
+        <div class="d-md-flex justify-content-between dashboard mt-2">
+            <p class="fw-bold ms-1" style="color: #6c6a6a;">partners : {{numberpartners}}</p>
+            <div class="d-flex justify-content-lg-between ">
+                <div class="d-flex justify-content-between ">
+                    <!-- <button class="month rounded-start px-3 py-1 outline-none">This Month</button>
+                <button class="week rounded-end px-3 py-1 outline-none">Last Week</button> -->
+                </div>
+                <!-- start dropdown button  -->
+                <app-dropdown class="ms-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
+                <!-- end dropdown button  -->
+                <!-- start addUserButton  -->
+                <!-- <app-add-new-button class="ms-3 mt-2" [id]="'app-user-details'"></app-add-new-button> -->
+                <!-- end addUserButton  -->
+                <a *ngIf="partnersRole?.p_Add==true || is_Super==true" class="px-3 py-2 rounded border text-white text-decoration-none" routerLink="/add-partner" style="background-color:#1F4068; cursor: pointer;">
+                    <img src="assets/images/plus.svg" class="me-2 ">Add New
+                </a>
+            </div>
+        </div>
+
+        <p-toast></p-toast>
+        <div class="card mt-4">
+
+            <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="partners">
+                <ng-template pTemplate="header" class="text-center">
+                    <tr *ngIf="headerData">
+                        <ng-container>
+
+
+                            <th class="td-name">
+                                Name
+
+                            </th>
+                            <th class="td-name">
+                                Email
+
+                            </th>
+                            <th class="td-name">
+                                Phone number
+
+                            </th>
+                            <th class="td-name">
+                                WhatsApp
+
+                            </th>
+                            <th class="td-name">
+                                code
+
+                            </th>
+                            <th class="td-name">
+                                User type
+
+                            </th>
+                            <th class="td-name">
+
+
+                            </th>
+                        </ng-container>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-partners>
+
+                    <tr style="cursor: pointer;" (click)="hidecard()">
+
+
+                        <td>
+                            {{partners?.partner_FName}} {{partners?.partner_LName}}
+                        </td>
+                        <td>
+                            {{partners?.partner_Email}}
+                        </td>
+                        <td>
+                            {{partners?.partner_PhoneNumber}}
+                        </td>
+
+                        <td>
+                            {{partners?.partner_WANumber}}
+                        </td>
+                        <td>
+                            {{partners?.partner_Code}}
+                        </td>
+                        <td>
+                            {{partners?.partner_Type}}
+                        </td>
+
+
+                        <td class="cursor position-relative">
+                            <button class="border-0 outlin-0 bg-transparent" (click)="detailperson($event,partners.partner_ID)">
+          <img src="assets/images/edit.svg">
+      </button>
+                            <div *ngIf="showEdit[partners.partner_ID] " style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" *ngIf="partnersRole?.p_Update==true || is_Super==true" routerLink="/edit-partner/{{partners.partner_ID}}">update</button>
+
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" routerLink="/view-partner/{{partners.partner_ID}}"> View Profile  </button>
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" *ngIf="partnersRole?.p_Delete==true || is_Super==true" (click)="deletepartner(partners.partner_ID)">Delete </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </ng-template>
+
+
+                <ng-template pTemplate="emptymessage">
+                    <div class="container text-center mt-4">
+                        <p class="mb-0">No data found.</p>
+                    </div>
+                </ng-template>
+
+            </p-table>
+            <p-paginator (onPageChange)="tiggerPageChange($event)" [rows]="pagesize" [totalRecords]="totalRecords"></p-paginator>
+
+            <!-- <div style="width: 100%; height: 72px; padding-top: 12px; padding-bottom: 16px; padding-left: 24px; padding-right: 24px;   justify-content: space-between; align-items: center; display: inline-flex">
+          <div style="border-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+
+              <button (click)="decreamentPage( )" [disabled]="disableperv" class="  cvxs" style="text-align: center; color: #1F4068; font-size: 16px; font-family: 'Montserrat'; font-weight: 500; line-height: 20px; word-wrap: break-word">
+            Previous
+</button>
+          </div>
+          <div style="color: #484649; font-size: 14px; font-family: 'Montserrat'; font-weight: 400; line-height: 20px; word-wrap: break-word">Page {{pageNumber}} of {{totalofPages}}</div>
+          <div style="border-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+
+              <button [disabled]="disablenext" (click)="   incrementpage( )" class="  cvxs" style="text-align: center; color: #1F4068; font-size: 16px; font-family: 'Montserrat'; font-weight: 500; line-height: 20px; word-wrap: break-word">
+                Next
+  </button>
+          </div>
+      </div> -->
+        </div>
+    </main>
+    <!-- end content page  -->
+</div>

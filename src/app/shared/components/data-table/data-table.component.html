@@ -1,4 +1,4 @@
-<div class="card mt-4">
+<div class="card mt-4 bvngd">
 
 
     <p-table #dt [value]="products" [(selection)]="products" dataKey="id" [filterDelay]="0" />
@@ -59,9 +59,9 @@
                   <img src="assets/images/edit.svg">
               </button>
                     <div *ngIf="showEdit[product.owner_ID]" class="position-absolute z-3 rounded-3 bg-white border edit-button">
-                        <button routerLink="/owner/edit_owner/{{product.owner_ID}}" class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100">Edit</button>
+                        <button *ngIf="OwnersRole?.p_Update==true || is_Super==true" routerLink="/owner/edit_owner/{{product.owner_ID}}" class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100">Edit</button>
 
-                        <button (click)="confirmDelete($event,product)" class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100">Delete</button>
+                        <button *ngIf="OwnersRole?.p_Delete==true || is_Super==true" (click)="confirmDelete($event,product)" class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100">Delete</button>
 
                     </div>
                     <!-- <div class="flex align-items-center justify-content-center gap-2">
