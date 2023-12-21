@@ -122,10 +122,11 @@ tiggerPageChange(event: any) {
     }
  numberworkers=0;
  Date:any="All"
+
   getAllworkers(  ) {
    this.workers=[]
    this.numberworkers=0
-   this._adminservices.GetAllWorkers( this.pageNumber,this.pagesize).subscribe((res:any) => {
+   this._adminservices.GetAllWorkers( this.pageNumber,this.pagesize,"").subscribe((res:any) => {
      this.workers = res["data"];
      this.totalRecords=res["totalRecords"]
 

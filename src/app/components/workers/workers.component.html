@@ -15,18 +15,22 @@
     <main class="p-4 col-lg-10 ">
         <div class="d-md-flex justify-content-between dashboard mt-2">
             <p class="fw-bold ms-1" style="color: #6c6a6a;">workers : {{numberworkers}}</p>
+
             <div class="d-flex justify-content-lg-between ">
+
                 <div class="d-flex justify-content-between ">
                     <!-- <button class="month rounded-start px-3 py-1 outline-none">This Month</button>
                   <button class="week rounded-end px-3 py-1 outline-none">Last Week</button> -->
                 </div>
+                <input class="form-control fs-6 ps-3" type="text" (ngModelChange)="searchKey($event)" pInputText [(ngModel)]="searchText" placeholder="Skill Search" />
+
                 <!-- start dropdown button  -->
                 <app-dropdown class="ms-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
                 <!-- end dropdown button  -->
                 <!-- start addUserButton  -->
                 <!-- <app-add-new-button class="ms-3 mt-2" [id]="'app-user-details'"></app-add-new-button> -->
                 <!-- end addUserButton  -->
-                <a *ngIf="workersRole?.p_Add==true || is_Super==true" class="px-3 py-2 rounded border text-white text-decoration-none" routerLink="/add-workers" style="background-color:#1F4068; cursor: pointer;">
+                <a *ngIf="workersRole?.p_Add==true || is_Super==true" class="px-3 py-2 rounded border text-white text-decoration-none" routerLink="/add-workers" style="background-color:#1F4068; cursor: pointer;    width: 53%;">
                     <img src="assets/images/plus.svg" class="me-2 ">Add New
                 </a>
             </div>
@@ -74,11 +78,11 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-workers>
 
-                    <tr style="cursor: pointer;" (click)="hidecard()">
+                    <tr (click)="hidecard()">
 
 
                         <td>
-                            {{workers?.worker_FName}} {{workers?.worker_LName}}
+                            <img [src]="workers?.worker_Img" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px; cursor: pointer;"> {{workers?.worker_FName}} {{workers?.worker_LName}}
                         </td>
                         <td>
                             {{workers?.worker_Email}}

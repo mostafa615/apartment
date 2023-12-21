@@ -12,7 +12,7 @@
     <main class="p-4 col-lg-10">
         <div class="d-md-flex justify-content-between">
             <div class="d-flex">
-                <p class=" me-2" style="color: #6c6a6a">Issue Reports</p>
+                <a class=" me-2" href="./Issue_Reports" style="color: #6c6a6a;text-decoration: none;">Issue Reports</a>
                 <p class="fw-bold me-2">></p>
                 <p class="fw-bold" style="color: #6c6a6a">Reports View</p>
             </div>
@@ -123,6 +123,10 @@
                     <label class="fw-bold" style="color: #605D62;">Descriptions</label>
                     <textarea class="border rounded-3 w-100 p-2" rows="5" [(ngModel)]="detialIssue.desc" style="resize: unset;" placeholder="Enter a description"></textarea>
                 </div>
+                <div class="mb-3">
+                    <label class="fw-bold" style="color: #605D62;">Notes</label>
+                    <textarea class="border rounded-3 w-100 p-2" rows="5" [(ngModel)]="detialIssue.note" style="resize: unset;" placeholder="Enter a Note"></textarea>
+                </div>
 
                 <div>
                     <p class="fw-bold mb-0" style="color: #605D62;">Pictures</p>
@@ -149,6 +153,10 @@
                         <button (click)="gotopage2()" class="backcancel bg-white rounded-2 py-2 px-3 fw-bold mx-2">
                   Cancel
                 </button>
+                        <button routerLink="/assgin-issue/{{detialIssue.issue_ID}}" class="backcancel bg-white rounded-2 py-2 px-3 fw-bold mx-2">
+                  assign worker
+
+                 </button>
                         <button (click)="submitForm()" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
                   Update
                 </button>

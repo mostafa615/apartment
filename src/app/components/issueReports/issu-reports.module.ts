@@ -12,7 +12,7 @@ import { ReportPrintComponent } from './report-print/report-print.component';
 
   import { DropdownModule } from 'primeng/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {CalendarModule} from 'primeng/calendar';
 
 
 
@@ -41,7 +41,7 @@ const routes: Routes = [
     CommonModule,
     BrowserAnimationsModule,
     SharedModule,
-    FormsModule,
+    FormsModule,CalendarModule,
     DropdownModule,
     TableModule,PaginatorModule,
     ReactiveFormsModule,

@@ -43,7 +43,8 @@ export class ApartmentService {
 
   }
   createPostSec1(data: any,id:any): Observable<any> {
-    return this.http.post(`${environment.apiUrl + '/Apartment/PostSec1?UUID='+id}`, data, { headers: this.headers })
+
+    return this.http.post(`${environment.apiUrl + '/Apartment/PostSec1?UUID='+id}`, data, { headers: this.headers})
   }
   createPostSec2(data: any,id:string): Observable<any> {
 

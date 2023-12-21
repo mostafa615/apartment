@@ -97,8 +97,8 @@ UpdateTenantInfo( User_ID: any, FName: any,LName:any,PassportID:any,About:any,im
   return this.http.post<any>(url,image, { headers:  headers2 , params: params });
 
 }
-GetAllWorkers(PageNo:any, PageSize:any): Observable<any[]> {
-  const url = environment.apiUrl+"/Workers/GetAllWorkers?PageNo="+PageNo+"&PageSize="+PageSize;
+GetAllWorkers(PageNo:any, PageSize:any,search:any): Observable<any[]> {
+  const url = environment.apiUrl+"/Workers/GetAllWorkers?PageNo="+PageNo+"&PageSize="+PageSize+"&search="+search;
   return this.http.get<any[]>(url, {  headers: this.headers });
 
 }
@@ -134,12 +134,13 @@ DeleteWorker(id: any ): Observable<any> {
   return this.http.delete<any>(url, {  headers: this.headers });
 
 }
-ListAllIssues( PageNumber: number, PageSize: number,Date:any ): Observable<any[]> {
+ListAllIssues( PageNumber: number, PageSize: number,Date:any,search:any ): Observable<any[]> {
   const url = environment.apiUrl+"/Issues/ListAllIssues";
   const params = new HttpParams()
     .set('PageNo', PageNumber)
     .set('PageSize', PageSize)
     .set('Date', Date)
+    .set('search', search)
   return this.http.get<any[]>(url, { headers: this.headers , params: params });
 
 }

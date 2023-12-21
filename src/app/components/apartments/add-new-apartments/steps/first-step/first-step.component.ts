@@ -377,19 +377,19 @@ getApartmentDetails() {
 
   bindCreateGeneral(): void {
     this.generalInfoForm = new FormGroup({
-      'apt_Area': new FormControl(null, [Validators.required]),
+      'apt_Area': new FormControl('', [Validators.required]),
 
-      'apt_FloorNo': new FormControl(null, [Validators.required]),
-      'apt_Name': new FormControl(null, [Validators.required]),
-      'apt_AptNo': new FormControl(null, [Validators.required]),
-      'apt_Price': new FormControl('', [Validators.required]),
-      'apt_SecuirtyDep': new FormControl('', [Validators.required]),
+      'apt_FloorNo': new FormControl(0, [Validators.required]),
+      'apt_Name': new FormControl('', [Validators.required]),
+      'apt_AptNo': new FormControl(0, [Validators.required]),
+      'apt_Price': new FormControl(0, [Validators.required]),
+      'apt_SecuirtyDep': new FormControl(0, [Validators.required]),
       'apt_BillDescirption': new FormControl(''),
       'apt_StName': new FormControl('', [Validators.required]),
       'apt_BuildingNo': new FormControl('', [Validators.required]),
       'apt_CityorPostal': new FormControl('', [Validators.required]),
-      'apt_SquareMeters': new FormControl('', [Validators.required]),
-      'apt_MaxGuest': new FormControl('', [Validators.required]),
+      'apt_SquareMeters': new FormControl(0, [Validators.required]),
+      'apt_MaxGuest': new FormControl(0, [Validators.required]),
       'apt_Imgs': new FormControl(this.apt_imgs, Validators.required),
       'apt_Descirpt': new FormControl('', [Validators.required]),
       'apt_VideoLink': new FormControl('', [Validators.required]),
@@ -402,11 +402,11 @@ getApartmentDetails() {
       'apt_Toilets': new FormControl(0, [Validators.required]),
       'apt_Living': new FormControl(0, [Validators.required]),
       'apt_AllBillsIncludes': new FormControl(true, [Validators.required]),//true
-      'apt_Elevator': new FormControl(null, [Validators.required]),
+      'apt_Elevator': new FormControl(true, [Validators.required]),
       // 'apt_Lat': new FormControl('', [Validators.required]),//0
       // 'apt_Long': new FormControl('', [Validators.required]),//0
-      'apt_types': new FormControl(null, [Validators.required]),
-      'apt_Owner': new FormControl(null, [Validators.required]),//string
+      'apt_types': new FormControl('Apartment', [Validators.required]),
+      'apt_Owner': new FormControl('', [Validators.required]),//string
       'apt_Status': new FormControl('', [Validators.required]),//Rented
       "apt_ThumbImg": new FormControl('', [Validators.required]),
 

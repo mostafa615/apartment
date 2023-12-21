@@ -90,7 +90,7 @@ tiggerPageChange(event: any) {
    getAllworkers(  ) {
     this.workers=[]
     this.numberworkers=0
-    this._adminservices.GetAllWorkers( this.pageNumber,this.pagesize).subscribe((res:any) => {
+    this._adminservices.GetAllWorkers( this.pageNumber,this.pagesize,this.searchText).subscribe((res:any) => {
       this.workers = res["data"];
       this.totalRecords=res["totalRecords"]
 
@@ -177,5 +177,12 @@ if(this.workersRole.p_View==false &&this.is_Super==false) {
 gotopage( ){
   let url: string = "unlegal";
     this.router.navigateByUrl(url);
+}
+searchText:any=""
+
+searchKey(data: string) {
+  debugger
+  this.searchText = data;
+  this.getAllworkers();
 }
 }

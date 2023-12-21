@@ -12,7 +12,7 @@
     <main class="p-4 col-lg-10">
         <div class="d-md-flex justify-content-between">
             <div class="d-flex">
-                <p class=" me-2" style="color: #6c6a6a">Issue Reports</p>
+                <a class=" me-2" href="./Issue_Reports" style="color: #6c6a6a;text-decoration: none;">Issue Reports</a>
                 <p class="fw-bold me-2">></p>
                 <p class="fw-bold" style="color: #6c6a6a">Reports View</p>
             </div>
@@ -146,11 +146,16 @@
 
                     <!-- <textarea class="border rounded-3 w-100 p-2" rows="5" [(ngModel)]="detialIssue.desc" style="resize: unset;" placeholder="Enter a description"></textarea> -->
                 </div>
+                <div class="mb-3">
+                    <label class="fw-bold" style="color: #605D62;">Notes</label>
+                    <div style="resize: unset;height: 144px;" class="form-control w-100 fs-6 border rounded-3 w-100 p-2 pt-2">{{detialIssue.note}}</div>
 
+                    <!-- <textarea class="border rounded-3 w-100 p-2" rows="5" [(ngModel)]="detialIssue.desc" style="resize: unset;" placeholder="Enter a description"></textarea> -->
+                </div>
                 <div>
                     <p class="fw-bold mb-0" style="color: #605D62;">Pictures</p>
-                    <div class="accordion-body mb-3">
-                        <img *ngFor="let item of detialIssue.issue_Images;let i=index" style="width: 100px;" [src]="item.img_Url" class="me-2">
+                    <div class="accordion-body mb-3 ">
+                        <img *ngFor="let item of detialIssue.issue_Images;let i=index" style="width: 100px;-webkit-print-color-adjust: exact;" [src]="item.img_Url" class="me-2">
 
                     </div>
                 </div>

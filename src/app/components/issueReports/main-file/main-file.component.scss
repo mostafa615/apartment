@@ -59,3 +59,90 @@ th {
 i {
     font: normal normal normal 14px/1 FontAwesome !important;
 }
+
+.month,
+.week {
+    color: #757a82;
+    background-color: white;
+    border: 1px solid #ebebeb;
+}
+
+@media (min-width: 768px) {
+    .xcvdd {
+        margin-right: 257px !important;
+    }
+}
+
+.buttomstyle {
+    color: var(--Primary-40, #1F4068);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.apartmentList {
+    color: #787579;
+    &:hover {
+        border-bottom: 2px solid #1f4068 !important;
+        font-weight: 600;
+        color: #1f4068 !important;
+    }
+}
+
+.paroductApartment {
+    .details {
+        border: 1px solid #dfdfdf;
+        max-height: 220px;
+    }
+    .apartmentImage {
+        border-radius: 8px 8px 0px 0px;
+        max-height: 184px;
+    }
+    .Price {
+        color: #1F4068;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 33.6px;
+        .time {
+            font-size: 16px;
+            line-height: 16px;
+            position: relative;
+            top: -2px;
+        }
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.rentedORavailable {
+    background-color: rgb(255 255 255 / 70%);
+    color: #1f4068 !important;
+}
+
+.rented {
+    color: #1f4068 !important;
+}
+
+.available {
+    color: #12b76a !important;
+}
+
+.clickApartmentList {
+    color: #1f4068 !important;
+    font-weight: 600;
+    border-bottom: 2px solid #1f4068 !important;
+}
+
+.none {
+    @media (max-width: 992px) {
+        display: none;
+    }
+}
+
+.p-fileupload-buttonbar .p-button {
+    margin-bottom: 10px !important;
+}

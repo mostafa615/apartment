@@ -167,9 +167,9 @@ ListJobs( ) {
 GetWorkerByid( ) {
 
   this._adminservices.GetWorkerByid(this.param).subscribe((res) => {
-    this.createworker.patchValue(res[0]);
-    this.localapt_Transports=res[0]?.worker_Skills
-     this.selectedContractImg = { 'url':res[0].worker_Passport };
+    this.createworker.patchValue(res);
+    this.localapt_Transports=res?.worker_Skills
+     this.selectedContractImg = { 'url':res.worker_Passport };
   }, (err: any) => {
 
     this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });

@@ -53,3 +53,7 @@
 option {
     padding: 5px
 }
+
+img {
+    -webkit-print-color-adjust: exact;
+}

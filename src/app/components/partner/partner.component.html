@@ -74,11 +74,11 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-partners>
 
-                    <tr style="cursor: pointer;" (click)="hidecard()">
+                    <tr (click)="hidecard()">
 
 
                         <td>
-                            {{partners?.partner_FName}} {{partners?.partner_LName}}
+                            <img routerLink="/view-partner/{{partners.partner_ID}}" [src]="partners?.partner_Photo" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px; cursor: pointer;"> {{partners?.partner_FName}} {{partners?.partner_LName}}
                         </td>
                         <td>
                             {{partners?.partner_Email}}

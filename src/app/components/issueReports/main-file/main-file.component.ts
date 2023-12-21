@@ -23,7 +23,7 @@ export class MainFileComponent {
   constructor(public _adminservices:AdminsService , private messageService: MessageService,public router: Router) { }
   totalofPages=0;
   ngOnInit() {
-
+    this.initFakeData()
     this.getAllIssues(  )
     this.checkRole()
    }
@@ -58,7 +58,7 @@ export class MainFileComponent {
    getAllIssues(  ) {
     this.issues=[]
     this.numberissues=0
-    this._adminservices.ListAllIssues( this.pageNumber,this.pagesize,this.Date).subscribe((res:any) => {
+    this._adminservices.ListAllIssues( this.pageNumber,this.pagesize,this.Date,this.statusinquire).subscribe((res:any) => {
       this.issues = res["data"];
       this.totalRecords=res["totalRecords"]
 
@@ -79,6 +79,36 @@ export class MainFileComponent {
 
 
    }
+   InquireFillterLists: Array<any> = [];
+   InquireFillterSelected: Array<any> = [];
+   initFakeData(): void {
+     this.InquireFillterLists = ["All Issues", "Completed","Pending"];
+     this.InquireFillterSelected = [true];
+    }
+    checkindex=0;
+    statusinquire:any=""
+    clickIquires(index:any){
+      this.checkindex=index;
+      this.InquireFillterSelected = this.InquireFillterSelected.map((data) => data == true ? false : false)
+
+      this.InquireFillterSelected[index] = true
+      if(index == 0){
+        this.statusinquire=""
+        this.getAllIssues();
+      }
+      if(index == 1){
+        this.statusinquire="Completed"
+
+        this.getAllIssues();
+      }
+      if(index == 2){
+        this.statusinquire="Pending"
+
+        this.getAllIssues();
+
+      }
+
+    }
    hidecard( ){
     this.showEdit=[]
 
@@ -121,7 +151,22 @@ tiggerPageChange(event: any) {
 
 
   }
+  Apointment3:any
+  MarkasProgress2( ){
+    this._adminservices.MarkasProgress(this.paramid3 ,this.Apointment3).subscribe((res) => {
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Mark as Progress Successfuly '}` });
+      this.getAllIssues()
+      this.onCloseModal3();
 
+
+
+    }, (err: any) => {
+
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
+
+    })
+
+  }
   MarkasProgress( ){
     this._adminservices.MarkasProgress(this.paramid ,this.Apointment).subscribe((res) => {
       this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Mark as Progress Successfuly '}` });
@@ -140,14 +185,28 @@ tiggerPageChange(event: any) {
   appointement:any=[]
   display1="none";
   display2="none";
+  display3="none";
+
   paramid:any
   Apointment:any
   onCloseModal1(){
     this.display1="none";
 
   }
+  onCloseModal3(){
+    this.display3="none";
+    this.Apointment3=""
+  }
   onCloseModal2(){
     this.display2="none";
+
+  }
+  paramid3:any
+  OpenModal3(id:any){
+
+    this.paramid3=id
+
+     this.display3="block";
 
   }
   OpenModal1(id:any){
