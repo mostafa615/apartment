@@ -23,6 +23,7 @@ export class InquiresService {
     return this.http.get<any[]>(url, {  headers: this.headers });
 
   }
+
   GetRequestDetails( id:any ): Observable<any> {
     const url = environment.apiUrl+"/Requests/GetInquiryDetails?ID="+id;
     return this.http.get<any>(url, {  headers: this.headers });
@@ -89,5 +90,33 @@ let body={
     const url = environment.apiUrl+"/Requests/SendOffer?Old_Req_ID="+Old_Req_ID+"&Apt_ID="+Apt_ID+"&Rent_Price="+Rent_Price+"&Security_Deposit="+Security_Deposit;
     return this.http.post<any>(url,body, {  headers: this.headers });
 
+}
+
+  GetContract( Req_ID:any  ): Observable<any > {
+
+
+    const url = environment.apiUrl+"/Requests/GetContract?Req_ID="+Req_ID  ;
+    return this.http.get<any>(url, {  headers: this.headers });
+
   }
+
+
+
+  CreateAptContract( data:any ): Observable<any> {
+    let body={
+      req_ID:data.req_ID,
+      rC_LandLord:data.rC_LandLord,
+      rC_Tenant:data.rC_Tenant,
+      rC_StartRent:data.rC_StartRent,
+      rC_EndRent:data.rC_EndRent,
+      rC_RentPrice:data.rC_RentPrice,
+      rC_RentDeposit:data.rC_RentDeposit,
+      contract_Sections:data.rC_Sections,
+
+    };
+
+        const url = environment.apiUrl+"/Requests/CreateAptContract";
+        return this.http.post<any>(url,body, {  headers: this.headers });
+
+    }
 }

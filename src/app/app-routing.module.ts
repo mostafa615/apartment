@@ -56,6 +56,7 @@ const routes: Routes = [
   { path: "owners", component: OwnersComponent ,canActivate: [AuthGuard]},
    { path: "owner/:id", component: OwnerDetailsComponent ,canActivate: [AuthGuard]},
   { path: "owner/:page/:id", component: OwnerDetailsComponent ,canActivate: [AuthGuard]},
+
   { path: "messages", component: MessageComponent,canActivate: [AuthGuard] },
   { path: "statistics", component: StatisticsComponent,canActivate: [AuthGuard] },
   { path: "payments", component: PaymentsComponent ,canActivate: [AuthGuard]},
@@ -64,26 +65,26 @@ const routes: Routes = [
   { path: "authorization/:id", component: AuthorizationComponent ,canActivate: [AuthGuard]},
   { path: "add-admin", component: AddAdminComponent ,canActivate: [AuthGuard]},
   { path: "edit-admin/:id", component: EditAdminComponent ,canActivate: [AuthGuard]},
+
   { path: "inquiries", component: InquiriesComponent ,canActivate: [AuthGuard],},
-
   { path: "view-inquire/:id", component: ViewInquireComponent ,canActivate: [AuthGuard]},
-
   { path: "inquire-offer/:id", component: InquireOfferComponent ,canActivate: [AuthGuard]},
   { path: "inquire-edit/:id", component: InquireEditComponent ,canActivate: [AuthGuard]},
-  { path: "create-contract", component: CreacteContractComponent ,canActivate: [AuthGuard]},
+  { path: "create-contract/:id", component: CreacteContractComponent ,canActivate: [AuthGuard]},
+
   { path: "workers", component:   WorkersComponent,canActivate: [AuthGuard]},
   { path: "add-workers", component: AddWorkerComponent,canActivate: [AuthGuard]},
-
   { path: "edit-workers/:id", component: EditWorkerComponent,canActivate: [AuthGuard]},
   { path: "worker-profile/:id", component: WorkerProfileComponent,canActivate: [AuthGuard]},
+
   { path: "Issue_Reports", component: MainFileComponent,canActivate: [AuthGuard]},
   { path: "Report-view/:id", component: ReportsDetailsComponent,canActivate: [AuthGuard]},
   { path: "Report-print/:id", component: ReportPrintComponent,canActivate: [AuthGuard]},
-
   { path: "assgin-issue/:id", component: AssginIssueComponent,canActivate: [AuthGuard]},
-  { path: "unlegal", component: UnlegalComponent,canActivate: [AuthGuard]},
-  { path: "partner", component: PartnerComponent,canActivate: [AuthGuard]},
 
+  { path: "unlegal", component: UnlegalComponent,canActivate: [AuthGuard]},
+
+  { path: "partner", component: PartnerComponent,canActivate: [AuthGuard]},
   { path: "add-partner", component: AddPartnerComponent,canActivate: [AuthGuard]},
   { path: "edit-partner/:id", component: EditPartnerComponent,canActivate: [AuthGuard]},
   { path: "view-partner/:id", component: ViewPartnerComponent,canActivate: [AuthGuard]},

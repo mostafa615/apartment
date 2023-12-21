@@ -28,130 +28,83 @@
                 <p-toast></p-toast>
 
 
-                <form>
-                    <div class="row">
-                        <div class="mb-3 col-12 col-md-6">
-                            <label for="exampleInputPricepermonth" class="form-label gray fw-bold"> landlord name  </label>
-                            <input type="text" [value]="'ashraf salah'" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
-                        </div>
-                        <div class="mb-3 col-12 col-md-6">
-                            <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold"> tenant name  </label>
-                            <input type="text" value="ahmed osama" class=" form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit" />
-
-                        </div>
+                <div class="row">
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="exampleInputPricepermonth" class="form-label gray fw-bold"> landlord name  </label>
+                        <input type="text" [(ngModel)]="contract_details.rC_LandLord" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
                     </div>
-                    <div>
-                        <div class="mb-3 me-4 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">section 1</label>
-                            <input type="text" class="form-control rounded-2 py-2 fs-6" value="1 Rentalobject" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label gray">Description</label>
-                            <textarea class="border p-3 rounded-2 w-100" rows="5" style="resize: inherit">The landlord rents to the tenant the in the ............ street, 1 Berlin occupied premises in _____ floor, consisting of _______room(s), kitchen/kitchenette, bath/shower/WC.
-The tenant will be handed over the following keys by the landlord for the rental period:
-...................... House-...................... Housing-...................... Rooms keys
-The living area is approx._____ m².
-The apartment is rented furnished. The apartment serves to cover the temporary special needs of the tenan
-                            </textarea>
-
-                        </div>
-
-                    </div>
-                    <div>
-                        <div class="mb-3 me-4 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">section 2</label>
-                            <input type="text" class="form-control rounded-2 py-2 fs-6" value="2 Rentalobject" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label gray">Description</label>
-                            <textarea class="border p-3 rounded-2 w-100" rows="5" style="resize: inherit">The landlord rents to the tenant the in the ............ street, 1 Berlin occupied premises in _____ floor, consisting of _______room(s), kitchen/kitchenette, bath/shower/WC.
-The tenant will be handed over the following keys by the landlord for the rental period:
-                             </textarea>
-
-                        </div>
-
-                    </div>
-                    <!-- <div class="row">
-                        <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">Contract start date</label>
-                            <p-calendar [(ngModel)]="date" [ngModelOptions]="{standalone: true}"></p-calendar>
-                        </div>
-                        <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">Contract end date</label>
-                            <p-calendar [(ngModel)]="date" [ngModelOptions]="{standalone: true}"></p-calendar>
-                        </div>
-                    </div> -->
-                    <div class="row">
-                        <div class="mb-3 col-12 col-md-6">
-                            <label for="exampleInputPricepermonth" class="form-label gray fw-bold"> section 3 </label>
-                            <input type="text" [value]="' 1 redfdg  '" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
-                        </div>
-                        <div class="mb-3 col-12 col-md-6">
-                            <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold">price per month </label>
-                            <input type="number" value="1" class=" form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit" />
-
-                        </div>
-                    </div>
-
-                    <div>
-
-
-                        <div class="mb-3">
-                            <label class="form-label gray">Description</label>
-                            <textarea class="border p-3 rounded-2 w-100" rows="5" style="resize: inherit">The landlord rents to the tenant the in the ............ street, 1 Berlin occupied premises in _____ floor, consisting of _______room(s), kitchen/kitchenette, bath/shower/WC.
-The tenant will be handed over the following keys by the landlord for the rental period:
-...................... House-...................... Housing-...................... Rooms keys
-The living area is approx._____ m².
-The apartment is rented furnished. The apartment serves to cover the temporary special needs of the tenan
-                        </textarea>
-
-                        </div>
-
-                    </div>
-                    <!--all bills included ?-->
-
-
-                    <div>
-                        <div class="mb-3 me-4 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">section 3</label>
-                            <input type="text" class="form-control rounded-2 py-2 fs-6" value="1 Rentalobject" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label gray">Description</label>
-                            <textarea class="border p-3 rounded-2 w-100" rows="5" style="resize: inherit">The landlord rents to the tenant the in the ............ street, 1 Berlin occupied premises in _____ floor, consisting of _______room(s), kitchen/kitchenette, bath/shower/WC.
-The tenant will be handed over the following keys by the landlord for the rental period:
-...................... House-...................... Housing-...................... Rooms keys
-
-                          </textarea>
-
-                        </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold"> tenant name  </label>
+                        <input type="text" [(ngModel)]="contract_details.rC_Tenant" class=" form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit" />
 
                     </div>
 
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold">price per month </label>
+                        <input type="number" [(ngModel)]="contract_details.rC_RentPrice" class=" form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit" />
+
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold">  deposit </label>
+                        <input type="number" [(ngModel)]="contract_details.rC_RentDeposit" class=" form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit" />
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-12 col-md-6">
+                        <label for="exampleInputSecuritydeposit" style="width: 100%;" class="form-label gray fw-bold">Contract start date</label>
+                        <p-calendar [(ngModel)]="contract_details.rC_StartRent" id="exampleInputSecuritydeposit"></p-calendar>
+
+                    </div>
+                    <div class="mb-3 col-12 col-md-6">
+                        <label class="form-label gray fw-bold" style="width: 100%;">Contract end date</label>
+                        <p-calendar [(ngModel)]="contract_details.rC_EndRent"></p-calendar>
+                    </div>
+                </div>
+                <div>
+                    <div *ngFor="let data of contract_details.rC_Sections;let index=index">
+                        <app-create-contract-sections [contractDetails]="data" [index]="index+1"></app-create-contract-sections>
+                        <div class=" col-md-12 " style="margin-bottom: 50px;">
+                            <div class="d-flex" style="float:right">
+                                <button class="backcancel outline-0 bg-white rounded-2 py-2 px-3 fw-bold me-4" (click)="removeSection(index)">
+          Remove
+        </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <app-create-contract-sections [index]="contract_details.rC_Sections.length+1" [contractDetails]="contract_details.rC_Sections[contract_details.rC_Sections.length+1]" [ActionButtonField]="!ActionButtonContractSection"></app-create-contract-sections>
+                    <div style="margin-bottom: 30px;">
+                        <a class="bg-transparent cursor text-decoration-none outline-0 border-0 blue fw-bold mb-4" (click)="ActionButtonContractSectionbutton()">
+                            <img src="assets/images/apartmentImages/ic_baseline-add.svg" /> create new section
+                        </a>
+                    </div>
+                </div>
 
 
 
-
-                    <div class="div-4">
-                        <div class="div-5">
-                            <a style="    border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvdd">
+                <div class="div-4">
+                    <div class="div-5">
+                        <a routerLink="/view-inquire/{{param}}" style="border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvdd">
                         Back
           </a>
-                            <div class="div-6">
-                                <!-- <button class="auto-layout-button"><div class="label-2">Cancel</div></button> -->
-                                <a style="    border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvdd">
+                        <div class="div-6">
+                            <!-- <button class="auto-layout-button"><div class="label-2">Cancel</div></button> -->
+                            <a (click)="gotopage2()" style="    border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvdd">
                       Cancel
         </a>
 
-                                <button class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                            <button (click)="CreateAptContract()" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
                                 save
                   </button>
-                                <!-- <button class="label-wrapper"><div class="label-3">save</div>
+                            <!-- <button class="label-wrapper"><div class="label-3">save</div>
                     </button> -->
-                            </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
 
 

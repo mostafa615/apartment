@@ -197,7 +197,7 @@ AssignWorker(  ) {
   this._adminservices.AssignWorker( this.paramid,this.idworkerassigin ).subscribe((res) => {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'The Issue was Assigned to Selected Worker '}` });
 
-
+    this.gotopage( );
 
   }, (err: any) => {
 

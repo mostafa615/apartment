@@ -235,6 +235,10 @@ export class ReportPrintComponent implements OnInit {
       pdf.save("HTML-Document.pdf");
    });
  }
+     print3() {
+  let doc: any = document;
+  doc.printJs();
+}
  print(){
   let data = document.getElementById("MyDIv")!;
   html2canvas(data).then(canvas => {

@@ -13,7 +13,32 @@
 
 <body>
     <app-root></app-root>
+    <script>
+        setTimeout(() => {
 
+            document.printJs = function() {
+                $('table').addClass('text-center');
+                printJS({
+                    printable: 'printable',
+                    type: 'html',
+                    css: ['assets/css/bootstrap.min.css', 'assets/css/styles.scss']
+                });
+                //printJS('printable', 'html');
+            }
+        }, 1000);
+        setTimeout(() => {
+
+            document.printPdf = function() {
+                $('table').addClass('text-center');
+                printJS({
+                    printable: 'printable',
+                    type: 'html',
+                    css: ['assets/css/bootstrap.min.css', 'assets/css/styles.scss']
+                });
+                //printJS('printable', 'docs/pdf');
+            }
+        }, 1000);
+    </script>
 </body>
 
 </html>
