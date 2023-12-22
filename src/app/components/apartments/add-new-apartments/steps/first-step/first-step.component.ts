@@ -23,7 +23,7 @@ export class FirstStepComponent implements OnInit {
   Createapartmentcurre: string = '';
   /** bills */
   bills: string = 'Yes';
-  billinclude:any;
+  billinclude:any=true;
   /** listRadiobutton */
   listRadiobutton: Array<string> = ['Yes', 'No'];
   /** listDropDownArea */
@@ -149,6 +149,7 @@ getApartmentDetails() {
 
       this.aprt_details_Edit = res.general_Info
       this.apt_imgs=res.general_Info["property_Imgs"]
+      this.billinclude=res.general_Info["apt_AllBillsIncludes"]
       this.generalInfoForm.get('apt_Imgs')?.patchValue(res.general_Info["property_Imgs"]);
 
       this._ApartmentService.getOwnerDropList().subscribe(res => {
@@ -182,6 +183,9 @@ getApartmentDetails() {
       this.generalInfoForm.get('apt_Imgs')?.patchValue(parsedData.apt_Imgs);
       this.apt_imgs=parsedData.apt_Imgs
       this.bills = parsedData.bills;
+      debugger
+      this.billinclude=parsedData.apt_AllBillsIncludes;
+
       this.generalInfoForm.get('apt_Area')?.setValue(parsedData.apt_Area);
       this.selectedfromDropDownArea(parsedData.apt_Area,"update")
 
