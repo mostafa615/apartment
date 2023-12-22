@@ -57,3 +57,20 @@ option {
 img {
     -webkit-print-color-adjust: exact;
 }
+
+@media print {
+    .xxcprint {
+        margin-top: 0%;
+        display: flex;
+        background-color: brown
+    }
+    .row {
+        display: flex
+    }
+    header {
+        display: none !important
+    }
+    .xprintt {
+        display: none !important
+    }
+}

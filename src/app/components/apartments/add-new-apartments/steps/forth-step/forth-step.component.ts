@@ -179,11 +179,11 @@ export class ForthStepComponent {
   bindCreatePostBackupInfo(): void {
     this.PostBackupInfo = new FormGroup({
       'elec_Meter_Num': new FormControl(''),
-      'elec_Meter_Cons': new FormControl(''),
+      'elec_Meter_Cons': new FormControl(0),
       'water_Meter_Num': new FormControl(''),
-      'water_Meter_Cons': new FormControl(''),
+      'water_Meter_Cons': new FormControl(0),
       'gas_Meter_Num': new FormControl(''),
-      'gas_Meter_Cons': new FormControl(''),
+      'gas_Meter_Cons': new FormControl(0),
       'apt_Exist_Dmg': new FormControl(true),
       'dmgs_Imgs': new FormControl([]),
       'apt_General_Comments': new FormControl(''),

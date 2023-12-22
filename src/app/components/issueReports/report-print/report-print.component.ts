@@ -7,6 +7,7 @@ import { UploadFileService } from 'src/app/_services/UploadFile/upload-file.serv
 import { AdminsService } from 'src/app/_services/admins/admins.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+
 @Component({
   selector: 'app-report-print',
   templateUrl: './report-print.component.html',
@@ -236,6 +237,7 @@ export class ReportPrintComponent implements OnInit {
    });
  }
      print3() {
+
   let doc: any = document;
   doc.printJs();
 }
@@ -246,9 +248,10 @@ export class ReportPrintComponent implements OnInit {
   let pdf = new jsPDF('l', 'cm', 'a4'); //Generates PDF in landscape mode
   // let pdf = new jspdf('p', 'cm', 'a4'); Generates PDF in portrait mode
   pdf.addImage(contentDataURL, 'jpg', 0, 0, 29.7, 21.0);
-
-  var base64string = pdf.output('bloburl');
-  this.debugBase64( base64string );
+  // window.open(pdf.output('bloburl', { filename: 'new-file.pdf' }), '_blank');
+  window.open(pdf.output('bloburl'))
+  // var base64string = pdf.output('bloburl');
+  // this.debugBase64( base64string );
 
 
   // const printContent = document.getElementById("MyDIv")!;
@@ -264,5 +267,9 @@ export class ReportPrintComponent implements OnInit {
    debugBase64(base64URL:any){
     var win = window.open()!;
     win.document.write('<iframe src="' + base64URL  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
+}
+OnPrint() {
+
+  window.print();
 }
 }

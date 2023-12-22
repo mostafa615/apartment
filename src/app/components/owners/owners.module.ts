@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { DropdownModule } from 'primeng/dropdown';
+import { OwnerProfileComponent } from './owner-profile/owner-profile.component';
 
 
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -23,7 +24,7 @@ const routes: Routes = [];
 @NgModule({
   declarations: [
     OwnersComponent,
-    OwnerDetailsComponent
+    OwnerDetailsComponent,OwnerProfileComponent
   ],
   imports: [
     CommonModule,

@@ -38,6 +38,7 @@ import { ViewPartnerComponent } from './components/partner/view-partner/view-par
 import { AssginIssueComponent } from './components/issueReports/assgin-issue/assgin-issue.component';
 import { UnlegalComponent } from './components/unlegal/unlegal.component';
 import { PartnerComponent } from './components/partner/partner.component';
+import { OwnerProfileComponent } from './components/owners/owner-profile/owner-profile.component';
 
 import { AuthGuard } from './_helpers/auth.guard';
 
@@ -56,6 +57,8 @@ const routes: Routes = [
   { path: "owners", component: OwnersComponent ,canActivate: [AuthGuard]},
    { path: "owner/:id", component: OwnerDetailsComponent ,canActivate: [AuthGuard]},
   { path: "owner/:page/:id", component: OwnerDetailsComponent ,canActivate: [AuthGuard]},
+  { path: "owner-profile/:id", component: OwnerProfileComponent ,canActivate: [AuthGuard]},
+
 
   { path: "messages", component: MessageComponent,canActivate: [AuthGuard] },
   { path: "statistics", component: StatisticsComponent,canActivate: [AuthGuard] },
