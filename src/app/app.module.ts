@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { PaginatorModule } from 'primeng/paginator';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,6 +32,7 @@ import { UserModule } from './components/user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { GoogleMapsModule } from '@angular/google-maps'
+import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -60,10 +62,11 @@ import { GoogleMapsModule } from '@angular/google-maps'
     GoogleMapsModule ,
 
   ],
+
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],
-  providers: [HttpClientModule,   JwtInterceptor],
+  providers: [HttpClientModule,   JwtInterceptor,PathLocationStrategy],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
