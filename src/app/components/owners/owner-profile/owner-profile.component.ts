@@ -82,10 +82,9 @@ export class OwnerProfileComponent implements OnInit{
   }
 
   checkPage(): void {
-    if (this.pageTitle == "owner_details") {
        this.id = this.param
       console.log(this.param)
-      this._OnwerService.getOwner(this.id).subscribe((res) => {
+      this._OnwerService.GetOwnerProfile(this.id).subscribe((res) => {
         this.createOwner.patchValue(res);
       })
       this.param = "Owner details";
@@ -96,32 +95,8 @@ export class OwnerProfileComponent implements OnInit{
         { id: 'Bankdetails', link: 'Bank details' },
         { id: 'Paymenthistory', link: 'Payment history' },
       ]
-    }
-    else if(this.pageTitle== "edit_owner"){
-      this.id = this.param
-      console.log(this.param)
-      this._OnwerService.getOwner(this.id).subscribe((res) => {
-        this.createOwner.patchValue(res);
-      })
-      this.param = "edit owner name details";
-      this.listAnchors = [
-        { id: 'Generalinfo', link: 'General info' },
-        { id: 'OtherDetails', link: 'Other Details' },
-        { id: 'Bankdetails', link: 'Bank details' }
-      ]
-    }
 
-    else if (this.param == "create_new") {
-      this.param = "Create New"
-      this.listAnchors = [
-        { id: 'Generalinfo', link: 'General info' },
-        { id: 'OtherDetails', link: 'Other Details' },
-        { id: 'Bankdetails', link: 'Bank details' }
-      ]
-    }
-    else {
 
-    }
   }
   OwnersRole:any
   is_Super:any
