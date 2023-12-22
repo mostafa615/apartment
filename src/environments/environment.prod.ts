@@ -1,4 +1,6 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://api.example.com',
+    apiUrl: 'https://api.vivas-apt.tech/api',
+    outputPath: "dist/Production"
+
 };

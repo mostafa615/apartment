@@ -23,6 +23,7 @@ export class FirstStepComponent implements OnInit {
   Createapartmentcurre: string = '';
   /** bills */
   bills: string = 'Yes';
+  billinclude:any;
   /** listRadiobutton */
   listRadiobutton: Array<string> = ['Yes', 'No'];
   /** listDropDownArea */
@@ -328,7 +329,11 @@ getApartmentDetails() {
   }
 
   DoyouCreatebills(value: any) {
+    debugger;
+    console.log(value.target.value);
     this.bills = value.target.value;
+    this.billinclude=(value.target.value=='Yes'?true:false);
+
   }
 
   /**
@@ -432,7 +437,7 @@ getApartmentDetails() {
 //      this.generalInfoForm.get('apt_ThumbImg')?.patchValue(this.apt_imgs[0].apt_imgs);
 //      data.value.apt_ThumbImg=this.apt_imgs[0].apt_imgs;
 // }
-    data.value.apt_AllBillsIncludes = true
+    data.value.apt_AllBillsIncludes = this.billinclude
     // data.value.apt_Lat = 0
      data.value.apt_Status = "Rented"
 
