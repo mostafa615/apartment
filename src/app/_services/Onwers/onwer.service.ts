@@ -51,7 +51,7 @@ export class OnwerService {
 
 
   public GetOwnerProfile(id: string): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/GetOwnerProfile?id=${id}`, { headers: this.headers })
+    return this.http.get(`${environment.apiUrl}/Owner/GetOwnerProfile?id=${id}`, { headers: this.headers })
   }
   public deleteOwner(id: string): Observable<any> {
     return this.http.delete(`https://api.vivas-apt.tech/api/Owner/${id}`, { headers: this.headers })

@@ -31,6 +31,8 @@ export class ThirdStepComponent {
   dataRoles: Array<number> = [1, 2];
   /** create_Apart_contract */
   create_Apart_contract!: FormGroup;
+  apt_imgs:  any = [];
+
   /** apt_UUID */
   apt_UUID: string = '3fa85f64-5717-4562-b3fc-2c963f66afa6'
   /** contractDetails */
@@ -82,6 +84,8 @@ export class ThirdStepComponent {
     afterUploadImage="true"
     aprt_details_Edit:any
   ngOnInit() {
+    debugger
+    console.log(this.apt_imgs)
     this.idParamterEdit = this._ActivatedRoute.snapshot.params['id']
     this.listDropDownFloorNumber=this.rangefrom0to100();
     if(this.addApartment !="add new apartments" ){
@@ -431,6 +435,28 @@ this.imageSize=image
   imageList:any={}
   urls = new Array<string>();
 
+  // selectFile(event: any): void {
+
+  //   this.message = '';
+  //   this.preview = '';
+  //   this.progress = 0;
+  //   this.selectedFiles = event.target.files;
+
+  //    let files = event.target.files;
+
+  //   if (files) {
+  //     for (let file of files) {
+
+  //       this.ListFiles.push(file);
+  //        let reader = new FileReader();
+  //       reader.onload = (e: any) => {
+
+  //          this.urls.push(e.target.result);
+  //       }
+  //       reader.readAsDataURL(file);
+  //     }
+  //   }
+  // }
   selectFile(event: any): void {
 
     this.message = '';
@@ -452,8 +478,9 @@ this.imageSize=image
         reader.readAsDataURL(file);
       }
     }
-  }
-
+    this.upload()
+    this.ListFiles=[]
+   }
 //   display22="none"
 
 //   oncloseModal() {
@@ -468,10 +495,19 @@ this.imageSize=image
       removeItem(imageName:any){
 
 
-     let index2343 = this.ListFiles.findIndex((element:any) => element.name   == imageName);
-     this.ListFiles.splice(index2343, 1);
-     this.urls.splice(index2343, 1);
-      }
+        let index2343 = this.apt_imgs.findIndex((element:any) => element.pic_URL   == imageName);
+        this.apt_imgs.splice(index2343, 1);
+
+       //  this.ListFiles.splice(index2343, 1);
+        this.urls.splice(index2343, 1);
+         }
+    //   removeItem(imageName:any){
+
+
+    //  let index2343 = this.ListFiles.findIndex((element:any) => element.name   == imageName);
+    //  this.ListFiles.splice(index2343, 1);
+    //  this.urls.splice(index2343, 1);
+    //   }
 isSelected=true;
       selected(flie:any,sel:any){
         if(sel=="select"){
@@ -502,17 +538,22 @@ storedImages:any
 
           }
        }
+       spinner: boolean = false;
+
        upload(): void {
+        this.spinner=true;
 
                 this.uploadService.uploadMultiFile(this.convertFileToFormData(this.ListFiles)).subscribe(data => {
                   this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Images Upload Successfully'}` });
 
                   for (let file of data) {
+                    debugger
                     this.apt_imgs.push({ 'pic_URL': file.name });
                   }
                   // this.generalInfoForm.get('apt_ThumbImg')?.patchValue(data[0].name);
                   this.create_Apart_contract.get('trash_pin_image')?.patchValue(this.apt_imgs);
                   localStorage.setItem("imagesAPT12", JSON.stringify(this.apt_imgs));
+                  this.spinner=false;
 
                 });
               }
@@ -525,7 +566,6 @@ storedImages:any
 
                 return formData;
               }
-              apt_imgs: Array<any> = [];
               /** uploadedFiles */
               uploadedFiles: any[] = [];
 

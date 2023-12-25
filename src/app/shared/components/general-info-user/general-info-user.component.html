@@ -10,12 +10,12 @@
         <div class="d-flex mt-4">
             <div class="d-flex  justify-content-between ">
 
-                <div class="btn-container" *ngIf="titlePage!='Owner details'">
+                <div class="btn-container" *ngIf="titlePage!='partenerView'">
                     <p-button class="btn-style sendDataPButton" label="Upload picture" [loading]="loadingButton" type="button"></p-button>
                     <input type="file" #fileInput (change)="uploadPic($event)">
                 </div>
 
-                <button type="button" class="outline-none border-0 py-2 px-3 rounded-3 delete" *ngIf="titlePage!='Owner details'" (click)="uploadPic('delete')">Delete</button>
+                <button type="button" class="outline-none border-0 py-2 px-3 rounded-3 delete" *ngIf="titlePage!= 'partenerView'" (click)="uploadPic('delete')">Delete</button>
                 <button class="me-3 outline-none border-0 text-white py-2 px-3 rounded-3" *ngIf="titlePage=='Owner details'" style="background-color: #1f4068;">Message</button>
             </div>
         </div>

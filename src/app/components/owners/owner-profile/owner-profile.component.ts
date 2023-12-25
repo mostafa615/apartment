@@ -50,6 +50,7 @@ export class OwnerProfileComponent implements OnInit{
    */
   constructor(
     private viewportScroller: ViewportScroller,
+    private uploadFile: UploadFileService,
     private uploadfile: UploadFileService,
     private messageService: MessageService,
     public router: Router,
@@ -58,7 +59,7 @@ export class OwnerProfileComponent implements OnInit{
     this.param = _ActivatedRoute.snapshot.paramMap.get('id');
     this.pageTitle=_ActivatedRoute.snapshot.paramMap.get('page')
     this.scrollTop();
-    this.checkPage();
+    this.GetOwnerProfile();
   }
 
   /**
@@ -80,12 +81,13 @@ export class OwnerProfileComponent implements OnInit{
     // Return an empty string if the value is not a valid Date object
     return '';
   }
-
-  checkPage(): void {
+  OnwerDetail:any={}
+  GetOwnerProfile(): void {
        this.id = this.param
-      console.log(this.param)
-      this._OnwerService.GetOwnerProfile(this.id).subscribe((res) => {
+       this._OnwerService.GetOwnerProfile(this.id).subscribe((res) => {
         this.createOwner.patchValue(res);
+        this.OnwerDetail=res
+        this.imageUrl=res["owner_Photo"]
       })
       this.param = "Owner details";
       this.listAnchors = [
@@ -227,4 +229,30 @@ export class OwnerProfileComponent implements OnInit{
   scrollTop(): void {
     window.scrollTo(0, 0)
   }
+    changeImageUrl: any;
+  imageUrl: string = '';
+
+  uploadPic(event: any) {
+    this.loadingButton = true;
+    if (event != 'delete') {
+      const selectedFile = event.target.files[0];
+      const formData = new FormData();
+      formData.append('fileData', selectedFile, selectedFile.name);
+      console.log(formData);
+
+      this.uploadFile.uploadSingleFile(formData).subscribe((img: any) => {
+        this.imageUrl = img[0].file_Path;
+        this.changeImageUrl.emit(img[0].file_Path);
+        this.loadingButton = false;
+      })
+    } else if (event == 'delete') {
+      this.imageUrl = '';
+      this.changeImageUrl.emit(this.defaultImageUrl());
+      this.loadingButton = false;
+    }
+  }
+  defaultImageUrl(): string {
+    return 'https://t4.ftcdn.net/jpg/05/50/60/49/360_F_550604961_BZT4vo52ysIku2cQ3Zn8sAQg1rXHBKv0.jpg'
+  }
+
 }

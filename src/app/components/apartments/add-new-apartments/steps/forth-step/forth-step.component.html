@@ -111,6 +111,8 @@
             <p class="gray fw-bold">Upload pictures for current damage</p>
 
             <div class="row">
+                <p-progressSpinner *ngIf="spinner == true"></p-progressSpinner>
+
                 <div>
                     <div class="position-relative h-124px mb-3">
                         <!-- start single img upload and preview -->
@@ -123,29 +125,44 @@
                     </div>
                 </div>
             </div>؛
-            <div class="row" style="margin-bottom: 13px;">
+            <!-- <div class="row" style="margin-bottom: 13px;">
                 <div class="col-8 bomar">
 
                     <button type="button" style="background-color: #1f4068 !important;margin-left: 10px;" class="rounded-2 text-white rounded-2 border-0 py-2 px-4  " [disabled]="!selectedFiles" (click)="upload()">
   Confirm
 </button>
                 </div>
-            </div>
+            </div> -->
             <div class="card1">
                 <div class="row">
+                    <div class="col-md-2 card33" *ngFor="let image of apt_imgs;  index as i ">
+                        <a (click)="removeItem(image.pic_URL)" style="      border: none;   margin-bottom: 10px; position: absolute;">
+                            <img class="imageRemove" src="../../../../../../assets/images/delete.svg" width="32px" height="32px;">
+                        </a>
+                        <!-- <input type="checkbox" id="st{{i}}" (change)="checkValue($event,image)" /> -->
+                        <!-- <input type="radio" name="color" id="st{{i}}" (change)="checkValue($event,image.pic_URL)"> -->
+
+                        <!-- <label for="st{{i}}"></label> -->
+                        <a (click)="opencloseModal(image.pic_URL)">
+                            <img [src]="image.pic_URL" alt="Avatar" style="width:339px;height:205px ; ">
+
+                        </a>
+
+                    </div>
+                </div>
+                <!-- <div class="row">
                     <div class="col-md-2 card33" *ngFor="let image of ListFiles;  index as i ">
                         <a (click)="removeItem(image.name)" style="      border: none;   margin-bottom: 10px; position: absolute;">
                             <img class="imageRemove" src="../../../../../../assets/images/delete.svg" width="32px" height="32px;">
                         </a>
-                        <!-- <input type="checkbox" id="st{{i}}" (change)="checkValue($event,image)" />
-                        <label for="st{{i}}"></label> -->
+
                         <a (click)="opencloseModal(urls[i])">
                             <img [src]="urls[i]" alt="Avatar" style="width:339px;height:205px ; ">
 
                         </a>
 
                     </div>
-                </div>
+                </div> -->
                 <div class="row" *ngIf="storedImages!=null||storedImages!=''">
                     <div class="col-md-2 card33" *ngFor="let image of storedImages;  index as i ">
 
@@ -228,12 +245,16 @@
                 <div class="col-12 col-md-6">
                     <div class="d-flex">
                         <p-inputSwitch [(ngModel)]="checkedstripe" [ngModelOptions]="{standalone: true}"></p-inputSwitch>
+                        <p class="ms-2 mt-1 fw-bold gray">Online</p>
+                    </div>
+                    <!-- <div class="d-flex">
+                        <p-inputSwitch [(ngModel)]="checkedstripe" [ngModelOptions]="{standalone: true}"></p-inputSwitch>
                         <p class="ms-2 mt-1 fw-bold gray">stripe</p>
                     </div>
                     <div class="d-flex">
                         <p-inputSwitch [(ngModel)]="checkedPayPal" [ngModelOptions]="{standalone: true}"></p-inputSwitch>
                         <p class="ms-2 mt-1 fw-bold gray">PayPal</p>
-                    </div>
+                    </div> -->
                     <div class="d-flex">
                         <p-inputSwitch [(ngModel)]="checkedCash" [ngModelOptions]="{standalone: true}"></p-inputSwitch>
                         <p class="ms-2 mt-1 fw-bold gray">Cash</p>

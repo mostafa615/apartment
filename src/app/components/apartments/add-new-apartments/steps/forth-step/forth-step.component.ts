@@ -16,6 +16,8 @@ export class ForthStepComponent {
   CreateapartmentCurrentlyExisting: string = 'Yes';
   /** checkedstripe */
   checkedstripe: boolean = true;
+  checkedOnline: boolean = true;
+
   /** checkedPayPal */
   checkedPayPal: boolean = true;
   /** checkedCash */
@@ -77,9 +79,9 @@ export class ForthStepComponent {
 
        this.PostBackupInfo.patchValue(res.backup_Info);
        this.inputField=res.backup_Info["inputFields"]
-       this.checkedstripe = Boolean(res.backup_Info["payment_Methods"][0].payment_Method_Name)
-       this.checkedPayPal =  Boolean(res.backup_Info["payment_Methods"][1].payment_Method_Name)
-       this.checkedCash =  Boolean(res.backup_Info["payment_Methods"][2].payment_Method_Name)
+       this.checkedOnline = Boolean(res.backup_Info["payment_Methods"][0].payment_Method_Name)
+      //  this.checkedPayPal =  Boolean(res.backup_Info["payment_Methods"][1].payment_Method_Name)
+       this.checkedCash =  Boolean(res.backup_Info["payment_Methods"][1].payment_Method_Name)
      })
   }
   // get  local storage
@@ -96,9 +98,9 @@ export class ForthStepComponent {
       this.CreateapartmentCurrentlyExisting = parsedData.CreateapartmentCurrentlyExisting;
       this.selectedContract = { 'url': parsedData.dmgs_Imgs[0].pic_URL }
       // payment till we make finale one
-      this.checkedstripe = Boolean(parsedData.payment_Methods[0].payment_Method_Name);
-      this.checkedPayPal = Boolean(parsedData.payment_Methods[1].payment_Method_Name);
-      this.checkedCash = Boolean(parsedData.payment_Methods[2].payment_Method_Name);
+      this.checkedOnline = Boolean(parsedData.payment_Methods[0].payment_Method_Name);
+      // this.checkedPayPal = Boolean(parsedData.payment_Methods[1].payment_Method_Name);
+      this.checkedCash = Boolean(parsedData.payment_Methods[1].payment_Method_Name);
 
       console.log(this.checkedPayPal);
       console.log('parsedData.payment_Methods[2].payment_Method_Name', parsedData.payment_Methods);
@@ -167,8 +169,8 @@ export class ForthStepComponent {
       "inputFields": this.inputField,
       "payment_Methods":
         [
-          { "payment_Method_Name": String(this.checkedstripe) },
-          { "payment_Method_Name": String(this.checkedPayPal) },
+          { "payment_Method_Name": String(this.checkedOnline) },
+          // { "payment_Method_Name": String(this.checkedPayPal) },
           { "payment_Method_Name": String(this.checkedCash) }
         ]
     }
@@ -208,8 +210,8 @@ export class ForthStepComponent {
       "inputFields": this.inputField,
       "payment_Methods":
         [
-          { "payment_Method_Name": String(this.checkedstripe) },
-          { "payment_Method_Name": String(this.checkedPayPal) },
+          { "payment_Method_Name": String(this.checkedOnline) },
+          // { "payment_Method_Name": String(this.checkedPayPal) },
           { "payment_Method_Name": String(this.checkedCash) }
         ]
     }
@@ -256,7 +258,9 @@ export class ForthStepComponent {
         reader.readAsDataURL(file);
       }
     }
-  }
+    this.upload()
+    this.ListFiles=[]
+   }
 
   display22="none"
 
@@ -272,10 +276,12 @@ this.display22="none"
       removeItem(imageName:any){
 
 
-     let index2343 = this.ListFiles.findIndex((element:any) => element.name   == imageName);
-     this.ListFiles.splice(index2343, 1);
-     this.urls.splice(index2343, 1);
-      }
+        let index2343 = this.apt_imgs.findIndex((element:any) => element.pic_URL   == imageName);
+        this.apt_imgs.splice(index2343, 1);
+
+       //  this.ListFiles.splice(index2343, 1);
+        this.urls.splice(index2343, 1);
+         }
 isSelected=true;
       selected(flie:any,sel:any){
         if(sel=="select"){
@@ -306,7 +312,10 @@ storedImages:any
 
           }
        }
+       spinner: boolean = false;
+
        upload(): void {
+        this.spinner=true;
 
                 this.uploadService.uploadMultiFile(this.convertFileToFormData(this.ListFiles)).subscribe(data => {
                   this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Images Upload Successfully'}` });
@@ -317,6 +326,7 @@ storedImages:any
                   // this.generalInfoForm.get('apt_ThumbImg')?.patchValue(data[0].name);
                   this.PostBackupInfo.get('dmgs_Imgs')?.patchValue(this.apt_imgs);
                   localStorage.setItem("imagesAPT11", JSON.stringify(this.apt_imgs));
+                  this.spinner=false;
 
                 });
               }

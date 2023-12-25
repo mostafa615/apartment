@@ -13,7 +13,7 @@ import { AdminsService } from 'src/app/_services/admins/admins.service';
   styleUrls: ['./view-partner.component.css']
 })
 export class ViewPartnerComponent implements OnInit {
-
+paramTile="partenerView"
   constructor(
     private viewportScroller: ViewportScroller,
     private uploadService: UploadFileService,

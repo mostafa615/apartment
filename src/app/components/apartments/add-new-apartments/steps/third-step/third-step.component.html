@@ -199,6 +199,7 @@
                     <div class="row">
                         <div>
                             <p class="gray fw-bold">Upload pictures for trash Location</p>
+                            <p-progressSpinner *ngIf="spinner == true"></p-progressSpinner>
 
                             <div class="row">
                                 <div>
@@ -213,31 +214,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" style="margin-bottom: 13px;">
+                            <!-- <div class="row" style="margin-bottom: 13px;">
                                 <div class="col-8 bomar">
 
                                     <button type="button" style="background-color: #1f4068 !important;margin-left: 10px;" class="rounded-2 text-white rounded-2 border-0 py-2 px-4  " [disabled]="!selectedFiles" (click)="upload()">
               Confirm
             </button>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="card1">
                                 <div class="row">
-                                    <div class="col-md-2 card33" *ngFor="let image of ListFiles;  index as i ">
-                                        <a (click)="removeItem(image.name)" style="      border: none;   margin-bottom: 10px; position: absolute;">
+                                    <div class="col-md-2 card33" *ngFor="let image of apt_imgs;  index as i ">
+                                        <a (click)="removeItem(image.pic_URL)" style="      border: none;   margin-bottom: 10px; position: absolute;">
                                             <img class="imageRemove" src="../../../../../../assets/images/delete.svg" width="32px" height="32px;">
                                         </a>
-
-                                        <a>
-                                            <img [src]="urls[i]" alt="Avatar" style="width:339px;height:205px ; ">
-
-                                        </a>
-
-                                    </div>
-                                </div>
-                                <div class="row" *ngIf="storedImages!=null||storedImages!=''">
-                                    <div class="col-md-2 card33" *ngFor="let image of storedImages;  index as i ">
-
+                                        <!-- <input type="checkbox" id="st{{i}}" (change)="checkValue($event,image)" /> -->
+                                        <!-- <input type="radio" name="color" id="st{{i}}" (change)="checkValue($event,image.pic_URL)"> -->
+                                        <!--
+                                        <label for="st{{i}}"></label> -->
                                         <a (click)="opencloseModal(image.pic_URL)">
                                             <img [src]="image.pic_URL" alt="Avatar" style="width:339px;height:205px ; ">
 
@@ -245,6 +239,28 @@
 
                                     </div>
                                 </div>
+                                <!-- <div class="row">
+                                    <div class="col-md-2 card33" *ngFor="let image of apt_imgs;  index as i ">
+                                        <a (click)="removeItem(image.pic_URL)" style="      border: none;   margin-bottom: 10px; position: absolute;">
+                                            <img class="imageRemove" src="../../../../../../assets/images/delete.svg" width="32px" height="32px;">
+                                        </a>
+
+                                        <a>
+                                            <img [src]="image.pic_URL" alt="Avatar" style="width:339px;height:205px ; ">
+
+                                        </a>
+
+                                    </div>
+                                </div> -->
+
+                                <!-- <div class="row" *ngIf="storedImages!=null||storedImages!=''">
+                                    <div class="col-md-2 card33" *ngFor="let image of storedImages;  index as i ">
+
+                                        <a (click)="opencloseModal(image.pic_URL)">
+                                            <img [src]="image.pic_URL" alt="Avatar" style="width:339px;height:205px;">
+                                        </a>
+                                    </div>
+                                </div> -->
                                 <div class="row" *ngIf="edit=='EditForm'">
                                     <div class="col-md-2 card33" *ngFor="let image of aprt_details_Edit?.tarsh_Pin_Imgs;  index as i ">
 
