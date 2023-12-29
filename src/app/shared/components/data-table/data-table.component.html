@@ -45,7 +45,7 @@
                     <p-tableCheckbox [value]="product" (click)="GetSelectedItem()"></p-tableCheckbox>
                 </td> -->
                 <!-- in owner case -->
-                <td *ngIf="pagePerson =='Owners'  " routerLink="/owner/owner_details/{{product.owner_ID}}">
+                <td *ngIf="pagePerson =='Owners'  " routerLink="/owner-profile/{{product.owner_ID}}">
                     <p class="d-flex align-items-center fw-bold mt-2">
                         <img [src]="product?.owner_Photo" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;"> {{product.owner_FirstName}} {{product.owner_LastName }}</p>
                 </td>

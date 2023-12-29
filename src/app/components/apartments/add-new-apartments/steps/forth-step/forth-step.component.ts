@@ -25,7 +25,7 @@ export class ForthStepComponent {
   /** gas_Meter_Cons */
   gas_Meter_Cons: boolean = false
   /** Labelfield */
-  Labelfield: any = { text1: 'input field name', text2: 'input field content' };
+  Labelfield: any = { text1: 'Input Field Name', text2: 'Input Field Content' };
   /** PostBackupInfo */
   PostBackupInfo!: FormGroup;
   /** inputField */

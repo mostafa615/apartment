@@ -61,7 +61,10 @@
                     <tr *ngIf="headerData">
                         <ng-container>
 
+                          <th class="td-name">
+                            Request Code
 
+                        </th>
                             <th class="td-name">
                                 User name
 
@@ -93,7 +96,10 @@
                 <ng-template pTemplate="body" let-inquire>
 
                     <tr style="cursor: pointer;" (click)="hidecard(inquire.request_ID)">
+                      <td routerLink="/view-inquire/{{inquire.request_ID}}">
 
+                        {{inquire?.request_Code}}
+                      </td>
                         <td>
                             <img [src]="inquire?.profileImg" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;"> {{inquire?.userName}}
                         </td>

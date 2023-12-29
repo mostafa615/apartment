@@ -50,7 +50,7 @@ export class ThirdStepComponent {
   /** descriptionOfrole */
   descriptionOfrole: string = ''
   /** Labelapt_inputfields */
-  Labelapt_inputfields: object = { text1: 'input field name', text2: 'input field content' };
+  Labelapt_inputfields: object = { text1: 'Input Field Name', text2: 'Input Field Content' };
   /** selectedContract */
   selectedContractImg: any;
   /** selectedSafeImg */
@@ -170,7 +170,7 @@ dataEdit:any
     bindCreatecontract(): void {
       this.create_Apart_contract = new FormGroup({
         'digital_Contract': new FormControl(true),
-        'landLord': new FormControl(''),
+        'landLord': new FormControl(localStorage.getItem("apt_owner")),
         'tenantName': new FormControl(''),
         'contractDate_Start': new FormControl(''),
         'contractDate_End': new FormControl(''),
@@ -215,7 +215,7 @@ this.imageSize=image
   //   this.apt_inputfields.push({field_Name:'',field_Content:''})
   // }
   initial_apt_rules(): void {
-    this.apt_roles.push({ label: 'role 1', rule_Desc: '' }, { label: 'role 2', rule_Desc: '' })
+    this.apt_roles.push({ label: 'Rule 1', rule_Desc: '' })
   }
   DoyouCreateacheckintype(value: any) {
     this.Createcheckintype = value.target.value
@@ -340,7 +340,7 @@ this.imageSize=image
       // if there is roles in Rental Roles
       for (let i = 0; i < parseData.apt_rules.length; i++) {
         this.apt_roles[i] = {
-          label:`role ` + (i+1),
+          label:`Rule ` + (i+1),
           rule_Desc: parseData.apt_rules[i].rule_Desc,
         };
       }
@@ -421,7 +421,7 @@ this.imageSize=image
   }
 
   saveActionButtonnewapt_rules() {
-    this.apt_roles.push({ label: `role ${this.apt_roles.length + 1}`, rule_Desc: this.descriptionOfrole })
+    this.apt_roles.push({ label: `Rule ${this.apt_roles.length + 1}`, rule_Desc: this.descriptionOfrole })
     this.descriptionOfrole = ''
     this.ActionButtonapt_roles = false
     console.log(this.apt_roles)

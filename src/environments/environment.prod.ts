@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://api.vivas-apt.tech/api',
+    apiUrl: 'https://api.studiflats.com/api',
     outputPath: "dist/Production"
 
 };

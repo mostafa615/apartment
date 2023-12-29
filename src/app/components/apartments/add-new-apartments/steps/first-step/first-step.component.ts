@@ -224,6 +224,7 @@ getApartmentDetails() {
   selectedfromDropDownPropertyowner(value: any): void {
 
     this.generalInfoForm.get('apt_Owner')?.setValue(value.id);
+    localStorage.setItem('apt_Owner', value.name);
   };
 
   /**
@@ -263,17 +264,23 @@ getApartmentDetails() {
 
   selectedfromDropDownApartmentType(value: any): void {
     this.generalInfoForm.get('apt_types')?.setValue(value.name);
-    if (value.name != "Apartment") {
-      this.showNone = true
+    if (value.name == "Apartment") {
+      this.showNone = false
       this.generalInfoForm.get('apt_Bedrooms')?.setValue(1)
       this.generalInfoForm.get('apt_Toilets')?.setValue(1)
       this.generalInfoForm.get('apt_Living')?.setValue(1)
     }
-    else {
-      this.generalInfoForm.get('apt_Bedrooms')?.setValue('')
-      this.generalInfoForm.get('apt_Toilets')?.setValue('')
-      this.generalInfoForm.get('apt_Living')?.setValue('')
-      this.showNone = false
+    else if (value.name == "Studio") {
+      this.generalInfoForm.get('apt_Bedrooms')?.setValue(1)
+      this.generalInfoForm.get('apt_Toilets')?.setValue(1)
+      this.generalInfoForm.get('apt_Living')?.setValue(0)
+      this.showNone = true
+    }
+    else{
+      this.generalInfoForm.get('apt_Bedrooms')?.setValue(0)
+      this.generalInfoForm.get('apt_Toilets')?.setValue(0)
+      this.generalInfoForm.get('apt_Living')?.setValue(0)
+      this.showNone = true
     }
 
   };
@@ -366,7 +373,7 @@ getApartmentDetails() {
     this.listRadiobutton = ['Yes', 'No'];
     this.listDropDownFloor = this.rangefrom0to100();
     this.listDropDownApartmentnumber = this.rangefrom0to100();
-    this.listDropDownApartmentType = [{ name: 'Apartment' }, { name: 'Studio' }];
+    this.listDropDownApartmentType = [{ name: 'Select Type' },{ name: 'Apartment' }, { name: 'Studio' }];
     this.listDropDownElevator = [
       {
         name: 'yes' ,
@@ -386,11 +393,11 @@ getApartmentDetails() {
 
   bindCreateGeneral(): void {
     this.generalInfoForm = new FormGroup({
-      'apt_Area': new FormControl('', [Validators.required]),
+      'apt_Area': new FormControl('0', [Validators.required]),
 
-      'apt_FloorNo': new FormControl(0, [Validators.required]),
+      'apt_FloorNo': new FormControl('0', [Validators.required]),
       'apt_Name': new FormControl('', [Validators.required]),
-      'apt_AptNo': new FormControl(0, [Validators.required]),
+      'apt_AptNo': new FormControl('0', [Validators.required]),
       'apt_Price': new FormControl(0, [Validators.required]),
       'apt_SecuirtyDep': new FormControl(0, [Validators.required]),
       'apt_BillDescirption': new FormControl(''),
@@ -414,8 +421,8 @@ getApartmentDetails() {
       'apt_Elevator': new FormControl(true, [Validators.required]),
       // 'apt_Lat': new FormControl('', [Validators.required]),//0
       // 'apt_Long': new FormControl('', [Validators.required]),//0
-      'apt_types': new FormControl('Apartment', [Validators.required]),
-      'apt_Owner': new FormControl('', [Validators.required]),//string
+      'apt_types': new FormControl('Select Type', [Validators.required]),
+      'apt_Owner': new FormControl('0', [Validators.required]),//string
       'apt_Status': new FormControl('', [Validators.required]),//Rented
       "apt_ThumbImg": new FormControl('', [Validators.required]),
 
@@ -449,6 +456,7 @@ getApartmentDetails() {
     localStorage.setItem("Createtransport", JSON.stringify(this.Createtransport))
 
     localStorage.setItem("generalInfoForm", JSON.stringify({ ...this.generalInfoForm.value, apt_Transports: this.Createtransport, bills: this.bills }))
+
 
     if(this.addApartment !="add new apartments" ){
 
@@ -643,11 +651,26 @@ isShow=false;
          onChange(deviceValue:any) {
           if(deviceValue=="Apartment"){
               this.isShow=true
+              this.generalInfoForm.get('apt_Bedrooms')?.setValue(1)
+      this.generalInfoForm.get('apt_Toilets')?.setValue(1)
+      this.generalInfoForm.get('apt_Living')?.setValue(1)
           }
-          else{
+         else if(deviceValue=="Studio"){
             this.isShow=false
-
+            this.generalInfoForm.get('apt_Bedrooms')?.setValue(1)
+            this.generalInfoForm.get('apt_Toilets')?.setValue(1)
+            this.generalInfoForm.get('apt_Living')?.setValue(0)
           }
-       }
+          else
+          {
+            this.isShow=false
+            this.generalInfoForm.get('apt_Bedrooms')?.setValue(0)
+            this.generalInfoForm.get('apt_Toilets')?.setValue(0)
+            this.generalInfoForm.get('apt_Living')?.setValue(0)
+          }
+       };
+       SetOwnerName(event: any) {
 
+        localStorage.setItem("apt_owner",event.target.selectedOptions[0].text)
+     }
       }

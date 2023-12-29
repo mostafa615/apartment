@@ -7,14 +7,14 @@
             <div>
 
                 <p class="fw-bold mb-0">BedRooms</p>
-                <p class="gray">Add Rooms details.</p>
+                <p class="gray">Add Rooms Details.</p>
             </div>
 
             <ng-container *ngFor="let i of getrange(n_ofbedRoom);let index1=index">
                 <div class="p-3 mb-3 rounded">
                     <!-- <p class="fw-bold mb-4">Room {{index1+1}}</p> -->
                     <div class="mb-3 col-12 col-md-6">
-                        <label class="form-label gray fw-bold">bedRoom Name</label>
+                        <label class="form-label gray fw-bold">BedRoom Name</label>
                         <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="arrNamesbedroom[index1]" class="form-control bg-white rounded-2 py-2 fs-6">
 
                     </div>
@@ -30,21 +30,21 @@
                     </div>
                     <div class="row mb-3" *ngIf="ActionButtonField[index1]==true">
                         <div class=" col-12 col-md-6 ">
-                            <label class="form-label gray fw-bold">room detail
+                            <label class="form-label gray fw-bold">Room Detail
                 {{arraynewFieldRoomDetails[index1].length?arraynewFieldRoomDetails[index1].length+1: 0}}</label>
                             <input [ngModelOptions]="{standalone: true}" [(ngModel)]="contentnewFieldRoomDetails" type="text" class="form-control bg-white rounded-2 py-2 fs-6">
 
                         </div>
                         <div class="mb-0 mt-4 col-12 col-md-6 d-flex align-items-center ">
                             <div>
-                                <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="RemoveActionButton(index1)">cancel</button>
-                                <button class="outline-0 text-white bg-blue px-4 fw-bold py-2 rounded-2 border-0 background " (click)="saveActionButton(index1)">save</button>
+                                <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="RemoveActionButton(index1)">Cancel</button>
+                                <button class="outline-0 text-white bg-blue px-4 fw-bold py-2 rounded-2 border-0 background " (click)="saveActionButton(index1)">Save</button>
                             </div>
                         </div>
 
                     </div>
                     <a class="bg-transparent text-decoration-none cursor outline-0 border-0 blue fw-bold mb-4" (click)="ActionButtonField[index1]=true">
-                        <img src="assets/images/apartmentImages/ic_baseline-add.svg" /> Add New Rome Detail
+                        <img src="assets/images/apartmentImages/ic_baseline-add.svg" /> Add New Room Detail
                     </a>
 
                 </div>
@@ -55,15 +55,15 @@
         <div>
             <div>
 
-                <p class="fw-bold mb-0">living room</p>
-                <p class="gray">Add living room details.</p>
+                <p class="fw-bold mb-0">Living Room</p>
+                <p class="gray">Add Living Room Details.</p>
             </div>
 
             <ng-container *ngFor="let i of getrange(n_ofLiving);let index1=index">
                 <div class="p-3 mb-3 rounded">
                     <!-- <p class="fw-bold mb-4"> Living Room {{index1+1}}</p> -->
                     <div class="mb-3 col-12 col-md-6">
-                        <label class="form-label gray fw-bold">living Room Name</label>
+                        <label class="form-label gray fw-bold">Living Room Name</label>
                         <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="arrNamesLiving[index1]" class="form-control bg-white rounded-2 py-2 fs-6">
 
                     </div>
@@ -79,15 +79,15 @@
                     </div>
                     <div class="row mb-3" *ngIf="ActionButtonLivingRoomDetailField[index1]==true">
                         <div class=" col-12 col-md-6 ">
-                            <label class="form-label gray fw-bold">living room detail
+                            <label class="form-label gray fw-bold">Living Room Detail
                 {{arraynewFieldLivingRoomDetails[index1].length?arraynewFieldLivingRoomDetails[index1].length+1: 0}}</label>
                             <input [ngModelOptions]="{standalone: true}" [(ngModel)]="contentnewFieldLivingRoomDetails" type="text" class="form-control bg-white rounded-2 py-2 fs-6">
 
                         </div>
                         <div class="mb-0 mt-4 col-12 col-md-6 d-flex align-items-center ">
                             <div>
-                                <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="RemoveLivingRoomDetailsActionButton(index1)">cancel</button>
-                                <button class="outline-0 text-white bg-blue px-4 fw-bold py-2 rounded-2 border-0 background " (click)="saveLivingRoomDetailsActionButton(index1)">save</button>
+                                <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="RemoveLivingRoomDetailsActionButton(index1)">Cancel</button>
+                                <button class="outline-0 text-white bg-blue px-4 fw-bold py-2 rounded-2 border-0 background " (click)="saveLivingRoomDetailsActionButton(index1)">Save</button>
                             </div>
                         </div>
 
@@ -103,8 +103,8 @@
         <!--bathrooms section-->
         <div>
             <div>
-                <p class="fw-bold mb-0">bathrooms</p>
-                <p class="gray">Add bathrooms equipment's and tools details.</p>
+                <p class="fw-bold mb-0">Bathrooms</p>
+                <p class="gray">Add Bathrooms equipment's and tools details.</p>
             </div>
             <ng-container *ngFor="let i of getrange(n_ofToilets);let index1=index">
                 <div class="p-3 bg-section mb-3 rounded">
@@ -121,20 +121,20 @@
                     </div>
                     <div class="row mb-3" *ngIf="ActionButtonFieldBathroom[index1]==true">
                         <div class=" col-12 col-md-6 ">
-                            <label class="form-label gray fw-bold">bathroom Tool {{arraynewFieldBathroom[index1].length?arraynewFieldBathroom[index1].length+1:0}}</label>
+                            <label class="form-label gray fw-bold">Bathroom Tool {{arraynewFieldBathroom[index1].length?arraynewFieldBathroom[index1].length+1:0}}</label>
                             <input [ngModelOptions]="{standalone: true}" [(ngModel)]="contentnewFieldBathroom" type="text" class="form-control bg-white rounded-2 py-2 fs-6">
 
                         </div>
                         <div class="mb-0 mt-4 col-12 col-md-6 d-flex align-items-center ">
                             <div>
-                                <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="RemoveActionButtonnewFieldBathroom(index1)">cancel</button>
-                                <button class="outline-0 text-white bg-blue px-4 fw-bold py-2 rounded-2 border-0 background" (click)="saveActionButtonnewFieldBathroom(index1)">save</button>
+                                <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="RemoveActionButtonnewFieldBathroom(index1)">Cancel</button>
+                                <button class="outline-0 text-white bg-blue px-4 fw-bold py-2 rounded-2 border-0 background" (click)="saveActionButtonnewFieldBathroom(index1)">Save</button>
                             </div>
                         </div>
 
                     </div>
                     <a class="bg-transparent cursor text-decoration-none  outline-0 border-0 blue fw-bold mb-4" (click)="ActionButtonFieldBathroom[index1]=true">
-                        <img src="assets/images/apartmentImages/ic_baseline-add.svg" /> Add new bathroom tool
+                        <img src="assets/images/apartmentImages/ic_baseline-add.svg" /> Add New Bathroom Tool
                     </a>
 
                 </div>
@@ -145,7 +145,7 @@
         <div class="mt-4">
             <div>
                 <p class="fw-bold mb-0">Kitchen</p>
-                <p class="gray">Add kitchen equipment's and tools details.</p>
+                <p class="gray">Add Kitchen equipment's and tools details.</p>
             </div>
             <div class="p-3 mb-3 rounded">
                 <div class="row ">
@@ -160,19 +160,19 @@
                 </div>
                 <div class="row mb-3" *ngIf="ActionButtonFieldkitchen==true">
                     <div class=" col-12 col-md-6 ">
-                        <label class="form-label gray fw-bold">kitchen tool {{newFieldkitchen.length+1}}</label>
+                        <label class="form-label gray fw-bold">Kitchen Tool {{newFieldkitchen.length+1}}</label>
                         <input [ngModelOptions]="{standalone: true}" [(ngModel)]="descriptionOfKitchen" type="text" class="form-control bg-white rounded-2 py-2 fs-6">
                     </div>
                     <div class="mb-0 mt-4 col-12 col-md-6 d-flex align-items-center ">
                         <div>
-                            <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="ActionButtonFieldkitchen=false">cancel</button>
-                            <button class="outline-0 text-white bg-blue px-4 fw-bold py-2 rounded-2 border-0 background" (click)="saveActionButtonnewFieldKitchen()">save</button>
+                            <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="ActionButtonFieldkitchen=false">Cancel</button>
+                            <button class="outline-0 text-white bg-blue px-4 fw-bold py-2 rounded-2 border-0 background" (click)="saveActionButtonnewFieldKitchen()">Save</button>
                         </div>
                     </div>
 
                 </div>
                 <a class="bg-transparent cursor text-decoration-none outline-0 border-0 blue fw-bold mb-4" (click)="ActionButtonFieldkitchen=true">
-                    <img src="assets/images/apartmentImages/ic_baseline-add.svg" /> Add new kitchen tool
+                    <img src="assets/images/apartmentImages/ic_baseline-add.svg" /> Add New Kitchen Tool
                 </a>
 
             </div>
@@ -182,7 +182,7 @@
         <div class="mt-4">
             <div>
                 <p class="fw-bold mb-0">Special Features</p>
-                <p class="gray">Add features details.</p>
+                <p class="gray">Add Features Details.</p>
             </div>
             <div class="p-3 mb-3 rounded">
                 <div class="row ">
@@ -202,8 +202,8 @@
                     </div>
                     <div class="mb-0 mt-4 col-12 col-md-6 d-flex align-items-center ">
                         <div>
-                            <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="ActionButtonFieldSpecialFeatures=false">cancel</button>
-                            <button class="outline-0 text-white bg-blue px-4 fw-bold py-2 rounded-2 border-0 background" (click)="saveActionButtonnewFieldSpecialFeatures()">save</button>
+                            <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="ActionButtonFieldSpecialFeatures=false">Cancel</button>
+                            <button class="outline-0 text-white bg-blue px-4 fw-bold py-2 rounded-2 border-0 background" (click)="saveActionButtonnewFieldSpecialFeatures()">Save</button>
                         </div>
                     </div>
 
@@ -219,7 +219,7 @@
         <div class="mt-4">
             <div>
                 <p class="fw-bold mb-0">Other Facilities</p>
-                <p class="gray">Add Facilities details.</p>
+                <p class="gray">Add Facilities Details.</p>
             </div>
             <div class="p-3 mb-3 rounded">
                 <div class="row ">
@@ -239,8 +239,8 @@
                     </div>
                     <div class="mb-0 mt-4 col-12 col-md-6 d-flex align-items-center ">
                         <div>
-                            <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="ActionButtonFieldFacility=false">cancel</button>
-                            <button class="outline-0 text-white bg-blue px-4 fw-bold py-2 rounded-2 border-0 background" (click)="saveActionButtonnewFieldSpecialFecility()">save</button>
+                            <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="ActionButtonFieldFacility=false">Cancel</button>
+                            <button class="outline-0 text-white bg-blue px-4 fw-bold py-2 rounded-2 border-0 background" (click)="saveActionButtonnewFieldSpecialFecility()">Save</button>
                         </div>
                     </div>
 
@@ -259,10 +259,10 @@
       </button>
             <div class="d-flex justify-content-between">
                 <button type="submit" class="backcancel bg-white rounded-2 py-2 px-3 fw-bold mx-2 blue">
-          save and close
+          Save and Close
         </button>
                 <button type="submit" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
-          next
+          Next
         </button>
             </div>
         </div>

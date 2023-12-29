@@ -27,11 +27,11 @@ export class SecondStepComponent {
   /** arraynewFieldLivingRoomDetails */
   arraynewFieldLivingRoomDetails:Array<any> = [];
   /** newFieldkitchen */
-  newFieldkitchen: Array<any> = [{ label: 'kitchen tool 1', description: '' }, { label: 'kitchen tool 2', description: '' }];
+  newFieldkitchen: Array<any> = [{ label: 'Kitchen Tool 1', description: '' }];
   /** newFieldSpecialFeatures */
-  newFieldSpecialFeatures: Array<any> = [{ label: 'Feature 1', description: '' }, { label: 'Feature 2', description: '' }];
+  newFieldSpecialFeatures: Array<any> = [{ label: 'Feature 1', description: '' }];
   /** newFieldFacility */
-  newFieldFacility: Array<any> = [{ label: 'Facility 1', description: '' }, { label: 'Facility 2', description: '' }];
+  newFieldFacility: Array<any> = [{ label: 'Facility 1', description: '' }];
   /** descriptionOfKitchen */
   descriptionOfKitchen = '';
   /** contentnewFieldBathroom */
@@ -75,7 +75,7 @@ export class SecondStepComponent {
   /** ActionButtonField */
   ActionButtonField: any = [false];
   /** LabelKitchen */
-  LabelKitchen: object = { text1: 'kitchen tool 1', text2: 'kitchen tool 2' };
+  LabelKitchen: object = { text1: 'Kitchen Tool 1'};
   /** apt_UUID */
   apt_UUID: string = '';
   /** n_ofbedRoom */
@@ -344,13 +344,13 @@ export class SecondStepComponent {
   drowNumberOfEntries() {
 
     for (let i = 0; i < this.n_ofbedRoom; i++) {
-      this.arraynewFieldRoomDetails[i] = [{ label: 'room detail 1', contentnewFieldRoomDetails: '' }, { label: 'room detail 2', contentnewFieldRoomDetails: '' }]
+      this.arraynewFieldRoomDetails[i] = [{ label: 'Room Detail 1', contentnewFieldRoomDetails: '' }]
     }
     for (let i = 0; i < this.n_ofToilets; i++) {
-      this.arraynewFieldBathroom[i] = [{ label: 'bathroom  Tool 1', contentnewFieldBathroom: '' }, { label: 'bathroom Tool 2', contentnewFieldBathroom: '' }]
+      this.arraynewFieldBathroom[i] = [{ label: 'Bathroom  Tool 1', contentnewFieldBathroom: '' }]
     }
     for (let i = 0; i < this.n_ofLiving; i++) {
-      this.arraynewFieldLivingRoomDetails[i] = [{ label: 'living room detail 1', contentnewFieldLivingRoomDetails: '' }, { label: 'living room detail 2', contentnewFieldLivingRoomDetails: '' }]
+      this.arraynewFieldLivingRoomDetails[i] = [{ label: 'Living Room Detail 1', contentnewFieldLivingRoomDetails: '' }]
     }
   }
   selectedfromDropDownRoom(value: any, index: number): void {
@@ -427,7 +427,7 @@ export class SecondStepComponent {
 
     for (let j = 0; j < this.arraynewFieldBathroom.length; j++) {
       let obj = {
-        "bath_Name": "bathroom Tool",
+        "bath_Name": "Bathroom Tool",
       }
       let arr: any = []
 

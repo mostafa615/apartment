@@ -132,7 +132,7 @@ event.stopPropagation()
   InquireFillterLists: Array<any> = [];
   InquireFillterSelected: Array<any> = [];
   initFakeData(): void {
-    this.InquireFillterLists = ["All Inquiries", "Waiting for approve", "Waiting list","confirmed inquiries"];
+    this.InquireFillterLists = ["All Inquiries", "Waiting for Approve", "Waiting List","Confirmed Inquiries","Cancelled Booking","Terminated Booking"];
     this.InquireFillterSelected = [true];
    }
    selectedfromDropDown(value:any){
@@ -161,6 +161,18 @@ event.stopPropagation()
     }
     if(index == 3){
       this.statusinquire="Approved"
+
+      this.getAllInquires(this.statusinquire);
+
+    }
+    if(index == 4){
+      this.statusinquire="Cancelled"
+
+      this.getAllInquires(this.statusinquire);
+
+    }
+    if(index == 5){
+      this.statusinquire="Terminated"
 
       this.getAllInquires(this.statusinquire);
 

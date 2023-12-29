@@ -79,7 +79,7 @@
                             </th>
                             <th class="td-name">
 
-                                actions
+                                Operations
                             </th>
                         </ng-container>
                     </tr>
@@ -89,7 +89,7 @@
                     <tr style="cursor: pointer;" (click)="hidecard()">
 
 
-                        <td>
+                        <td routerLink="/Report-view/{{issue.issue_ID}}">
                             {{issue?.issue_Code}}
                         </td>
                         <td>
@@ -131,20 +131,20 @@
               <img src="assets/images/edit.svg">
           </button>
                             <div *ngIf="showEdit[issue.issue_ID] " style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
-                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/Report-view/{{issue.issue_ID}}">view details</button>
+                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/Report-view/{{issue.issue_ID}}">View Details</button>
 
                                 <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" routerLink="/assgin-issue/{{issue.issue_ID}}"> assign worker  </button>
-                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="OpenModal1(issue.issue_ID) ">mark it as in-progress
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="OpenModal1(issue.issue_ID) ">Mark it as In-Progress
 
 
                                 </button>
-                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="OpenModal2(issue.issue_ID)">mark it as solved
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="OpenModal2(issue.issue_ID)">Mark it as Solved
 
                                    </button>
-                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="OpenModal3(issue.issue_ID)">new appointment
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="OpenModal3(issue.issue_ID)">New Appointment
 
                                    </button>
-                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="cancelissue(issue.issue_ID)">cancel </button>
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="cancelissue(issue.issue_ID)">Cancel </button>
 
                             </div>
 
@@ -176,7 +176,7 @@
             <div class="modal-header" style="background-color:#ffffff; border-bottom: none !important;">
                 <p class="modal-title" style="color: #1C1B1F; font-size: 20px;   font-weight: 600; line-height: 24px; word-wrap: break-word">
                     <span class="form-label gray fw-bold" style="vertical-align: middle; padding-left:8px">
-                    mark it as in-progress
+                    Mark it as In-Progress
               </span>
                 </p>
                 <button type="button" style="border:none;background-color: #ffffff;width: 68px;height: 50px;" class="close" aria-label="Close" (click)="onCloseModal1()">
@@ -192,7 +192,7 @@
 
                 <div id="Bankdetails">
                     <!-- <p class="fw-bold mb-0"> Bank account information</p> -->
-                    <p style="color: #605D62 !important;">please select an appointment to go and solve this problem </p>
+                    <p style="color: #605D62 !important;">Please Select an Appointment to go and solve this problem </p>
                 </div>
                 <!--start Other Details form-->
 
@@ -331,23 +331,23 @@
 
                         <input type="radio" name="drone" checked (change)="handleChange2('studiflats')">
 
-                        <label class="fw-bold" style="color: #605D62; margin-left: 10px;"> studiflats
+                        <label class="fw-bold" style="color: #605D62; margin-left: 10px;"> StudiFlats
 
                            </label>
                         <input type="radio" name="drone" (change)="handleChange2('tenant')">
 
-                        <label class="fw-bold" style="color: #605D62; margin-left: 10px;"> tenant
+                        <label class="fw-bold" style="color: #605D62; margin-left: 10px;"> Tenant
 
                            </label>
                         <input type="radio" name="drone" (change)="handleChange2('owner')">
 
-                        <label class="fw-bold" style="color: #605D62; margin-left: 10px;"> owner
+                        <label class="fw-bold" style="color: #605D62; margin-left: 10px;"> Owner
 
                               </label>
                     </div>
                     <div class="mb-3 col-12 col-md-12">
                         <label for="exampleInputPricepermonth" class="form-label gray fw-bold">Total cost</label>
-                        <input type="number" [(ngModel)]="Total_cost" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+                        <input  type="number" [(ngModel)]="Total_cost" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
 
                     </div>
                     <div class="mb-3 col-12 col-md-12">

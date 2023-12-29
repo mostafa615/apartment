@@ -82,7 +82,7 @@ export class MainFileComponent {
    InquireFillterLists: Array<any> = [];
    InquireFillterSelected: Array<any> = [];
    initFakeData(): void {
-     this.InquireFillterLists = ["All Issues", "Completed","Pending"];
+     this.InquireFillterLists = ["All Issues", "Completed","Pending","Cancelled"];
      this.InquireFillterSelected = [true];
     }
     checkindex=0;
@@ -107,7 +107,12 @@ export class MainFileComponent {
         this.getAllIssues();
 
       }
+      if(index == 3){
+        this.statusinquire="Cancelled"
 
+        this.getAllIssues();
+
+      }
     }
    hidecard( ){
     this.showEdit=[]
@@ -241,7 +246,7 @@ tiggerPageChange(event: any) {
   handleChange(item:any) {
     this.Apointment=item.appo_Date +item.appo_Time
   }
-  who_will_pay:any="studiflats"
+  who_will_pay:any="StudiFlats"
   handleChange2(item:any){
     debugger
     this.who_will_pay= item
