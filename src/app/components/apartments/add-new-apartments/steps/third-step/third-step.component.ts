@@ -148,8 +148,8 @@ dataEdit:any
 
           this.create_Apart_contract.patchValue(res.rent_Rules);
           this.create_Apart_contract.get('digital_Contract')?.setValue(res.contract_Main["digital_Contract"]);
-          this.create_Apart_contract.get('landLord')?.setValue(res.contract_Main["landLord"]);
-          this.create_Apart_contract.get('tenantName')?.setValue(res.contract_Main["tenantName"]);
+          this.create_Apart_contract.get('landLord')?.setValue(localStorage.getItem('apt_owner'));
+          this.create_Apart_contract.get('tenantName')?.setValue('StudiFlats');
           this.create_Apart_contract.get('rent_Fees')?.setValue(res.contract_Main["rent_Fees"]);
           this.create_Apart_contract.get('contractDate_Start')?.setValue(new Date( res.contract_Main["contractDate_Start"]));
           this.create_Apart_contract.get('contractDate_End')?.setValue(new Date(res.contract_Main["contractDate_End"]));
@@ -171,15 +171,15 @@ dataEdit:any
       this.create_Apart_contract = new FormGroup({
         'digital_Contract': new FormControl(true),
         'landLord': new FormControl(localStorage.getItem("apt_owner")),
-        'tenantName': new FormControl(''),
+        'tenantName': new FormControl('StudiFlats'),
         'contractDate_Start': new FormControl(''),
         'contractDate_End': new FormControl(''),
         'rent_Fees': new FormControl(0),
         'checkType': new FormControl('Self_Check_In'),
         'wifi_Name': new FormControl(''),
         'wifi_Password': new FormControl(''),
-        'numof_Doors': new FormControl(''),
-        'mailBox_Num': new FormControl(''),
+        'numof_Doors': new FormControl(0),
+        'mailBox_Num': new FormControl(0),
         'trash_Location': new FormControl(''),
         'apt_Location': new FormControl(''),
         'safe_Code': new FormControl(''),
