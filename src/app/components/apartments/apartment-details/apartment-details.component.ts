@@ -81,6 +81,7 @@ export class ApartmentDetailsComponent implements OnInit {
   bath_Room:any
   backup_Info:any
   kitchen_Tools:any=[]
+
   getApartmentDetails() {
     this._ApartmentService.getApartDetail(this.apt_UUID).subscribe((res) => {
       this._OnwerService.getOwner(res.general_Info["apt_Owner"]).subscribe((res) => {

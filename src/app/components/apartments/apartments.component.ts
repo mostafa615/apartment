@@ -85,9 +85,9 @@ gotopage( ){
   pageNumber: number = 1;
   filterStatus:any="All"
   /** itemsPerPage */
-  itemsPerPage: number = 10 ;
+  itemsPerPage: number = 8 ;
 
-   pagesize=10;
+   pagesize=8;
   totalofPages=0;;
   disablenext=false;
   disableperv=false;

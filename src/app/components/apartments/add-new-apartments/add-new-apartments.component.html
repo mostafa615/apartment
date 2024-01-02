@@ -15,7 +15,12 @@
 
         <!--start navigate add new apartments-->
         <div class="d-flex">
-            <p class="me-4 fw-bold gray"><a style="color: black" class="removeUnderLine" href="./apartments">Apartments</a> </p>
+            <p class="me-4 fw-bold gray">
+                <!-- <a style="color: black" class="removeUnderLine" href="./apartments">Apartments </a> -->
+                <a href="javascript:void(0)" routerLink="/apartments" class="removeUnderLine">
+                    <p class="fw-bold ml-8">Apartments</p>
+                </a>
+            </p>
             <p class="fw-bold me-4">></p>
             <p class="fw-bold"> {{param}}</p>
         </div>

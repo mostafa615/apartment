@@ -87,11 +87,11 @@
                         <p class="gray mt-3 ms-2">Published: 27/04/2023 • 04: 14 PM</p>
                     </div>
                     <div class="row">
-                        <a *ngIf="ApartmentsRole?.p_Update==true || is_Super==true" class="col-7 border-0 outline-0 rounded-3 me-3 py-2 blue text-decoration-none text-center" routerLink="/apartments/page/{{this.apt_UUID}}" style="background-color: #d2d9e1"><img src="assets/images/apartmentImages/edit.svg" />Edit </a>
+                        <a *ngIf="ApartmentsRole?.p_Update==true || is_Super==true" class="col-12 border-0 outline-0 rounded-3 me-3 py-2 blue text-decoration-none text-center" routerLink="/apartments/page/{{this.apt_UUID}}" style="background-color: #d2d9e1"><img src="assets/images/apartmentImages/edit.svg" />Edit </a>
 
-                        <div class="col-4">
+                        <!-- <div class="col-4">
                             <app-share-button></app-share-button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -480,8 +480,8 @@
                             <div class="col-12 col-md-7 d-flex align-items-center">
                                 <div class="mb-3">
                                     <!-- <a class="me-3 cursor" routerLink="/apartments/contract/create-owner-contract"><img src="assets/images/apartmentImages/edit1.svg" /></a> -->
-                                    <a class="me-3 cursor" routerLink="/apartments/{{ 'user-contract' }}"><img src="assets/images/apartmentImages/delete.svg" /></a>
-                                    <a class="me-3 cursor" routerLink=""><img src="assets/images/apartmentImages/share.svg" /></a>
+                                    <a class="me-3 cursor" target="_blank" [href]="contract_Main.contract_Path"><img src="assets/images/apartmentImages/delete.svg" /></a>
+                                    <!-- <a class="me-3 cursor" routerLink=""><img src="assets/images/apartmentImages/share.svg" /></a> -->
                                     <a class="me-3 cursor" routerLink=""><img src="assets/images/apartmentImages/move.svg" /></a>
                                 </div>
                             </div>
@@ -519,7 +519,7 @@
                                 <div class="mb-3">
                                     <a class="me-3 cursor" routerLink="/apartments/contract/create-tenant-contract"><img src="assets/images/apartmentImages/edit1.svg" /></a>
                                     <a class="me-3 cursor" routerLink="/apartments/{{ 'owner-contract' }}"><img src="assets/images/apartmentImages/delete.svg" /></a>
-                                    <a class="me-3 cursor" routerLink=""><img src="assets/images/apartmentImages/share.svg" /></a>
+                                    <!-- <a class="me-3 cursor" routerLink=""><img src="assets/images/apartmentImages/share.svg" /></a> -->
                                     <a class="me-3 cursor" routerLink=""><img src="assets/images/apartmentImages/move.svg" /></a>
                                 </div>
                             </div>

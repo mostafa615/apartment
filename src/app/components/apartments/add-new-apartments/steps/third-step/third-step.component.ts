@@ -133,7 +133,7 @@ dataEdit:any
 
       this._ApartmentService.getApartDetail(this.idParamterEdit).subscribe((res) => {
            this._OnwerService.getOwner(res.general_Info["apt_Owner"]).subscribe((res) => {
-            this.nameOwner=res.owner_FirstName +" "+res.owner_LastName;
+            // this.nameOwner=res.owner_FirstName +" "+res.owner_LastName;
           })
           this.dataEdit=res;
           this.nameApartment=res.general_Info["apt_Name"]
@@ -148,7 +148,7 @@ dataEdit:any
 
           this.create_Apart_contract.patchValue(res.rent_Rules);
           this.create_Apart_contract.get('digital_Contract')?.setValue(res.contract_Main["digital_Contract"]);
-          this.create_Apart_contract.get('landLord')?.setValue(localStorage.getItem('apt_owner'));
+          // this.create_Apart_contract.get('landLord')?.setValue(localStorage.getItem('apt_owner'));
           this.create_Apart_contract.get('tenantName')?.setValue('StudiFlats');
           this.create_Apart_contract.get('rent_Fees')?.setValue(res.contract_Main["rent_Fees"]);
           this.create_Apart_contract.get('contractDate_Start')?.setValue(new Date( res.contract_Main["contractDate_Start"]));
@@ -156,6 +156,9 @@ dataEdit:any
           this.create_Apart_contract.get('contract_Path')?.setValue(res.contract_Main["contract_Path"]);
           this.create_Apart_contract.get('trash_pin_image')?.setValue(res.rent_Rules["tarsh_Pin_Imgs"]);
           this.create_Apart_contract.get('checkType')?.setValue(res.rent_Rules["checkType"]);
+          this.create_Apart_contract.get('landLord')?.setValue(res.contract_Main["landLord"]);
+          this.nameOwner=res.contract_Main["landLord"];
+
           if(res.rent_Rules["checkType"]=="Self_Check_In"){
             this.Createcheckintype ='self check in'
           }else{
