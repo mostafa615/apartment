@@ -164,6 +164,13 @@ dataEdit:any
           this.issshowdoor="door"
           this.issshowbuilding ="building"
           this.issshowsafe="safe"
+ if(res.contract_Main["digital_Contract"]==true){
+  this.CreateContract = 'Yes' ;
+  this.createcontractpage = true
+ }  else{
+  this.CreateContract = 'No' ;
+  this.createcontractpage = false
+ }
 
           })
     }
@@ -193,6 +200,7 @@ dataEdit:any
       })
     }
   DoyouCreateContract(value: any) {
+    debugger
     this.CreateContract = value.target.value
     this.CreateContract == 'Yes' ? this.createcontractpage = true : this.createcontractpage = false
     this.create_Apart_contract.get('digital_Contract')?.setValue(this.createcontractpage);
@@ -218,6 +226,7 @@ this.imageSize=image
     this.apt_roles.push({ label: 'Rule 1', rule_Desc: '' })
   }
   DoyouCreateacheckintype(value: any) {
+    debugger
     this.Createcheckintype = value.target.value
     let checkin
     this.Createcheckintype == 'self check in' ? checkin = 'Self_Check_In' : checkin = 'Service_check_In'
@@ -315,6 +324,7 @@ this.imageSize=image
   idwner:any
   // get  local storage
   getLocalStorage(): void {
+    debugger
     this.storedImages =[]
 
     this.storedImages = JSON.parse(localStorage.getItem("imagesAPT12")||'{}');
@@ -330,8 +340,15 @@ this.imageSize=image
       this.selectedSafeImg = { 'url': parseData.safe_Img };
       this.selectedDoorImg = { 'url': parseData.door_Img };
       this.selectedBuildingImg = { 'url': parseData.building_Img };
+      if(parseData.digital_Contract==true){
+        this.CreateContract = 'Yes' ;
+        this.createcontractpage = true
+       }  else{
+        this.CreateContract = 'No' ;
+        this.createcontractpage = false
+       }
 
-      this.CreateContract = parseData.CreateContract
+      // this.CreateContract = parseData.CreateContract
       this.Createcheckintype = parseData.Createcheckintype
       //  if there is contractDetails in this question {{Do you want create contract ?}}
       this.contractDetails = parseData.contractDetails;
@@ -363,7 +380,7 @@ this.imageSize=image
     return 'contract' in localStorage;
   }
   Create_Apart_Contract(data: any) {
-
+    debugger
     let rules: any = []
     this.apt_roles.forEach(element => {
 
