@@ -14,7 +14,7 @@
             </div>
             <div class="mb-3 col-12 col-md-6">
                 <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold">Apartment Name</label>
-                <input formControlName='apt_Name'  type="text" [class.is-invalid]="generalInfoForm.get('apt_Name')!.invalid && generalInfoForm.get('apt_Name')!.touched " class=" form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit" />
+                <input formControlName='apt_Name' type="text" [class.is-invalid]="generalInfoForm.get('apt_Name')!.invalid && generalInfoForm.get('apt_Name')!.touched " class=" form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit" />
                 <span class="text-danger d-block m-2 " *ngIf="generalInfoForm.get('apt_Name')!.invalid && generalInfoForm.get('apt_Name')!.touched ">
           this field is required
         </span>
@@ -30,7 +30,8 @@
             </div>
             <div class="mb-3 col-12 col-md-6">
                 <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold">Security Deposit</label>
-                <input formControlName="apt_SecuirtyDep" min="0" type="number" [class.is-invalid]="generalInfoForm.get('apt_SecuirtyDep')!.invalid && generalInfoForm.get('apt_SecuirtyDep')!.touched " class="form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit" />
+                <input formControlName="apt_SecuirtyDep" min="0" type="number" [class.is-invalid]="generalInfoForm.get('apt_SecuirtyDep')!.invalid && generalInfoForm.get('apt_SecuirtyDep')!.touched " class="form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit"
+                />
                 <span class="text-danger d-block m-2 " *ngIf="generalInfoForm.get('apt_SecuirtyDep')!.invalid && generalInfoForm.get('apt_SecuirtyDep')!.touched ">
             this field is required
         </span>
@@ -401,8 +402,8 @@
         <div class="d-flex justify-content-between">
             <div class="py-2 px-3 fw-bold"></div>
             <div class="d-flex justify-content-between">
-                <button type="submit" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2">
-          Save and Close
+                <button (click)="gotopage()" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2">
+            Close
         </button>
                 <button type="submit" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
           Next

@@ -6,9 +6,9 @@
     </div>
     <p-toast></p-toast>
 
-    <form [formGroup]="create_Apart_contract" (ngSubmit)="Create_Apart_Contract(create_Apart_contract)" [autocomplete]="false">
+    <form [formGroup]="create_Apart_contract" (ngSubmit)="Create_Apart_Contract(create_Apart_contract)">
         <div class="mt-4">
-            <p class="gray fw-bold mb-2">Upload Contract</p>
+            <p class="gray fw-bold mb-2">Upload contract</p>
 
             <div>
                 <div class="position-relative h-124px mb-3">
@@ -58,7 +58,7 @@
         <!--Create Contract-->
         <div>
             <p class="d-md-inline-block gray fw-bold mb-0 me-2">
-                Do you want Create Contract ?
+                Do you want create contract ?
             </p>
             <div class="form-check d-inline-block mb-2 me-3" *ngFor="let data of listRadiobutton">
                 <input class="form-check-input" type="radio" [checked]="CreateContract === data" name="createContract" value="{{ data }}" id="createContract" (change)="DoyouCreateContract($event)" />
@@ -68,19 +68,19 @@
 
         <div class="mb-4" *ngIf="CreateContract == 'Yes'">
             <div>
-                <p class="fw-bold mb-0" *ngIf="createcontractpage">Create Contract</p>
+                <p class="fw-bold mb-0" *ngIf="createcontractpage">create contract</p>
                 <p class="gray" *ngIf="createcontractpage">this is a legally contract between buyer and seller</p>
             </div>
             <div class="row">
                 <div class="mb-3 col-12 col-md-6">
-                    <label class="form-label gray fw-bold">Landlord Name</label>
+                    <label class="form-label gray fw-bold">landlord name</label>
                     <input [ngModelOptions]="{standalone: true}" [(ngModel)]="nameOwner" disabled="text" class="form-control rounded-2 py-2 fs-6" />
                     <!-- <span class="text-danger d-block m-2 " *ngIf="create_Apart_contract.get('landLord')!.invalid && create_Apart_contract.get('landLord')!.touched ">
             this field is required
           </span> -->
                 </div>
                 <div class="mb-3 col-12 col-md-6">
-                    <label class="form-label gray fw-bold">Tenant Name</label>
+                    <label class="form-label gray fw-bold">tenant name</label>
                     <input formControlName="tenantName" type="text" [class.is-invalid]="create_Apart_contract.get('tenantName')!.invalid && create_Apart_contract.get('tenantName')!.touched " class="form-control rounded-2 py-2 fs-6" />
                     <span class="text-danger d-block m-2 " *ngIf="create_Apart_contract.get('tenantName')!.invalid && create_Apart_contract.get('tenantName')!.touched ">
             this field is required
@@ -89,17 +89,17 @@
             </div>
             <div class="row" *ngIf="createcontractpage">
                 <div class="mb-3 col-12 col-md-6">
-                    <label class="form-label gray fw-bold">Contract Start Date</label>
+                    <label class="form-label gray fw-bold">Contract start date</label>
                     <p-calendar formControlName="contractDate_Start"></p-calendar>
 
                 </div>
                 <div class="mb-3 col-12 col-md-6">
-                    <label class="form-label gray fw-bold">Contract End Date</label>
+                    <label class="form-label gray fw-bold">Contract end date</label>
                     <p-calendar formControlName="contractDate_End"></p-calendar>
                 </div>
             </div>
             <div class="mb-3 me-4 col-12 col-md-6" *ngIf="createcontractpage">
-                <label class="form-label gray fw-bold">Price per Month</label>
+                <label class="form-label gray fw-bold">price per month</label>
                 <input type="number" formControlName="rent_Fees" [class.is-invalid]="create_Apart_contract.get('rent_Fees')!.invalid && create_Apart_contract.get('rent_Fees')!.touched " class="form-control rounded-2 py-2 fs-6" />
                 <span class="text-danger d-block m-2 " *ngIf="create_Apart_contract.get('rent_Fees')!.invalid && create_Apart_contract.get('rent_Fees')!.touched ">
             this field is required
@@ -123,7 +123,7 @@
             <app-create-contract-sections [index]="contractDetails.length+1" [contractDetails]="contractDetails[contractDetails.length+1]" [ActionButtonField]="!ActionButtonContractSection"></app-create-contract-sections>
             <div>
                 <a class="bg-transparent cursor text-decoration-none outline-0 border-0 blue fw-bold mb-4" (click)="ActionButtonContractSectionbutton()">
-                    <img src="assets/images/apartmentImages/ic_baseline-add.svg" /> Create New Section
+                    <img src="assets/images/apartmentImages/ic_baseline-add.svg" /> create new section
                 </a>
             </div>
         </div>
@@ -132,16 +132,16 @@
 
             <div class="row">
                 <div class="mb-3 col-12 col-md-6">
-                    <label class="form-label gray fw-bold">Contract Start Date</label>
+                    <label class="form-label gray fw-bold">Contract start date</label>
                     <p-calendar formControlName="contractDate_Start"></p-calendar>
                 </div>
                 <div class="mb-3 col-12 col-md-6">
-                    <label class="form-label gray fw-bold">Contract End Date</label>
+                    <label class="form-label gray fw-bold">Contract end date</label>
                     <p-calendar formControlName="contractDate_End"></p-calendar>
                 </div>
             </div>
             <div class="mb-3 me-4 col-12 col-md-6">
-                <label class="form-label gray fw-bold">Price per Month</label>
+                <label class="form-label gray fw-bold">price per month</label>
                 <input type="number" formControlName="rent_Fees" [class.is-invalid]="create_Apart_contract.get('rent_Fees')!.invalid && create_Apart_contract.get('rent_Fees')!.touched " class="form-control rounded-2 py-2 fs-6" />
                 <span class="text-danger d-block m-2 " *ngIf="create_Apart_contract.get('rent_Fees')!.invalid && create_Apart_contract.get('rent_Fees')!.touched ">
           this field is required
@@ -152,11 +152,11 @@
         <!--check in sheet section-->
         <div style="margin-top:48px">
             <div>
-                <p class="fw-bold mb-0">Check in Sheet</p>
-                <p class="gray">Add Check in Sheet Details.</p>
+                <p class="fw-bold mb-0">check in sheet</p>
+                <p class="gray">Add check in sheet details.</p>
             </div>
             <div>
-                <p class="d-md-inline-block gray fw-bold mb-0 me-3">Check in Type</p>
+                <p class="d-md-inline-block gray fw-bold mb-0 me-3">check in type</p>
                 <div class="form-check d-inline-block mb-2" *ngFor="let data of checkintypelist">
                     <input class="form-check-input" type="radio" [checked]="Createcheckintype === data" name="Createapartmentcurre" value="{{ data }}" id="createContract" (change)="DoyouCreateacheckintype($event)" />
                     <label class="fw-bold me-3" for="createContract"> {{ data }} </label>
@@ -176,11 +176,11 @@
                     </div> -->
                     <div class="row">
                         <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">Wi-Fi Name</label>
+                            <label class="form-label gray fw-bold">Wi-Fi name</label>
                             <input formControlName="wifi_Name" type="text" class="form-control rounded-2 py-2 fs-6" />
                         </div>
                         <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">Wi-Fi Password</label>
+                            <label class="form-label gray fw-bold">Wi-Fi password</label>
                             <input formControlName="wifi_Password" type="text" class="form-control rounded-2 py-2 fs-6" />
                         </div>
                     </div>
@@ -188,17 +188,17 @@
                         <div class="mb-3  col-12 col-md-6">
                             <label class="form-label gray fw-bold"> Number Of The Door (if found)
               </label>
-                            <input type="number" min='0' formControlName="numof_Doors" class="form-control rounded-2 py-2 fs-6" />
+                            <input type="number" formControlName="numof_Doors" class="form-control rounded-2 py-2 fs-6" />
                         </div>
                         <div class="mb-3  col-12 col-md-6">
-                            <label class="form-label gray fw-bold">The Mailbox number (if found)
+                            <label class="form-label gray fw-bold">The mailbox number (if found)
               </label>
-                            <input type="number" min="0" formControlName="mailBox_Num" class="form-control rounded-2 py-2 fs-6" />
+                            <input type="number" formControlName="mailBox_Num" class="form-control rounded-2 py-2 fs-6" />
                         </div>
                     </div>
                     <div class="row">
                         <div>
-                            <p class="gray fw-bold">Upload Pictures for Trash Location</p>
+                            <p class="gray fw-bold">Upload pictures for trash Location</p>
                             <p-progressSpinner *ngIf="spinner == true"></p-progressSpinner>
 
                             <div class="row">
@@ -274,8 +274,8 @@
                             </div>
 
                             <div>
-                                <div class="mb-3 mt-5">
-                                    <label for="exampleFormControlTextarea1" class="form-label gray">Description of Trash Location</label>
+                                <div class="mb-3 mt-2">
+                                    <label for="exampleFormControlTextarea1" class="form-label gray">Description of trash Location</label>
                                     <textarea formControlName="trash_Location" class=" border p-3 rounded-2 w-100" rows="5" style="resize: inherit;"></textarea>
                                 </div>
 
@@ -289,37 +289,19 @@
                             <input formControlName="trash_Location" type="text" class="form-control rounded-2 py-2 fs-6" />
                         </div> -->
                         <div class="mb-3  col-12 col-md-6">
-                            <label class="form-label gray fw-bold">The Location of The Apartment on The Floor</label>
+                            <label class="form-label gray fw-bold">The Location of the apartment on the floor</label>
                             <input formControlName="apt_Location" type="text" class="form-control rounded-2 py-2 fs-6" />
                         </div>
                     </div>
-                    <div class="row" *ngIf="addApartment == 'Edit Apartment Name'">
-                        <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">The Nearest Transportation Station</label>
-                            <input type="text" class="form-control rounded-2  fs-6" />
-                        </div>
-                        <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">Floor Number</label>
-                            <!-- <app-dropdown [list]="listDropDownFloorNumber" (selected)="selectedfromDropDownFloorNumber($event)"></app-dropdown> -->
 
-                            <!-- <app-dropdown [list]="listDropDownFloor" [holder]="selectFloor" (selected)="selectedfromDropDownFloor($event)"></app-dropdown> -->
-                            <select class="s-cont" name="apt_FloorNo" id="apt_FloorNo" [ngModelOptions]="{standalone: true}" [(ngModel)]="apt_FloorNo">
-                                <option value="null"    disabled hidden selected>  &nbsp; select Floor   </option>
-
-                              <option *ngFor="let type of listDropDownFloorNumber" value="{{type.name}}"> {{type.name}} </option>
-                              </select>
-                            <!-- end dropdown button  -->
-                            <!--  -->
-                        </div>
-                    </div>
 
                     <div class="row">
                         <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">The Safe Code </label>
+                            <label class="form-label gray fw-bold">the safe code </label>
                             <input formControlName="safe_Code" type="text" class="form-control rounded-2 py-2 fs-6" />
                         </div>
                         <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">The Safe Image</label>
+                            <label class="form-label gray fw-bold">the safe image</label>
                             <div class="position-relative h-124px mb-3">
                                 <!-- start single img upload and preview -->
                                 <ng-container *ngIf="!selectedSafeImg">
@@ -340,12 +322,12 @@
                     </div>
                     <div class="row">
                         <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">Picture of The Apartment Door</label>
+                            <label class="form-label gray fw-bold">picture of the apartment door</label>
                             <div class="position-relative h-124px mb-3">
                                 <!-- start single img upload and preview -->
                                 <ng-container *ngIf="!selectedDoorImg">
                                     <input type="file" accept="image/*" (change)="onUploadContract($event,'door_Img')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
-                                    <img src="assets/images/apartmentImages/File upload.svg" class="position-absolute">
+                                    <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute">
                                 </ng-container>
                                 <ng-container *ngIf="selectedDoorImg">
                                     <input type="file" accept="image/*" (change)="onUploadContract($event,'door_Img')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
@@ -357,30 +339,10 @@
                                 <img [src]="door_Img" *ngIf="issshowdoor=='door'" class="position-absolute imgPreviewUploader">
                             </div>
                         </div>
-                        <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">Picture of a Building's Door</label>
-                            <div class="position-relative h-124px mb-3">
-                                <!-- start single img upload and preview -->
-                                <ng-container *ngIf="!selectedBuildingImg">
-                                    <input type="file" accept="image/*" (change)="onUploadContract($event,'building_Img')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
-                                    <img src="assets/images/apartmentImages/File upload.svg" class="position-absolute">
-                                </ng-container>
-                                <ng-container *ngIf="selectedBuildingImg">
-                                    <input type="file" accept="image/*" (change)="onUploadContract($event,'building_Img')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
-                                    <img [src]="selectedBuildingImg ? selectedBuildingImg.url : null" class="position-absolute imgPreviewUploader" width="100%">
-                                </ng-container>
-                                <!-- end single img upload and preview -->
-                            </div>
 
-                            <div *ngIf="addApartment == 'Edit Apartment Name'" class="h-124px mb-3">
-
-                                <img [src]="building_Img" *ngIf="issshowbuilding=='building'" class="position-absolute imgPreviewUploader">
-                            </div>
-
-                        </div>
                     </div>
 
-                    <div>
+                    <!-- <div>
                         <ng-container>
                             <div class="row" *ngFor="let data  of apt_inputfields ">
                                 <div class="mb-3 col-12 col-md-6">
@@ -388,22 +350,13 @@
                                     <input type="text" value="{{data.field_Content}}" class="form-control rounded-2 py-2 fs-6" />
                                 </div>
 
-                                <!-- <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label gray fw-bold">input field name </label>
-                                    <input type="text" value="{{data.field_Name}}" class="form-control rounded-2 py-2 fs-6" />
-                                </div>
-                                <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label gray fw-bold">
-                    input field content </label>
-                                    <input type="text" value="{{data.field_Content}}" class="form-control rounded-2 py-2 fs-6" />
-                                </div> -->
+
 
                             </div>
                         </ng-container>
-                        <!-- <app-input-field [labelinputs]="Labelapt_inputfields" [show]="true" (inputField)="pushinputfields($event)" [textButton]="'Create new field'"></app-input-field> -->
-                        <app-input-create-field [labelinputs]="Labelapt_inputfields" [show]="true" (inputField)="pushinputfields($event)" [textButton]="'Create New Field'"></app-input-create-field>
+                         <app-input-create-field [labelinputs]="Labelapt_inputfields" [show]="true" (inputField)="pushinputfields($event)" [textButton]="'Create new field'"></app-input-create-field>
 
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div *ngIf="Createcheckintype == 'service check in'">
@@ -411,11 +364,11 @@
 
                     <div class="row">
                         <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">Wi-Fi Name</label>
+                            <label class="form-label gray fw-bold">Wi-Fi name</label>
                             <input formControlName="wifi_Name" type="text" class="form-control rounded-2 py-2 fs-6" />
                         </div>
                         <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">Wi-Fi Password</label>
+                            <label class="form-label gray fw-bold">Wi-Fi password</label>
                             <input formControlName="wifi_Password" type="text" class="form-control rounded-2 py-2 fs-6" />
                         </div>
                     </div>
@@ -423,58 +376,76 @@
                         <div class="mb-3  col-12 col-md-6">
                             <label class="form-label gray fw-bold"> Door number (if found)
               </label>
-                            <input formControlName="numof_Doors" min="0" type="number" class="form-control rounded-2 py-2 fs-6" />
+                            <input formControlName="numof_Doors" type="number" class="form-control rounded-2 py-2 fs-6" />
                         </div>
                         <div class="mb-3  col-12 col-md-6">
-                            <label class="form-label gray fw-bold">The Mailbox number (if found)
+                            <label class="form-label gray fw-bold">The mailbox number (if found)
               </label>
-                            <input formControlName="mailBox_Num" min="0" type="number" class="form-control rounded-2 py-2 fs-6" />
+                            <input formControlName="mailBox_Num" type="number" class="form-control rounded-2 py-2 fs-6" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-3  col-12 col-md-6">
-                            <label class="form-label gray fw-bold">Trash Bin Location </label>
+                            <label class="form-label gray fw-bold">Trash bin location </label>
                             <input formControlName="trash_Location" type="text" class="form-control rounded-2 py-2 fs-6" />
                         </div>
-                        <div class="mb-3  col-12 col-md-6">
-                            <label class="form-label gray fw-bold">Floor Number</label>
-                            <input type="number" min="0" class="form-control rounded-2 py-2 fs-6" />
-                        </div>
+                        <!-- <div class="mb-3  col-12 col-md-6">
+                            <label class="form-label gray fw-bold">Floor number</label>
+                            <input type="number" class="form-control rounded-2 py-2 fs-6" />
+                        </div> -->
                     </div>
-                    <div>
-                        <p class=" gray fw-bold">Picture of a Buildings Door </p>
 
-                        <!--upload image-->
-                    </div>
-                    <div>
-                        <ng-container>
-                            <div class="row" *ngFor="let data  of apt_inputfields ">
-                                <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label gray fw-bold">{{data.field_Name}} </label>
-                                    <input type="text" value="{{data.field_Content}}" class="form-control rounded-2 py-2 fs-6" />
-                                </div>
-                                <!-- <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label gray fw-bold">input field name </label>
-                                    <input type="text" value="{{data.field_Name}}" class="form-control rounded-2 py-2 fs-6" />
-                                </div>
-                                <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label gray fw-bold">
-                    input field content </label>
-                                    <input type="text" value="{{data.field_Content}}" class="form-control rounded-2 py-2 fs-6" />
-                                </div> -->
 
-                            </div>
-                        </ng-container>
-                        <app-input-create-field [labelinputs]="Labelapt_inputfields" [show]="true" (inputField)="pushinputfields($event)" [textButton]="'Create New Field'"></app-input-create-field>
-                    </div>
                 </div>
+            </div>
+            <div class="mb-3 col-12 col-md-12">
+                <label class="form-label gray fw-bold">picture of a building's door</label>
+                <div class="position-relative h-124px mb-3">
+                    <!-- start single img upload and preview -->
+                    <ng-container *ngIf="!selectedBuildingImg">
+                        <input type="file" accept="image/*" (change)="onUploadContract($event,'building_Img')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                        <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute">
+                    </ng-container>
+                    <ng-container *ngIf="selectedBuildingImg">
+                        <input type="file" accept="image/*" (change)="onUploadContract($event,'building_Img')" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                        <img [src]="selectedBuildingImg ? selectedBuildingImg.url : null" class="position-absolute imgPreviewUploader" width="100%">
+                    </ng-container>
+                    <!-- end single img upload and preview -->
+                </div>
+
+                <div *ngIf="addApartment == 'Edit Apartment Name'" class="h-124px mb-3">
+
+                    <img [src]="building_Img" *ngIf="issshowbuilding=='building'" class="position-absolute imgPreviewUploader">
+                </div>
+
+            </div>
+            <div>
+                <ng-container>
+                    <div class="row" *ngFor="let data  of apt_inputfields ">
+                        <div class="mb-3 col-12 col-md-6">
+                            <label class="form-label gray fw-bold">{{data.field_Name}} </label>
+                            <input type="text" value="{{data.field_Content}}" class="form-control rounded-2 py-2 fs-6" />
+                        </div>
+                        <!-- <div class="mb-3 col-12 col-md-6">
+                          <label class="form-label gray fw-bold">input field name </label>
+                          <input type="text" value="{{data.field_Name}}" class="form-control rounded-2 py-2 fs-6" />
+                      </div>
+                      <div class="mb-3 col-12 col-md-6">
+                          <label class="form-label gray fw-bold">
+          input field content </label>
+                          <input type="text" value="{{data.field_Content}}" class="form-control rounded-2 py-2 fs-6" />
+                      </div> -->
+
+                    </div>
+                </ng-container>
+                <app-input-create-field [labelinputs]="Labelapt_inputfields" [show]="true" (inputField)="pushinputfields($event)" [textButton]="'Create new field'"></app-input-create-field>
             </div>
         </div>
         <!--Rental Roles section-->
         <div class="mt-3">
             <div>
-                <p class="fw-bold mb-0">Rental Rules</p>
-                <p class="gray">Add Rental Rules for The Apartment</p>
+                <p class="fw-bold mb-0">Rental Roles</p>
+                <p class="gray">Add rental roles for the apartment</p>
             </div>
             <div class="row ">
                 <ng-container *ngFor="let data of apt_roles">
@@ -493,14 +464,14 @@
                 </div>
                 <div class="mb-0 mt-4 col-12 col-md-6 d-flex align-items-center ">
                     <div>
-                        <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="ActionButtonapt_roles=false">Cancel</button>
+                        <button class="outline-0 bg-transparent blue borderCancel px-3 py-2 me-3 rounded-3 fw-bold" (click)="ActionButtonapt_roles=false">cancel</button>
                         <button style="    background-color: #1f4068 !important;" class="rounded-2 text-decoration-none cursor text-white border-0 rounded-2 border-0 outline-0 py-2 px-4" (click)="saveActionButtonnewapt_rules()">save</button>
                     </div>
                 </div>
 
             </div>
             <a class="bg-transparent cursor text-decoration-none outline-0 border-0 blue fw-bold mb-4" (click)="ActionButtonapt_roles=true">
-                <img src="assets/images/apartmentImages/ic_baseline-add.svg" /> Add New Rule
+                <img src="assets/images/apartmentImages/ic_baseline-add.svg" /> Add New Role
             </a>
         </div>
         <hr />
@@ -510,11 +481,11 @@
         Back
       </button>
             <div class="d-flex justify-content-between">
-                <button type="submit" class="backcancel bg-white rounded-2 border-0 py-2 px-3 fw-bold mx-2 blue">
-          Save and Close
+                <button (click)="gotopage()" class="backcancel bg-white rounded-2 border-0 py-2 px-3 fw-bold mx-2 blue">
+           close
         </button>
                 <button type="submit" class="rounded-2 outline-0 text-white border-0 rounded-2 py-2 px-4" style="background-color: #1f4068 !important">
-          Next
+          next
         </button>
             </div>
         </div>
@@ -533,7 +504,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-white bbtclose" (click)="oncloseModal()">
-Close
+close
 </button>
 
             </div>

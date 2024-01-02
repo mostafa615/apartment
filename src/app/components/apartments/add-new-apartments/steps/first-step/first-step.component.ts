@@ -95,7 +95,7 @@ export class FirstStepComponent implements OnInit {
   constructor(private _ApartmentService: ApartmentService,
     private uploadService: UploadFileService,
     private messageService: MessageService,
-    private _ActivatedRoute:ActivatedRoute,
+    private _ActivatedRoute:ActivatedRoute,public router: Router
   ) {
 
 
@@ -505,10 +505,15 @@ getApartmentDetails() {
     this.jumbToNextSteb.emit();
   }
 
-  transport(value: object): void {
+  transport(value: any): void {
+    debugger
+    if(value["t_Distance"]==''||value["t_Name"]==''){
+        return;
+    }else{
+      console.log(this.localapt_Transports)
+      this.Createtransport.push(value)
+    }
 
-    console.log(this.localapt_Transports)
-     this.Createtransport.push(value)
   }
   openModelLocation(){
     this.display="block"
@@ -668,9 +673,15 @@ isShow=false;
             this.generalInfoForm.get('apt_Toilets')?.setValue(0)
             this.generalInfoForm.get('apt_Living')?.setValue(0)
           }
-       };
-       SetOwnerName(event: any) {
+};
+SetOwnerName(event: any) {
 
         localStorage.setItem("apt_owner",event.target.selectedOptions[0].text)
-     }
+}
+
+
+     gotopage( ){
+      let url: string = "apartments";
+        this.router.navigateByUrl(url);
+    }
       }

@@ -62,7 +62,13 @@ gotopage( ){
       localStorage.removeItem(key);
     }
   }
+  Date=""
+  selectedfromDropDown(value:any){
 
+    this.Date=value.name;
+    this.getAllApartment()
+    console.log(value)
+  }
   initFakeData(): void {
     this.apartmentFillterLists = ["All Apartment", "Rented Apartment", "Available Apartment","Rent EndSoon",'Draft' ];
     // this.apartmentFillterLists = ["All ", "Rented Apartment", "Available Apartment","Pending Apartment","Delete Apartment","Draft Apartment"];
@@ -129,7 +135,7 @@ gotopage( ){
   }
   getAllApartment(): void {
     this.apartmentList=[];
-    this.apartmentSer.FilterApartmentsFront("",this.pageNumber, this.itemsPerPage,this.filterStatus).subscribe((res) => {
+    this.apartmentSer.FilterApartmentsFront(this.Date,this.pageNumber, this.itemsPerPage,this.filterStatus).subscribe((res) => {
       this.fullRespone=res;
       this.apartmentList = res["data"];
       this.totalofPages=res["totalPages"]
@@ -164,9 +170,7 @@ gotopage( ){
     this.showSide = value
   }
 
-  selectedfromDropDown(value: any) {
-    console.log(value)
-  }
+
   checkindex=0;
   clickApartmentList(index:any){
     this.checkindex=index;

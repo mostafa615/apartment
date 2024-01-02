@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApartmentService } from '../../../../../_services/apartments/apartment.service'
 import { MessageService } from 'primeng/api';
 import { UploadFileService } from 'src/app/_services/UploadFile/upload-file.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OnwerService } from 'src/app/_services/Onwers/onwer.service';
 @Component({
   selector: 'app-third-step',
@@ -76,7 +76,7 @@ export class ThirdStepComponent {
     private messageService: MessageService,
     private uploadService: UploadFileService,
     private _ActivatedRoute: ActivatedRoute,
-    private _OnwerService: OnwerService,
+    private _OnwerService: OnwerService,public router: Router
 
 
     ) { }
@@ -155,6 +155,14 @@ dataEdit:any
           this.create_Apart_contract.get('contractDate_End')?.setValue(new Date(res.contract_Main["contractDate_End"]));
           this.create_Apart_contract.get('contract_Path')?.setValue(res.contract_Main["contract_Path"]);
           this.create_Apart_contract.get('trash_pin_image')?.setValue(res.rent_Rules["tarsh_Pin_Imgs"]);
+          this.create_Apart_contract.get('checkType')?.setValue(res.rent_Rules["checkType"]);
+          if(res.rent_Rules["checkType"]=="Self_Check_In"){
+            this.Createcheckintype ='self check in'
+          }else{
+            this.Createcheckintype ='service check in'
+
+          }
+
           this.door_Img=res.rent_Rules["door_Img"]
           this.safe_Img=res.rent_Rules["safe_Img"]
           this.building_Img=res.rent_Rules["building_Img"]
@@ -347,9 +355,15 @@ this.imageSize=image
         this.CreateContract = 'No' ;
         this.createcontractpage = false
        }
+       this.create_Apart_contract.get('checkType')?.setValue(parseData.checkType);
+       if(parseData.checkType=="Self_Check_In"){
+         this.Createcheckintype ='self check in'
+       }else{
+         this.Createcheckintype ='service check in'
 
+       }
       // this.CreateContract = parseData.CreateContract
-      this.Createcheckintype = parseData.Createcheckintype
+      // this.Createcheckintype = parseData.Createcheckintype
       //  if there is contractDetails in this question {{Do you want create contract ?}}
       this.contractDetails = parseData.contractDetails;
       //  if there is inputfield in self check in
@@ -589,5 +603,9 @@ storedImages:any
               removeSection(number:any){
                  ;
                 this.contractDetails.splice(number, 1);
+                }
+                gotopage( ){
+                  let url: string = "apartments";
+                    this.router.navigateByUrl(url);
                 }
 }

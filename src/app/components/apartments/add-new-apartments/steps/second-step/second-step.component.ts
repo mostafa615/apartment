@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ApartmentService } from '../../../../../_services/apartments/apartment.service'
 import { OnwerService } from 'src/app/_services/Onwers/onwer.service';
 import { MessageService } from 'primeng/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-second-step',
   templateUrl: './second-step.component.html',
@@ -94,7 +94,7 @@ export class SecondStepComponent {
 
   constructor(public _ApartmentService: ApartmentService,
     private messageService: MessageService,
-     private _ActivatedRoute:ActivatedRoute,
+     private _ActivatedRoute:ActivatedRoute,public router: Router
 
     ) { }
     idParamterEdit:any=""
@@ -587,5 +587,8 @@ export class SecondStepComponent {
   }
   Room_name:any
   Living_name:any
-
+  gotopage( ){
+    let url: string = "apartments";
+      this.router.navigateByUrl(url);
+  }
 }
