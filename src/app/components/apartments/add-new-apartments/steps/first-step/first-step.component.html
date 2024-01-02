@@ -6,7 +6,7 @@
     <p-toast></p-toast>
 
 
-    <form [formGroup]="generalInfoForm" (ngSubmit)="Create_Apart_General(generalInfoForm)">
+    <form [formGroup]="generalInfoForm" (ngSubmit)="Create_Apart_General(generalInfoForm)" [autocomplete]="false">
         <div class="row">
             <div class="mb-3 col-12 col-md-6" *ngIf="addApartment == 'add new apartments'">
                 <label for="exampleInputPricepermonth" class="form-label gray fw-bold">Apartment ID</label>
