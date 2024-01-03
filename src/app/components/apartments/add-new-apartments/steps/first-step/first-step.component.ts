@@ -158,9 +158,9 @@ getApartmentDetails() {
 
        this.generalInfoForm.patchValue(res.general_Info);
         this.Address=res.general_Info["apt_Address"]
-       this.localapt_Transports=res.trasponrts
+      //  this.localapt_Transports=res.trasponrts
 
-      // this.Createtransport=this.localapt_Transports
+      this.Createtransport=res.trasponrts
     })
   }
   // get  local storage
@@ -189,8 +189,8 @@ getApartmentDetails() {
       this.generalInfoForm.get('apt_Area')?.setValue(parsedData.apt_Area);
       this.selectedfromDropDownArea(parsedData.apt_Area,"update")
 
-      this.localapt_Transports = parsedData.apt_Transports;
-       //this.Createtransport== parsedData.apt_Transports;
+     // this.localapt_Transports = parsedData.apt_Transports;
+       this.Createtransport== parsedData.apt_Transports;
     }
     if (data2 !== null) {
       let parsedData2 = JSON.parse(data2);

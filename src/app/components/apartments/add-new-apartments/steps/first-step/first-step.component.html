@@ -160,7 +160,7 @@
             </div>
             <!-- create new field Transport-->
 
-            <div class="row" *ngFor="let transportData of localapt_Transports[index]">
+            <div class="row" *ngFor="let transportData of Createtransport">
                 <div class="mb-3 col-12 col-md-6">
                     <label class="form-label gray fw-bold">Transport name </label>
                     <input [ngModelOptions]="{standalone: true}" [(ngModel)]="transportData.t_Name" type="text" class="form-control rounded-2 py-2 fs-6" />

@@ -94,7 +94,7 @@ joddd2:any={ }
 
 worker_Skills: Array<any> = []
 Skills(value: any): void {
-
+debugger
   this.joddd2.skill_Name=value.skill_Name;
    this.worker_Skills.push( this.joddd2);
    this.joddd.skill_Name=value.skill_Content;

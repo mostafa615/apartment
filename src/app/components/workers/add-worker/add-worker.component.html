@@ -127,17 +127,17 @@
                     <a class="bg-transparent outline-0 my-5 text-decoration-none cursor border-0 blue fw-bold " (click)="show=true">
                         <img src="assets/images/apartmentImages/ic_baseline-add.svg"> Add New skills
                     </a> -->
-                    <div class="row" *ngFor="let transportData of localapt_Transports">
+                    <div class="row" *ngFor="let transportData of worker_Skills; let i= index ">
                         <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label gray fw-bold">skill 1 </label>
+                            <label class="form-label gray fw-bold">skill {{i +1}} </label>
                             <input [ngModelOptions]="{standalone: true}" [(ngModel)]="transportData.skill_Name" type="text" class="form-control rounded-2 py-2 fs-6" />
 
                         </div>
-                        <div class="mb-3 col-12 col-md-6" style="margin-right: 55px;">
+                        <!-- <div class="mb-3 col-12 col-md-6" style="margin-right: 55px;">
                             <label class="form-label gray fw-bold"> skill 2
             </label>
                             <input [ngModelOptions]="{standalone: true}" [(ngModel)]="transportData.skill_Name2" type="text" class="form-control rounded-2 py-2 fs-6" />
-                        </div>
+                        </div> -->
                     </div>
                     <app-input-field [labelinputs]="LabelTransport" (skill)="Skills($event)" [textButton]="'Add New skills'"></app-input-field>
                 </div>

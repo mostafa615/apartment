@@ -410,6 +410,7 @@ export class SecondStepComponent {
   Create_Apart_Equipment(data: any) {
     this.room=[];
     this.bathroom=[];
+    this.livingRoom=[]
     for (let j = 0; j < this.arraynewFieldRoomDetails.length; j++) {
       let obj = {
         "room_Name":  this.arrNamesbedroom[j],
