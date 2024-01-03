@@ -171,7 +171,10 @@
           </label>
                     <input [ngModelOptions]="{standalone: true}" [(ngModel)]="transportData.t_Distance" type="text" class="form-control rounded-2 py-2 fs-6" />
                 </div>
+
             </div>
+
+
             <app-input-field [labelinputs]="LabelTransport" (transport)="transport($event)" [textButton]="'Add New Transport'"></app-input-field>
 
         </div>

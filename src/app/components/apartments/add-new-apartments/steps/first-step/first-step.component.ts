@@ -513,6 +513,10 @@ getApartmentDetails() {
 
 
   }
+  RemoveActionButton(index: number) {
+    debugger
+    this.Createtransport.slice(0,index)
+  }
   index=0
   openModelLocation(){
     this.display="block"
