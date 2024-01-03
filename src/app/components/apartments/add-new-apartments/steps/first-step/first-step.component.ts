@@ -507,14 +507,13 @@ getApartmentDetails() {
 
   transport(value: any): void {
     debugger
-    if(value["t_Distance"]==''||value["t_Name"]==''){
-        return;
-    }else{
+
       console.log(this.localapt_Transports)
       this.Createtransport.push(value)
-    }
+
 
   }
+  index=0
   openModelLocation(){
     this.display="block"
   }
