@@ -127,8 +127,8 @@
                       <img src="assets/images/apartmentImages/ic_baseline-add.svg"> Add New skills
                   </a> -->
                     <div class="row">
-                        <div class="mb-3 col-12 col-md-6" *ngFor="let transportData of localapt_Transports">
-                            <label class="form-label gray fw-bold">skill   </label>
+                        <div class="mb-3 col-12 col-md-6" *ngFor="let transportData of worker_Skills; let i= index">
+                            <label class="form-label gray fw-bold">skill {{i+1}}  </label>
                             <input [ngModelOptions]="{standalone: true}" [(ngModel)]="transportData.skill_Name" type="text" class="form-control rounded-2 py-2 fs-6" />
 
                         </div>

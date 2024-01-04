@@ -168,7 +168,7 @@ GetWorkerByid( ) {
 
   this._adminservices.GetWorkerByid(this.param).subscribe((res) => {
     this.createworker.patchValue(res);
-    this.localapt_Transports=res?.worker_Skills
+    this.worker_Skills=res?.worker_Skills
      this.selectedContractImg = { 'url':res.worker_Passport };
   }, (err: any) => {
 
@@ -192,7 +192,7 @@ createworkerpost(data: any) {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
         })
 
-
+this.gotopage( );
     }
     formData2 = new FormData();
     selectedContractImg:any
