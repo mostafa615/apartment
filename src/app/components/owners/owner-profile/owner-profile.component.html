@@ -126,40 +126,76 @@
                     </div>
                     <!--Cards of Owned apartments-->
                     <div class="row paroductApartment">
+                        <ng-container *ngFor="let item of OnwerDetail?.apt_Owners_list">
 
-                        <div class="col-12 col-md-6 col-lg-4 mb-4 " *ngFor="let item of OnwerDetail.apt_Owners_list">
-                            <div class="position-relative">
-                                <img [src]="item.apt_ThumbImage" class="w-100 h-100 ">
-                                <p class="fw-bold position-absolute rentedORavailable rounded-pill top-0 m-3 py-1 px-3 " [class.available]="available">{{item.apt_Status}}</p>
-                            </div>
-                            <div class="bg-white px-2 py-3 details border rounded-bottom">
-                                <div class="fw-bold">{{item.apt_Name}}</div>
-                                <div class="d-flex justify-content-between">
-                                    <div class="d-flex justify-content-between">
-                                        <img src="assets/images/apartmentImages/location.svg">
-                                        <p class="fw-bold mt-3 ms-2">{{item.apt_Area}} </p>
+                            <div class=" col-12 col-md-6 col-lg-4 mb-4  position-relative px-2 mb-4 h-100" style="height: 393px !important;">
+
+                                <a routerLink="/apartments/apartments-details/{{item.apt_UUID}}" style="height: 46% !important;" class="d-block">
+                                    <img [src]="item.apt_ThumbImage" class="w-100 h-100 apartmentImage">
+                                    <p class="fw-bold position-absolute rentedORavailable rounded-pill top-0 m-2 py-1 px-3 " [class.available]="item.statusString != 'Rented'">{{item.apt_Status}}</p>
+                                </a>
+                                <div class="bg-white p-3 details h-50 rounded-bottom">
+                                    <div class="fw-bold  ">{{item.apt_Name }}</div>
+                                    <div class="d-flex">
+                                        <img src="assets/images/apartmentImages/location.svg" class="my-3">
+                                        <p class="fw-bold mt-3 text-left mx-1">{{item.apt_Area}}</p>
+                                    </div>
+                                    <div class="d-flex" style="margin: -25px 0 -10px 0;">
+                                        <div class="d-flex justify-content-between">
+                                            <img src="assets/images/apartmentImages/room_bed.svg">
+                                            <p class="fw-bold mt-4 mx-2">{{item.rooms_No}}</p>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <img src="assets/images/apartmentImages/user.svg">
+                                            <p class="fw-bold mt-4 mx-2">{{item.guest_No}}</p>
+                                        </div>
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                        <img src="assets/images/apartmentImages/room_bed.svg">
-                                        <p class="fw-bold mt-3 ms-2">{{item.rooms_No}}</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <img src="assets/images/apartmentImages/user.svg">
-                                        <p class="fw-bold mt-3 ms-2">{{item.guest_No}}</p>
+                                        <div class="Price">
+                                            ${{item.apt_Price}} <span class="time">/ month</span>
+                                        </div>
+
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-between">
-                                    <div class="Price">
-                                        ${{item.apt_Price}} <span class="time">/ month</span>
-                                    </div>
-                                    <div><img class="pointer" src="assets/images/more_vert_FILL.svg"></div>
-                                </div>
-                            </div>
 
-                        </div>
+                            </div>
+                        </ng-container>
+                        <!-- <div class="col-12 col-md-6 col-lg-4 mb-7 " style=" height: 393px !important; margin-bottom: 120px;" *ngFor="let item of Tenant_details.apartments">
+                          <div class="position-relative" style=" height: 328px !important;">
+                              <img [src]="item.apartment_ThumbImg" class="w-100 h-100 ">
+                              <p class="fw-bold position-absolute rentedORavailable rounded-pill top-0 m-3 py-1 px-3 " [class.available]="available">{{item.apartment_Status}}</p>
+                          </div>
+                          <div class="bg-white px-2 py-3 details border rounded-bottom">
+                              <div class="fw-bold"> {{item.apartment_Name}} </div>
+                              <div class="d-flex justify-content-between">
+                                  <div class="d-flex justify-content-between">
+                                      <img src="assets/images/apartmentImages/location.svg">
+                                      <p class="fw-bold mt-3 ms-2">{{item.apartment_Address}}</p>
+                                  </div>
+
+                                  <div class="d-flex justify-content-between">
+                                      <img src="assets/images/apartmentImages/room_bed.svg">
+                                      <p class="fw-bold mt-3 ms-2">{{item.apartment_LivingRooms}} </p>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                      <img src="assets/images/apartmentImages/user.svg">
+                                      <p class="fw-bold mt-3 ms-2">{{item.apartment_Persons}}</p>
+                                  </div>
+                              </div>
+                              <div class="d-flex justify-content-between">
+                                  <div class="Price">
+                                      ${{item.apartment_Price}} <span class="time">/ month</span>
+                                  </div>
+                               </div>
+                          </div>
+
+                      </div> -->
+
+
 
 
                     </div>
+
                 </ng-container>
 
                 <!--Bank details-->

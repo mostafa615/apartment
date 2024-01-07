@@ -156,6 +156,16 @@ export class UserComponent {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
     })
   }
+  unSuspendUser(id:any){
+    this._adminservices.UnSuspendTenant( id).subscribe((res:any) => {
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'UnSuspend Tenant Successfuly'}` });
+
+      this.getAllTenants( );
+
+     }, (error) => {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
+    })
+  }
   detailperson(event:any,id: any): void {
     this.showEdit=[]
     event.stopPropagation()

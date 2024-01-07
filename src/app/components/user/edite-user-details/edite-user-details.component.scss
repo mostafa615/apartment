@@ -103,3 +103,29 @@
         top: -2px;
     }
 }
+
+.paroductApartment {
+    p {
+        color: #605d62;
+    }
+    .details {
+        border: 1px solid #dfdfdf;
+        max-height: 220px;
+    }
+    .apartmentImage {
+        border-radius: 8px 8px 0px 0px;
+        max-height: 184px;
+    }
+    .Price {
+        color: #1F4068;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 33.6px;
+        .time {
+            font-size: 16px;
+            line-height: 16px;
+            position: relative;
+            top: -2px;
+        }
+    }
+}

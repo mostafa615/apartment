@@ -42,7 +42,7 @@ export class OnwerService {
   }
 
   public editOwner(id: string, data: any): Observable<any> {
-    return this.http.put(`https://api.vivas-apt.tech/api/Owner/${id}`, data, { headers: this.headers })
+    return this.http.put(`${environment.apiUrl}/Owner/${id}`, data, { headers: this.headers })
   }
   public getOwner(id: string): Observable<any> {
     return this.http.get(`${environment.apiUrl}/Owner/${id}`, { headers: this.headers })
@@ -54,6 +54,6 @@ export class OnwerService {
     return this.http.get(`${environment.apiUrl}/Owner/GetOwnerProfile?id=${id}`, { headers: this.headers })
   }
   public deleteOwner(id: string): Observable<any> {
-    return this.http.delete(`https://api.vivas-apt.tech/api/Owner/${id}`, { headers: this.headers })
+    return this.http.delete(`${environment.apiUrl}/Owner/${id}`, { headers: this.headers })
   }
 }

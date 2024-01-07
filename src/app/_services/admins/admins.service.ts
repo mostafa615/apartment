@@ -80,6 +80,11 @@ public TenantDetails(id: any): Observable<any> {
 
   return this.http.put(url,id, { headers: this.headers })
 }
+UnSuspendTenant(id: any): Observable<any> {
+  let url=environment.apiUrl + '/Users/UnSuspendTenant?User_ID='+id;
+
+  return this.http.put(url,id, { headers: this.headers })
+}
 UpdateTenantInfo( User_ID: any, FName: any,LName:any,PassportID:any,About:any,image:any): Observable<any> {
 
   const url = `${environment.apiUrl}/Users/UpdateTenantInfo`;
