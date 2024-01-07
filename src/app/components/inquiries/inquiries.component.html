@@ -61,10 +61,10 @@
                     <tr *ngIf="headerData">
                         <ng-container>
 
-                          <th class="td-name">
-                            Request Code
+                            <th class="td-name">
+                                Request Code
 
-                        </th>
+                            </th>
                             <th class="td-name">
                                 User name
 
@@ -96,10 +96,10 @@
                 <ng-template pTemplate="body" let-inquire>
 
                     <tr style="cursor: pointer;" (click)="hidecard(inquire.request_ID)">
-                      <td routerLink="/view-inquire/{{inquire.request_ID}}">
+                        <td routerLink="/view-inquire/{{inquire.request_ID}}">
 
-                        {{inquire?.request_Code}}
-                      </td>
+                            {{inquire?.request_Code}}
+                        </td>
                         <td>
                             <img [src]="inquire?.profileImg" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;"> {{inquire?.userName}}
                         </td>
@@ -141,12 +141,29 @@
                             <button class="border-0 outlin-0 bg-transparent" (click)="detailperson( $event,inquire.request_ID)">
                     <img src="assets/images/edit.svg">
                 </button>
-                            <div *ngIf="showEdit[inquire.request_ID] &&checkindex!=1" style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                            <div *ngIf="showEdit[inquire.request_ID] &&checkindex!=1 && inquire?.status!='Approved' && inquire?.status!='Cancelled' && inquire?.status!='Waiting'" style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
                                 <button class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/inquire-offer/{{inquire.request_ID}}">Send Offer  </button>
                                 <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/view-inquire/{{inquire.request_ID}}">View  inquire</button>
 
                                 <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="AddWaitingList(inquire.request_ID)">Add to waiting list  </button>
                                 <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="onOpenModal1(inquire.request_ID)">Reject </button>
+
+                            </div>
+                            <div *ngIf="showEdit[inquire.request_ID] &&checkindex!=1  && inquire?.status=='Waiting'" style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                                <button class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/inquire-offer/{{inquire.request_ID}}">Send Offer  </button>
+                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/view-inquire/{{inquire.request_ID}}">View  inquire</button>
+
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="onOpenModal1(inquire.request_ID)">Reject </button>
+
+                            </div>
+                            <div *ngIf="showEdit[inquire.request_ID] &&checkindex!=1 && inquire?.status=='Approved'  " style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/view-inquire/{{inquire.request_ID}}">View  inquire</button>
+
+
+                            </div>
+                            <div *ngIf="showEdit[inquire.request_ID] &&checkindex!=1   && inquire?.status=='Cancelled'" style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/view-inquire/{{inquire.request_ID}}">View  inquire</button>
+
 
                             </div>
                             <div *ngIf="showEdit[inquire.request_ID] &&checkindex==1" style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">

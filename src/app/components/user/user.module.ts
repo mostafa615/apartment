@@ -9,6 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+
 import { EditeUserDetailsComponent } from './edite-user-details/edite-user-details.component';
 
 
@@ -30,7 +32,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [UserComponent, UserDetailsComponent, EditeUserDetailsComponent],
+  declarations: [UserComponent,InvoiceComponent, UserDetailsComponent, EditeUserDetailsComponent],
   exports: [UserComponent, UserDetailsComponent, EditeUserDetailsComponent],
   imports: [
     CommonModule,

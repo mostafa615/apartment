@@ -84,7 +84,7 @@
                     </div>
                     <div class="d-flex mt-0">
                         <img src="assets/images/apartmentImages/publish.svg" />
-                        <p class="gray mt-3 ms-2">Published: &nbsp; {{aprt_details.apt_PublishDate| date :'medium'}}</p>
+                        <p class="gray mt-3 ms-2">Published: &nbsp; {{aprt_details?.apt_PublishDate| date :'medium'}}</p>
                     </div>
                     <div class="row">
                         <a *ngIf="ApartmentsRole?.p_Update==true || is_Super==true" class="col-12 border-0 outline-0 rounded-3 me-3 py-2 blue text-decoration-none text-center" routerLink="/apartments/page/{{this.apt_UUID}}" style="background-color: #d2d9e1"><img src="assets/images/apartmentImages/edit.svg" />Edit </a>
@@ -285,7 +285,7 @@
                                         <div style="margin-top:5px" class="form-control w-100 fs-6 pt-2"> {{backup_Info?.elec_Meter_Cons}}</div>
 
                                     </div>
-                                    <div class="  mb-3  " *ngFor="let x of backup_Info.inputFields ; let i=index">
+                                    <div class="  mb-3  " *ngFor="let x of backup_Info?.inputFields ; let i=index">
                                         <p class="fw-bold" style="color: #605D62 !important;">{{x?.field_Name}} </p>
 
                                         <div style="margin-top:5px" class="form-control w-100 fs-6 pt-2">{{x?.field_Content}}</div>
@@ -327,13 +327,13 @@
                             </h2>
 
                             <div id="flush-collapseOnerentalroles" class="accordion-collapse collapse mt-3" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="  mb-3  " *ngFor="let x of rent_Rules.apt_rules ; let i=index">
+                                <div class="  mb-3  " *ngFor="let x of rent_Rules?.apt_rules ; let i=index">
                                     <p class="fw-bold" style="color: #605D62 !important;"> rule description : {{i+1}} </p>
 
                                     <div style="margin-top:5px" class="form-control w-100 fs-6 pt-2">{{x?.rule_Desc}}</div>
 
                                 </div>
-                                <div class="  mb-3  " *ngFor="let x of rent_Rules.apt_inputfields ; let i=index">
+                                <div class="  mb-3  " *ngFor="let x of rent_Rules?.apt_inputfields ; let i=index">
                                     <p class="fw-bold" style="color: #605D62 !important;">{{x?.field_Name}} </p>
 
                                     <div style="margin-top:5px" class="form-control w-100 fs-6 pt-2">{{x?.field_Content}}</div>
@@ -516,15 +516,17 @@
                             <div class="col-12 col-md-7 d-flex align-items-center">
                                 <div class="mb-3">
                                     <!-- <a class="me-3 cursor" routerLink="/apartments/contract/create-owner-contract"><img src="assets/images/apartmentImages/edit1.svg" /></a> -->
-                                    <a class="me-3 cursor" target="_blank" [href]="contract_Main?.contract_Path"><img src="assets/images/apartmentImages/delete.svg" /></a>
+                                    <a class="me-3 cursor" *ngIf="contract_Main?.contract_Path" target="_blank" [href]="contract_Main?.contract_Path"><img src="assets/images/apartmentImages/delete.svg" /></a>
+                                    <a class="me-3 cursor" *ngIf="contract_Main?.contract_Path==''||contract_Main?.contract_Path==null"><img src="assets/images/apartmentImages/delete.svg" /></a>
+
                                     <!-- <a class="me-3 cursor" routerLink=""><img src="assets/images/apartmentImages/share.svg" /></a> -->
-                                    <a class="me-3 cursor" routerLink=""><img src="assets/images/apartmentImages/move.svg" /></a>
+                                    <a class="me-3 cursor" (click)="DownloadFile(contract_Main?.contract_Path)"><img src="assets/images/apartmentImages/move.svg" /></a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div *ngIf="aprt_details.apt_Status=='Rented'">
+                    <div *ngIf="aprt_details?.apt_Status=='Rented'">
                         <div>
                             <p class="fw-bold m-0">About Tenant</p>
                             <div class="row p-2 mt-2 rounded-3" style="background-color: #f5f6f8">

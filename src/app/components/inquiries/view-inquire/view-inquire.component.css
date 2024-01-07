@@ -15,3 +15,30 @@
 * {
     font-family: 'Montserrat'!important
 }
+
+.imgPreviewUploader {
+    max-width: 44%;
+}
+
+.uploadedContractBorder {
+    border: 1px solid #235a9e;
+}
+
+.backcancel {
+    border: 1px solid#798CA4 !important;
+    color: #0C1A2A !important;
+}
+
+.file {
+    z-index: 3 !important;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.h-124px {
+    height: 124px !important;
+}
+
+.cursor {
+    cursor: pointer;
+}

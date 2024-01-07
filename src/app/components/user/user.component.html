@@ -1,20 +1,20 @@
 <!-- <app-edite-user-details></app-edite-user-details> -->
 <!-- start header  -->
 <header>
-    <app-head (newItemEvent)="addItem($event)" [titleModule]="'users'"></app-head>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'Tenant'"></app-head>
 </header>
 <!-- end header  -->
 
 <div class="row m-0">
 
     <!-- start sidebar  -->
-    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'users'"></app-sidebar>
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'Tenant'"></app-sidebar>
     <!-- end sidebar  -->
 
     <!-- start content page  -->
     <main class="p-4 col-lg-10 ">
         <div class="d-md-flex justify-content-between dashboard mt-2">
-            <p class="fw-bold ms-1" style="color: #6c6a6a;">Users : {{numberTenants}}</p>
+            <p class="fw-bold ms-1" style="color: #6c6a6a;">Tenants : {{numberTenants}}</p>
             <div class="d-flex justify-content-lg-between ">
                 <div class="d-flex justify-content-between ">
                     <!-- <button class="month rounded-start px-3 py-1 outline-none">This Month</button>
@@ -118,7 +118,7 @@
               <img src="assets/images/edit.svg">
           </button>
                             <div *ngIf="showEdit[Tenant.user_ID] " style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
-                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" *ngIf="TantsRole?.p_Update==true || is_Super==true" routerLink="/app-edite-user-details/{{Tenant.user_ID}}">Edit</button>
+                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" *ngIf="TantsRole?.p_Update==true || is_Super==true" routerLink="/app-edite-user-details/{{Tenant.user_ID}}">view details</button>
 
                                 <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="DeleteUser(Tenant.user_ID)" *ngIf="TantsRole?.p_Delete==true || is_Super==true"> Delete </button>
                                 <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="SuspendUser(Tenant.user_ID)">Suspend User </button>

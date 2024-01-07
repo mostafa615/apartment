@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OnwerService } from 'src/app/_services/Onwers/onwer.service';
 import { DomSanitizer } from "@angular/platform-browser";
 import { MessageService } from 'primeng/api';
+import { saveAs } from 'file-saver';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-apartment-details',
@@ -180,6 +182,20 @@ this.display22="none"
 
   }
 
+
+  DownloadFile(path:any) {
+    debugger
+    this._ApartmentService.DownloadFile( path).subscribe((res) => {
+
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${' Download   Successfuly'}` });
+
+    }, (error) => {
+      debugger
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error}` });
+    })
+  }
+
+
   MarkRented() {
     this._ApartmentService.MarkRented( this.apt_UUID).subscribe((res) => {
       this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Rented Mark Successfuly'}` });
@@ -204,4 +220,42 @@ this.display22="none"
       this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
     })
   }
+    downloadImage(url:any) {
+    fetch(url, {
+      mode : 'no-cors',
+    })
+      .then(response => response.blob())
+      .then(blob => {
+      let blobUrl = window.URL.createObjectURL(blob);
+      let a = document.createElement('a');
+      a.download = url.replace(/^.*[\\\/]/, '');
+      a.href = blobUrl;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    })
+
+  }
+  // download(){
+  //   const a = document.createElement('a');
+  //   a.href = URL.createObjectURL(res);
+  //   a.download = title;
+  //   document.body.appendChild(a);
+  //   a.click();
+  // }
+  DownloadProfilePic(downloadLink:any) {
+
+    FileSaver.saveAs(downloadLink, "image.jpg");
+
+  }
+  downloadImage2(downloadLink:any) {
+
+
+    const a = document?.createElement('a');
+    a.href = window.URL.createObjectURL(downloadLink);
+    a.download = "cc";
+    document.body.appendChild(a);
+    a.click();
+   }
+
 }

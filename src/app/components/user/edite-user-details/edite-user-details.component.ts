@@ -159,4 +159,8 @@ UpdateTenantInfo() {
   defaultImageUrl(): string {
     return 'https://t4.ftcdn.net/jpg/05/50/60/49/360_F_550604961_BZT4vo52ysIku2cQ3Zn8sAQg1rXHBKv0.jpg'
   }
+  gotodetail(id:any){
+    let url: string = "invoice/"+id;
+    this.router.navigateByUrl(url);
+  }
 }

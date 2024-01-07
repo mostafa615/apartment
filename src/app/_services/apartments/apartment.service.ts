@@ -121,4 +121,13 @@ export class ApartmentService {
   AddPostBackupInfo(data: any) {
     return this.http.post(`${environment.apiUrl + '/Apartment/PostBackupInfo'}`, data, { headers: this.headers })
   }
-}
+  DownloadFile(Path:any): Observable<any> {
+
+    const url = environment.apiUrl+"/Basics/DownloadFile?Path="+Path;
+
+    return this.http.get<any>(url, { headers: this.headers });
+
+  }
+
+
+ }

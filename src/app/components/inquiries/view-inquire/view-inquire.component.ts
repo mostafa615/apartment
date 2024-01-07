@@ -60,6 +60,8 @@ gotopage( ){
   GetRequestDetails(  ) {
       this._inquiresService.GetRequestDetails(this.param).subscribe((res) => {
       this.inquire_details = res[0];
+      this.selectedContractImg=res[0].contract_Path
+
       }, (error) => {
        console.error('Error fetching owners:', error);
     })
@@ -68,6 +70,7 @@ gotopage( ){
     this._inquiresService.UploadReqContract(this.param,this.convertFileToFormData(this.ListFiles)).subscribe((res) => {
        this.messageService.add({   severity: 'success', summary: 'Success', detail:res["message"] });
        this.display1="none";
+       this.GetRequestDetails(  )
 
 
      }, (error) => {
@@ -119,7 +122,7 @@ selectedContractImg:any
     this._inquiresService.CancelRequestw(this.param,this.Reason2).subscribe((res) => {
        this.messageService.add({   severity: 'success', summary: 'Success', detail: 'Cancel Request Successfuly' });
        this.display2="none";
-
+       this.GetRequestDetails(  )
 
      }, (error) => {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: "error" });
@@ -130,6 +133,7 @@ ApproveRequest(  ) {
   this._inquiresService.ApproveRequest(this.param).subscribe((res) => {
     this.messageService.add({   severity: 'success', summary: 'Success', detail: 'Approve Request Successfuly' });
       this.isvisable=true;
+      this.GetRequestDetails(  )
    }, (error) => {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: `error` });
   })

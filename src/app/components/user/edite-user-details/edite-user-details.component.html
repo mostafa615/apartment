@@ -1,28 +1,28 @@
 <!-- start header  -->
 <header>
-    <app-head (newItemEvent)="addItem($event)" [titleModule]="'Users'"></app-head>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'Tenant'"></app-head>
 </header>
 <!-- end header  -->
 
 <div class="row m-0">
     <!-- start sidebar  -->
-    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'users'"></app-sidebar>
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'Tenant'"></app-sidebar>
     <!-- end sidebar  -->
     <!-- start content page  -->
     <main class="p-4 col-lg-10">
         <div class="d-md-flex justify-content-between">
             <div class="d-flex">
-                <p class="fw-bold me-2" style="color: #6c6a6a"><a style="color: black" class="removeUnderLine" href="./users">Users </a></p>
+                <p class="fw-bold me-2" style="color: #6c6a6a"><a style="color: black" class="removeUnderLine" routerLink="/users">Tenant </a></p>
 
                 <p class="fw-bold me-2">></p>
-                <p class="fw-bold" style="color: black">edit user </p>
+                <p class="fw-bold" style="color: black">view Tenant </p>
             </div>
-            <div>
+            <!-- <div>
                 <button class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold" style="background-color: #EBEBEB; color:#1F4068"><img src="assets/images/user/share.png"> Share</button>
                 <button class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold" style="background-color: #EBEBEB; color:#1F4068"><img src="assets/images/user/delete.svg"> Delete</button>
                 <button class="outline-0 border-0 rounded-3 py-2 px-3 text-white fw-bold" style="background-color:#1F4068"><img
             src="assets/images/user/edit.svg"> Edit</button>
-            </div>
+            </div> -->
         </div>
 
         <div class="mt-3 row border bg-white rounded-3 py-3 ">
@@ -46,13 +46,13 @@
                         <div class="d-flex mt-4">
                             <div class="d-flex  justify-content-between ">
 
-                                <div class="btn-container" *ngIf="titlePage!='Owner details'">
+                                <!-- <div class="btn-container" *ngIf="titlePage!='Owner details'">
                                     <p-button class="btn-style sendDataPButton" label="Upload picture" [loading]="loadingButton" type="button"></p-button>
                                     <input type="file" #fileInput (change)="uploadPic($event)">
-                                </div>
+                                </div> -->
 
-                                <button type="button" class="outline-none border-0 py-2 px-3 rounded-3 delete" *ngIf="titlePage!='Owner details'" (click)="uploadPic('delete')">Delete</button>
-                                <button class="me-3 outline-none border-0 text-white py-2 px-3 rounded-3" *ngIf="titlePage=='Owner details'" style="background-color: #1f4068;">Message</button>
+                                <!-- <button type="button" class="outline-none border-0 py-2 px-3 rounded-3 delete" *ngIf="titlePage!='Owner details'" (click)="uploadPic('delete')">Delete</button> -->
+                                <!-- <button class="me-3 outline-none border-0 text-white py-2 px-3 rounded-3" *ngIf="titlePage=='Owner details'" style="background-color: #1f4068;">Message</button> -->
                             </div>
                         </div>
                     </div>
@@ -137,62 +137,37 @@
                 <!--Cards of Currently living-->
                 <div class="row paroductApartment">
 
-                    <div class="col-12 col-md-6 col-lg-4 mb-4 ">
-                        <div class="position-relative">
-                            <img src="assets/images/apartmentImages/img1.svg" class="w-100 h-100 ">
-                            <p class="fw-bold position-absolute rentedORavailable rounded-pill top-0 m-3 py-1 px-3 " [class.available]="available">Available</p>
+                    <div class="col-12 col-md-6 col-lg-5 mb-7 " style=" height: 393px !important; margin-bottom: 120px;" *ngFor="let item of Tenant_details.apartments">
+                        <div class="position-relative" style=" height: 328px !important;">
+                            <img [src]="item.apartment_ThumbImg" class="w-100 h-100 ">
+                            <p class="fw-bold position-absolute rentedORavailable rounded-pill top-0 m-3 py-1 px-3 " [class.available]="available">{{item.apartment_Status}}</p>
                         </div>
                         <div class="bg-white px-2 py-3 details border rounded-bottom">
-                            <div class="fw-bold">Salt Lake City, Apartment Salt Lake City, Apartment </div>
+                            <div class="fw-bold"> {{item.apartment_Name}} </div>
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex justify-content-between">
                                     <img src="assets/images/apartmentImages/location.svg">
-                                    <p class="fw-bold mt-3 ms-2">Alt-Moabit</p>
+                                    <p class="fw-bold mt-3 ms-2">{{item.apartment_Address}}</p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <img src="assets/images/apartmentImages/room_bed.svg">
-                                    <p class="fw-bold mt-3 ms-2">3</p>
+                                    <p class="fw-bold mt-3 ms-2">{{item.apartment_LivingRooms}} </p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <img src="assets/images/apartmentImages/user.svg">
-                                    <p class="fw-bold mt-3 ms-2">2</p>
+                                    <p class="fw-bold mt-3 ms-2">{{item.apartment_Persons}}</p>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <div><img src="assets/images/Price.svg"></div>
-                                <div><img class="pointer" src="assets/images/more_vert_FILL.svg"></div>
+                                <div class="Price">
+                                    ${{item.apartment_Price}} <span class="time">/ month</span>
+                                </div>
+                                <!-- <div><img class="pointer" src="assets/images/more_vert_FILL.svg"></div> -->
                             </div>
                         </div>
 
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4 mb-4">
-                        <div class="position-relative">
-                            <img src="assets/images/apartmentImages/img1.svg" class="w-100 h-100 ">
-                            <p class="fw-bold position-absolute rentedORavailable rounded-pill top-0 m-3 py-1 px-3 rented">rented</p>
-                        </div>
-                        <div class="bg-white px-2 py-3 details border rounded-bottom">
-                            <div class="fw-bold">Salt Lake City, Apartment Salt Lake City, Apartment </div>
-                            <div class="d-flex justify-content-between">
-                                <div class="d-flex justify-content-between">
-                                    <img src="assets/images/apartmentImages/location.svg">
-                                    <p class="fw-bold mt-3 ms-2">Alt-Moabit</p>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <img src="assets/images/apartmentImages/room_bed.svg">
-                                    <p class="fw-bold mt-3 ms-2">3</p>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <img src="assets/images/apartmentImages/user.svg">
-                                    <p class="fw-bold mt-3 ms-2">2</p>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <div><img src="assets/images/Price.svg"></div>
-                                <div><img class="pointer" src="assets/images/more_vert_FILL.svg"></div>
-                            </div>
-                        </div>
 
-                    </div>
 
 
 
@@ -204,7 +179,62 @@
                     <p style="color: #605D62 !important;">Documents, issue reports, and payment behaviour</p>
                 </div>
                 <!--Accordion-->
-                <app-accordion></app-accordion>
+                <div class="accordion accordion-flush mb-5" id="accordionFlushExample">
+                    <!-- <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button ps-0  collapsed text-black fw-bold bg-transparent border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                          Public transport
+                      </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse mt-3" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="mb-3">
+                                <p class="fw-bold" style="color: #605D62 !important;">Transport within 270 m</p>
+                                <div class="form-control w-100 fs-6 pt-2">1 bus</div>
+                            </div>
+                            <div class="mb-3">
+                                <p class="fw-bold " style="color: #605D62 !important;">Transport within 520 m</p>
+                                <div class="form-control w- fs-6 pt-2">Tram 2</div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed ps-0  text-black fw-bold bg-transparent border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Passport of tenant
+                      </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse mt-3" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body mb-3">
+                                <img [src]="Tenant_details.tenant_Passport_URL" class="me-2">
+                                <!-- <img src="assets/images/user/File upload base.svg" class="me-2">
+                                <img src="assets/images/user/File upload base.svg" class="me-2">
+                                <img src="assets/images/user/File upload base.svg" class="me-2"> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingthree">
+                            <button class="accordion-button ps-0 collapsed text-black fw-bold bg-transparent border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsethree" aria-expanded="false" aria-controls="flush-collapsethree">
+                        Other details
+                      </button>
+                        </h2>
+                        <div id="flush-collapsethree" class="accordion-collapse mt-3 collapse" aria-labelledby="flush-heading3" data-bs-parent="#accordionFlushExample">
+                            <div class="mb-3">
+                                <p class="fw-bold" style="color: #605D62 !important;">Property square feet</p>
+                                <div class="form-control w-100 fs-6 pt-2">2356 sq ft</div>
+                            </div>
+                            <div class="mb-3">
+                                <p class="fw-bold " style="color: #605D62 !important;">Laundry type</p>
+                                <div class="form-control w- fs-6 pt-2">Laundry in building</div>
+                            </div>
+                            <div class="mb-3">
+                                <p class="fw-bold " style="color: #605D62 !important;">Date available</p>
+                                <div class="form-control w- fs-6 pt-2">Jun 2, 2023 - July 2, 2023</div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
                 <!--Rental history (5)-->
                 <div class="d-flex justify-content-between">
                     <div>
@@ -217,7 +247,7 @@
                     </div>
 
                 </div>
-                <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="products">
+                <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="Tenant_details.invoices">
                     <ng-template pTemplate="header" class="text-center">
                         <tr>
                             <ng-container>
@@ -235,10 +265,10 @@
                                     Amount
 
                                 </th>
-                                <th class="td-name">
+                                <!-- <th class="td-name">
                                     Behaviour
 
-                                </th>
+                                </th> -->
 
 
                                 <th class="td-name">
@@ -250,38 +280,39 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-Tenant>
 
-                        <tr style="cursor: pointer;">
+                        <tr style="cursor: pointer;" (click)="gotodetail(Tenant_details?.user_ID)">
 
                             <td>
-                                {{Tenant?.Invoice}}
+                                {{Tenant?.invoice_Code}}
 
                             </td>
                             <td>
-                                {{Tenant?.date}}
+                                {{Tenant?.invoice_Duration}}
                             </td>
                             <td>
-                                {{Tenant?.Amount}}
+                                $ {{Tenant?.invoice_Amount}}
                             </td>
 
 
                             <td>
-                                <div>
-                                    <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;" [class.active]="Tenant?.user_Behavior=='Approved'">
+                                <!-- <div>
 
-                        <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem;"></i> God
+                                    <span class="rounded-5 px-3 py-1"  style="background-color: #cfffcf;color: green;" [class.active]="Tenant?.user_Behavior=='Approved'"  >
+
+                        <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem;"></i> {{Tenant?.invoice_Behavior}}
                     </span>
 
 
-                                </div>
+                                </div> -->
                             </td>
 
-                            <td class="cursor position-relative">
+                            <!-- <td class="cursor position-relative">
                                 <button class="border-0 outlin-0 bg-transparent">
                   <img src="assets/images/edit.svg">
               </button>
 
 
-                            </td>
+                            </td> -->
 
                         </tr>
 
@@ -299,7 +330,7 @@
                 <div></div>
 
                 <!--user information-->
-                <div>
+                <div style="margin-top:30px">
                     <p class="fw-bold mb-0" id="userinformation">user information</p>
                     <p style="color: #605D62 !important;">this section display for admins only</p>
                 </div>

@@ -15,7 +15,7 @@
             <!-- <a href="javascript:void(0)" routerLink="/apartments" class="removeUnderLine">
                 <p class="fw-bold ml-8">View Inqueirs</p>
             </a> -->
-            <p class="fw-bold ml-8"> <a style="color: black" class="removeUnderLine" href="./inquiries">Inqueirs </a> > View Inqueirs</p>
+            <p class="fw-bold ml-8"> <a style="color: black" class="removeUnderLine" routerLink="/inquiries">Inqueirs </a> > View Inqueirs</p>
 
         </div>
         <p-toast></p-toast>
@@ -146,7 +146,9 @@
                                             <div class="w-80 text-zinc-800 text-sm font-semibold font-['Poppins'] leading-tight"> {{item?.guest_Name}}</div>
                                         </div>
                                         <div class="w-96 h-44 flex-col justify-start items-start gap-4 flex">
-                                            <img style="width:100%;height: 200px;" class="self-stretch grow shrink basis-0 border border-stone-300" [src]="item?.passport_Img" />
+                                            <img style="width:100%;height: 200px;" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img" [src]="item?.passport_Img" />
+                                            <img style="width:100%;height: 200px;" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img==''||item.passport_Img==null" src="../../../../assets/images/passport not uploaded.png" />
+
                                         </div>
                                         <div class="w-96 p-4 bg-white border-b border-gray-200 justify-start items-center gap-36 inline-flex">
                                             <div class="d-flex justify-content-between">
@@ -176,7 +178,7 @@
 
                     </div>
                     <div class="row" *ngIf="isvisable==false">
-                        <button (click)="ApproveRequest()" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                        <button *ngIf="inquire_details?.approved==false" (click)="ApproveRequest()" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
                         confirm
           </button>
 
@@ -193,34 +195,42 @@
 
                     </div>
                     <div class="row" *ngIf="isvisable==true">
-                        <div class="position-relative h-124px mb-3" style="margin-top: 22px;padding:0px">
+                        <div class="  position-relative h-124px mb-3" style="margin-top: 22px;padding:0px">
                             <!-- start single img upload and preview -->
-                            <ng-container>
-                                <input type="file" accept="image/*" multiple="multiple" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
-                                <img src="../../../../assets/images/apartmentImages/11.png" class="position-absolute" width="100%" style="    border: 1px solid #c3bcbcc9;border-radius: 5px;">
-                            </ng-container>
-                            <ng-container *ngIf="selectedContractImg">
-                                <div *ngIf="selectedContractImg.type !== 'application/pdf'">
-                                    <input type="file" accept=".pdf, image/*" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
-                                    <img [src]="selectedContractImg.url" class="position-absolute imgPreviewUploader" width="100%">
+                            <div>
+                                <ng-container>
+                                    <input type="file" accept="image/*" multiple="multiple" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                    <img *ngIf="!selectedContractImg" src="../../../../assets/images/apartmentImages/11.png" class="position-absolute" width="100%" style="    border: 1px solid #c3bcbcc9;border-radius: 5px;">
+                                </ng-container>
+                            </div>
+                            <div>
+                                <ng-container *ngIf="selectedContractImg">
+                                    <div>
+                                        <input type="file" accept=".pdf, image/*" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                        <a *ngIf="inquire_details?.contract_Type == 'pdf'" class="position-absolute imgPreviewUploader" [href]="selectedContractImg" target="_blank" style="font-size: large;z-index: 999999;    margin-left: 160px;">View PDF</a>
 
-                                </div>
-                                <div *ngIf="selectedContractImg.type === 'application/pdf'">
-                                    <a [href]="selectedContractImg.url" target="_blank" style="font-size: large;">View PDF</a>
-                                    <input type="file" accept=".pdf, image/*" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
-                                    <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute h-100" width="90%" style="margin-left: 21px;">
+                                        <img *ngIf="inquire_details?.contract_Type != 'pdf'" [src]="selectedContractImg" style=" margin-left: 150px;" class="position-absolute imgPreviewUploader" width="100%">
 
-                                </div>
+                                    </div>
+                                    <!-- <div *ngIf="selectedContractImg=== 'application/pdf'">
+                                        <a [href]="selectedContractImg" target="_blank" style="font-size: large;">View PDF</a>
+                                        <input type="file" accept=".pdf, image/*" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                        <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute h-100" width="90%" style="margin-left: 21px;">
 
-                            </ng-container>
+                                    </div> -->
+
+                                </ng-container>
+                            </div>
                             <!-- end single img upload and preview -->
                         </div>
                     </div>
                     <div class="row" *ngIf="isvisable==true">
-                        <button routerLink="/create-contract/{{param}}" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                        <button *ngIf="inquire_details?.contract_Created==false" routerLink="/create-contract/{{param}}" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
                      + &nbsp;&nbsp;   create contract
         </button>
-
+                        <button *ngIf="inquire_details?.contract_Created==true" routerLink="/create-contract/{{param}}" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+          + &nbsp;&nbsp;   edit contract
+</button>
                     </div>
                 </div>
             </div>

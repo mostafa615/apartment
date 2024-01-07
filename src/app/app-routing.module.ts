@@ -36,6 +36,8 @@ import { EditPartnerComponent } from './components/partner/edit-partner/edit-par
 import { ViewPartnerComponent } from './components/partner/view-partner/view-partner.component';
 
 import { AssginIssueComponent } from './components/issueReports/assgin-issue/assgin-issue.component';
+import { InvoiceComponent } from './components/user/invoice/invoice.component';
+
 import { UnlegalComponent } from './components/unlegal/unlegal.component';
 import { PartnerComponent } from './components/partner/partner.component';
 import { OwnerProfileComponent } from './components/owners/owner-profile/owner-profile.component';
@@ -48,6 +50,7 @@ const routes: Routes = [
 },
   { path: "login", component: LoginComponent },
   { path: "apartments", component: ApartmentsComponent,canActivate: [AuthGuard],},
+
   { path: "apartments/page/:id", component: AddNewApartmentsComponent,canActivate: [AuthGuard] },
   { path: "apartments/apartments-details/:id", component: ApartmentDetailsComponent,canActivate: [AuthGuard] },
   { path: "apartments/:id", component: ContractComponent,canActivate: [AuthGuard] },
@@ -91,6 +94,7 @@ const routes: Routes = [
   { path: "add-partner", component: AddPartnerComponent,canActivate: [AuthGuard]},
   { path: "edit-partner/:id", component: EditPartnerComponent,canActivate: [AuthGuard]},
   { path: "view-partner/:id", component: ViewPartnerComponent,canActivate: [AuthGuard]},
+  { path: "invoice/:id", component: InvoiceComponent,canActivate: [AuthGuard],},
 
 ];
 @NgModule({
