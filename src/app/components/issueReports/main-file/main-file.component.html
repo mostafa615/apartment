@@ -346,18 +346,18 @@
                               </label>
                     </div>
                     <div class="mb-3 col-12 col-md-12">
-                        <label for="exampleInputPricepermonth" class="form-label gray fw-bold">Total cost</label>
-                        <input  type="number" [(ngModel)]="Total_cost" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
-
-                    </div>
-                    <div class="mb-3 col-12 col-md-12">
                         <label for="exampleInputPricepermonth" class="form-label gray fw-bold">worker cost</label>
-                        <input type="number" [(ngModel)]="worker_cost" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+                        <input type="number" [(ngModel)]="worker_cost" (keyup)="onSearchChange($event)" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
 
                     </div>
                     <div class="mb-3 col-12 col-md-12">
-                        <label for="exampleInputPricepermonth" class="form-label gray fw-bold">Company gain</label>
-                        <input type="number" [(ngModel)]="Company_gain" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+                        <label for="exampleInputPricepermonth" class="form-label gray fw-bold">item cost</label>
+                        <input type="number" [(ngModel)]="item_Cost" (keyup)="onSearchChange($event)" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+
+                    </div>
+                    <div class="mb-3 col-12 col-md-12">
+                        <label for="exampleInputPricepermonth" class="form-label gray fw-bold">total cost</label>
+                        <input type="number" disabled="disabled" [(ngModel)]="Total_cost" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
 
                     </div>
                     <div class="mb-3 col-12 col-md-12">

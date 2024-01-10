@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { AdminsService } from 'src/app/_services/admins/admins.service';
 
 @Component({
   selector: 'app-payments',
@@ -8,11 +10,13 @@ import { Router } from '@angular/router';
 })
 export class PaymentsComponent implements OnInit {
 
-  constructor(public router: Router) { }
+  constructor(    private messageService: MessageService,
+    public router: Router, public _adminservices:AdminsService ) { }
 
   ngOnInit() {
     this.initFakeData();
     this.checkRole();
+    this.ListAllInvoices(this.statuspayment);
   }
   PaymentsRole:any
   is_Super:any
@@ -44,15 +48,7 @@ export class PaymentsComponent implements OnInit {
     this.paymentFillterLists = ["All Payments", "Rent", "Security Deposit","Other payments"];
     this.paymentFillterSelected = [true];
    }
-  payments=[{
-    Name:"apartment 41 spalt lake city apartment 1050",Date:"April 28, 2023",Amount:"€45,00.00",WhatsApp:"visa",job:"$65,00.00",user_type:"Failed"
-  },
-  {Name:"apartment 41 spalt lake city apartment 1050",Date:"April 28, 2023",Amount:"€45,00.00",WhatsApp:"visa",job:"$65,00.00",user_type:"paid"
-},  {Name:"apartment 41 spalt lake city apartment 1050",Date:"April 28, 2023",Amount:"€45,00.00",WhatsApp:"visa",job:"$65,00.00",user_type:"paid"
-},  {Name:"apartment 41 spalt lake city apartment 1050",Date:"April 28, 2023",Amount:"€45,00.00",WhatsApp:"visa",job:"$65,00.00",user_type:"paid"
-}, {Name:"apartment 41 spalt lake city apartment 1050",Date:"April 28, 2023",Amount:"€45,00.00",WhatsApp:"visa",job:"$65,00.00",user_type:"paid"
-},  {Name:"apartment 41 spalt lake city apartment 1050",Date:"April 28, 2023",Amount:"€45,00.00",WhatsApp:"visa",job:"$65,00.00",user_type:"paid"
-}];
+  payments:any=[ ];
 dropdownOption: Array<any> = [];
   listDropDown:Array<object>=[{name:'Today'},{name:'Last week'},{name:'This month'},{name:'This year'}]
 
@@ -66,13 +62,11 @@ dropdownOption: Array<any> = [];
   }
   showEdit: Array<boolean> = [];
 
-  detailperson(event:any, id: any){
+  detailperson(event:any,id: any): void {
     this.showEdit=[]
-event.stopPropagation()
+    event.stopPropagation()
 
     this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
-
-
 
 
 
@@ -80,14 +74,77 @@ event.stopPropagation()
    pageNumber=1;
   pagesize=10;
   totalofPages=1 ;
-  totalRecords=10;
+  totalRecords= 0;
   tiggerPageChange(event: any) {
 
         const calcPageNumber = Math.floor(event.first / event.rows) + 1;
         this.pageNumber=calcPageNumber;
         console.log(calcPageNumber);
+        this.ListAllInvoices( this.statuspayment)
        }
        selectedfromDropDown(value:any){
         console.log(value)
       }
+
+
+ numberInvoices=0;
+  ListAllInvoices(  statuspayments:any) {
+    this.payments=[]
+    this.numberInvoices=0
+    this._adminservices.ListAllInvoices( statuspayments,this.pageNumber,this.pagesize ).subscribe((res:any) => {
+      this.payments = res["data"];
+      this.numberInvoices = this.payments.length;
+      this.totalofPages=res["totalPages"]
+      this.totalRecords=res["totalRecords"]
+
+
+     }, (error) => {
+       console.error('Error fetching owners:', error);
+    })
+  }
+  MarkPaid(id:any){
+    this._adminservices.MarkPaid(id).subscribe((res) => {
+      this.messageService.add({   severity: 'success', summary: 'Success', detail: 'marked Successfuly' });
+
+      this.ListAllInvoices( this.statuspayment) ;
+
+     }, (error) => {
+      this.messageService.add({   severity: 'error', summary: 'error', detail: 'error' });
+    })
+  }
+  hidecard( ){
+    this.showEdit=[]
+
+ }
+ checkindex=0;
+ statuspayment:any=""
+
+ clickPayment(index:any){
+  this.checkindex=index;
+  this.paymentFillterSelected = this.paymentFillterSelected.map((data) => data == true ? false : false)
+
+  this.paymentFillterSelected[index] = true
+  if(index == 0){
+    this.statuspayment=""
+    this.ListAllInvoices(this.statuspayment);
+  }
+  if(index == 1){
+    this.statuspayment="Rent"
+
+    this.ListAllInvoices(this.statuspayment);
+  }
+  if(index == 2){
+    this.statuspayment="Security"
+
+    this.ListAllInvoices(this.statuspayment);
+
+  }
+  if(index == 3){
+    this.statuspayment="Other"
+
+    this.ListAllInvoices(this.statuspayment);
+
+  }
+
+}
 }

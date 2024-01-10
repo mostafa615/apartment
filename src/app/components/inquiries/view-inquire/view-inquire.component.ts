@@ -138,6 +138,9 @@ ApproveRequest(  ) {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: `error` });
   })
 }
+viewImage(image:any){
+  this.inquire_details["apt_thumb_Img"]=image;
+}
 selectedFiles?: FileList;
 currentFile?: File ;
 imageList:any=[]

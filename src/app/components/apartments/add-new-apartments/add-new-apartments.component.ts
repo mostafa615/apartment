@@ -53,9 +53,16 @@ export class AddNewApartmentsComponent {
       this.ApartmentsRole=parsedData.permissions[i];
     }
   }
-  if(this.ApartmentsRole.p_Add==false &&this.is_Super==false) {
-    this.gotopage( )
+  if(this.param=== 'add new apartments'){
+    if(this.ApartmentsRole.p_Add==false &&this.is_Super==false) {
+      this.gotopage( )
+    }
+  }else if(this.param=== 'Edit Apartment Name'){
+    if(this.ApartmentsRole.p_Update==false &&this.is_Super==false) {
+      this.gotopage( )
+    }
   }
+
 }
 
 

@@ -7,14 +7,14 @@
     <!-- end sidebar  -->
     <!-- start content page  -->
     <main class="p-4 col-lg-10">
-        <div class="d-md-flex justify-content-between  " style="margin-bottom: 20px;">
+        <div class="d-md-flex justify-content-between  zswed" style="margin-bottom: 20px;">
             <div class="d-flex" style="margin-left: 77px;">
 
                 <p class="fw-bold" style="color: black">Back </p>
             </div>
             <div style="margin-right: 94px;">
-                <button class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold" style="background-color: #EBEBEB; color:#1F4068"><img src="assets/images/print.svg"> Print</button>
-                <button class="outline-0 border-0 rounded-3 py-2 px-3 text-white fw-bold" style="background-color:#1F4068"><img
+                <button (click)="OnPrint()" class="outline-0 border-0 rounded-3 py-2 px-3 me-2 fw-bold" style="background-color: #EBEBEB; color:#1F4068"><img src="assets/images/print.svg"> Print</button>
+                <button (click)="exportAsPDF('MyDIv');" class="outline-0 border-0 rounded-3 py-2 px-3 text-white fw-bold" style="background-color:#1F4068"><img
         src="assets/images/Vector.svg"> Download PDF</button>
             </div>
         </div>
@@ -22,41 +22,41 @@
             <p class="fw-bold me-2" style="color: #6c6a6a">Back</p>
 
         </div> -->
-        <div class="frist11">
+        <div class="frist11 xxcprint" id="MyDIv">
             <div class="frist22"></div>
             <div class="frist33"></div>
             <div class="frist44">
-                <div class="frist55">Client Name</div>
-                <div class="frist66">Address / Contact Info</div>
+                <div class="frist55">Clients</div>
+                <div class="frist66" *ngFor="let client of _details.clients">{{client}} </div>
             </div>
             <div class="invice1">Invoice</div>
-            <div class="invoce2"><span class="invoce3">Rent</span><span class="invice4">  </span>
-                <span class="invice5">December 2022.</span><span class="invoce6"> </span></div>
+            <div class="invoce2"><span class="invoce3"> </span><span class="invice4">  </span>
+                <span class="invice5">{{_details.description}}</span><span class="invoce6"> </span></div>
             <div class="price11">Price</div>
             <div class="total22">Total</div>
             <div class="section33">
                 <div class="class33">
                     <div class="invoicenu">Invoice No.</div>
-                    <div class="invocede">#000123</div>
+                    <div class="invocede"> {{_details.invoice_No}} </div>
                 </div>
                 <div class="divclassss">
                     <div class="ttott">
                         <div class="issue33">Issued on</div>
-                        <div class="datedes">December 7, 2022.</div>
+                        <div class="datedes">{{_details.issued_On}} </div>
                     </div>
                     <div class="ttott">
                         <div class="issue33">Payment Due</div>
-                        <div class="datedes">December 22, 2022.</div>
+                        <div class="datedes">{{_details.payment_Due}}</div>
                     </div>
                 </div>
             </div>
             <div class="stackkc">
                 <div style="flex: 1 1 0; align-self: stretch; padding-right: 17.02px; justify-content: flex-start; align-items: flex-start; gap: 340.58px; display: inline-flex">
-                    <div style="width: 375.09px; color: #313033; font-size: 18px; font-family: SF Pro Text; font-weight: 400; line-height: 24.01px; word-wrap: break-word">apartment 41 spalt lake city apartment</div>
-                    <div style="text-align: right; color: #60737D; font-size: 16.50px; font-family: Inter; font-weight: 400; word-wrap: break-word">4,000.00</div>
+                    <div style="width: 375.09px; color: #313033; font-size: 18px; font-family: SF Pro Text; font-weight: 400; line-height: 24.01px; word-wrap: break-word"> {{_details.apt_Name}}</div>
+                    <div class="ddfdffd"> {{_details.price}}</div>
                 </div>
             </div>
-            <div class="priceeins">4,000.00</div>
+            <div class="priceeins"> {{_details.price}}</div>
             <div class="stysda">
                 <div style="justify-content: flex-start; align-items: flex-start; gap: 6px; display: flex">
                     <div class="ccarddinvice">Total</div>
@@ -68,17 +68,19 @@
                         <div class="ccarddinvice">)</div>
                     </div>
                 </div>
-                <div class="pricinn">4,000.00</div>
+                <div class="pricinn">{{_details.price}}</div>
             </div>
             <div class="imgheap">
                 <div class="imgginv">
                     <img style="width: 169.17px; height: 72px" src="assets/images/logo.svg" />
                     <div class="prepheap">
                         <div class="prpee">
-                            <div class="phonein">Prepared Date: 04/05/2023</div>
-                            <div class="phonein">Phone Number: +123 236 236</div>
+                            <div class="phonein">Prepared Date: {{_details.prepared_Date}}</div>
+                            <div class="phonein">Email: {{_details.email}}</div>
                         </div>
-                        <div></div>
+                        <div>
+
+                        </div>
                     </div>
                 </div>
             </div>

@@ -408,6 +408,7 @@ export class SecondStepComponent {
     })
   }
   Create_Apart_Equipment(data: any) {
+    debugger
     this.room=[];
     this.bathroom=[];
     this.livingRoom=[]
@@ -510,7 +511,9 @@ export class SecondStepComponent {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
       })
     }
-
+    this.room=[];
+    this.bathroom=[];
+    this.livingRoom=[]
    }
   savebutton(index: number) {
     this.ActionButtonField[index] = true

@@ -204,7 +204,11 @@ tiggerPageChange(event: any) {
   }
   onCloseModal2(){
     this.display2="none";
-
+    this.Company_gain=0
+    this.worker_cost=0
+    this.Total_cost=0
+    this.discerption=""
+    this.item_Cost=0
   }
   paramid3:any
   OpenModal3(id:any){
@@ -225,7 +229,8 @@ tiggerPageChange(event: any) {
   idmodel2:any
   OpenModal2(idmodel:any){
     this.idmodel2=idmodel
-     this.who_will_pay="";this.worker_cost="";this.Total_cost="";this.Company_gain="";this.discerption=""
+     this.item_Cost=0
+     this.who_will_pay="";this.worker_cost=0;this.Total_cost=0;this.Company_gain=0;this.discerption=""
     this.display2="block";
 
   }
@@ -252,11 +257,12 @@ tiggerPageChange(event: any) {
     this.who_will_pay= item
   }
    Company_gain:any
-  worker_cost:any
-  Total_cost:any
+  worker_cost:any=0
+  Total_cost:any=0
   discerption:any
+  item_Cost:any=0
   MarkAsSolved( ){
-    this._adminservices.MarkAsSolved(this.idmodel2,this.who_will_pay,this.worker_cost,this.Total_cost,this.Company_gain,this.discerption).subscribe((res) => {
+    this._adminservices.MarkAsSolved(this.idmodel2,this.who_will_pay,this.worker_cost,this.Total_cost,this.Company_gain,this.discerption,this.item_Cost).subscribe((res) => {
       this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'The Issue was marked as Solved'}` });
       this.getAllIssues()
 
@@ -268,5 +274,16 @@ this.onCloseModal2();
 
     })
 
+
+  }
+  onSearchChange(searchValue: any){
+    debugger
+    this.Total_cost=[]
+    // this.worker_cost=searchValue.data
+    this.Total_cost= Number(this.item_Cost)+ Number(this.worker_cost)
+  }
+  onSearchChange2(searchValue: any){
+    // this.item_Cost=searchValue.data
+    this.Total_cost =Number(this.Total_cost)+Number(this.item_Cost)
   }
 }

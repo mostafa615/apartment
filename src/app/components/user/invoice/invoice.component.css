@@ -7,6 +7,40 @@
     overflow: hidden
 }
 
+@media print {
+    .xxcprint {
+        margin-top: 0%;
+    }
+    .section33 {
+        float: right;
+        margin-left: 500px;
+    }
+    header {
+        display: none !important
+    }
+    .xprintt {
+        display: none !important
+    }
+    .zswed {
+        display: none !important
+    }
+    .prepheap {
+        margin-left: -150px !important
+    }
+    .pricinn {
+        margin-right: 150px !important
+    }
+}
+
+.ddfdffd {
+    text-align: right;
+    color: #60737D;
+    font-size: 16.50px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word
+}
+
 @media (min-width: 768px) {
     .frist11 {
         margin-left: 70px;
@@ -226,7 +260,6 @@
     font-family: Roboto;
     font-weight: 400;
     line-height: 18.09px;
-    letter-spacing: 0.46px;
     word-wrap: break-word
 }
 

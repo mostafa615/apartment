@@ -157,15 +157,32 @@ public onClick(elementId: string): void {
 }
 
 jobs:any=[]
+detil_part:any={}
 GetPartnerProfile( ) {
 
-  this._adminservices.GetPartnerProfile(this.param ).subscribe((res) => {
+  this._adminservices.PartnerProfile(this.param ).subscribe((res) => {
     this.createpartner.patchValue(res);
+    this.detil_part=res
       this.selectedContractImg = { 'url':res.partner_Passport};  }, (err: any) => {
 
     this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
   })
 
+
+}
+showEdit: Array<boolean> = [];
+
+detailperson(event:any,id: any): void {
+  this.showEdit=[]
+  event.stopPropagation()
+
+  this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
+
+
+
+ }
+ hidecard( ){
+  this.showEdit=[]
 
 }
 Countries:any=[]

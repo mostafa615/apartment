@@ -107,7 +107,7 @@
                     <label class="fw-bold" style="color: #605D62;">Gender</label>
                     <input type="text" [(ngModel)]="Tenant_details.user_Gender" class="form-control w-100">
                 </div>
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <label class="fw-bold" style="color: #605D62;">Number of Guests</label>
                     <input type="number" class="form-control w-100">
                 </div>
@@ -118,7 +118,7 @@
                 <div class="mb-4">
                     <label class="fw-bold" style="color: #605D62;">Guest 2</label>
                     <input type="text" class="form-control w-100">
-                </div>
+                </div> -->
                 <div class="mb-4">
                     <label class="fw-bold" style="color: #605D62;">Select Your Role*</label>
                     <input type="text" class="form-control w-100">
@@ -313,7 +313,7 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-Tenant>
 
-                        <tr style="cursor: pointer;" (click)="gotodetail(Tenant_details?.user_ID)">
+                        <tr style="cursor: pointer;" (click)="gotodetail(Tenant?.invoice_ID)">
 
                             <td>
                                 {{Tenant?.invoice_Code}}

@@ -70,6 +70,11 @@ public TenantDetails(id: any): Observable<any> {
 
   return this.http.get(url, { headers: this.headers })
 }
+public GetINVDetails(id: any): Observable<any> {
+  let url=environment.apiUrl + '/Accounting/GetINVDetails?Inv_ID='+id ;
+
+  return this.http.get(url, { headers: this.headers })
+}
  DeleteTenant(id: any): Observable<any> {
   let url=environment.apiUrl + '/Users/DeleteTenant?User_ID='+id;
 
@@ -170,9 +175,10 @@ CancelIssue(Issue_ID: any ): Observable<any> {
   return this.http.put<any>(url,body, {  headers: this.headers });
 
 }
-MarkAsSolved(Issue_ID: any,issue_CostBy:any, worker_Gain:any,issue_Cost:any,company_Gain:any,solve_Desc:any): Observable<any> {
+MarkAsSolved(Issue_ID: any,issue_CostBy:any, worker_Gain:any,issue_Cost:any,company_Gain:any,solve_Desc:any,item_Cost:any): Observable<any> {
    let body={
     issue_ID: Issue_ID,
+    item_Cost:item_Cost,
     issue_CostBy: issue_CostBy,
     issue_Cost: issue_Cost,
     worker_Gain: worker_Gain,
@@ -224,6 +230,11 @@ GetPartnerProfile(id: any ): Observable<any> {
   return this.http.get<any>(url, {  headers: this.headers });
 
 }
+PartnerProfile(id: any ): Observable<any> {
+  const url = environment.apiUrl+"/Partners/PartnerProfile?Partner_ID="+id;
+  return this.http.get<any>(url, {  headers: this.headers });
+
+}
 GetCountries( ): Observable<any> {
   const url = environment.apiUrl+"/Partners/GetCountries";
   return this.http.get<any>(url, {  headers: this.headers });
@@ -237,6 +248,21 @@ GetAgencyCode( ) {
   });
   const url = environment.apiUrl+"/Partners/GetAgencyCode";
   return this.http.get(url, {  headers: headers2 ,responseType: 'text'});
+
+}
+ListAllInvoices(type:any, PageNumber: number, PageSize: number  ): Observable<any[]> {
+  const url = environment.apiUrl+"/Accounting/ListAllInvoices";
+  const params = new HttpParams()
+    .set('PageNum', PageNumber)
+    .set('PageSize', PageSize)
+    .set('Type', type)
+
+  return this.http.get<any[]>(url, { headers: this.headers , params: params });
+
+}
+MarkPaid( id:any ): Observable<any> {
+  const url = environment.apiUrl+"/Accounting/MarkPaid?Inv_ID="+id;
+  return this.http.put<any>(url,id, {  headers: this.headers });
 
 }
 }

@@ -41,7 +41,7 @@
                 <div class="d-flex align-items-center mb-4">
                     <div *ngFor="let data of paymentFillterLists;let index=index;">
                         <div class="d-flex ">
-                            <button class="apartmentList border-0 bg-transparent pb-2 mx-2 buttomstyle" [class.clickApartmentList]="paymentFillterSelected[index]==true">{{data}}</button>
+                            <button class="apartmentList border-0 bg-transparent pb-2 mx-2 buttomstyle" (click)="clickPayment(index)" [class.clickApartmentList]="paymentFillterSelected[index]==true">{{data}}</button>
 
                             <div class="none">
                                 <img src="assets/images/line.svg" [class.d-none]=" index == paymentFillterLists.length-1">
@@ -68,6 +68,14 @@
 
                             </th>
                             <th class="td-name">
+                                User name
+
+                            </th>
+                            <th class="td-name">
+                                Phone
+
+                            </th>
+                            <th class="td-name">
                                 Date
 
                             </th>
@@ -76,11 +84,11 @@
 
                             </th>
                             <th class="td-name">
-                                rent duration
+                                Payment by
 
                             </th>
                             <th class="td-name">
-                                Security Deposit
+                                type
 
                             </th>
 
@@ -97,32 +105,38 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-payment>
 
-                    <tr style="cursor: pointer;">
+                    <tr style="cursor: pointer;" (click)="hidecard()">
 
                         <td>
-                            {{payment?.Name}}
+                            {{payment?.apt_Name}}
                         </td>
                         <td>
-                            {{payment?.Date}}
+                            {{payment?.userName}}
                         </td>
                         <td>
-                            {{payment?.Amount}}
+                            {{payment?.phoneNo}}
                         </td>
                         <td>
-                            {{payment?.WhatsApp}}
+                            {{payment?.inv_Date}}
                         </td>
                         <td>
-                            {{payment?.job}}
+                            {{payment?.inv_Total}}
+                        </td>
+                        <td>
+                            {{payment?.payment_By}}
+                        </td>
+                        <td>
+                            {{payment?.payment_Type}}
                         </td>
 
                         <td>
                             <div>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;" *ngIf="payment?.user_type=='paid'">
+                                <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;" *ngIf="payment?.inv_Paid==true">
 
                         <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem;"></i> Paid
                     </span>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;" *ngIf="payment?.user_type=='Failed'">
-                      <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem;"></i>  Failed
+                                <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;" *ngIf="payment?.inv_Paid==false">
+                      <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem;"></i>  unPaid
 
                        </span>
 
@@ -131,16 +145,16 @@
                             </div>
                         </td>
                         <td class="cursor position-relative">
-                            <button class="border-0 outlin-0 bg-transparent" (click)="detailperson( $event,payment.request_ID)">
+                            <button class="border-0 outlin-0 bg-transparent" (click)="detailperson( $event,payment.inv_ID)">
                   <img src="assets/images/edit.svg">
               </button>
-                            <!-- <div *ngIf="showEdit[payment.request_ID]  " style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
-                                <button class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/payment-offer">Add reminder  </button>
-                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/view-payment/{{payment.request_ID}}"> deactivate    </button>
+                            <div *ngIf="showEdit[payment.inv_ID]  " style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                                <button class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/invoice/{{payment.inv_ID}}">view invoice  </button>
+                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" (click)="MarkPaid(payment.inv_ID)" *ngIf="payment?.inv_Paid==true && payment.payment_By=='Cash'"> UnPaid    </button>
 
-                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2">Download  </button>
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="MarkPaid(payment.inv_ID)" *ngIf="payment?.inv_Paid==false && payment.payment_By=='Cash'">Paid  </button>
 
-                            </div> -->
+                            </div>
                         </td>
 
                     </tr>

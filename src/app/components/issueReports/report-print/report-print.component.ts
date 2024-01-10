@@ -206,7 +206,7 @@ export class ReportPrintComponent implements OnInit {
   {
 
       let data = document.getElementById(divId)!;
-      html2canvas(data).then(canvas => {
+      html2canvas(data,{useCORS: true}).then(canvas => {
       const contentDataURL = canvas.toDataURL('image/jpeg')  // 'image/jpeg' for lower quality output.
       let pdf = new jsPDF('l', 'cm', 'a4'); //Generates PDF in landscape mode
       // let pdf = new jspdf('p', 'cm', 'a4'); Generates PDF in portrait mode
