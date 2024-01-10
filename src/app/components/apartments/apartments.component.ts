@@ -70,7 +70,7 @@ gotopage( ){
     console.log(value)
   }
   initFakeData(): void {
-    this.apartmentFillterLists = ["All Apartment", "Rented Apartment", "Available Apartment","Rent EndSoon",'Draft' ];
+    this.apartmentFillterLists = ["All Apartment", "Rented Apartment", "Available Apartment","Pending",'Draft',"Rent EndSoon" ];
     // this.apartmentFillterLists = ["All ", "Rented Apartment", "Available Apartment","Pending Apartment","Delete Apartment","Draft Apartment"];
 
     this.apartmentFillterSelected = [true];
@@ -195,6 +195,13 @@ gotopage( ){
 
     }
     if(index == 3){
+      this.filterStatus="Pending"
+
+      this.getAllApartment();
+
+    }
+
+    if(index == 5){
       this.filterStatus="RentEndSoon"
 
       this.getAllApartment();
