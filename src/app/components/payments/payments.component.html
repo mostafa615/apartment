@@ -62,7 +62,10 @@
                     <tr>
                         <ng-container>
 
+                          <th class="td-name">
+                           Invoice Code
 
+                        </th>
                             <th class="td-name">
                                 apartment name
 
@@ -106,7 +109,9 @@
                 <ng-template pTemplate="body" let-payment>
 
                     <tr style="cursor: pointer;" (click)="hidecard()">
-
+                      <td>
+                        {{payment?.inv_Code}}
+                    </td>
                         <td>
                             {{payment?.apt_Name}}
                         </td>
