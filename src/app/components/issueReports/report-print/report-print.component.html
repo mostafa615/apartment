@@ -24,12 +24,12 @@
               <button class="outline-0 border-0 rounded-3 py-2 px-3 text-white fw-bold" *ngIf="param == 'Edit Reports View'" style="background-color:#1F4068">
           <img src="assets/images/pdf.svg">  Generate PDF </button> -->
 
-                <button (click)="exportAsPDF('MyDIv');" class="outline-0 border-0 rounded-3 py-2 px-3 text-white fw-bold" style="background-color:#1F4068">
+                <button (click)="convetToPDF( );" class="outline-0 border-0 rounded-3 py-2 px-3 text-white fw-bold" style="background-color:#1F4068">
           <img src="assets/images/Vector.svg">  Download PDF </button>
             </div>
         </div>
         <!-- id="MyDIv" -->
-        <div class="mt-3 pt-4 row border bg-white rounded-3 py-3 xxcprint" id="MyDIv">
+        <div class="mt-3 pt-4 row border bg-white rounded-3 py-3 xxcprint" id="contentToConvert">
             <!-- <aside class="col-2 p-0 ps-1 position-fixed d-none d-md-block">
                 <div class="ms-4">
                     <p class="fw-bold mb-0 ">Issue report details</p>

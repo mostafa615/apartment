@@ -1,5 +1,5 @@
 import { ViewportScroller } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -7,6 +7,8 @@ import { UploadFileService } from 'src/app/_services/UploadFile/upload-file.serv
 import { AdminsService } from 'src/app/_services/admins/admins.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import jspdf from 'jspdf';
+
 
 @Component({
   selector: 'app-report-print',
@@ -271,5 +273,22 @@ export class ReportPrintComponent implements OnInit {
 OnPrint() {
 
   window.print();
+}
+public convetToPDF()
+{
+  const  data = document.getElementById('contentToConvert')as HTMLElement; ;
+html2canvas(data,{ logging: true,  allowTaint: true, useCORS: true }).then(canvas => {
+// Few necessary setting options
+var imgWidth = 208;
+var pageHeight = 295;
+var imgHeight = canvas.height * imgWidth / canvas.width;
+var heightLeft = imgHeight;
+
+const contentDataURL = canvas.toDataURL('image/png')
+let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
+var position = 0;
+pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+pdf.save('new-file.pdf'); // Generated PDF
+});
 }
 }

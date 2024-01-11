@@ -46,6 +46,9 @@
         margin-left: 70px;
         width: 1050px;
     }
+    .imgginv {
+        gap: 637.74px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -56,7 +59,7 @@
 
 .frist22 {
     width: 1020.24px;
-    height: 261.06px;
+    height: 300.06px;
     left: 15.07px;
     top: 140.97px;
     position: absolute;
@@ -89,7 +92,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 12px;
     display: inline-flex
 }
 
@@ -281,7 +283,6 @@
 .imgginv {
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 637.74px;
     display: flex
 }
 
