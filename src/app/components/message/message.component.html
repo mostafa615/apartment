@@ -1,21 +1,163 @@
 <!-- start header  -->
 <header>
-  <app-head (newItemEvent)="addItem($event)" [titleModule]="'Messages'"></app-head>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'Tickets'"></app-head>
 </header>
 <!-- end header  -->
 
 <div class="row m-0">
-  <!-- start sidebar  -->
-  <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'messages'"></app-sidebar>
-  <!-- end sidebar  -->
-  <!-- start content page  -->
-  <main class="p-4 col-lg-10">
-    <p class="fw-bold" style="color: #6c6a6a">Messages</p>
-    <div class="mt-3 row border bg-white rounded-3">
-      <!-- persons active -->
-      <div class="col-12 col-md-4 border-end">
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'Tickets'"></app-sidebar>
+    <!-- end sidebar  -->
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10">
+
+        <!-- <p class="fw-bold" style="color: #6c6a6a"></p> -->
+        <div class="fw-inquiries d-flex justify-content-between" style="color: #6c6a6a;">
+            <p style=" font-family: Roboto;font-size: 19px;font-weight:600;color:black">Tickets</p>
+            <div class="d-flex justify-content-lg-between cvvvvvvv">
+                <app-dropdown class="ms-3" style="margin-right: 20px;" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
+
+                <!-- start dropdown button  -->
+                <!-- <app-dropdown class="me-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown> -->
+                <!-- end dropdown button  -->
+                <!-- start add button (add new owner) in page  -->
+                <!-- <app-add-new-button [id]="'/owner/create_new'" class="mt-2"></app-add-new-button> -->
+
+                <!-- end add button (add new owner) in page  -->
+            </div>
+            <!-- start add button (add new apartment) in page  -->
+            <!-- end add button (add new apartment) in page  -->
+            <p-toast></p-toast>
+
+        </div>
+        <div class="card mt-4">
+
+
+
+
+            <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="_tickets">
+                <ng-template pTemplate="header" class="text-center">
+                    <tr *ngIf="headerData">
+                        <ng-container>
+
+                            <th class="td-name">
+                                ticket number
+
+                            </th>
+                            <th class="td-name">
+                                Complaint type
+
+                            </th>
+                            <th class="td-name">
+                                complaint details
+
+                            </th>
+                            <th class="td-name">
+                                Assignee
+
+                            </th>
+                            <th class="td-name">
+                                status
+                            </th>
+
+
+                            <th class="td-name">
+
+
+                            </th>
+                        </ng-container>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-inquire>
+
+                    <tr style="cursor: pointer;" (click)="hidecard(inquire.request_ID)">
+                        <td routerLink="/view-inquire/{{inquire.request_ID}}">
+
+                            {{inquire?.ticket_Code}}
+                        </td>
+
+                        <td>
+                            {{inquire?.ticket_Type}}
+                        </td>
+                        <td>
+                            {{inquire?.ticket_Desc}}
+                        </td>
+                        <td>
+                            {{inquire?.assigned_To}}
+                        </td>
+
+                        <!-- <td>
+                      <p class="d-flex align-items-center fw-bold mt-2">{{admin?.status}}</p>
+                  </td> -->
+                        <td>
+                            <div>
+                                <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;" *ngIf="inquire?.status=='Opened'">
+
+                      {{inquire?.status}}
+                  </span>
+                                <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;" *ngIf="inquire?.status=='Closed'">
+                    {{inquire?.status}}
+
+                     </span>
+
+
+
+                            </div>
+                        </td>
+                        <td class="cursor position-relative">
+                            <button class="border-0 outlin-0 bg-transparent" (click)="detailperson( $event,inquire.ticket_ID)">
+                <img src="assets/images/edit.svg">
+            </button>
+                            <div *ngIf="showEdit[inquire.ticket_ID] " style="width: 206px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                                <button *ngIf="inquire?.assigned_To=='Not Assigned'" class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/assgin-tiket/{{inquire.ticket_ID}}">assign ticket to employee  </button>
+                                <button *ngIf="inquire?.assigned_To!='Not Assigned'" class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/assgin-tiket/{{inquire.ticket_ID}}">reassign ticket to employee  </button>
+
+                                <button style="margin-top:0px !important" class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/message-tiket/{{inquire.ticket_ID}}">pickup ticket</button>
+
+
+
+                            </div>
+
+
+
+
+                        </td>
+
+                    </tr>
+
+                </ng-template>
+
+
+                <ng-template pTemplate="emptymessage">
+                    <div class="container text-center mt-4">
+                        <p class="mb-0">No data found.</p>
+                    </div>
+                </ng-template>
+
+            </p-table>
+            <p-paginator (onPageChange)="tiggerPageChange($event)" [rows]="pagesize" [totalRecords]="totalRecords"></p-paginator>
+
+            <!-- <div style="width: 100%; height: 72px; padding-top: 12px; padding-bottom: 16px; padding-left: 24px; padding-right: 24px;   justify-content: space-between; align-items: center; display: inline-flex">
+            <div style="border-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+
+                <button (click)="decreamentPage( )" [disabled]="disableperv" class="  cvxs" style="text-align: center; color: #1F4068; font-size: 16px; font-family: 'Montserrat'; font-weight: 500; line-height: 20px; word-wrap: break-word">
+                  Previous
+    </button>
+            </div>
+            <div style="color: #484649; font-size: 14px; font-family: 'Montserrat'; font-weight: 400; line-height: 20px; word-wrap: break-word">Page {{pageNumber}} of {{totalofPages}}</div>
+            <div style="border-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+
+                <button [disabled]="disablenext" (click)="   incrementpage( )" class="  cvxs" style="text-align: center; color: #1F4068; font-size: 16px; font-family: 'Montserrat'; font-weight: 500; line-height: 20px; word-wrap: break-word">
+                      Next
+        </button>
+            </div>
+        </div> -->
+
+        </div>
+        <!-- persons active -->
+        <!-- <div class="col-12 col-md-4 border-end">
         <div class="d-flex justify-content-between">
-          
+
           <div class="d-flex mx-2 mt-4">
             <p class="me-2 fs-5 fw-bold">Messages</p>
             <p class="mt-1 bg-gray rounded-5 px-1 d-flex align-items-center">
@@ -27,14 +169,12 @@
             <img src="assets/images/message/Vector.svg" />
           </div>
         </div>
-        <!-- start search button -->
-        <div class="p-input-icon-left w-100">
+         <div class="p-input-icon-left w-100">
           <i *ngIf="value == ''" class="me-1"><img src="assets/images/message/search-lg.svg" /></i>
           <input class="form-control border rounded-3 mt-2 ps-35px" [class.ps-35px]="value == ''" type="text" pInputText
             placeholder="Search" [(ngModel)]="value" />
         </div>
-        <!-- end search button -->
-        <table class="table">
+         <table class="table">
           <tbody>
             <tr>
               <th scope="row">
@@ -57,7 +197,7 @@
                     quick question about the...
                   </p>
                 </button>
-               
+
               </th>
             </tr>
             <tr>
@@ -85,11 +225,10 @@
             </tr>
           </tbody>
         </table>
-      </div>
-      <!-- start the chat -->
-      <div class="col-12 col-md-8 px-0">
-        <!-- start head in the chat-->
-        <div class="border py-2 px-3">
+      </div> -->
+        <!-- start the chat -->
+        <!-- <div class="col-12 col-md-8 px-0">
+         <div class="border py-2 px-3">
 
           <div class="d-flex justify-content-between">
             <div class="d-flex">
@@ -116,11 +255,8 @@
           </div>
 
         </div>
-        <!-- end head in the chat-->
-        <!-- start content in the chat-->
-        <div class="px-4" style="height: 50%">
-          <!-- Reciver -->
-          <div class="d-flex justify-content-between reciver mb-2 py-1">
+         <div class="px-4" style="height: 50%">
+           <div class="d-flex justify-content-between reciver mb-2 py-1">
             <div class="d-flex">
               <img src="assets/images/Avatar.svg" class="me-3 mb-3" />
               <div>
@@ -136,8 +272,7 @@
               </div>
             </div>
           </div>
-          <!-- Sender -->
-          <div class="d-flex justify-content-end">
+           <div class="d-flex justify-content-end">
             <div>
               <div class="ml-3 d-flex justify-content-between">
                 <div>
@@ -151,9 +286,7 @@
             </div>
           </div>
         </div>
-        <!-- end content in the chat-->
-        <!-- start send a message in the chat-->
-        <div class="position-relative mb-2 h-25 m-auto" style="width: 95%">
+         <div class="position-relative mb-2 h-25 m-auto" style="width: 95%">
           <textarea id="w3review" name="w3review" class="w-100 h-100 p-3 border rounded" placeholder="Send a message"
             style="resize: none; outline: none"></textarea>
           <div class="position-absolute d-flex justify-content-between" style="right: 6%; bottom: 15%">
@@ -168,10 +301,6 @@
             </button>
           </div>
         </div>
-        <!-- end send a message in the chat-->
-      </div>
-      <!-- end the chat-->
-    </div>
-  </main>
-  <!-- end content page  -->
+       </div> -->
+    </main>
 </div>

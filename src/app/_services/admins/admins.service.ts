@@ -265,4 +265,31 @@ MarkPaid( id:any ): Observable<any> {
   return this.http.put<any>(url,id, {  headers: this.headers });
 
 }
+AllTickets(type:any, PageNumber: number, PageSize: number  ): Observable<any[]> {
+  const url = environment.apiUrl+"/Tickets/AllTickets";
+  const params = new HttpParams()
+    .set('PageNum', PageNumber)
+    .set('PageSize', PageSize)
+    .set('Type', type)
+
+  return this.http.get<any[]>(url, { headers: this.headers , params: params });
+
+}
+GetAllEmp(  PageNumber: number, PageSize: number  ): Observable<any[]> {
+  const url = environment.apiUrl+"/Tickets/GetAllEmp";
+  const params = new HttpParams()
+    .set('PageNum', PageNumber)
+    .set('PageSize', PageSize)
+
+  return this.http.get<any[]>(url, { headers: this.headers , params: params });
+
+}
+AssignTicket(Ticket_ID: any,User_ID:any ): Observable<any> {
+  let body={
+    Ticket_ID:Ticket_ID,User_ID:User_ID
+  }
+  const url = environment.apiUrl+"/Tickets/AssignTicket?Ticket_ID="+Ticket_ID+"&User_ID="+User_ID;
+  return this.http.put<any>(url,body, {  headers: this.headers });
+
+}
 }

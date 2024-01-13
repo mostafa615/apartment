@@ -8,9 +8,14 @@ import { AdminsService } from 'src/app/_services/admins/admins.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import jspdf from 'jspdf';
+import { DomSanitizer } from '@angular/platform-browser';
 
+import* as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts'
+(pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
+// import * as htmlToPdfmake from 'html-to-pdfmake';
 
-@Component({
+ @Component({
   selector: 'app-report-print',
   templateUrl: './report-print.component.html',
   styleUrls: ['./report-print.component.css']
@@ -18,17 +23,20 @@ import jspdf from 'jspdf';
 export class ReportPrintComponent implements OnInit {
 
   paramid:any
+  @ViewChild('pdfTable') pdfTable!: ElementRef;
+
   constructor(
     private viewportScroller: ViewportScroller,
     private uploadService: UploadFileService,
 
     private messageService: MessageService,
     public router: Router, public _adminservices:AdminsService,
-    public _ActivatedRoute: ActivatedRoute,
+    public _ActivatedRoute: ActivatedRoute,private sanitizer: DomSanitizer
    ) {
     this.paramid = _ActivatedRoute.snapshot.paramMap.get('id');
 
   }
+
   showSide: string = '';
 
   value: string = '';
@@ -50,6 +58,9 @@ export class ReportPrintComponent implements OnInit {
     this.GetIssueByid( )
     this.checkRole()
   }
+  transform2(url:any) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+     }
   IssueRole:any
   is_Super:any
   checkRole(){
@@ -290,5 +301,35 @@ var position = 0;
 pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
 pdf.save('new-file.pdf'); // Generated PDF
 });
+}
+exportAllToPDF(pages: HTMLElement) {
+  const doc = new jsPDF({
+    unit: 'px',
+    // format: this.pdfOptions.value.pageFormat === 'A4' ? [595, 842] : [842, 1191]
+  });
+
+  doc.html(pages, {
+    callback: (doc: jsPDF) => {
+      doc.deletePage(doc.getNumberOfPages());
+      doc.save('pdf-export');
+    }
+  });
+}
+onConfirm() {
+  const pages = document.querySelector('.xxcprint') as HTMLElement;
+  this.exportAllToPDF(pages);
+}
+
+public downloadAsPDF10() {
+  const doc = new jsPDF();
+
+  const pdfTable = this.pdfTable.nativeElement;
+  var htmlToPdfmake = require("html-to-pdfmake");
+
+  var html = htmlToPdfmake(pdfTable.innerHTML);
+
+  const documentDefinition = { content: html };
+  pdfMake.createPdf(documentDefinition).open();
+
 }
 }

@@ -99,6 +99,7 @@ export class SecondStepComponent {
     ) { }
     idParamterEdit:any=""
   ngOnInit() {
+    debugger
     this.idParamterEdit = this._ActivatedRoute.snapshot.params['id']
 
     if(this.n_ofLiving==0||this.n_ofLiving==null){
@@ -129,7 +130,7 @@ export class SecondStepComponent {
   // get  local storage
   aprt_details_Edit:any
   getApartmentDetails() {
-
+    debugger
       this._ApartmentService.getApartDetail(this.idParamterEdit).subscribe((res) => {
 
         this.aprt_details_Edit = res.general_Info
@@ -137,7 +138,7 @@ export class SecondStepComponent {
       })
     }
   getLocalStorage(): void {
-
+    debugger
     if ("create_Apart_Equ" in localStorage) {
       const data =JSON.parse(localStorage.getItem("create_Apart_Equ")!);
       let parsedData = data ;
@@ -239,7 +240,7 @@ export class SecondStepComponent {
     }
   }
   getDataFromEdit(data:any) {
-
+debugger
           //  const data =JSON.parse(localStorage.getItem("create_Apart_Equ")!);
           let parsedData = data ;
           this.roomType=[]

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { AdminsService } from 'src/app/_services/admins/admins.service';
 import { ApartmentService } from 'src/app/_services/apartments/apartment.service';
 
 @Component({
@@ -13,10 +15,12 @@ export class MessageComponent {
   value:any=''
   activePerson:boolean=true
 
-  constructor(private apartmentSer: ApartmentService,public router: Router) {
+  constructor(private _ticketService:AdminsService ,private messageService: MessageService,public router: Router) {
     this.checkRole();
   }
-
+  ngOnInit() {
+      this.getAll_tickets();
+  }
   StatisticsRole:any
  is_Super:any
  checkRole(){
@@ -42,4 +46,86 @@ export class MessageComponent {
   addItem(value:any){
     this.showSide=value
   }
-}
+
+
+    _tickets:any=[]
+    headerData: Array<any> = [];
+    showEdit: Array<boolean> = [];
+
+    number_tickets=0;
+
+
+    _ticketsRole:any
+
+
+    statusinquire:any=""
+    pageNumber=1;
+    pagesize=10;
+    totalofPages=0;;
+    disablenext=false;
+    disableperv=false;
+
+    date=""
+    totalRecords=0;
+    getAll_tickets(   ) {
+      this._tickets=[]
+      this.number_tickets=0
+      this._ticketService.AllTickets(this.date,this.pageNumber,this.pagesize).subscribe((res:any) => {
+        this._tickets = res["data"];
+        this.number_tickets = this._tickets.length;
+        this.totalofPages=res["totalPages"]
+        this.totalRecords=res["totalRecords"]
+
+        if(this.totalofPages==this.pageNumber){
+          this.disablenext=true
+        }else{
+          this.disablenext=false
+
+        }
+        if(this.pageNumber==1){
+          this.disableperv=true
+        }else{
+          this.disableperv=false
+
+        }
+
+       }, (error) => {
+         console.error('Error fetching owners:', error);
+      })
+    }
+    tiggerPageChange(event: any) {
+
+          const calcPageNumber = Math.floor(event.first / event.rows) + 1;
+          this.pageNumber=calcPageNumber;
+          console.log(calcPageNumber);
+          this.getAll_tickets();
+        }
+        ids:any=[]
+    detailperson(event:any, id: any){
+      this.showEdit=[]
+  event.stopPropagation()
+
+      this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
+
+     }
+
+    dropdownOption: Array<any> = [];
+    listDropDown:Array<object>=[{name:'Today'},{name:'Last week'},{name:'This month'},{name:'This year'}]
+    Inquiries=[]
+    InquireFillterLists: Array<any> = [];
+    InquireFillterSelected: Array<any> = [];
+
+     selectedfromDropDown(value:any){
+      this.date=value.name;
+      this.getAll_tickets();
+      console.log(value)
+    }
+
+
+
+    hidecard(id:any){
+       this.showEdit=[]
+
+    }
+  }
+

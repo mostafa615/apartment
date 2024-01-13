@@ -156,7 +156,7 @@
                 <div>
                     <p class="fw-bold mb-0" style="color: #605D62;">Pictures</p>
                     <div class="accordion-body mb-3 ">
-                        <img *ngFor="let item of detialIssue.issue_Images;let i=index" style="width: 100px;-webkit-print-color-adjust: exact;" [src]="item.img_Url" class="me-2">
+                        <img *ngFor="let item of detialIssue.issue_Images;let i=index" style="width: 100px;-webkit-print-color-adjust: exact;" [src]="transform2(item.img_Url)" class="me-2">
 
                     </div>
                 </div>

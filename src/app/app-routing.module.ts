@@ -43,6 +43,8 @@ import { PartnerComponent } from './components/partner/partner.component';
 import { OwnerProfileComponent } from './components/owners/owner-profile/owner-profile.component';
 
 import { AuthGuard } from './_helpers/auth.guard';
+import { AssginTicketComponent } from './components/message/assgin-ticket/assgin-ticket.component';
+import { MessResquestComponent } from './components/message/mess-resquest/mess-resquest.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -64,6 +66,10 @@ const routes: Routes = [
 
 
   { path: "messages", component: MessageComponent,canActivate: [AuthGuard] },
+  { path: "assgin-tiket/:id", component: AssginTicketComponent,canActivate: [AuthGuard]},
+  { path: "message-tiket/:id", component: MessResquestComponent,canActivate: [AuthGuard]},
+
+
   { path: "statistics", component: StatisticsComponent,canActivate: [AuthGuard] },
   { path: "payments", component: PaymentsComponent ,canActivate: [AuthGuard]},
   { path: "admins", component: AdminsComponent ,canActivate: [AuthGuard]},
@@ -95,6 +101,7 @@ const routes: Routes = [
   { path: "edit-partner/:id", component: EditPartnerComponent,canActivate: [AuthGuard]},
   { path: "view-partner/:id", component: ViewPartnerComponent,canActivate: [AuthGuard]},
   { path: "invoice/:id", component: InvoiceComponent,canActivate: [AuthGuard],},
+
 
 ];
 @NgModule({
