@@ -157,3 +157,9 @@ th {
 i {
     font: normal normal normal 14px/1 FontAwesome !important;
 }
+
+.file {
+    z-index: 3 !important;
+    opacity: 0;
+    cursor: pointer;
+}

@@ -168,7 +168,31 @@
 
                         </div>
 
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne1">
+                                <button class="accordion-button ps-0  collapsed text-black fw-bold bg-transparent border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne1transport1" aria-expanded="false" aria-controls="flush-collapseOne1transport1">
+                          Check in
+                      </button>
+                            </h2>
+                            <div id="flush-collapseOne1transport1" class="accordion-collapse collapse mt-3" aria-labelledby="flush-headingOne1" data-bs-parent="#accordionFlushExample1">
+                                <div class="mb-3">
+                                    <p class="fw-bold" style="color: #605D62 !important;"> Arrival Date</p>
+                                    <div class="form-control w-100 fs-6 pt-2">{{ inquire_details?.check_Date }}</div>
+                                </div>
+                                <div class="mb-3">
+                                    <p class="fw-bold" style="color: #605D62 !important;"> Arrival Time</p>
+                                    <div class="form-control w-100 fs-6 pt-2">{{ inquire_details?.check_Time }}</div>
+                                </div>
+                                <div class="mb-3">
+                                    <p class="fw-bold" style="color: #605D62 !important;">need a moving service</p>
+                                    <div class="form-control w-100 fs-6 pt-2">{{ inquire_details?.move_Service }}</div>
+                                </div>
 
+
+
+
+                            </div>
+                        </div>
 
 
 

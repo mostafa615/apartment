@@ -292,4 +292,24 @@ AssignTicket(Ticket_ID: any,User_ID:any ): Observable<any> {
   return this.http.put<any>(url,body, {  headers: this.headers });
 
 }
+GetTicketDetails(  Ticket_ID: any ): Observable<any > {
+  const url = environment.apiUrl+"/Tickets/GetTicketDetails";
+  const params = new HttpParams()
+    .set('Ticket_ID', Ticket_ID)
+
+
+  return this.http.get<any >(url, { headers: this.headers , params: params });
+
+}
+ReplyDash(  Ticket_ID: any ,reply_Desc:any,attach:any): Observable<any > {
+  const url = environment.apiUrl+"/Tickets/ReplyDash";
+    let body={
+    Ticket_ID:Ticket_ID,reply_Desc:reply_Desc,attach:attach
+  }
+
+
+  return this.http.post<any >(url, body,{ headers: this.headers , });
+
+}
+
 }
