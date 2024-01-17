@@ -1,0 +1,162 @@
+<!-- start header  -->
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'Apartments'"></app-head>
+</header>
+<!-- end header  -->
+
+<div class="row m-0">
+
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'Apartments'"></app-sidebar>
+    <!-- end sidebar  -->
+
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10">
+
+        <div class="d-md-flex justify-content-between dashboard mt-2">
+            <div class="d-flex">
+                <p routerLink="/apartments" class="fw-bold me-2" style="color: #6c6a6a; cursor: pointer;">Apartments</p>
+                <img src="assets/images/user/right-arrow.svg" class="me-2" style="margin-top: -15px">
+                <p class="fw-bold" style="color: #6c6a6a">Booking history</p>
+            </div>
+            <!-- <p  class="fw-bold ms-1" style="color: #6c6a6a;">Apartments </p> -->
+            <!-- <p routerLink="/apartments" class="fw-bold me-2" style="color: #6c6a6a">Apartments</p> -->
+            <!-- <img src="assets/images/user/right-arrow.svg" class="me-2" style="margin-top: -15px"> -->
+            <!-- <p class="fw-bold" style="color: #6c6a6a">Booking history</p> -->
+        </div>
+        <div class="text-center">
+
+            <div class="card mt-4 bvngd">
+
+
+                <p-table #dt [value]="booking" [(selection)]="booking" dataKey="id" [filterDelay]="0" />
+                <div class="d-flex justify-content-between">
+                    <!-- length Of person -->
+                    <div class="d-flex mx-2 mt-4">
+                        <p class="me-2 fs-5 fw-bold ml-8">Booking history</p>
+
+                    </div>
+                    <!-- search input -->
+                    <div class="d-flex align-items-center mx-2 mt-2 w-50">
+                        <ng-container *ngIf="!search; else searchVisible">
+                            <i class="pi pi-search cursor ms-auto" style="margin-right: 0.75rem;" (click)="search = true"></i>
+                        </ng-container>
+                        <ng-template #searchVisible>
+                            <input class="form-control fs-6 ps-3" *ngIf="search" type="text" pInputText [(ngModel)]="searchText" placeholder="Global Search" />
+                            <button class="btn btn-primary ms-2" *ngIf="search" (click)="searchAction()">
+                            Search
+                        </button>
+                        </ng-template>
+                    </div>
+                </div>
+
+                <p-table class="table-shopping" [(selection)]="selectedProducts" [dataKey]="dataSelectionKey" [rows]="2" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}" [value]="booking">
+                    <ng-template pTemplate="header" class="text-center">
+                        <tr *ngIf="headerData">
+                            <ng-container *ngFor="let head of headerData">
+                                <th *ngIf="head.tableHeaderCheckbox">
+                                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                </th>
+                                <th *ngIf="!head.tableHeaderCheckbox && (head.Name && head.SortableColumn)" [pSortableColumn]="head.SortableColumn" class="td-name">
+                                    {{head.Name}}
+                                    <p-sortIcon *ngIf="head.sortIcon == true" [field]="head.SortableColumn"></p-sortIcon>
+                                </th>
+                            </ng-container>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-product>
+                        <ng-template pTemplate="header" class="text-center">
+                            <tr>
+                                <ng-container>
+
+                                    <th class="td-name">
+                                        booking ID
+
+                                    </th>
+                                    <th class="td-name">
+                                        apartment name
+
+                                    </th>
+                                    <th class="td-name">
+                                        tenant email
+
+                                    </th>
+                                    <th class="td-name">
+                                        check in date
+
+                                    </th>
+                                    <th class="td-name">
+                                        check out date
+                                    </th>
+
+
+                                    <th class="td-name">
+
+
+                                    </th>
+                                </ng-container>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-book>
+
+                            <tr (click)="hidecard(book.request_ID)">
+                                <td>
+
+                                    {{book?.req_Code}}
+                                </td>
+
+                                <td>
+                                    {{book?.apt_Name}}
+                                </td>
+                                <td>
+                                    {{book?.email}}
+                                </td>
+                                <td>
+                                    {{book?.checkIn}}
+                                </td>
+                                <td>
+                                    {{book?.checkOut}}
+                                </td>
+                                <!-- <td>
+                      <p class="d-flex align-items-center fw-bold mt-2">{{admin?.status}}</p>
+                  </td> -->
+
+                                <td class="cursor position-relative">
+                                    <button class="border-0 outlin-0 bg-transparent" (click)="detailperson( $event,book.ticket_ID)">
+                <img src="assets/images/edit.svg">
+            </button>
+                                    <div *ngIf="showEdit[book.ticket_ID] " style="width: 216px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                                        <button *ngIf="book?.assigned_To=='Not Assigned'" class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/assgin-tiket/{{book.ticket_ID}}">view Booking details </button>
+
+
+
+
+                                    </div>
+
+
+
+
+                                </td>
+
+                            </tr>
+
+                        </ng-template>
+
+                    </ng-template>
+
+
+                    <ng-template pTemplate="emptymessage">
+                        <div class="container text-center mt-4">
+                            <p class="mb-0">No data found.</p>
+                        </div>
+                    </ng-template>
+                </p-table>
+
+                <p-paginator * (onPageChange)="tiggerPageChange($event)" [rows]="10" [totalRecords]="totalRecords"></p-paginator>
+
+            </div>
+
+        </div>
+    </main>
+    <!-- end content page  -->
+</div>

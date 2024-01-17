@@ -45,6 +45,7 @@ import { OwnerProfileComponent } from './components/owners/owner-profile/owner-p
 import { AuthGuard } from './_helpers/auth.guard';
 import { AssginTicketComponent } from './components/message/assgin-ticket/assgin-ticket.component';
 import { MessResquestComponent } from './components/message/mess-resquest/mess-resquest.component';
+import { BookingComponent } from './components/apartments/booking/booking.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -57,6 +58,8 @@ const routes: Routes = [
   { path: "apartments/apartments-details/:id", component: ApartmentDetailsComponent,canActivate: [AuthGuard] },
   { path: "apartments/:id", component: ContractComponent,canActivate: [AuthGuard] },
   { path: "apartments/contract/:id", component: CreateContractComponent,canActivate: [AuthGuard] },
+  { path: "apartments/booking/:id", component: BookingComponent,canActivate: [AuthGuard] },
+
   { path: "users", component: UserComponent ,canActivate: [AuthGuard]},
 
   { path: "owners", component: OwnersComponent ,canActivate: [AuthGuard]},

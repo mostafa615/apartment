@@ -322,4 +322,15 @@ CloseTicket(  Ticket_ID: any ,Status:any): Observable<any > {
   return this.http.put<any >(url,Ticket_ID,{ headers: this.headers});
 
 }
+GetBookingHistory(Apt_ID:any, PageNo: number, PageSize: number ,SearchKey:any ): Observable<any[]> {
+  const url = environment.apiUrl+"/Apartment/GetBookingHistory";
+  const params = new HttpParams()
+    .set('PageNo', PageNo)
+    .set('PageSize', PageSize)
+    .set('SearchKey', SearchKey)
+    .set('Apt_ID', Apt_ID)
+
+  return this.http.get<any[]>(url, { headers: this.headers , params: params });
+
+}
 }

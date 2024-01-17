@@ -80,7 +80,7 @@
                             <img src="assets/images/edit.svg">
                         </button>
                                         <div *ngIf="xx==item.apt_UUID" style="width: 191px;z-index: 999;right: 10px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
-                                            <button class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100">view bookings </button>
+                                            <button class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/apartments/booking/{{item.apt_UUID}}">view bookings </button>
                                             <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/apartments/page/{{item.apt_UUID}}">Edit</button>
                                             <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" routerLink="/apartments/apartments-details/{{item.apt_UUID}}">View details </button>
 

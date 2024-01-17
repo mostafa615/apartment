@@ -11,7 +11,7 @@ import { RatingModule } from 'primeng/rating';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { StepsModule } from 'primeng/steps';
-import { NgModule } from '@angular/core';
+import {  CUSTOM_ELEMENTS_SCHEMA,NgModule } from '@angular/core';
 
 
 
@@ -23,10 +23,22 @@ import { CreateContractComponent } from './contract/create-contract/create-contr
 import { AddNewApartmentsComponent } from './add-new-apartments/add-new-apartments.component';
 import { ApartmentDetailsComponent } from './apartment-details/apartment-details.component';
 import { ContractComponent } from './contract/contract.component';
+
+import { BookingComponent } from './booking/booking.component';
+
 import { ApartmentsComponent } from './apartments.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { GoogleMapsModule } from '@angular/google-maps'
 import { PaginatorModule } from 'primeng/paginator';
+
+//
+
+ import { DropdownModule } from 'primeng/dropdown';
+
+
+  import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+ import { ButtonModule } from 'primeng/button';
 
 const routes: Routes = [
   { path: '', component: ApartmentsComponent },
@@ -36,7 +48,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AddNewApartmentsComponent,
-    ApartmentDetailsComponent,
+    ApartmentDetailsComponent,BookingComponent,
     ApartmentsComponent,
     ContractComponent,
     FirstStepComponent,
@@ -48,7 +60,7 @@ const routes: Routes = [
   ],
   exports: [AddNewApartmentsComponent, ApartmentsComponent],
   imports: [
-    CommonModule,
+    CommonModule,ButtonModule,TagModule,TableModule,DropdownModule,
     SharedModule,
      StepsModule,
     FormsModule,
