@@ -311,5 +311,15 @@ ReplyDash(  Ticket_ID: any ,reply_Desc:any,attach:any): Observable<any > {
   return this.http.post<any >(url, body,{ headers: this.headers , });
 
 }
+CloseTicket(  Ticket_ID: any ,Status:any): Observable<any > {
+  const url = environment.apiUrl+"/Tickets/CloseTicket?Ticket_ID="+Ticket_ID+"&Status="+Status;
+  const params = new HttpParams()
+  .set('Ticket_ID', Ticket_ID)
+  .set('Status', Status)
 
+
+
+  return this.http.put<any >(url,Ticket_ID,{ headers: this.headers});
+
+}
 }

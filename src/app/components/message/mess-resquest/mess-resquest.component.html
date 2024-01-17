@@ -86,6 +86,8 @@
                 </table> -->
             <!-- </div> -->
             <!-- start the chat -->
+            <p-toast></p-toast>
+
             <div class="col-12 col-md-12 px-0">
                 <!-- start head in the chat-->
                 <div class="border py-2 px-3">
@@ -105,13 +107,14 @@
                         </div>
                         <div class="d-flex">
                             <td class="cursor position-relative">
-                                <button class="border-0 outlin-0 bg-transparent" (click)="detailperson($event,deatail?.ticket_ID)">
+                                <button class="border-0 outlin-0 bg-transparent" *ngIf="deatail?.status=='Opened'" (click)="detailperson($event,deatail?.ticket_ID)">
           <img src="assets/images/edit.svg">
       </button>
                                 <div *ngIf="showEdit[deatail?.ticket_ID] " style="width: 220px; line-height: 10px;  z-index: 999;   right: 20px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
                                     <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/assgin-tiket/{{deatail?.ticket_ID}}">reassign ticket to employee</button>
 
-                                    <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2">close ticket  </button>
+                                    <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="CloseTicket('Closed')">close ticket  </button>
+                                    <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="CloseTicket('Resolved')"> solved  ticket </button>
 
                                 </div>
 
@@ -144,12 +147,13 @@
                                     <p class="p-2 rounded-end rounded-bottom" style="background-color: #f6f6f6">
                                         {{item?.reply_Desc}}
                                     </p>
+                                    <img (click)="openmodel(item?.reply_Attach)" style="width: 70px;  height: 70px" *ngIf="item?.reply_Attach!=null||item?.reply_Attach!=''" [src]="item?.reply_Attach">
                                 </div>
                             </div>
                         </div>
                         <!-- Sender -->
                         <div class="d-flex justify-content-end" *ngIf="item.reply_From!=true">
-                            <div>
+                            <div style="margin-bottom: 20px;">
                                 <div class="ml-3 d-flex justify-content-between">
                                     <div>
                                         <p class="mb-0">You</p>
@@ -159,6 +163,8 @@
                                 <p class="p-2 rounded-start rounded-bottom text-white bg-blue">
                                     {{item?.reply_Desc}}
                                 </p>
+                                <img (click)="openmodel(item?.reply_Attach)" style="width: 70px;  height:70px" *ngIf="item?.reply_Attach!=null||item?.reply_Attach!=''" [src]="item?.reply_Attach">
+
                             </div>
                         </div>
                     </div>
@@ -188,4 +194,25 @@
         </div>
     </main>
     <!-- end content page  -->
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display22}" style="background-color: rgba(90,90,90,0.5);">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <img [src]="imageSize" style="width:70%" />
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white bbtclose" (click)="oncloseModal()">
+close
+</button>
+
+            </div>
+
+
+        </div>
+    </div>
 </div>

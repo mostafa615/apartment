@@ -70,8 +70,8 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-inquire>
 
-                    <tr style="cursor: pointer;" (click)="hidecard(inquire.request_ID)">
-                        <td routerLink="/view-inquire/{{inquire.request_ID}}">
+                    <tr (click)="hidecard(inquire.request_ID)">
+                        <td style="cursor: pointer;" routerLink="/message-tiket/{{inquire.ticket_ID}}">
 
                             {{inquire?.ticket_Code}}
                         </td>
@@ -99,16 +99,19 @@
                     {{inquire?.status}}
 
                      </span>
+                                <span class="rounded-5 px-3 py-1" style="background-color: #0f0b90;color: #ffffff;" *ngIf="inquire?.status=='Resolved'">
+                      {{inquire?.status}}
 
+                       </span>
 
 
                             </div>
                         </td>
                         <td class="cursor position-relative">
-                            <button class="border-0 outlin-0 bg-transparent" (click)="detailperson( $event,inquire.ticket_ID)">
+                            <button class="border-0 outlin-0 bg-transparent" *ngIf="inquire?.status=='Opened'" (click)="detailperson( $event,inquire.ticket_ID)">
                 <img src="assets/images/edit.svg">
             </button>
-                            <div *ngIf="showEdit[inquire.ticket_ID] " style="width: 206px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                            <div *ngIf="showEdit[inquire.ticket_ID] " style="width: 216px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
                                 <button *ngIf="inquire?.assigned_To=='Not Assigned'" class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/assgin-tiket/{{inquire.ticket_ID}}">assign ticket to employee  </button>
                                 <button *ngIf="inquire?.assigned_To!='Not Assigned'" class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/assgin-tiket/{{inquire.ticket_ID}}">reassign ticket to employee  </button>
 

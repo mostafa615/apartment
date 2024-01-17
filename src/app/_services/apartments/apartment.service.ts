@@ -128,6 +128,10 @@ export class ApartmentService {
     return this.http.get<any>(url, { headers: this.headers });
 
   }
+  DeleteApartment(ID: any) {
+    const url = environment.apiUrl+"/Apartment/DeleteApartment?ID="+ID;
 
+    return this.http.delete(url, { headers: this.headers })
+  }
 
  }

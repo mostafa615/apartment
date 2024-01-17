@@ -133,6 +133,16 @@ gotopage( ){
       this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
     })
   }
+  DeleteApartment(apt_UUID:any) {
+    this.apartmentSer.DeleteApartment( apt_UUID).subscribe((res:any) => {
+       this.messageService.add({ severity: 'success', summary: 'Success', detail:res["message"]  });
+       this.getAllApartment();
+
+    }, (error) => {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
+    })
+  }
+
   getAllApartment(): void {
     this.apartmentList=[];
     this.apartmentSer.FilterApartmentsFront(this.Date,this.pageNumber, this.itemsPerPage,this.filterStatus).subscribe((res) => {

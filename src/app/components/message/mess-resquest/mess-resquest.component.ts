@@ -82,23 +82,47 @@ export class MessResquestComponent implements OnInit {
  }
  ReplyDash() {
   debugger
-  this._ticketService.ReplyDash(this.paramid,this.reply_Desc,this.apt_imgs[0]).subscribe((res) => {
+  this._ticketService.ReplyDash(this.paramid,this.reply_Desc,this.apt_imgs).subscribe((res) => {
      this.messageService.add({   severity: 'success', summary: 'Success', detail:"send Success" });
      debugger
      this.getAll_tickets(   )
-
-
+     this.reply_Desc=""
+     this.apt_imgs=null
    }, (error) => {
     debugger
     this.messageService.add({ severity: 'error', summary: 'Error', detail: "error" });
   })
 }
-convertFileToFormData(files: any[]) {
+CloseTicket(status:any) {
+  debugger
+  this._ticketService.CloseTicket(this.paramid,status  ).subscribe((res) => {
+     this.messageService.add({   severity: 'success', summary: 'Success', detail:"  Success" });
+     this.gotopage();
+     }, (error) => {
+    debugger
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: "error" });
+  })
+}
+display22:any="none"
+imageSize:any=""
+openmodel(image:any){
+  this.display22="block"
+  this.imageSize=image
+
+}
+oncloseModal(){
+  this.display22="none"
+
+}
+gotopage( ){
+  let url: string = "messages";
+    this.router.navigateByUrl(url);
+}
+convertFileToFormData(files: any ) {
   const formData = new FormData();
 
-  for (let i = 0; i < files.length; i++) {
-    formData.append('Files', files[i], files[i].name);
-  }
+     formData.append('fileData', files , files.name);
+
 
   return formData;
 }
@@ -122,12 +146,12 @@ imageList:any={}
 apt_imgs:any
 upload(): void {
 debugger
-           this.uploadService.uploadMultiFile(this.convertFileToFormData(this.ListFiles)).subscribe(data => {
+           this.uploadService.uploadSingleFile(this.convertFileToFormData(this.ListFiles )).subscribe(data => {
             this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'attach Upload Successfully'}` });
             debugger
-            for (let file of data) {
-              this.apt_imgs.push({ 'apt_imgs': file.name });
-            }
+
+              this.apt_imgs= data[0].file_Path  ;
+
 
 
           });
