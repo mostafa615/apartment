@@ -77,6 +77,15 @@ gotopage( ){
       this.messageService.add({ severity: 'error', summary: 'Error', detail: "error" });
     })
 }
+CreateContractPDF() {
+
+  this._inquiresService.CreateContractPDF(this.param ).subscribe((res) => {
+
+   }, (error) => {
+
+   })
+}
+
 selectedContractImg:any
   OwnerDtail:any
   onCloseModal1(){

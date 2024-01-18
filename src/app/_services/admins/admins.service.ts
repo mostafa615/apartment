@@ -159,6 +159,12 @@ GetIssueDetails(id: any ): Observable<any> {
   return this.http.get<any>(url, {  headers: this.headers });
 
 }
+CreateIssuePDF(id: any ): Observable<any> {
+  const url = environment.apiUrl+"/Basics/CreateIssuePDF?UUID="+id;
+  return this.http.get<any>(url, {  headers: this.headers });
+
+}
+
 AssignWorker(Issue_ID: any,idworker:any ): Observable<any> {
   let body={
     Issue_ID:Issue_ID,idworker:idworker

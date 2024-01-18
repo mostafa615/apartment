@@ -50,7 +50,7 @@
                     </div>
                 </div>
 
-                <p-table class="table-shopping" [(selection)]="selectedProducts" [dataKey]="dataSelectionKey" [rows]="2" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}" [value]="booking">
+                <p-table class="table-shopping" [(selection)]="selectedProducts" [dataKey]="dataSelectionKey" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="booking">
                     <ng-template pTemplate="header" class="text-center">
                         <tr *ngIf="headerData">
                             <ng-container *ngFor="let head of headerData">
@@ -64,86 +64,73 @@
                             </ng-container>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-product>
-                        <ng-template pTemplate="header" class="text-center">
-                            <tr>
-                                <ng-container>
+                    <ng-template pTemplate="header" class="text-center">
+                        <tr>
+                            <ng-container>
 
-                                    <th class="td-name">
-                                        booking ID
+                                <th class="td-name">
+                                    booking ID
 
-                                    </th>
-                                    <th class="td-name">
-                                        apartment name
+                                </th>
+                                <th class="td-name">
+                                    apartment name
 
-                                    </th>
-                                    <th class="td-name">
-                                        tenant email
+                                </th>
+                                <th class="td-name">
+                                    tenant email
 
-                                    </th>
-                                    <th class="td-name">
-                                        check in date
+                                </th>
+                                <th class="td-name">
+                                    check in date
 
-                                    </th>
-                                    <th class="td-name">
-                                        check out date
-                                    </th>
-
-
-                                    <th class="td-name">
+                                </th>
+                                <th class="td-name">
+                                    check out date
+                                </th>
 
 
-                                    </th>
-                                </ng-container>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-book>
+                                <th class="td-name">
 
-                            <tr (click)="hidecard(book.request_ID)">
-                                <td>
 
-                                    {{book?.req_Code}}
-                                </td>
+                                </th>
+                            </ng-container>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-book>
 
-                                <td>
-                                    {{book?.apt_Name}}
-                                </td>
-                                <td>
-                                    {{book?.email}}
-                                </td>
-                                <td>
-                                    {{book?.checkIn}}
-                                </td>
-                                <td>
-                                    {{book?.checkOut}}
-                                </td>
-                                <!-- <td>
+                        <tr (click)="hidecard(book.request_ID)">
+                            <td>
+
+                                {{book?.req_Code}}
+                            </td>
+
+                            <td>
+                                {{book?.apt_Name}}
+                            </td>
+                            <td>
+                                {{book?.email}}
+                            </td>
+                            <td>
+                                {{book?.checkIn}}
+                            </td>
+                            <td>
+                                {{book?.checkOut}}
+                            </td>
+                            <!-- <td>
                       <p class="d-flex align-items-center fw-bold mt-2">{{admin?.status}}</p>
                   </td> -->
 
-                                <td class="cursor position-relative">
-                                    <button class="border-0 outlin-0 bg-transparent" (click)="detailperson( $event,book.ticket_ID)">
+                            <td class="cursor position-relative">
+                                <button class="border-0 outlin-0 bg-transparent" (click)="detailperson( $event,book.req_ID)">
                 <img src="assets/images/edit.svg">
             </button>
-                                    <div *ngIf="showEdit[book.ticket_ID] " style="width: 216px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
-                                        <button *ngIf="book?.assigned_To=='Not Assigned'" class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/assgin-tiket/{{book.ticket_ID}}">view Booking details </button>
+                                <div *ngIf="showEdit[book.req_ID] " style="width: 216px;z-index: 999;right: 62px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                                    <button class="d-block border-0 outlin-0 bg-transparent button text-start py-2 w-100" routerLink="/apartments/view-booking/{{book.req_ID}}">view Booking details </button>
 
-
-
-
-                                    </div>
-
-
-
-
-                                </td>
-
-                            </tr>
-
-                        </ng-template>
-
+                                </div>
+                            </td>
+                        </tr>
                     </ng-template>
-
 
                     <ng-template pTemplate="emptymessage">
                         <div class="container text-center mt-4">
@@ -152,7 +139,7 @@
                     </ng-template>
                 </p-table>
 
-                <p-paginator * (onPageChange)="tiggerPageChange($event)" [rows]="10" [totalRecords]="totalRecords"></p-paginator>
+                <p-paginator (onPageChange)="tiggerPageChange($event)" [rows]="pagesize" [totalRecords]="totalRecords"></p-paginator>
 
             </div>
 

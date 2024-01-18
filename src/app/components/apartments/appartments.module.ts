@@ -23,6 +23,7 @@ import { CreateContractComponent } from './contract/create-contract/create-contr
 import { AddNewApartmentsComponent } from './add-new-apartments/add-new-apartments.component';
 import { ApartmentDetailsComponent } from './apartment-details/apartment-details.component';
 import { ContractComponent } from './contract/contract.component';
+import { ViewBookingComponent } from './view-booking/view-booking.component';
 
 import { BookingComponent } from './booking/booking.component';
 
@@ -47,7 +48,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AddNewApartmentsComponent,
+    AddNewApartmentsComponent,ViewBookingComponent,
     ApartmentDetailsComponent,BookingComponent,
     ApartmentsComponent,
     ContractComponent,

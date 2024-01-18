@@ -72,10 +72,10 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-Tenant>
 
-                    <tr style="cursor: pointer;" (click)="hidecard(Tenant.request_ID)">
+                    <tr (click)="hidecard(Tenant.request_ID)">
 
                         <td>
-                            <img [src]="Tenant?.user_Photo" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;"> {{Tenant?.user_Name}}
+                            <img routerLink="/app-edite-user-details/{{Tenant.user_ID}}" [src]="Tenant?.user_Photo" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;cursor: pointer;"> {{Tenant?.user_Name}}
                         </td>
                         <td>
                             {{Tenant?.reg_Time}}

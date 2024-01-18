@@ -43,6 +43,13 @@ export class InquiresService {
     return this.http.put<any>(url,id, {  headers: this.headers });
 
   }
+  CreateContractPDF( id:any ): Observable<any> {
+
+
+    const url = environment.apiUrl+"/Basics/CreateContractPDF?Request_ID="+id;
+    return this.http.get<any>(url, {  headers: this.headers });
+
+  }
   CancelRequest( id:any ,reason:any): Observable<any> {
 
 

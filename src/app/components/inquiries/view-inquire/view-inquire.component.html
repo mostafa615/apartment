@@ -233,7 +233,7 @@
                                             <div class="mb-3">
                                                 <!-- <a class="me-3 cursor" routerLink="/apartments/contract/create-owner-contract"><img src="assets/images/apartmentImages/edit1.svg" /></a> -->
                                                 <!-- <a class="me-3 cursor" [href]="contract_Main?.contract_Path"><img src="assets/images/apartmentImages/delete.svg" /></a> -->
-                                                <a class="me-3 cursor" target="_blank" [href]="selectedContractImg"><img src="assets/images/apartmentImages/delete.svg" /></a>
+                                                <a class="me-3 cursor" (click)="CreateContractPDF()"><img src="assets/images/apartmentImages/delete.svg" /></a>
                                                 <!-- <a class="me-3 cursor" routerLink=""><img src="assets/images/apartmentImages/share.svg" /></a> -->
                                                 <a class="me-3 cursor">
                                                     <input type="file" accept="image/*" multiple="multiple" (change)="selectFile($event)" style="width: 8%;left: 283px;top: 59px;height: 34%;" class="ng-star-inserted d-block  file position-absolute">

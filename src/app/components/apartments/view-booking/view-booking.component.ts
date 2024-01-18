@@ -1,17 +1,17 @@
-import { Component, ViewEncapsulation } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { InquiresService } from 'src/app/_services/inquires/inquires.service';
-import { AdminsService } from 'src/app/_services/admins/admins.service';
 import { UploadFileService } from 'src/app/_services/UploadFile/upload-file.service';
+import { AdminsService } from 'src/app/_services/admins/admins.service';
+import { InquiresService } from 'src/app/_services/inquires/inquires.service';
+
 @Component({
-  selector: 'app-edite-user-details',
-  templateUrl: './edite-user-details.component.html',
-  styleUrls: ['./edite-user-details.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  selector: 'app-view-booking',
+  templateUrl: './view-booking.component.html',
+  styleUrls: ['./view-booking.component.css']
 })
-export class EditeUserDetailsComponent {
+export class ViewBookingComponent implements OnInit {
   showSide: string = '';
   value: string = '';
   cities: Array<object> = [];

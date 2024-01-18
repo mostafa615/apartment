@@ -106,6 +106,20 @@ export class ReportPrintComponent implements OnInit {
 
 
   }
+  CreateIssuePDF( ) {
+
+    this._adminservices.CreateIssuePDF(this.paramid).subscribe((res) => {
+
+      //  this.createissue.patchValue(res);
+      //  this.createissue.get('issue_Images')?.setValue(res["issue_Images"]);
+     }, (err: any) => {
+
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
+    })
+
+
+  }
+
   createissue!: FormGroup;
   issue_Images: Array<any> = [];
 

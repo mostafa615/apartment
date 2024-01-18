@@ -183,4 +183,15 @@ export class ReportsDetailsComponent {
   submitForm():void{
 
   }
+  display22:any="none";
+  imageSize:any=""
+  openmodel(image:any){
+this.imageSize=image;
+this.display22="block"
+
+  }
+  oncloseModal(){
+    this.display22="none"
+
+  }
 }

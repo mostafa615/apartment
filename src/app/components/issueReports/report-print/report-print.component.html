@@ -24,7 +24,7 @@
               <button class="outline-0 border-0 rounded-3 py-2 px-3 text-white fw-bold" *ngIf="param == 'Edit Reports View'" style="background-color:#1F4068">
           <img src="assets/images/pdf.svg">  Generate PDF </button> -->
 
-                <button (click)="convetToPDF( );" class="outline-0 border-0 rounded-3 py-2 px-3 text-white fw-bold" style="background-color:#1F4068">
+                <button (click)="CreateIssuePDF( );" class="outline-0 border-0 rounded-3 py-2 px-3 text-white fw-bold" style="background-color:#1F4068">
           <img src="assets/images/Vector.svg">  Download PDF </button>
             </div>
         </div>
@@ -117,6 +117,7 @@
                     </div>
 
                 </div>
+
                 <div class="row ">
                     <div class="col-12 col-md-6 mb-4">
                         <label class="fw-bold form-label d-block mb-0" style="color: #605D62;">Date reported</label>

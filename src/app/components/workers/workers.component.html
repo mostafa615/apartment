@@ -82,7 +82,7 @@
 
 
                         <td>
-                            <img [src]="workers?.worker_Img" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px; cursor: pointer;"> {{workers?.worker_FName}} {{workers?.worker_LName}}
+                            <img routerLink="/worker-profile/{{workers.worker_ID}}" [src]="workers?.worker_Img" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px; cursor: pointer;"> {{workers?.worker_FName}} {{workers?.worker_LName}}
                         </td>
                         <td>
                             {{workers?.worker_Email}}
