@@ -12,6 +12,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import* as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts'
+import saveAs from 'file-saver';
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 // import * as htmlToPdfmake from 'html-to-pdfmake';
 
@@ -106,16 +107,25 @@ export class ReportPrintComponent implements OnInit {
 
 
   }
+  blob:any
   CreateIssuePDF( ) {
+    var mediaType = 'application/pdf';
 
-    this._adminservices.CreateIssuePDF(this.paramid).subscribe((res) => {
+    this._adminservices.CreateIssuePDF(this.paramid).subscribe(data => saveAs(data, 'Example.pdf'));
 
+      // this.blob = new Blob([res], {type: 'application/pdf'});
+
+      // var downloadURL = window.URL.createObjectURL(res);
+      // var link = document.createElement('a');
+      // link.href = downloadURL;
+      // link.download = "help.pdf";
+      // link.click();
       //  this.createissue.patchValue(res);
       //  this.createissue.get('issue_Images')?.setValue(res["issue_Images"]);
-     }, (err: any) => {
-
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
-    })
+    //  }, (err: any) => {
+    //   debugger
+    //   this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
+    // })
 
 
   }

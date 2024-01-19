@@ -161,7 +161,8 @@ GetIssueDetails(id: any ): Observable<any> {
 }
 CreateIssuePDF(id: any ): Observable<any> {
   const url = environment.apiUrl+"/Basics/CreateIssuePDF?UUID="+id;
-  return this.http.get<any>(url, {  headers: this.headers });
+  return this.http.get(url, {  headers: this.headers, responseType: "blob" } );
+
 
 }
 
@@ -170,6 +171,15 @@ AssignWorker(Issue_ID: any,idworker:any ): Observable<any> {
     Issue_ID:Issue_ID,idworker:idworker
   }
   const url = environment.apiUrl+"/Issues/AssignWorker?Issue_ID="+Issue_ID+"&Worker_ID="+idworker;
+  return this.http.put<any>(url,body, {  headers: this.headers });
+
+}
+UpdateIssue(Issue_ID: any,detialIssue:any ): Observable<any> {
+  let body={
+    issue_ID:Issue_ID,name_RingBell:detialIssue.name_RingBell,phone_Number:detialIssue.phone_Number,phone_Number2:detialIssue.phone_Number2,
+    issue_Images:detialIssue.issue_Images,issue_Desc:detialIssue.desc,issue_Appt:detialIssue.appointement,notes:detialIssue.notes
+  }
+  const url = environment.apiUrl+"/Issues/UpdateIssue";
   return this.http.put<any>(url,body, {  headers: this.headers });
 
 }
@@ -213,6 +223,18 @@ ListPartners( PageNumber: number, PageSize: number,Date:any ): Observable<any> {
     .set('PageSize', PageSize)
     .set('Date', Date)
   return this.http.get<any>(url, { headers: this.headers , params: params });
+
+}
+GetFAQ(   ): Observable<any> {
+  const url = environment.apiUrl+"/Basics/GetFAQ";
+
+  return this.http.get<any>(url, { headers: this.headers  });
+
+}
+GetAds(   ): Observable<any> {
+  const url = environment.apiUrl+"/Basics/GetAds";
+
+  return this.http.get<any>(url, { headers: this.headers  });
 
 }
 

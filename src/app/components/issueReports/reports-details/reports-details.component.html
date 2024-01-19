@@ -10,6 +10,8 @@
     <!-- end sidebar  -->
     <!-- start content page  -->
     <main class="p-4 col-lg-10">
+        <p-toast></p-toast>
+
         <div class="d-md-flex justify-content-between">
             <div class="d-flex">
                 <a class=" me-2" href="./Issue_Reports" style="color: #6c6a6a;text-decoration: none;">Issue Reports</a>
@@ -140,7 +142,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="fw-bold" style="color: #605D62;">Notes</label>
-                    <textarea class="border rounded-3 w-100 p-2" rows="5" [(ngModel)]="detialIssue.note" style="resize: unset;" placeholder="Enter a Note"></textarea>
+                    <textarea class="border rounded-3 w-100 p-2" rows="5" [(ngModel)]="detialIssue.notes" style="resize: unset;" placeholder="Enter a Note"></textarea>
                 </div>
 
                 <div>

@@ -47,7 +47,7 @@ export class InquiresService {
 
 
     const url = environment.apiUrl+"/Basics/CreateContractPDF?Request_ID="+id;
-    return this.http.get<any>(url, {  headers: this.headers });
+    return this.http.get(url, {  headers: this.headers , responseType: 'blob' });
 
   }
   CancelRequest( id:any ,reason:any): Observable<any> {

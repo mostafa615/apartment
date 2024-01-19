@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import saveAs from 'file-saver';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { InquiresService } from 'src/app/_services/inquires/inquires.service';
@@ -79,11 +80,9 @@ gotopage( ){
 }
 CreateContractPDF() {
 
-  this._inquiresService.CreateContractPDF(this.param ).subscribe((res) => {
+  this._inquiresService.CreateContractPDF(this.param ).subscribe(data => saveAs(data, 'Example.pdf'));
 
-   }, (error) => {
 
-   })
 }
 
 selectedContractImg:any

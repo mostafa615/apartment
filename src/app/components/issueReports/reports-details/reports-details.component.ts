@@ -92,6 +92,21 @@ export class ReportsDetailsComponent {
 
 
   }
+  UpdateIssue( ) {
+
+    this._adminservices.UpdateIssue(this.paramid,this.detialIssue).subscribe((res) => {
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: res["message"] });
+
+      //  this.createissue.patchValue(res);
+      //  this.createissue.get('issue_Images')?.setValue(res["issue_Images"]);
+     }, (err: any) => {
+
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
+    })
+
+
+  }
+
   createissue!: FormGroup;
   issue_Images: Array<any> = [];
 
@@ -181,7 +196,7 @@ export class ReportsDetailsComponent {
   }
 
   submitForm():void{
-
+    this.UpdateIssue( );
   }
   display22:any="none";
   imageSize:any=""
