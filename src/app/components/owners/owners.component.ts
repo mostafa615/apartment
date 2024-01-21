@@ -81,8 +81,9 @@ export class OwnersComponent implements OnInit {
    * getAllOwners
    * @returns void
    */
+  Date=""
   getAllOwners(PageNumber: number, PageSize: number, search: string): void {
-    this.ownerSer.getAllOnwers(PageNumber, PageSize, search).subscribe((res: IOnwer[] | any) => {
+    this.ownerSer.getAllOnwers(PageNumber, PageSize, search,this.Date).subscribe((res: IOnwer[] | any) => {
       this.products = res.data;
       this.fullRespone = res;
       this.spinner = true;
@@ -177,8 +178,9 @@ export class OwnersComponent implements OnInit {
    * @returns void
    */
   selectedfromDropDown(value: any) {
-    console.log(value)
-  }
+    this.Date=value.name;
+    this.getAllOwners(this.pageNumber, this.itemsPerPage, this.searchValue)
+    }
 
 
 

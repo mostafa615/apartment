@@ -32,96 +32,87 @@
         </div>
 
         <p-toast></p-toast>
+
+        <!--General info-->
+        <!--start General info form-->
         <div class="card mt-4">
-            <p-table #dt [value]="FAQ" [(selection)]="FAQ" dataKey="id" [filterDelay]="0" />
-            <div class="d-flex justify-content-between">
-                <!-- length Of person -->
-                <div class="d-flex mx-2 mt-4">
-                    <p class="me-2 fs-5 fw-bold ml-8">FAQ : {{numberFAQ}}</p>
 
-                </div>
-                <!-- search input -->
-                <div class="d-flex align-items-center mx-2 mt-2 w-50">
-                    <a s *ngIf="partnersRole?.p_Add==true || is_Super==true" class="px-3 py-2 rounded border text-white text-decoration-none" routerLink="/add-partner" style="background-color:#1F4068; cursor: pointer;margin-left: 423px;">
-                        <img src="assets/images/plus.svg" class="me-2 ">Add New
-                    </a>
-                </div>
-            </div>
-
-            <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="FAQ">
-                <ng-template pTemplate="header" class="text-center">
-                    <tr *ngIf="headerData">
-                        <ng-container>
-
-
-                            <th class="td-name">
-                                Question title
-
-                            </th>
-                            <th class="td-name">
-                                question answer
-
-                            </th>
-
-                            <th class="td-name">
-
-
-                            </th>
-                        </ng-container>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-fqq>
-
-                    <tr (click)="hidecard()">
-
-                        <td>
-                            {{fqq?.faq_Quest}}
-                        </td>
-                        <td>
-                            {{fqq?.faq_Ans}}
-                        </td>
-                        <td class="cursor position-relative">
-                            <button class="border-0 outlin-0 bg-transparent" (click)="detailperson($event,fqq.faq_ID)">
-        <img src="assets/images/edit.svg">
-    </button>
-                            <div *ngIf="showEdit[fqq.faq_ID] " style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
-                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" *ngIf="partnersRole?.p_Update==true || is_Super==true" routerLink="/edit-partner/{{fqq.faq_ID}}">update</button>
-
-                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" *ngIf="partnersRole?.p_Delete==true || is_Super==true" (click)="deletepartner(fqq.faq_ID)">Delete </button>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-                </ng-template>
-
-
-                <ng-template pTemplate="emptymessage">
-                    <div class="container text-center mt-4">
-                        <p class="mb-0">No data found.</p>
+            <div class="row paroductApartment  px-1">
+                <div class="bg-white p-12 xpp12">
+                    <div style="margin-bottom: 30px;">
+                        <h5 class="fw-bold mb-0">App Configurations</h5>
                     </div>
-                </ng-template>
 
-            </p-table>
-            <p-paginator (onPageChange)="tiggerPageChange($event)" [rows]="pagesize" [totalRecords]="totalRecords"></p-paginator>
 
-            <!-- <div style="width: 100%; height: 72px; padding-top: 12px; padding-bottom: 16px; padding-left: 24px; padding-right: 24px;   justify-content: space-between; align-items: center; display: inline-flex">
-        <div style="border-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="mb-3 col-12 col-md-6">
 
-            <button (click)="decreamentPage( )" [disabled]="disableperv" class="  cvxs" style="text-align: center; color: #1F4068; font-size: 16px; font-family: 'Montserrat'; font-weight: 500; line-height: 20px; word-wrap: break-word">
-          Previous
-</button>
-        </div>
-        <div style="color: #484649; font-size: 14px; font-family: 'Montserrat'; font-weight: 400; line-height: 20px; word-wrap: break-word">Page {{pageNumber}} of {{totalofPages}}</div>
-        <div style="border-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                            <label for="exampleInputPricepermonth" class="form-label gray fw-bold"> service fee </label>
+                            <input [(ngModel)]="detailconfig.service_Fees" type="number" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+                        </div>
+                        <div class="mb-3 col-12 col-md-6">
+                            <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold"> Waiting hours before paying the security deposit  </label>
+                            <input [(ngModel)]="detailconfig.security_hours" type="number" class=" form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit" />
 
-            <button [disabled]="disablenext" (click)="   incrementpage( )" class="  cvxs" style="text-align: center; color: #1F4068; font-size: 16px; font-family: 'Montserrat'; font-weight: 500; line-height: 20px; word-wrap: break-word">
-              Next
-</button>
-        </div>
-    </div> -->
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div>
+                            <label class="fw-bold" style="color: #605D62;">terms and condition EN</label>
+                            <textarea [(ngModel)]="detailconfig.terms_En" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div>
+                            <label class="fw-bold" style="color: #605D62;">terms and condition DE</label>
+                            <textarea [(ngModel)]="detailconfig.terms_De" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div>
+                            <label class="fw-bold" style="color: #605D62;">privacy EN</label>
+                            <textarea [(ngModel)]="detailconfig.privacy_En" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
+                        </div>
+
+                    </div>
+                    <!-- [(ngModel)]="contract_details.rC_EndRent" -->
+
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div>
+                            <label class="fw-bold" style="color: #605D62;">privacy DE</label>
+                            <textarea [(ngModel)]="detailconfig.privacy_De" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div>
+                            <label class="fw-bold" style="color: #605D62;">general rules</label>
+                            <textarea [(ngModel)]="detailconfig.general_Rule" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="div-4">
+                        <div class="div-5">
+
+                            <div class="div-6">
+                                <!-- <button class="auto-layout-button"><div class="label-2">Cancel</div></button> -->
+
+
+                                <button (click)="AddConfig()" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                                save
+                  </button>
+                                <!-- <button class="label-wrapper"><div class="label-3">save</div>
+                    </button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </main>
     <!-- end content page  -->

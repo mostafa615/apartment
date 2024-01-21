@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { Observable } from 'rxjs';
 import { AdminsService } from 'src/app/_services/admins/admins.service';
 
 @Component({
@@ -11,6 +12,8 @@ import { AdminsService } from 'src/app/_services/admins/admins.service';
 export class ConfigurationsComponent implements OnInit {
 
   showEdit: Array<boolean> = [];
+  showEdit2: Array<boolean> = [];
+
  showSide: string = '';
  products!: Array<object>;
  selectedProducts: Array<object> = [];
@@ -23,9 +26,9 @@ export class ConfigurationsComponent implements OnInit {
 
  ngOnInit() {
 
-   this.getAllFAQ(  )
-   this.checkRole();
- }
+  //  this.getAllFAQ(  )
+   this.GetAppConfig();
+  }
 
   /**
   * selectedfromDropDown
@@ -34,8 +37,7 @@ export class ConfigurationsComponent implements OnInit {
   */
  selectedfromDropDown(value:any){
 
-   this.Date=value.name;
-   // this.getAllpartners()
+    // this.getAllpartners()
    console.log(value)
  }
  /**
@@ -46,89 +48,28 @@ export class ConfigurationsComponent implements OnInit {
  addItem(value: string): void {
    this.showSide = value
  }
+ AddConfig(  ) {
 
+  this._adminservices.AddConfig(this.detailconfig  ).subscribe((res:any) => {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail:  res["message"] });
 
- statusTenant:any=""
- pageNumber=1;
- pagesize=10;
- totalofPages=0;;
- disablenext=false;
- disableperv=false;
+  }, (err: any) => {
 
- FAQ=[]
-totalRecords=0
-tiggerPageChange(event: any) {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
 
-     const calcPageNumber = Math.floor(event.first / event.rows) + 1;
-     this.pageNumber=calcPageNumber;
-     console.log(calcPageNumber);
-     this.getAllFAQ(  )
-    }
- numberFAQ=0;
- Date:any="All"
-  getAllFAQ(  ) {
-   this.FAQ=[]
-   this.numberFAQ=0
-   this._adminservices.GetFAQ(  ).subscribe((res:any) => {
-     this.FAQ = res ;
-     this.totalRecords=this.FAQ.length
-
-     this.numberFAQ = this.FAQ.length;
-     this.totalofPages=(this.FAQ.length/10)
-
-
-    }, (error) => {
-      console.error('Error fetching owners:', error);
-   })
+  })
  }
- // DeleteUser(id :any){
- //   this._adminservices.DeleteTenant( id).subscribe((res:any) => {
- //     this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Deleted Successfuly'}` });
-
- //     this.getAllpartners( );
-
- //    }, (error) => {
- //     this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
- //   })
-
- // }
- // SuspendUser(id:any){
- //   this._adminservices.SuspendTenant( id).subscribe((res:any) => {
- //     this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Suspended Successfuly'}` });
-
- //     this.getAllpartners( );
-
- //    }, (error) => {
- //     this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
- //   })
- // }
- detailperson(event:any,id: any): void {
-   this.showEdit=[]
-   event.stopPropagation()
-
-   this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
 
 
-
-  }
-  hidecard( ){
-   this.showEdit=[]
-
-}
-deletepartner( id:any) {
-
- this._adminservices.DeletePartners(id ).subscribe((res) => {
-   this.messageService.add({ severity: 'success', summary: 'Success', detail: `${' partner has been Successfully deleted into DB  '}` });
+  detailconfig:any={}
+  GetAppConfig(  ) {
+    this._adminservices.GetAppConfig(  ).subscribe((res:any) => {
+      this.detailconfig=res
 
 
-
- }, (err: any) => {
-
-   this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
-
- })
-
-
+   }, (error) => {
+     console.error('Error fetching owners:', error);
+  })
 }
 partnersRole:any
 is_Super:any
@@ -156,4 +97,5 @@ gotopage( ){
  let url: string = "unlegal";
    this.router.navigateByUrl(url);
 }
+
 }

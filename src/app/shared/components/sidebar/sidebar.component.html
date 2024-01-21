@@ -35,9 +35,14 @@
         <img src="../../../../assets/images/navigation/owner 2.svg"> Partners
     </a>
     <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/configurations">
-        <img src="../../../../assets/img/vector.svg"> App Configurations
+        <img src="../../../../assets/images/configuration.svg"> Configurations
     </a>
-
+    <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/faq">
+        <img src="../../../../assets/images/FAQ.svg"> FAQ
+    </a>
+    <a tabindex="1" class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" routerLinkActive="active" :routerLink="/ads">
+        <img src="../../../../assets/images/ads.svg"> ADS
+    </a>
     <!-- <div *ngFor="let listAnchor of listAnchors ; let index=index">
         <a class="text-decoration-none d-block px-2 mb-2 py-1 rounded-1" :routerLink="/{{listAnchor.text}}" (click)="changeAnchor(index)" [class.chang-style-anchor]="link[index]==true">
             <img [src]="listAnchor.img" [class.chang-img-color]="link[index]==true"> {{listAnchor.text}}

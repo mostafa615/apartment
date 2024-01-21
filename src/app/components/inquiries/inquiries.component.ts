@@ -136,8 +136,9 @@ event.stopPropagation()
     this.InquireFillterSelected = [true];
    }
    selectedfromDropDown(value:any){
-    console.log(value)
-  }
+    this.date=value.name;
+    this.getAllInquires(this.statusinquire)
+    console.log(value)  }
   checkindex=0;
   clickIquires(index:any){
     this.checkindex=index;

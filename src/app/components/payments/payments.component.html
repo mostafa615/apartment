@@ -62,10 +62,10 @@
                     <tr>
                         <ng-container>
 
-                          <th class="td-name">
-                           Invoice Code
+                            <th class="td-name">
+                                Invoice Code
 
-                        </th>
+                            </th>
                             <th class="td-name">
                                 apartment name
 
@@ -109,9 +109,9 @@
                 <ng-template pTemplate="body" let-payment>
 
                     <tr style="cursor: pointer;" (click)="hidecard()">
-                      <td>
-                        {{payment?.inv_Code}}
-                    </td>
+                        <td>
+                            {{payment?.inv_Code}}
+                        </td>
                         <td>
                             {{payment?.apt_Name}}
                         </td>
@@ -138,10 +138,10 @@
                             <div>
                                 <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;" *ngIf="payment?.inv_Paid==true">
 
-                        <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem;"></i> Paid
+                         Paid
                     </span>
                                 <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;" *ngIf="payment?.inv_Paid==false">
-                      <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem;"></i>  unPaid
+                    unPaid
 
                        </span>
 

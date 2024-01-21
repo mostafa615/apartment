@@ -34,7 +34,7 @@ export class ViewBookingComponent implements OnInit {
   { Invoice:"invoice435",date:"April 27 - May 27, 2023",Amount:"$35,00",Behaviour:true},{ Invoice:"invoice435",date:"April 27 - May 27, 2023",Amount:"$35,00",Behaviour:true}]
   ngOnInit() {
     this.initCities();
-    this.GetRequestDetails(  );
+    this.GetReqHistory(  );
     this. checkRole();
   }
 
@@ -87,15 +87,12 @@ export class ViewBookingComponent implements OnInit {
     ];
   }
   Tenant_details:any={}
+  tReqHistory:any={}
   tenant_photo=""
-  GetRequestDetails(  ) {
-    this._adminservices.TenantDetails(this.param).subscribe((res) => {
-    this.Tenant_details = res ;
-    this.FName=res["tenant_FName"]
-    this.LName=res["tenant_LName"]
-    this.PassportID=res["tenant_PassportID"]
-    this.About=res["tenant_About"]
-this.tenant_photo=res["tenant_photo"]
+  GetReqHistory(  ) {
+    this._adminservices.GetReqHistory(this.param).subscribe((res) => {
+    this.tReqHistory = res ;
+
     }, (error) => {
      console.error('Error fetching owners:', error);
   })
@@ -106,18 +103,7 @@ User_ID: any;
  PassportID:any;
  About:any;
  image:any
-UpdateTenantInfo() {
-  this._adminservices.UpdateTenantInfo(this.param,this.FName,this.LName,this.PassportID,this.About, this.formData2).subscribe((res) => {
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'User    Insered or Updated Successfuly'}` });
 
-  }, (error) => {
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: `${'error'}` });
-  })
-}
-  /**
-   * addItem
-   * @param value
-   */
   addItem(value: string) {
     this.showSide = value
   }

@@ -95,7 +95,9 @@ export class EditeUserDetailsComponent {
     this.LName=res["tenant_LName"]
     this.PassportID=res["tenant_PassportID"]
     this.About=res["tenant_About"]
-this.tenant_photo=res["tenant_photo"]
+    this.tenant_photo=res["tenant_photo"]
+    this.comment_leave=res["Beh_Comment"]
+    this.ratingnumber=res["Rate"]
     }, (error) => {
      console.error('Error fetching owners:', error);
   })
@@ -106,8 +108,9 @@ User_ID: any;
  PassportID:any;
  About:any;
  image:any
+ comment_leave:any=""
 UpdateTenantInfo() {
-  this._adminservices.UpdateTenantInfo(this.param,this.FName,this.LName,this.PassportID,this.About, this.formData2).subscribe((res) => {
+  this._adminservices.UpdateTenantInfo(this.param,this.FName,this.LName,this.PassportID,this.About,this.ratingnumber,this.comment_leave, this.formData2).subscribe((res) => {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'User    Insered or Updated Successfuly'}` });
 
   }, (error) => {
@@ -164,4 +167,19 @@ UpdateTenantInfo() {
     let url: string = "invoice/"+id;
     this.router.navigateByUrl(url);
   }
+  star:any={}
+  id:any
+  finalRate:any
+  idopen:any;
+num=5;
+isRate=false
+addStarsRating(value:number,id:any){
+
+  let url =`StarsRatings/AddOpenDataStarsRating`
+
+}
+ratingnumber:any=0;
+addreating(numberra:any){
+this.ratingnumber=numberra;
+}
 }

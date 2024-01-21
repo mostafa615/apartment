@@ -129,3 +129,86 @@
         }
     }
 }
+
+@media (min-width: 768px) {
+    .rate-sec2 {
+        width: 100%;
+        display: inline-block;
+        margin-top: 15px;
+    }
+}
+
+.rating .rate {
+    font-size: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.rating .rate label {
+    font-size: 46px;
+    display: inline-block;
+    color: #369;
+    padding: 0px 5px 0;
+}
+
+.rating .rate label:hover~label {
+    color: lightgray;
+}
+
+.rating input[type=radio] {
+    position: absolute;
+    height: 1px;
+    width: 0;
+    opacity: 0.1;
+}
+
+.rating:not(:hover) input:checked+label~label {
+    color: lightgray;
+}
+
+.rating-star .rate label {
+    color: goldenrod;
+}
+
+.rating-star .rate input:checked+label {
+    transform: scale(1.2);
+}
+
+.rating-heart .rate label {
+    color: #933;
+}
+
+.rating-heart .rate label:hover {
+    color: #e33;
+    transform: scale(1.2);
+}
+
+.rating-heart .rate label:hover~label {
+    color: #eee;
+}
+
+.rating-heart .rate input:checked+label {
+    transform: scale(1.2);
+    color: #e33;
+}
+
+.rating-heart .rate:not(:hover) input:checked+label~label {
+    color: #eee;
+}
+
+.stars-icon2 {}
+
+.mini-left2 {
+    float: left;
+}
+
+.parmanlock {
+    min-height: 70px;
+    direction: ltr;
+}
+
+.cardbody2 {
+    display: inline-grid;
+    align-items: center;
+    border: 1px solid #ddd;
+}

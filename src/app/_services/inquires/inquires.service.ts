@@ -53,7 +53,7 @@ export class InquiresService {
   CancelRequest( id:any ,reason:any): Observable<any> {
 
 
-    const url = environment.apiUrl+"/Requests/CancelRequest?Req_ID="+id;
+    const url = environment.apiUrl+"/Requests/CancelRequest?Req_ID="+id+"&Reason="+reason;
     return this.http.put<any>(url,reason, {  headers: this.headers });
 
   }

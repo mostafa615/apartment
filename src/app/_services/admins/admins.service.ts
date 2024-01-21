@@ -70,6 +70,11 @@ public TenantDetails(id: any): Observable<any> {
 
   return this.http.get(url, { headers: this.headers })
 }
+public GetReqHistory(id: any): Observable<any> {
+  let url=environment.apiUrl + '/Apartment/GetReqHistory?Req_ID='+id ;
+
+  return this.http.get(url, { headers: this.headers })
+}
 public GetINVDetails(id: any): Observable<any> {
   let url=environment.apiUrl + '/Accounting/GetINVDetails?Inv_ID='+id ;
 
@@ -90,7 +95,7 @@ UnSuspendTenant(id: any): Observable<any> {
 
   return this.http.put(url,id, { headers: this.headers })
 }
-UpdateTenantInfo( User_ID: any, FName: any,LName:any,PassportID:any,About:any,image:any): Observable<any> {
+UpdateTenantInfo( User_ID: any, FName: any,LName:any,PassportID:any,About:any,idrating:any,commit:any,image:any): Observable<any> {
 
   const url = `${environment.apiUrl}/Users/UpdateTenantInfo`;
   const params = new HttpParams()
@@ -99,6 +104,9 @@ UpdateTenantInfo( User_ID: any, FName: any,LName:any,PassportID:any,About:any,im
     .set('LName', LName)
     .set('PassportID',PassportID)
     .set('About',About)
+    .set('Rate',idrating)
+    .set('Beh_Comment',commit)
+
    const headers2 = new HttpHeaders({
        'Authorization': `Bearer ${this.token}`
     });
@@ -231,6 +239,36 @@ GetFAQ(   ): Observable<any> {
   return this.http.get<any>(url, { headers: this.headers  });
 
 }
+UpdateFAQ(Faq_ID:any, Qest: any, Answ: any  ): Observable<any[]> {
+  const url = environment.apiUrl+"/Basics/UpdateFAQ";
+  const params = new HttpParams()
+    .set('Faq_ID', Faq_ID)
+    .set('Qest', Qest)
+    .set('Answ', Answ)
+
+  return this.http.put<any>(url,Faq_ID, { headers: this.headers , params: params });
+
+}
+
+
+
+  CreateFAQ(Qest: any, Answ: any  ): Observable<any[]> {
+  const url = environment.apiUrl+"/Basics/CreateFAQ";
+  const params = new HttpParams()
+     .set('Qest', Qest)
+    .set('Answ', Answ)
+
+  return this.http.post<any>(url,params, { headers: this.headers , params: params });
+
+}
+
+DeleteFAQ(Faq_ID:any   ): Observable<any[]> {
+  const url = environment.apiUrl+"/Basics/DeleteFAQ";
+  const params = new HttpParams()
+    .set('Faq_ID', Faq_ID)
+  return this.http.delete<any>(url, { headers: this.headers , params: params });
+
+}
 GetAds(   ): Observable<any> {
   const url = environment.apiUrl+"/Basics/GetAds";
 
@@ -238,6 +276,61 @@ GetAds(   ): Observable<any> {
 
 }
 
+GetAppConfig(   ): Observable<any> {
+  const url = environment.apiUrl+"/Basics/GetAppConfig";
+
+  return this.http.get<any>(url, { headers: this.headers  });
+
+}
+
+
+
+AddConfig(data: any  ): Observable<any[]> {
+  const url = environment.apiUrl+"/Basics/AddConfig";
+
+
+  return this.http.post<any>(url,data, { headers: this.headers  });
+
+}
+
+
+UpdateAds(Ads_ID:any, URL: any, Button_Name  : any ,Photo_Attach
+  :any ): Observable<any[]> {
+    const  headers1 = new HttpHeaders({
+
+      'Authorization': `Bearer ${this.token}`
+    });
+  const url = environment.apiUrl+"/Basics/UpdateAds";
+  const params = new HttpParams()
+    .set('Ads_ID', Ads_ID)
+    .set('URL', URL)
+    .set('Button_Name', Button_Name)
+
+  return this.http.put<any>(url,Photo_Attach, { headers:   headers1 , params: params });
+
+}
+
+
+
+
+CreateAds(URL: any, Button_Name: any ,Photo_Attach:any  ): Observable<any> {
+  debugger
+  const url = environment.apiUrl+"/Basics/CreateAds?URL="+URL+"&Button_Name="+Button_Name;
+  const  headers1 = new HttpHeaders({
+
+    'Authorization': `Bearer ${this.token}`
+  });
+  return this.http.post<any>(url,Photo_Attach, { headers: headers1});
+
+}
+
+DeleteAds(Ads_ID:any   ): Observable<any[]> {
+  const url = environment.apiUrl+"/Basics/DeleteAds";
+  const params = new HttpParams()
+    .set('Ads_ID', Ads_ID)
+  return this.http.delete<any>(url, { headers: this.headers , params: params });
+
+}
 PostPartner(data: any ): Observable<any> {
   const url = environment.apiUrl+"/Partners/PostPartner";
   return this.http.post<any>(url,data, {  headers: this.headers });

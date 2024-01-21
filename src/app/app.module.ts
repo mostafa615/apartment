@@ -27,6 +27,8 @@ import { IssuReportsModule } from './components/issueReports/issu-reports.module
 import { UnlegalModule } from './components/unlegal/unlegal.module';
 import { PartnerModule } from './components/partner/partner.module';
 import { ConfigurationsModule } from './components/configurations/configurations.module';
+import { AdsModule } from './components/configurations/ads/ads.module';
+import { FaqqModule } from './components/configurations/faqq/faqq.module';
 
 import { AuthModule } from './components/auth/auth.module';
 import { UserModule } from './components/user/user.module';
@@ -44,7 +46,7 @@ import { PathLocationStrategy, LocationStrategy } from '@angular/common';
   imports: [
     AppRoutingModule,IssuReportsModule,ConfigurationsModule,
     BrowserModule,AuthorizationModule,
-    AdminsModule,UnlegalModule,
+    AdminsModule,UnlegalModule,AdsModule,FaqqModule,
     HttpClientModule,
     InquiriesModule,PartnerModule,
     WorkersModule,

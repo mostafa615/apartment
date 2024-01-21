@@ -101,7 +101,9 @@
                             {{inquire?.request_Code}}
                         </td>
                         <td>
-                            <img [src]="inquire?.profileImg" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;"> {{inquire?.userName}}
+                            <img *ngIf="inquire.profileImg" [src]="inquire?.profileImg" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;">
+                            <img *ngIf="!inquire.profileImg" src="../../../assets/images/Frame 1261154899.svg" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;cursor: pointer;"> {{inquire?.userName}}
+
                         </td>
                         <td>
                             {{inquire?.requested_Apt}}
@@ -117,18 +119,18 @@
                             <div>
                                 <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;font-size: 12px !important;" *ngIf="inquire?.status=='Approved'">
 
-                          <i class="fa fa-circle" aria-hidden="true"    style="font-size: .5rem;"></i> {{inquire?.status}}
+                            {{inquire?.status}}
                       </span>
                                 <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;font-size: 12px !important;" *ngIf="inquire?.status=='Cancelled'">
-                        <i class="fa fa-circle" aria-hidden="true"    style="font-size: .5rem;"></i> {{inquire?.status}}
+                          {{inquire?.status}}
 
                          </span>
                                 <span class="rounded-5 px-3 py-1" style="background-color: #FFF9E6;color: #FFB900;font-size: 12px !important;" *ngIf="inquire?.status=='Pending'">
-                          <i class="fa fa-circle" aria-hidden="true"    style="font-size: .5rem;"></i> {{inquire?.status}}
+                           {{inquire?.status}}
 
                            </span>
                                 <span class="rounded-5 px-3 py-1" style="background-color: #D2D9E1;color: #1F4068;font-size: 12px !important;" *ngIf="inquire?.status=='Waiting'">
-                            <i class="fa fa-circle" aria-hidden="true"    style="font-size: .5rem;"></i> {{inquire?.status}}
+                              {{inquire?.status}}
 
                              </span>
 

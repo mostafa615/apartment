@@ -20,12 +20,13 @@ export class OnwerService {
     'Authorization': `Bearer ${this.token}`
   });
 
-  getAllOnwers(PageNumber: number, PageSize: number, Search: string): Observable<IOnwer[]> {
+  getAllOnwers(PageNumber: number, PageSize: number, Search: string,Date:any): Observable<IOnwer[]> {
 
     const url = `${environment.apiUrl}/Owner`;
     let params = new HttpParams()
       .set('PageNumber', PageNumber)
-      .set('PageSize', PageSize);
+      .set('PageSize', PageSize)
+      .set('Date', Date);
 
     // Check if the Search condition is met
     if (Search.length > 0) {

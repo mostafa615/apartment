@@ -399,6 +399,53 @@
                     </div>
                 </div>
                 <hr>
+                <div style="margin-top:30px">
+                    <p class="fw-bold mb-0" id="userinformation">user rating </p>
+                    <p style="color: #605D62 !important;">this section help you rating your tenants</p>
+                </div>
+                <div class="d-flex    d-flex justify-content-center justify-md-content-start ">
+                    <div class=" d-md-flex  align-items-center justify-md-content-start ">
+                        <div class="rounded-circle imageOfPerson me-4" style="box-shadow: 0 2px 6px #d1d1d1;">
+                            <img class="imageOfPerson rounded-circle" style="border: 3px solid white;" [src]="Tenant_details.user_Photo">
+                        </div>
+
+
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top:10px">
+                    <p>please rate this tenant</p>
+                </div>
+                <div class="stars-icon2">
+                    <div class="rating rating-star">
+                        <div class="rate" ng-disabled="isRate=='true'">
+                            <input type="radio" id="q1-radio1" name="star-rating" value="1" [disabled]="isRate==true" />
+                            <label (click)="addreating(1)" for="q1-radio1">★</label>
+
+
+                            <input type="radio" id="q1-radio2" name="star-rating" value="2" [disabled]="isRate==true" />
+                            <label (click)="addreating(2)" for="q1-radio2">★</label>
+
+
+                            <input type="radio" id="q1-radio3" name="star-rating" value="3" [disabled]="isRate==true" />
+                            <label (click)="addreating(3)" for="q1-radio3">★</label>
+
+
+                            <input type="radio" id="q1-radio4" name="star-rating" value="4" [disabled]="isRate==true" />
+                            <label (click)="addreating(4)" for="q1-radio4">★</label>
+
+
+                            <input type="radio" id="q1-radio5" name="star-rating" value="5" [disabled]="isRate==true" />
+                            <label (click)="addreating(5)" for="q1-radio5">★</label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="mb-4">
+                        <label class="fw-bold" style="color: #605D62;">leave a comment</label>
+                        <textarea [(ngModel)]="comment_leave" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;" placeholder="Enter a description"></textarea>
+                    </div>
+                </div>
+
                 <div class="d-flex justify-content-between">
                     <button (click)="gotopage2()" class="outlet-0 bg-transparent rounded-3 px-4 py-2 fw-bold downloadAll">Cancel</button>
                     <button (click)="UpdateTenantInfo()" class="outlet-0 text-white border-0 px-4 py-2 rounded-3" style="background-color: #1f4068;" type="submit">Save</button>

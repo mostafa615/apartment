@@ -1,0 +1,287 @@
+<header>
+    <app-head (newItemEvent)="addItem($event)" [titleModule]="'App Config '"></app-head>
+</header>
+<!-- end header  -->
+
+<div class="row m-0">
+
+    <!-- start sidebar  -->
+    <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'App Config '"></app-sidebar>
+    <!-- end sidebar  -->
+
+    <!-- start content page  -->
+    <main class="p-4 col-lg-10 ">
+        <div class="d-md-flex justify-content-between dashboard mt-2">
+            <p class="fw-bold ms-1" style="color: #6c6a6a;">App Config </p>
+            <div class="d-flex justify-content-lg-between ">
+                <div class="d-flex justify-content-between ">
+                    <!-- <button class="month rounded-start px-3 py-1 outline-none">This Month</button>
+            <button class="week rounded-end px-3 py-1 outline-none">Last Week</button> -->
+                </div>
+                <!-- start dropdown button  -->
+                <!-- end dropdown button  -->
+                <!-- start addUserButton  -->
+                <!-- <app-add-new-button class="ms-3 mt-2" [id]="'app-user-details'"></app-add-new-button> -->
+                <!-- end addUserButton  -->
+                <!-- <a *ngIf="partnersRole?.p_Add==true || is_Super==true" class="px-3 py-2 rounded border text-white text-decoration-none" routerLink="/add-partner" style="background-color:#1F4068; cursor: pointer;">
+                  <img src="assets/images/plus.svg" class="me-2 ">Add New
+              </a> -->
+            </div>
+        </div>
+
+        <p-toast></p-toast>
+        <div class="card mt-4">
+
+            <p-table #dtk [value]="Ads" />
+            <div class="d-flex justify-content-between">
+                <!-- length Of person -->
+                <div class="d-flex mx-2 mt-4">
+                    <p class="me-2 fs-5 fw-bold ml-8">advertisements : {{numberAds}}</p>
+
+                </div>
+                <!-- search input -->
+                <div class="d-flex align-items-center mx-2 mt-2 w-50">
+                    <a class="px-3 py-2 rounded border text-white text-decoration-none" style="background-color:#1F4068; cursor: pointer;margin-left: 423px;" (click)="openmodel3adds()">
+                        <img src="assets/images/plus.svg" class="me-2 ">Add New
+                    </a>
+                </div>
+            </div>
+
+
+
+
+            <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="Ads">
+                <ng-template pTemplate="header" class="text-center">
+                    <tr *ngIf="headerData">
+                        <ng-container>
+
+                            <th class="td-name">
+                                image
+
+                            </th>
+                            <th class="td-name">
+                                link
+                            </th>
+
+                            <th class="td-name">
+                                button name
+
+                            </th>
+                            <th class="td-name">
+
+                            </th>
+                        </ng-container>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-ads>
+
+                    <tr (click)="hidecard2()">
+
+                        <td>
+                            {{ads?.photo_Attach}}
+                        </td>
+                        <td>
+                            {{ads?.url}}
+                        </td>
+                        <td>{{ads?.button_Name}}</td>
+                        <td class="cursor position-relative">
+                            <button class="border-0 outlin-0 bg-transparent" (click)="detailperson2($event,ads.ads_ID)">
+<img src="assets/images/edit.svg">
+</button>
+                            <div *ngIf="showEdit2[ads.ads_ID] " style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                                <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" (click)="openmodupdateads(ads)">update</button>
+
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="DeleteAds(ads.ads_ID)">Delete </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </ng-template>
+
+
+                <ng-template pTemplate="emptymessage">
+                    <div class="container text-center mt-4">
+                        <p class="mb-0">No data found.</p>
+                    </div>
+                </ng-template>
+
+            </p-table>
+            <p-paginator (onPageChange)="tiggerPageChange2($event)" [rows]="pagesize" [totalRecords]="totalRecordsAds"></p-paginator>
+
+        </div>
+    </main>
+    <!-- end content page  -->
+</div>
+
+
+
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display2}" style=" background-color: rgb(23 22 22 / 50%);;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="    margin-top: 150px;">
+            <div class="modal-header" style="background-color:#ffffff; border-bottom: none !important;">
+                <p class="modal-title" style="color: #1C1B1F; font-size: 20px;   font-weight: 600; line-height: 24px; word-wrap: break-word">
+                    <span class="form-label gray fw-bold" style="vertical-align: middle; padding-left:8px">
+                Update ads
+        </span>
+                </p>
+                <button type="button" style="border:none;background-color: #ffffff;width: 68px;height: 50px;" class="close" aria-label="Close" (click)="onCloseModal2()">
+<span aria-hidden="true" style="color: #000000;font-size: 35px;">&times;</span>
+</button>
+
+
+
+            </div>
+
+            <div class="modal-body">
+
+
+                <div class="row">
+
+                    <label class="form-label gray fw-bold"> Upload picture
+          </label>
+                    <div class="position-relative h-124px mb-3">
+
+                        <input type="file" accept="image/*" (change)="selectFile2($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                        <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute" width="907%">
+
+                    </div>
+
+                </div>
+                <div class="row" *ngIf="urls_update != null">
+                    <div class="col-md-2 card33">
+                        <a (click)="removeItem2()" style="border: none;   margin-bottom: 10px; position: absolute;">
+                            <img class="imageRemove" src="../../../../../../assets/images/delete.svg" width="32px" height="32px;">
+                        </a>
+                        <img [src]="urls_update" alt="Avatar" style="width:350px;height:205px ; ">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-12 col-md-12">
+                        <label for="exampleInputPricepermonth" class="form-label gray fw-bold">link</label>
+                        <input type="text" [(ngModel)]="link_create_ads_update" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-12 col-md-12">
+                        <label for="exampleInputPricepermonth" class="form-label gray fw-bold">button name</label>
+                        <input type="text" [(ngModel)]="button_name_update" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="modal-footer">
+
+                <div class="d-flex justify-content-between">
+                    <div class="py-2 px-3 fw-bold"></div>
+                    <div class="d-flex justify-content-between">
+                        <a (click)="onCloseModal2()" style="    border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvddmodel">
+                  Cancel
+    </a>
+                        <button (click)="Updateads()" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                  confirm
+    </button>
+                    </div>
+                </div>
+                <!-- Confirm -->
+
+            </div>
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display3}" style=" background-color: rgb(23 22 22 / 50%);;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="    margin-top: 150px;">
+            <div class="modal-header" style="background-color:#ffffff; border-bottom: none !important;">
+                <p class="modal-title" style="color: #1C1B1F; font-size: 20px;   font-weight: 600; line-height: 24px; word-wrap: break-word">
+                    <span class="form-label gray fw-bold" style="vertical-align: middle; padding-left:8px">
+                add new advertisement
+      </span>
+                </p>
+                <button type="button" style="border:none;background-color: #ffffff;width: 68px;height: 50px;" class="close" aria-label="Close" (click)="onCloseModal3()">
+<span aria-hidden="true" style="color: #000000;font-size: 35px;">&times;</span>
+</button>
+
+
+
+            </div>
+
+            <div class="modal-body">
+
+
+                <div class="row">
+
+                    <label class="form-label gray fw-bold"> Upload picture
+            </label>
+                    <div class="position-relative h-124px mb-3">
+
+                        <input type="file" accept="image/*" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                        <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute" width="907%">
+
+                    </div>
+
+                </div>
+                <div class="row" *ngIf="urls != null">
+                    <div class="col-md-2 card33">
+                        <a (click)="removeItem()" style="border: none;   margin-bottom: 10px; position: absolute;">
+                            <img class="imageRemove" src="../../../../../../assets/images/delete.svg" width="32px" height="32px;">
+                        </a>
+                        <img [src]="urls" alt="Avatar" style="width:350px;height:205px ; ">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-12 col-md-12">
+                        <label for="exampleInputPricepermonth" class="form-label gray fw-bold">link</label>
+                        <input type="text" [(ngModel)]="link_create_ads" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-12 col-md-12">
+                        <label for="exampleInputPricepermonth" class="form-label gray fw-bold">button name</label>
+                        <input type="text" [(ngModel)]="button_name" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="modal-footer">
+
+                <div class="d-flex justify-content-between">
+                    <div class="py-2 px-3 fw-bold"></div>
+                    <div class="d-flex justify-content-between">
+                        <a (click)="onCloseModal3()" style="    border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvddmodel">
+                Cancel
+  </a>
+                        <button (click)="CreateAds()" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                confirm
+  </button>
+                    </div>
+                </div>
+                <!-- Confirm -->
+
+            </div>
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
