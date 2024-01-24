@@ -41,7 +41,9 @@
                 <div class="d-flex mb-5 d-md-block d-flex justify-content-center justify-md-content-start ">
                     <div class=" d-md-flex  align-items-center justify-md-content-start ">
                         <div class="rounded-circle imageOfPerson me-4" style="box-shadow: 0 2px 6px #d1d1d1;">
-                            <img class="imageOfPerson rounded-circle" style="border: 3px solid white;" [src]="Tenant_details.user_Photo">
+                            <img *ngIf="Tenant_details.user_Photo!=null && Tenant_details.user_Photo!=''" class="imageOfPerson rounded-circle" style="border: 3px solid white;" [src]="Tenant_details.user_Photo">
+                            <img *ngIf="Tenant_details.user_Photo==null||Tenant_details.user_Photo==''" class="imageOfPerson rounded-circle" style="border: 3px solid white;" src="../../../../assets/images/avatardef.jpg">
+
                         </div>
                         <div class="d-flex mt-4">
                             <div class="d-flex  justify-content-between ">
@@ -271,12 +273,12 @@
                 <!--Rental history (5)-->
                 <div class="d-flex justify-content-between">
                     <div>
-                        <p class="fw-bold mb-0" id="Rentalhistory">Rental history (5)</p>
+                        <p class="fw-bold mb-0" id="Rentalhistory">Rental history </p>
                         <p style="color: #605D62 !important;">Past user rental histories</p>
                     </div>
                     <div>
-                        <button class="px-3 py-2 fw-bold bg-transparent outline-0 border-0 rounded-3 " style="border: 1px solid #939094 !important;color: #1F4068;"><img src="assets/images/user/download.svg">
-              Download all</button>
+                        <!-- <button class="px-3 py-2 fw-bold bg-transparent outline-0 border-0 rounded-3 " style="border: 1px solid #939094 !important;color: #1F4068;"><img src="assets/images/user/download.svg">
+              Download all</button> -->
                     </div>
 
                 </div>
@@ -415,8 +417,10 @@
                 <div style="text-align: center; margin-top:10px">
                     <p>please rate this tenant</p>
                 </div>
-                <div class="stars-icon2">
-                    <div class="rating rating-star">
+                <div class="stars-icon2" style="text-align: center;">
+                    <p-rating [(ngModel)]="ratingnumber" [cancel]="false"></p-rating>
+
+                    <!-- <div class="rating rating-star">
                         <div class="rate" ng-disabled="isRate=='true'">
                             <input type="radio" id="q1-radio1" name="star-rating" value="1" [disabled]="isRate==true" />
                             <label (click)="addreating(1)" for="q1-radio1">★</label>
@@ -437,7 +441,7 @@
                             <input type="radio" id="q1-radio5" name="star-rating" value="5" [disabled]="isRate==true" />
                             <label (click)="addreating(5)" for="q1-radio5">★</label>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div>
                     <div class="mb-4">

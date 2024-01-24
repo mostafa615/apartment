@@ -78,8 +78,11 @@
 
 
                         <td>
-                            <img routerLink="/view-partner/{{partners.partner_ID}}" [src]="partners?.partner_Photo" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px; cursor: pointer;"> {{partners?.partner_FName}} {{partners?.partner_LName}}
-                        </td>
+                            <img  *ngIf="partners.partner_Photo" routerLink="/view-partner/{{partners.partner_ID}}" [src]="partners?.partner_Photo" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px; cursor: pointer;"> 
+                            <img *ngIf="!partners.partner_Photo" routerLink="/view-partner/{{partners.partner_ID}}" src="../../../assets/images/Frame 1261154899.svg" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;cursor: pointer;">     
+                            {{partners?.partner_FName}} {{partners?.partner_LName}}                      
+
+                          </td>
                         <td>
                             {{partners?.partner_Email}}
                         </td>

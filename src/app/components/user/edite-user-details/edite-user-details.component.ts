@@ -97,7 +97,7 @@ export class EditeUserDetailsComponent {
     this.About=res["tenant_About"]
     this.tenant_photo=res["tenant_photo"]
     this.comment_leave=res["Beh_Comment"]
-    this.ratingnumber=res["Rate"]
+    this.ratingnumber=res["rate"]
     }, (error) => {
      console.error('Error fetching owners:', error);
   })

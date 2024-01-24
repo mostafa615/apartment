@@ -75,13 +75,25 @@ export class ForthStepComponent {
       this.aprt_details_Edit = res.backup_Info
       this.wifi = res.rent_Rules
 
-
+debugger
 
        this.PostBackupInfo.patchValue(res.backup_Info);
        this.inputField=res.backup_Info["inputFields"]
-       this.checkedOnline = Boolean(res.backup_Info["payment_Methods"][0].payment_Method_Name)
+       if(res.backup_Info["payment_Methods"][0].payment_Method_Name=='false'){
+        this.checkedOnline=false
+       }else{
+        this.checkedOnline=true
+
+       }
+       if(res.backup_Info["payment_Methods"][1].payment_Method_Name=='false'){
+        this.checkedCash=false
+       }else{
+        this.checkedCash=true
+
+       }
+      // this.checkedOnline = Boolean(res.backup_Info["payment_Methods"][0].payment_Method_Name)
       //  this.checkedPayPal =  Boolean(res.backup_Info["payment_Methods"][1].payment_Method_Name)
-       this.checkedCash =  Boolean(res.backup_Info["payment_Methods"][1].payment_Method_Name)
+     //  this.checkedCash =  Boolean(res.backup_Info["payment_Methods"][1].payment_Method_Name)
      })
   }
   // get  local storage

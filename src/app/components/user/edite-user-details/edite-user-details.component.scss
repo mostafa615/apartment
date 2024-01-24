@@ -212,3 +212,12 @@
     align-items: center;
     border: 1px solid #ddd;
 }
+
+.p-rating .p-rating-icon.p-rating-icon-active {
+    color: #FFD600;
+}
+
+.p-rating .p-rating-icon.p-icon {
+    width: 2.543rem;
+    height: 2.143rem;
+}

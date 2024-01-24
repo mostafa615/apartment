@@ -15,6 +15,7 @@ import { EditeUserDetailsComponent } from './edite-user-details/edite-user-detai
 
 
  import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+ import { RatingModule } from 'primeng/rating';
 
 
   import { TableModule } from 'primeng/table';
@@ -38,7 +39,7 @@ const routes: Routes = [
     CommonModule,
     PaginatorModule,
     BrowserAnimationsModule,
-    SharedModule,
+    SharedModule,RatingModule,
     FormsModule,
     DropdownModule,
     TableModule,
