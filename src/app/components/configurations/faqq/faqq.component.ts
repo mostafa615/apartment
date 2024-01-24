@@ -368,4 +368,19 @@ CreateAds(  ) {
 
   })
  }
+ searchText:any=""
+
+ searchKey(data: string) {
+   debugger
+   this.searchText = data;
+   this.getAllFAQ( )
+ }
+ searchTextChange:any
+ searchAction() {
+   // this.searchTextChange.emit(this.searchText);
+   this.search = false;
+   this.getAllFAQ()
+   this.searchText =""
+
+ }
 }

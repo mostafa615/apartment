@@ -377,4 +377,19 @@ this.GetAds();
   this.display2="none"
 
  }
+ searchText:any=""
+
+ searchKey(data: string) {
+   debugger
+   this.searchText = data;
+   this.GetAds( )
+ }
+ searchTextChange:any
+ searchAction() {
+   // this.searchTextChange.emit(this.searchText);
+   this.search = false;
+   this.GetAds()
+   this.searchText =""
+
+ }
 }

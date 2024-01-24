@@ -16,10 +16,10 @@ export class InquiresService {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${this.token}`
   });
-  getAllInquires( status:any ,pageNumber:any,pageSize:any,Date:any): Observable<any[]> {
+  getAllInquires( status:any ,pageNumber:any,pageSize:any,Date:any,keysearch:any): Observable<any[]> {
 
 
-    const url = environment.apiUrl+"/Requests/GetAllRequests?status="+status+"&PageNo="+pageNumber+"&PageSize="+pageSize+"&Date="+Date;
+    const url = environment.apiUrl+"/Requests/GetAllRequests?status="+status+"&PageNo="+pageNumber+"&PageSize="+pageSize+"&Date="+Date+"&Key="+keysearch;
     return this.http.get<any[]>(url, {  headers: this.headers });
 
   }

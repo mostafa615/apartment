@@ -26,12 +26,13 @@ export class OnwerService {
     let params = new HttpParams()
       .set('PageNumber', PageNumber)
       .set('PageSize', PageSize)
-      .set('Date', Date);
+      .set('Date', Date)
+      .set('Key', Search);
 
     // Check if the Search condition is met
-    if (Search.length > 0) {
-      params = params.set('Search', Search);
-    }
+    // if (Search.length > 0) {
+    //   params = params.set('Search', Search);
+    // }
 
     return this.http.get<IOnwer[]>(url, { params: params, headers: this.headers });
 

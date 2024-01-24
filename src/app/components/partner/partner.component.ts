@@ -35,8 +35,9 @@ export class PartnerComponent implements OnInit {
  selectedfromDropDown(value:any){
 
    this.Date=value.name;
-   // this.getAllpartners()
+   this.getAllpartners()
    console.log(value)
+
  }
  /**
   * addItem
@@ -90,7 +91,7 @@ tiggerPageChange(event: any) {
   getAllpartners(  ) {
    this.partners=[]
    this.numberpartners=0
-   this._adminservices.ListPartners( this.pageNumber,this.pagesize,this.Date).subscribe((res:any) => {
+   this._adminservices.ListPartners( this.pageNumber,this.pagesize,this.Date,this.searchText).subscribe((res:any) => {
      this.partners = res["data"];
      this.totalRecords=res["totalRecords"]
 
@@ -177,5 +178,20 @@ if(this.partnersRole.p_View==false &&this.is_Super==false) {
 gotopage( ){
  let url: string = "unlegal";
    this.router.navigateByUrl(url);
+}
+searchText:any=""
+
+searchKey(data: string) {
+  debugger
+  this.searchText = data;
+  this.getAllpartners()
+}
+searchTextChange:any
+searchAction() {
+  // this.searchTextChange.emit(this.searchText);
+  this.search = false;
+  this.getAllpartners()
+    this.searchText =""
+
 }
 }

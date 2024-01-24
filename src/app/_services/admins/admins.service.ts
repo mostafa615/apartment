@@ -53,13 +53,14 @@ public DeleteUser(id: any): Observable<any> {
 
   return this.http.delete(url, { headers: this.headers })
 }
-TenantList( PageNumber: number, PageSize: number,Date:any,): Observable<any> {
+TenantList( PageNumber: number, PageSize: number,Date:any,search:any): Observable<any> {
 
   const url = `${environment.apiUrl}/Users/TenantList`;
   const params = new HttpParams()
     .set('PageNo', PageNumber)
     .set('PageSize', PageSize)
     .set('Date', Date)
+    .set('Key', search)
 
 
   return this.http.get<any>(url, { headers: this.headers , params: params });
@@ -152,13 +153,14 @@ DeleteWorker(id: any ): Observable<any> {
   return this.http.delete<any>(url, {  headers: this.headers });
 
 }
-ListAllIssues( PageNumber: number, PageSize: number,Date:any,search:any ): Observable<any[]> {
+ListAllIssues( PageNumber: number, PageSize: number,Date:any,search:any,searchkey:any ): Observable<any[]> {
   const url = environment.apiUrl+"/Issues/ListAllIssues";
   const params = new HttpParams()
     .set('PageNo', PageNumber)
     .set('PageSize', PageSize)
     .set('Date', Date)
     .set('search', search)
+    .set('Key',searchkey)
   return this.http.get<any[]>(url, { headers: this.headers , params: params });
 
 }
@@ -224,12 +226,14 @@ MarkasProgress(Issue_ID: any,Apointment: any ): Observable<any> {
 
 }
 
-ListPartners( PageNumber: number, PageSize: number,Date:any ): Observable<any> {
+ListPartners( PageNumber: number, PageSize: number,Date:any,searchtext:any ): Observable<any> {
   const url = environment.apiUrl+"/Partners/ListPartners";
   const params = new HttpParams()
     .set('PageNo', PageNumber)
     .set('PageSize', PageSize)
     .set('Date', Date)
+    .set('Key', searchtext)
+
   return this.http.get<any>(url, { headers: this.headers , params: params });
 
 }
@@ -371,12 +375,13 @@ GetAgencyCode( ) {
   return this.http.get(url, {  headers: headers2 ,responseType: 'text'});
 
 }
-ListAllInvoices(type:any, PageNumber: number, PageSize: number  ): Observable<any[]> {
+ListAllInvoices(type:any, PageNumber: number, PageSize: number,searchtext:any  ): Observable<any[]> {
   const url = environment.apiUrl+"/Accounting/ListAllInvoices";
   const params = new HttpParams()
     .set('PageNum', PageNumber)
     .set('PageSize', PageSize)
     .set('Type', type)
+    .set('Key', searchtext)
 
   return this.http.get<any[]>(url, { headers: this.headers , params: params });
 
@@ -386,12 +391,13 @@ MarkPaid( id:any ): Observable<any> {
   return this.http.put<any>(url,id, {  headers: this.headers });
 
 }
-AllTickets(type:any, PageNumber: number, PageSize: number  ): Observable<any[]> {
+AllTickets(type:any, PageNumber: number, PageSize: number ,searchtext:any ): Observable<any[]> {
   const url = environment.apiUrl+"/Tickets/AllTickets";
   const params = new HttpParams()
     .set('PageNum', PageNumber)
     .set('PageSize', PageSize)
     .set('Type', type)
+    .set('Key', searchtext)
 
   return this.http.get<any[]>(url, { headers: this.headers , params: params });
 

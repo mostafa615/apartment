@@ -58,7 +58,7 @@ export class MainFileComponent {
    getAllIssues(  ) {
     this.issues=[]
     this.numberissues=0
-    this._adminservices.ListAllIssues( this.pageNumber,this.pagesize,this.Date,this.statusinquire).subscribe((res:any) => {
+    this._adminservices.ListAllIssues( this.pageNumber,this.pagesize,this.Date,this.statusinquire,this.searchText).subscribe((res:any) => {
       this.issues = res["data"];
       this.totalRecords=res["totalRecords"]
 
@@ -285,5 +285,20 @@ this.onCloseModal2();
   onSearchChange2(searchValue: any){
     // this.item_Cost=searchValue.data
     this.Total_cost =Number(this.Total_cost)+Number(this.item_Cost)
+  }
+  searchText:any=""
+
+  searchKey(data: string) {
+    debugger
+    this.searchText = data;
+    this.getAllIssues();
+  }
+  searchTextChange:any
+  searchAction() {
+    // this.searchTextChange.emit(this.searchText);
+    this.search = false;
+    this.getAllIssues();
+    this.searchText =""
+
   }
 }
