@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { KnobModule } from 'primeng/knob';
+import { ToastModule } from 'primeng/toast';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     KnobModule,
+    ToastModule,
     RouterModule.forChild(routes)
     ],
   exports:[RouterModule],

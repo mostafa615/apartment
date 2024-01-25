@@ -8,6 +8,8 @@
   <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'dashboard'"></app-sidebar>
   <!-- end sidebar  -->
   <!-- start content page  -->
+
+
   <main class=" p-4 col-lg-10">
     <!-- start part 1 in page  -->
     <div class="d-md-flex justify-content-between dashboard">
@@ -23,13 +25,13 @@
       </div>
     </div>
     <!-- end part 1 in page  -->
-
+    <p-toast></p-toast>
     <!-- start part 2 in page  -->
     <div class="mt-3 row ">
       <!-- start total details cards -->
-      <app-total-detail-dashboard class="col-12 col-md-6 col-lg-3" 
+      <app-total-detail-dashboard class="col-12 col-md-6 col-lg-3"
       *ngFor="let item of [0, 1, 2, 3]"></app-total-detail-dashboard>
-      
+
       <!-- end total details cards -->
     </div>
     <!-- end part 2 in page  -->
@@ -58,7 +60,7 @@
       <!-- end Apartments Rented & Free diagram -->
 
     </div>
-   
+
     <div class="mt-3 d-lg-flex  justify-content-between ">
       <!-- start Popular Apartments table  -->
       <div class="p-3 table-abrtment me-lg-4 rounded" style="overflow: overlay;">
@@ -86,12 +88,12 @@
               <td class="color-gray">{{data.amount}}</td>
               <td><span class="rented rounded-5 px-2 py-1">{{data.status}}</span></td>
             </tr>
-            
+
           </tbody>
         </table>
       </div>
       <!-- end Popular Apartments table  -->
-     
+
       <!-- start recent activity table -->
       <div class=" p-3 recentActivity rounded">
         <div class="d-flex justify-content-between mt-1">
@@ -117,7 +119,7 @@
                 </div>
                 <p class="color-gray fs-12">10:44PM</p>
               </th>
-             
+
 
             </tr>
 

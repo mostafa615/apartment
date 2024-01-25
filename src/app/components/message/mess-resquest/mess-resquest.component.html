@@ -117,10 +117,10 @@
           <img src="assets/images/edit.svg">
       </button>
                                 <div *ngIf="showEdit[deatail?.ticket_ID] " style="width: 220px; line-height: 10px;  z-index: 999;   right: 20px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
-                                    <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/assgin-tiket/{{deatail?.ticket_ID}}">reassign ticket to employee</button>
+                                    <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/assgin-tiket/{{deatail?.ticket_ID}}">Reassign ticket to employee</button>
 
-                                    <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="CloseTicket('Closed')">close ticket  </button>
-                                    <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="CloseTicket('Resolved')"> solved  ticket </button>
+                                    <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="CloseTicket('Closed')">Close ticket  </button>
+                                    <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="CloseTicket('Resolved')"> Solved  ticket </button>
 
                                 </div>
 
@@ -149,7 +149,7 @@
                                         <div>
                                             <p class="mb-0">{{item?.reply_User}}</p>
                                         </div>
-                                        <p class="mb-0 fw-light" style="margin-left: 70px;">{{item?.date_Time| date : "EEEE hh:mm:ss a" }}</p>
+                                        <p class="mb-0 fw-light" style="margin-left: 70px;">{{item?.reply_Ago}}</p>
                                     </div>
                                     <p *ngIf="item?.reply_Desc!=null && item?.reply_Desc!=''" class="p-2 rounded-end rounded-bottom" style="background-color: #f6f6f6">
                                         {{item?.reply_Desc}}
@@ -159,13 +159,13 @@
                             </div>
                         </div>
                         <!-- Sender -->
-                        <div class="d-flex justify-content-end" *ngIf="item.reply_From!=true">
+                        <div class="d-flex justify-content-end mb-2 py-4" *ngIf="item.reply_From!=true">
                             <div style="margin-bottom: 20px;">
                                 <div class="ml-3 d-flex justify-content-between">
                                     <div>
-                                        <p class="mb-0">You</p>
+                                        <p class="mb-0">{{item?.reply_User}}</p>
                                     </div>
-                                    <p class="mb-0 fw-light">{{item?.date_Time}}</p>
+                                    <p class="mb-0 fw-light" style="margin-left: 70px;">{{item?.reply_Ago}}</p>
                                 </div>
                                 <p *ngIf="item?.reply_Desc!=null && item?.reply_Desc!=''" class="p-2 rounded-start rounded-bottom text-white bg-blue">
                                     {{item?.reply_Desc}}
@@ -186,7 +186,7 @@
                             <button class="border-0 bg-transparent">
                 <img src="assets/images/message/more.svg" />
               </button>
-                            <button (click)="ReplyDash() " class="text-center px-3 py-1 rounded bg-blue text-white">
+                            <button (click)="ReplyDash() " class="px-3 py-2 rounded border text-white text-decoration-none" style="background-color: #1F4068;">
                 <img src="assets/images/message/sendFill.svg" /> Send
               </button>
                         </div>

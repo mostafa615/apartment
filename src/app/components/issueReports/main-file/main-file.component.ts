@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AdminsService } from 'src/app/_services/admins/admins.service';
-
+import * as signalR from '@microsoft/signalr';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-main-file',
   templateUrl: './main-file.component.html',
@@ -26,6 +27,23 @@ export class MainFileComponent {
     this.initFakeData()
     this.getAllIssues(  )
     this.checkRole()
+
+    const connection = new signalR.HubConnectionBuilder()
+
+    .withUrl(environment.apiUrl + '/notify',{ withCredentials: false})
+    .build();
+
+  connection.start().then(function () {
+  }).catch(function (err) {
+    return console.error(err.toString());
+  });
+
+  connection.on("NewIssue", (result: any) => {
+    this.getAllIssues();
+    this.messageService.add({ severity: 'info', summary: 'New Issue', detail: result.noti_Name });
+
+  });
+
    }
    IssueRole:any
    is_Super:any
