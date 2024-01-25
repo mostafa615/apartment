@@ -460,4 +460,11 @@ GetBookingHistory(Apt_ID:any, PageNo: number, PageSize: number ,SearchKey:any ):
   return this.http.get<any[]>(url, { headers: this.headers , params: params });
 
 }
+PushNotification(  ): Observable<any[]> {
+  const url = environment.apiUrl+"/PushNotification/NotiList";
+
+
+  return this.http.get<any[]>(url, { headers: this.headers  });
+
+}
 }

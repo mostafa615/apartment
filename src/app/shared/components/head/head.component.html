@@ -4,21 +4,56 @@
     <div class="col-lg-10 col-sm-12 row justify-content-between">
         <div class="col-lg-7 col-8 mt-2 ms-lg-0 row ">
             <p class=" col-lg-3 pd d-none d-lg-block">{{titleModule}}</p>
-            <div (click)="showSidebar()" class="d-lg-none col-1 ms-4 me-2 fs-4"><i class="fa fa-bars"
-                    aria-hidden="true"></i></div>
+            <div (click)="showSidebar()" class="d-lg-none col-1 ms-4 me-2 fs-4"><i class="fa fa-bars" aria-hidden="true"></i></div>
             <!-- start search button -->
             <div class="p-input-icon-left col-9 col-lg-8">
-                <i *ngIf="value==''" style="margin-top: -17px;"><img src="assets/images/search.svg" /></i>
-                <input class="form-control" [class.ps-35px]="value==''" type="text" pInputText placeholder="Search"
-                    [(ngModel)]="value" />
+                <!-- <img src="assets/images/search.svg" /> -->
+                <input class="form-control" [class.ps-35px]="value==''" type="text" pInputText placeholder="Search" [(ngModel)]="value" />
             </div>
             <!-- end search button -->
         </div>
         <div class="col-4 mt-2 col-lg-3 d-flex justify-content-end">
             <div class="d-flex pe-lg-4">
                 <!-- start notification -->
-                <span class="me-1"><img src="assets/images/notification.svg" /></span>
+                <span (click)="shownot()" style="cursor: pointer; margin-right: 1.25rem;"><img src="assets/images/notification.svg" /></span>
                 <!-- end notification -->
+                <div [ngStyle]="{ 'display':display1} " style=" z-index: 999 ; right: 0px;" class=" z-3 rounded-3 bg-white border cfresda ">
+                    <div class="notifications">
+                        <div class="div">
+                            <div class="carbon-close"><img (click)="closenotifaction()" style="cursor: pointer;" class="vector" src="../../../../assets/images/carbon_close.svg" /></div>
+                            <div class="text-wrapper">Notifications</div>
+                            <div class="div-2">
+                                <div class="frame" *ngFor="let item of NotifiList">
+                                    <img class="studiflats" src="../../../../assets/images/Layer 2.svg" />
+                                    <div class="frame-wrapper">
+                                        <div class="div-wrapper">
+                                            <div class="frame-2">
+                                                <div class="new-apartment">{{item.noti_Name}}</div>
+                                                <div class="element-jun">{{item.noti_Date }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="item.iS_Readed==false" class="text-wrapper-2">Read</div>
+                                    <div *ngIf="item.iS_Readed==true" class="text-wrapper-2">unread</div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="frame">
+                        <img class="studiflats" src="img/studiflats-1.svg" />
+                        <div class="frame-wrapper">
+                            <div class="div-wrapper">
+                                <div class="div">
+                                    <div class="new-apartment">New Apartment Request</div>
+                                    <div class="element-jun">1 Jun 2024</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="read">Read</div>
+                    </div> -->
+                </div>
                 <div class="d-flex" style="margin-top: -10px;">
                     <div class="mt-2 me-1"><img src="assets/images/One.svg" /></div>
                     <p class="pname mt-3">Umar</p>

@@ -1,27 +1,292 @@
-.header{
+.header {
     position: fixed;
     background-color: white;
     z-index: 2;
     width: 100% !important;
     height: 90px !important;
-    input{
+    input {
         width: 100% !important;
     }
-    .text-right{
+    .text-right {
         text-align: right;
-        span{margin-right:20px ;}
+        span {
+            margin-right: 20px;
+        }
     }
-    .pd{font-weight: 700;font-size: 1.5rem;}
-    .pname{color:#313033 ;}
-    .form-control{
+    .pd {
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+    .pname {
+        color: #313033;
+    }
+    .form-control {
         color: #939094;
         font-weight: 400;
         border: 1px solid #f9f7f7;
         background-color: #FAFCFF;
         border-radius: 8px;
-        height:38px
+        height: 38px
     }
 }
-.p { margin-top: 10px !important;}
-.row>*{padding: 0 !important;}
-.ps-35px{padding-left: 35px;}
+
+.p {
+    margin-top: 10px !important;
+}
+
+.row>* {
+    padding: 0 !important;
+}
+
+.ps-35px {
+    padding-left: 35px;
+}
+
+.frame {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 16px 16px 20px;
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: rgba(221, 221, 225, 1);
+}
+
+.frame .studiflats {
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.frame .frame-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.frame .div-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 225px;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+}
+
+.frame .div {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.frame .new-apartment {
+    position: relative;
+    width: 174px;
+    margin-top: -1px;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: #292929;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.frame .element-jun {
+    position: relative;
+    width: 174px;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: #8e8e8e;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.frame .read {
+    position: relative;
+    width: fit-content;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: rgba(31, 64, 104, 1);
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.notifications {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.notifications .div {
+    background-color: #ffffff;
+    width: 411px;
+    height: 700px;
+    position: relative;
+}
+
+.notifications .carbon-close {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 11px;
+    left: 363px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.notifications .vector {
+    position: absolute;
+    width: 31px;
+    height: 23px;
+    top: 0px;
+    left: 0px;
+}
+
+.notifications .text-wrapper {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.notifications .div-2 {
+    display: inline-flex;
+    flex-direction: column;
+    height: 634px;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 63px;
+    left: 11px;
+    overflow-y: auto;
+}
+
+.notifications .frame {
+    display: flex;
+    width: 380px;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 16px 16px 20px;
+    position: relative;
+    flex: 0 0 auto;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: rgba(221, 221, 225, 1);
+    box-shadow: 0px 4px 15px #00000026;
+}
+
+.notifications .studiflats {
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.notifications .frame-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.notifications .div-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 225px;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+}
+
+.notifications .frame-2 {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.notifications .new-apartment {
+    position: relative;
+    width: 174px;
+    margin-top: -1px;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: #292929;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.notifications .element-jun {
+    position: relative;
+    width: 174px;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: #8e8e8e;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.notifications .text-wrapper-2 {
+    position: relative;
+    width: fit-content;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: rgba(31, 64, 104, 1);
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+@media (max-width: 768px) {
+    .notifications .carbon-close {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        top: 5px;
+        right: 50px;
+        border-radius: 5px;
+        left: 323px;
+    }
+    .notifications .div {
+        background-color: #ffffff;
+        width: 370px;
+        height: 590px;
+        overflow-y: auto;
+        position: relative;
+    }
+    .cfresda {
+        position: absolute;
+    }
+    .notifications .div-wrapper {
+        width: 180px;
+    }
+    .notifications .frame {
+        display: flex;
+        width: 308px;
+    }
+}

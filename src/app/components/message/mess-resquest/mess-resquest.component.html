@@ -94,7 +94,13 @@
 
                     <div class="d-flex justify-content-between">
                         <div class="d-flex">
-                            <img style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px; cursor: pointer;margin-top: 13px;" [src]="deatail?.userPhoto" class="me-3" />
+                            <!-- <img style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px; cursor: pointer;margin-top: 13px;" [src]="deatail?.userPhoto" class="me-3" /> -->
+
+                            <img *ngIf="deatail?.userPhoto" class="me-3" [src]="deatail?.userPhoto" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px; cursor: pointer;margin-top: 13px;">
+
+
+                            <img *ngIf="!deatail?.userPhoto" class="me-3" src="../../../assets/images/Frame 1261154899.svg" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;cursor: pointer;margin-top: 13px;">
+
                             <div class="ml-3 d-flex justify-content-between">
                                 <div class="mt-3">
                                     <p class="line-height fw-bold mb-0">{{deatail?.userName}}</p>
@@ -135,7 +141,8 @@
                         <div class="d-flex justify-content-between reciver mb-2 py-4" *ngIf="item?.reply_From==true">
                             <div class="d-flex">
                                 <!-- <img src="assets/images/Avatar.svg" class="me-3 mb-3" /> -->
-                                <img style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px; cursor: pointer;margin-top: 13px;" [src]="deatail?.userPhoto" class="me-3" />
+                                <img *ngIf="deatail?.userPhoto" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px; cursor: pointer;margin-top: 13px;" [src]="deatail?.userPhoto" class="me-3" />
+                                <img *ngIf="!deatail?.userPhoto" class="me-3" src="../../../assets/images/Frame 1261154899.svg" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px; cursor: pointer;margin-top: 13px;">
 
                                 <div>
                                     <div class="ml-3 d-flex justify-content-between">
@@ -144,10 +151,10 @@
                                         </div>
                                         <p class="mb-0 fw-light" style="margin-left: 70px;">{{item?.date_Time| date : "EEEE hh:mm:ss a" }}</p>
                                     </div>
-                                    <p class="p-2 rounded-end rounded-bottom" style="background-color: #f6f6f6">
+                                    <p *ngIf="item?.reply_Desc!=null && item?.reply_Desc!=''" class="p-2 rounded-end rounded-bottom" style="background-color: #f6f6f6">
                                         {{item?.reply_Desc}}
                                     </p>
-                                    <img (click)="openmodel(item?.reply_Attach)" style="width: 70px;  height: 70px" *ngIf="item?.reply_Attach!=null||item?.reply_Attach!=''" [src]="item?.reply_Attach">
+                                    <img (click)="openmodel(item?.reply_Attach)" style="width: 70px;  height: 70px" *ngIf="item?.reply_Attach!=null && item?.reply_Attach!=''" [src]="item?.reply_Attach">
                                 </div>
                             </div>
                         </div>
@@ -160,10 +167,10 @@
                                     </div>
                                     <p class="mb-0 fw-light">{{item?.date_Time}}</p>
                                 </div>
-                                <p class="p-2 rounded-start rounded-bottom text-white bg-blue">
+                                <p *ngIf="item?.reply_Desc!=null && item?.reply_Desc!=''" class="p-2 rounded-start rounded-bottom text-white bg-blue">
                                     {{item?.reply_Desc}}
                                 </p>
-                                <img (click)="openmodel(item?.reply_Attach)" style="width: 70px;  height:70px" *ngIf="item?.reply_Attach!=null||item?.reply_Attach!=''" [src]="item?.reply_Attach">
+                                <img (click)="openmodel(item?.reply_Attach)" style="width: 70px;  height:70px" *ngIf="item?.reply_Attach!=null && item?.reply_Attach!=''" [src]="item?.reply_Attach">
 
                             </div>
                         </div>
