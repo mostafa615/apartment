@@ -390,9 +390,11 @@
                     <textarea [(ngModel)]="About" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;" placeholder="Enter a description"></textarea>
                 </div>
                 <div class="mb-4">
-                    <label class="fw-bold" style="color: #605D62;">user images</label>
+                    <label class="fw-bold" style="color: #605D62;">User Image</label>
+                    <div class="d-flex justify-content-center align-items-center">
+                      <img  [src]="Tenant_details.tenant_photo!=''?Tenant_details.tenant_photo:'../../../../assets/images/avatardef.jpg'" class="imageOfPerson rounded-circle ng-star-inserted">
 
-                    <img *ngIf="tenant_photo!=''||tenant_photo!=null" [src]="tenant_photo" style="width:160px !important; height:80px !important">
+                    </div>
 
                     <div class="position-relative h-124px mb-3">
 

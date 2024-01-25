@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AdminsService } from 'src/app/_services/admins/admins.service';
-
+import * as signalR from '@microsoft/signalr';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-main-file',
   templateUrl: './main-file.component.html',
@@ -26,6 +27,22 @@ export class MainFileComponent {
     this.initFakeData()
     this.getAllIssues(  )
     this.checkRole()
+
+    const connection = new signalR.HubConnectionBuilder()
+    .configureLogging(signalR.LogLevel.Information)
+    .withUrl(environment.HubUrl + 'notify',{ withCredentials: false})
+    .build();
+
+  connection.start().then(function () {
+    console.log('SignalR Connected!');
+  }).catch(function (err) {
+    return console.error(err.toString());
+  });
+
+  connection.on("BroadcastMessage", () => {
+    this.getAllIssues();
+  });
+
    }
    IssueRole:any
    is_Super:any

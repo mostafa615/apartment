@@ -69,7 +69,7 @@ import { HeadComponent } from './components/head/head.component';
 
     DataTableComponent,
     TableComponent,
-    ProgressSpinnerComponent
+    ProgressSpinnerComponent,
   ],
 
   exports: [

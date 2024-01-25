@@ -36,7 +36,8 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { GoogleMapsModule } from '@angular/google-maps'
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
-
+import { BlockUIModule } from 'ng-block-ui';
+import { BlockUIHttpModule } from 'ng-block-ui/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +64,15 @@ import { PathLocationStrategy, LocationStrategy } from '@angular/common';
     UserModule,
     OwnersModule,
     GoogleMapsModule ,
+    BlockUIModule.forRoot({
+      delayStart: 1,
+      delayStop: 500,
+      message: 'Please Wait ,,,,'
+
+      }),
+    BlockUIHttpModule.forRoot({
+      blockAllRequestsInProgress: true
+      })
 
   ],
 
