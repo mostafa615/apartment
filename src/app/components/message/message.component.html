@@ -34,6 +34,28 @@
 
 
 
+            <p-table #dt [value]="_tickets" [(selection)]="_tickets" dataKey="id" [filterDelay]="0" />
+            <div class="d-flex justify-content-between">
+                <!-- length Of person -->
+                <div class="d-flex mx-2 mt-4">
+                    <p class="me-2 fs-5 fw-bold ml-8">Tickets</p>
+                    <!-- <p class="mb-3 bg-gray rounded-5 blue px-2 d-flex align-items-center">
+                  {{fullRespone?.totalRecords}} {{pagePerson}}
+              </p> -->
+                </div>
+                <!-- search input -->
+                <div class="d-flex align-items-center mx-2 mt-2 w-50">
+                    <ng-container *ngIf="!search; else searchVisible">
+                        <i class="pi pi-search cursor ms-auto" style="margin-right: 0.75rem;" (click)="search = true"></i>
+                    </ng-container>
+                    <ng-template #searchVisible>
+                        <input class="form-control fs-6 ps-3" *ngIf="search" type="text" pInputText [(ngModel)]="searchText" placeholder="Global Search" />
+                        <button class="btn btn-primary ms-2" *ngIf="search" (click)="searchAction()">
+                      Search
+                  </button>
+                    </ng-template>
+                </div>
+            </div>
 
             <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="_tickets">
                 <ng-template pTemplate="header" class="text-center">

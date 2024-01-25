@@ -91,7 +91,7 @@ dropdownOption: Array<any> = [];
   ListAllInvoices(  statuspayments:any) {
     this.payments=[]
     this.numberInvoices=0
-    this._adminservices.ListAllInvoices( statuspayments,this.pageNumber,this.pagesize ).subscribe((res:any) => {
+    this._adminservices.ListAllInvoices( statuspayments,this.pageNumber,this.pagesize ,this.searchText).subscribe((res:any) => {
       this.payments = res["data"];
       this.numberInvoices = this.payments.length;
       this.totalofPages=res["totalPages"]
@@ -145,6 +145,22 @@ dropdownOption: Array<any> = [];
     this.ListAllInvoices(this.statuspayment);
 
   }
+
+}
+searchText:any=""
+
+searchKey(data: string) {
+  debugger
+  this.searchText = data;
+  this.ListAllInvoices(this.statuspayment);
+}
+searchTextChange:any
+search:boolean=false
+searchAction() {
+  // this.searchTextChange.emit(this.searchText);
+  this.search = false;
+  this.ListAllInvoices(this.statuspayment);
+    this.searchText =""
 
 }
 }

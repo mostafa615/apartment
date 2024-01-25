@@ -70,7 +70,7 @@ export class MessageComponent {
     getAll_tickets(   ) {
       this._tickets=[]
       this.number_tickets=0
-      this._ticketService.AllTickets(this.date,this.pageNumber,this.pagesize).subscribe((res:any) => {
+      this._ticketService.AllTickets(this.date,this.pageNumber,this.pagesize,this.searchText).subscribe((res:any) => {
         this._tickets = res["data"];
         this.number_tickets = this._tickets.length;
         this.totalofPages=res["totalPages"]
@@ -126,6 +126,22 @@ export class MessageComponent {
     hidecard(id:any){
        this.showEdit=[]
 
+
     }
+    searchText:any=""
+    search:boolean = false;
+  searchKey(data: string) {
+    debugger
+    this.searchText = data;
+    this.getAll_tickets();
+  }
+  searchTextChange:any
+  searchAction() {
+    // this.searchTextChange.emit(this.searchText);
+    this.search = false;
+    this.getAll_tickets();
+    this.searchText =""
+
+  }
   }
 

@@ -185,4 +185,9 @@ searchKey(data: string) {
   this.searchText = data;
   this.getAllworkers();
 }
+searchTextChange:any
+searchAction() {
+  this.searchTextChange.emit(this.searchText);
+  this.search = false;
+}
 }

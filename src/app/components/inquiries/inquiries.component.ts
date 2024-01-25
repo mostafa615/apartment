@@ -79,7 +79,7 @@ gotopage( ){
   getAllInquires(  statusinquires:any) {
     this.Inquires=[]
     this.numberInquires=0
-    this._inquiresService.getAllInquires(statusinquires,this.pageNumber,this.pagesize,this.date).subscribe((res:any) => {
+    this._inquiresService.getAllInquires(statusinquires,this.pageNumber,this.pagesize,this.date,this.searchText).subscribe((res:any) => {
       this.Inquires = res["data"];
       this.numberInquires = this.Inquires.length;
       this.totalofPages=res["totalPages"]
@@ -213,6 +213,22 @@ event.stopPropagation()
   }
   hidecard(id:any){
      this.showEdit=[]
+
+  }
+  searchText:any=""
+  search:boolean=false
+
+  searchKey(data: string) {
+    debugger
+    this.searchText = data;
+    this.getAllInquires(this.statusinquire)
+  }
+  searchTextChange:any
+  searchAction() {
+    // this.searchTextChange.emit(this.searchText);
+    this.search = false;
+    this.getAllInquires(this.statusinquire)
+    this.searchText =""
 
   }
 }

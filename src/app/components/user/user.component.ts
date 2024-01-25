@@ -106,7 +106,7 @@ export class UserComponent {
    getAllTenants(  ) {
     this.Tenants=[]
     this.numberTenants=0
-    this._adminservices.TenantList( this.pageNumber,this.pagesize,this.Date).subscribe((res:any) => {
+    this._adminservices.TenantList( this.pageNumber,this.pagesize,this.Date,this.searchText).subscribe((res:any) => {
       this.Tenants = res["data"];
       this.numberTenants = this.Tenants.length;
       this.totalofPages=res["totalPages"]
@@ -181,4 +181,19 @@ export class UserComponent {
       this.showEdit=[]
 
    }
+   searchText:any=""
+
+searchKey(data: string) {
+  debugger
+  this.searchText = data;
+  this.getAllTenants();
+}
+searchTextChange:any
+searchAction() {
+  // this.searchTextChange.emit(this.searchText);
+  this.search = false;
+  this.getAllTenants();
+  this.searchText=""
+
+}
 }
