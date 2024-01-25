@@ -16,7 +16,7 @@ export class HeadComponent {
 
   constructor(private uploadFile: UploadFileService, private http: HttpClient,private _adminservices:AdminsService) { }
   ngOnInit(){
-  this.PushNotification()
+  // this.PushNotification()
 }
   showSidebar(): void{
 
@@ -61,5 +61,11 @@ debugger
 }
 closenotifaction(){
   this.display1="none"
+}
+ClickedOut(event:any) {
+  // debugger
+  // if(event.target.className != "cfresda") {
+  //   this.display1 ="none"
+  // }
 }
 }
