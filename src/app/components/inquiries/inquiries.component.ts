@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {InquiresService} from '../../_services/inquires/inquires.service'
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import * as signalR from '@microsoft/signalr';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-inquiries',
   templateUrl: './inquiries.component.html',
@@ -19,6 +21,21 @@ export class InquiriesComponent implements OnInit {
     this.initFakeData();
     this. getAllInquires(this.statusinquire);
     this.checkRole();
+    const connection = new signalR.HubConnectionBuilder()
+
+    .withUrl(environment.apiUrl + '/notify',{ withCredentials: false})
+    .build();
+
+  connection.start().then(function () {
+  }).catch(function (err) {
+    return console.error(err.toString());
+  });
+
+  connection.on("NewInquiry", (result: any) => {
+    this.getAllInquires(this.statusinquire);
+    this.messageService.add({ severity: 'info', summary: 'New Booking Request', detail: result.noti_Name });
+
+  });
   }
   inquiresRole:any
 is_Super:any

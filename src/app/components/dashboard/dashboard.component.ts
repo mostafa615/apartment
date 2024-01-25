@@ -1,11 +1,16 @@
-import { Component ,ViewEncapsulation} from '@angular/core';
+import { Component ,ViewEncapsulation,OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import * as signalR from '@microsoft/signalr';
+import { MessageService } from 'primeng/api';
 import { ApartmentService } from 'src/app/_services/apartments/apartment.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+
+
   encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent {
@@ -24,10 +29,27 @@ export class DashboardComponent {
   listDropDown:Array<object>=[{name:'Today'},{name:'Last week'},{name:'This month'},{name:'This year'}]
   DashboardRole:any
   is_Super:any
-  constructor(private apartmentSer: ApartmentService,public router: Router) {
+  constructor(private apartmentSer: ApartmentService,public router: Router,private messageService: MessageService,) {
     // this.checkRole();
-  }
 
+  }
+  ngOnInit(): void {
+    const connection = new signalR.HubConnectionBuilder()
+
+    .withUrl(environment.apiUrl + '/notify',{ withCredentials: false})
+    .build();
+
+  connection.start().then(function () {
+  }).catch(function (err) {
+    return console.error(err.toString());
+  });
+
+  connection.on("PublicNotification", (result: any) => {
+
+    this.messageService.add({ severity: 'info', summary: 'New Notification', detail: result.noti_Name });
+
+  });
+  }
   checkRole(){
     const data = localStorage.getItem("user");
      if (data !== null) {

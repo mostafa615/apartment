@@ -29,18 +29,19 @@ export class MainFileComponent {
     this.checkRole()
 
     const connection = new signalR.HubConnectionBuilder()
-    .configureLogging(signalR.LogLevel.Information)
-    .withUrl(environment.HubUrl + 'notify',{ withCredentials: false})
+
+    .withUrl(environment.apiUrl + '/notify',{ withCredentials: false})
     .build();
 
   connection.start().then(function () {
-    console.log('SignalR Connected!');
   }).catch(function (err) {
     return console.error(err.toString());
   });
 
-  connection.on("BroadcastMessage", () => {
+  connection.on("NewIssue", (result: any) => {
     this.getAllIssues();
+    this.messageService.add({ severity: 'info', summary: 'New Issue', detail: result.noti_Name });
+
   });
 
    }

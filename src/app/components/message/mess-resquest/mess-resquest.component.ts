@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as signalR from '@microsoft/signalr';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { UploadFileService } from 'src/app/_services/UploadFile/upload-file.service';
 import { AdminsService } from 'src/app/_services/admins/admins.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-mess-resquest',
   templateUrl: './mess-resquest.component.html',
   styleUrls: ['./mess-resquest.component.css']
+
 })
 export class MessResquestComponent implements OnInit {
   showSide:string = '';
@@ -21,6 +24,21 @@ export class MessResquestComponent implements OnInit {
    }
   ngOnInit() {
     this. getAll_tickets(   )
+    const connection = new signalR.HubConnectionBuilder()
+
+    .withUrl(environment.apiUrl + '/notify',{ withCredentials: false})
+    .build();
+
+  connection.start().then(function () {
+  }).catch(function (err) {
+    return console.error(err.toString());
+  });
+
+  connection.on("NewTicket", (result: any) => {
+    this.getAll_tickets();
+    this.messageService.add({ severity: 'info', summary: 'New Ticket', detail: result.noti_Name });
+
+  });
   }
   showEdit: Array<boolean> = [];
   addItem(value:any){
