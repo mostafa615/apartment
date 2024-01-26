@@ -44,7 +44,9 @@
                 <!-- search input -->
                 <div class="d-flex align-items-center mx-2 mt-2 w-50">
                     <ng-container *ngIf="!search; else searchVisible">
-                        <i class="pi pi-search cursor ms-auto" style="margin-right: 0.75rem;" (click)="search = true"></i>
+                        <!-- <i class="pi pi-search cursor ms-auto" style="margin-right: 0.75rem;" (click)="search = true"></i> -->
+                        <img class="pi pi-search cursor ms-auto" style="margin-right: 0.75rem;" (click)="search = true" src="../../../assets/images/search.svg">
+
                     </ng-container>
                     <ng-template #searchVisible>
                         <input class="form-control fs-6 ps-3" *ngIf="search" type="text" pInputText [(ngModel)]="searchText" placeholder="Global Search" />
@@ -120,7 +122,7 @@
                             <div>
                                 <span class="rounded-5 px-3 py-1" style="background-color:#e6e6e6cf;;color: rgb(0, 0, 0);font-size: 12px !important;" [class.active]="Tenant?.user_Behavior=='Approved'">
 
-                    <i class="fa fa-circle" aria-hidden="true"    style="font-size: 12px !important;"></i> {{Tenant?.user_Behavior}}
+                     {{Tenant?.user_Behavior}}
                 </span>
 
 
@@ -130,11 +132,11 @@
                             <div>
                                 <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;border-left: none; font-size: 12px!important;" *ngIf="Tenant?.status==true">
 
-                <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem !important;"></i> Active
+                Active
             </span>
                                 <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;border-left: none;font-size: 12px !important;" *ngIf="Tenant?.status==false">
 
-              <i class="fa fa-circle" aria-hidden="true"    style="font-size: .6rem !important;"></i> Suspended
+               Suspended
           </span>
 
                             </div>
