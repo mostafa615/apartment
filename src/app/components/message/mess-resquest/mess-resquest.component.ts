@@ -34,9 +34,13 @@ export class MessResquestComponent implements OnInit {
     return console.error(err.toString());
   });
 
-  connection.on("NewTicket", (result: any) => {
-    this.getAll_tickets();
-    this.messageService.add({ severity: 'info', summary: 'New Ticket', detail: result.noti_Name });
+  connection.on("AppReply", (result: any) => {
+    this._ticketService.GetTicketDetails(this.paramid).subscribe((res:any) => {
+      this.deatail = res;
+
+     }, (error) => {
+       console.error('Error fetching owners:', error);
+    });
 
   });
   }

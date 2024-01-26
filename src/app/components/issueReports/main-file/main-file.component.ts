@@ -40,7 +40,7 @@ export class MainFileComponent {
 
   connection.on("NewIssue", (result: any) => {
     this.getAllIssues();
-    this.messageService.add({ severity: 'info', summary: 'New Issue', detail: result.noti_Name });
+    //this.messageService.add({ severity: 'info', summary: 'New Issue', detail: result.noti_Name });
 
   });
 

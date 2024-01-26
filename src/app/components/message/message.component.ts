@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import * as signalR from '@microsoft/signalr';
 import { MessageService } from 'primeng/api';
 import { AdminsService } from 'src/app/_services/admins/admins.service';
 import { ApartmentService } from 'src/app/_services/apartments/apartment.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-message',
@@ -20,6 +22,21 @@ export class MessageComponent {
   }
   ngOnInit() {
       this.getAll_tickets();
+      const connection = new signalR.HubConnectionBuilder()
+
+      .withUrl(environment.apiUrl + '/notify',{ withCredentials: false})
+      .build();
+
+    connection.start().then(function () {
+    }).catch(function (err) {
+      return console.error(err.toString());
+    });
+
+    connection.on("NewTicket", (result: any) => {
+      this.getAll_tickets();
+      //this.messageService.add({ severity: 'info', summary: 'New Ticket', detail: result.noti_Name });
+
+    });
   }
   StatisticsRole:any
  is_Super:any

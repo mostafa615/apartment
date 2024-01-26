@@ -46,7 +46,7 @@ export class DashboardComponent {
 
   connection.on("PublicNotification", (result: any) => {
 
-    this.messageService.add({ severity: 'info', summary: 'New Notification', detail: result.noti_Name });
+    this.messageService.add({ severity: 'info', detail: result.noti_Name });
 
   });
   }

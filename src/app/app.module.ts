@@ -38,6 +38,10 @@ import { GoogleMapsModule } from '@angular/google-maps'
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 import { BlockUIModule } from 'ng-block-ui';
 import { BlockUIHttpModule } from 'ng-block-ui/http';
+import { environment } from 'src/environments/environment';
+import { initializeApp } from 'firebase/app';
+
+initializeApp(environment.firebase);
 @NgModule({
   declarations: [
     AppComponent,

@@ -33,7 +33,7 @@ export class InquiriesComponent implements OnInit {
 
   connection.on("NewInquiry", (result: any) => {
     this.getAllInquires(this.statusinquire);
-    this.messageService.add({ severity: 'info', summary: 'New Booking Request', detail: result.noti_Name });
+    //this.messageService.add({ severity: 'info', summary: 'New Booking Request', detail: result.noti_Name });
 
   });
   }
