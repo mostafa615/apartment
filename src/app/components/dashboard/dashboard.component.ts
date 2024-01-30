@@ -45,10 +45,19 @@ export class DashboardComponent {
   });
 
   connection.on("PublicNotification", (result: any) => {
-
+    this.playAudio();
     this.messageService.add({ severity: 'info', detail: result.noti_Name });
 
   });
+  }
+  playAudio(){
+    let audio = new Audio();
+    audio.src = "http://dev.studiflats.com/assets/bell.wav";
+
+    let audio2: HTMLAudioElement = new Audio("http://dev.studiflats.com/assets/bell.wav");
+    audio2.play();
+
+
   }
   checkRole(){
     const data = localStorage.getItem("user");

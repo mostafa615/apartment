@@ -2,7 +2,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { IUser } from '../models/user';
@@ -55,6 +55,12 @@ export class AuthenticationService {
         this.userSubject.next(null);
         this.router.navigate(['/login']);
 
+    }
+    FCMToken(token:string):Observable<any>{
+      let  url=environment.apiUrl+"/Basics/FCMDashBoard?Token="+token
+      return this.http.post<any>(url, { token }).pipe(
+
+      )
     }
     public getToken(): string | null {
       return this.isLoggedIn() ? localStorage.getItem("tokenKey") : null;

@@ -47,8 +47,8 @@
                 <!-- search input -->
                 <div class="d-flex align-items-center mx-2 mt-2 w-50">
                     <ng-container *ngIf="!search; else searchVisible">
-                        <img class="pi pi-search cursor ms-auto" style="margin-right: 0.75rem;" (click)="search = true" src="../../../assets/images/search.svg">
-                        <!-- <i class="pi pi-search cursor ms-auto" style="margin-right: 0.75rem;" (click)="search = true"></i> -->
+                        <img class="pi pi-search cursor ms-auto" style="margin-right: 2rem;" (click)="search = true" src="../../../assets/images/search.svg">
+                        <!-- <i class="pi pi-search cursor ms-auto" style="margin-right: 2rem;" (click)="search = true"></i> -->
                     </ng-container>
                     <ng-template #searchVisible>
                         <input class="form-control fs-6 ps-3" *ngIf="search" type="text" pInputText [(ngModel)]="searchText" placeholder="Global Search" />
@@ -123,8 +123,10 @@
                             {{inquire?.request_Code}}
                         </td>
                         <td>
-                            <img *ngIf="inquire.profileImg" [src]="inquire?.profileImg" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;">
+                          <!--   <img *ngIf="inquire.profileImg" [src]="inquire?.profileImg" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;">
                             <img *ngIf="!inquire.profileImg" src="../../../assets/images/Frame 1261154899.svg" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;cursor: pointer;"> {{inquire?.userName}}
+ -->
+ <p-chip label="{{inquire?.userName}}" image="{{ inquire.profileImg}}"  routerLink="/app-edite-user-details/{{ inquire.user_ID }}"></p-chip>
 
                         </td>
                         <td>
@@ -139,22 +141,16 @@
 
                         <td>
                             <div>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;font-size: 12px !important;" *ngIf="inquire?.status=='Approved'">
+                                  <p-tag severity="success" value="{{inquire?.status}}" [rounded]="true "*ngIf="inquire?.status=='Approved'"> </p-tag>
 
-                            {{inquire?.status}}
-                      </span>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;font-size: 12px !important;" *ngIf="inquire?.status=='Cancelled'">
-                          {{inquire?.status}}
 
-                         </span>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #FFF9E6;color: #FFB900;font-size: 12px !important;" *ngIf="inquire?.status=='Pending'">
-                           {{inquire?.status}}
+                                  <p-tag severity="danger" value="{{inquire?.status}}" [rounded]="true "*ngIf="inquire?.status=='Canelled'"> </p-tag>
 
-                           </span>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #D2D9E1;color: #1F4068;font-size: 12px !important;" *ngIf="inquire?.status=='Waiting'">
-                              {{inquire?.status}}
+                                  <p-tag severity="warning" value="{{inquire?.status}}" [rounded]="true "*ngIf="inquire?.status=='Pending'"> </p-tag>
 
-                             </span>
+
+                                  <p-tag severity="info" value="{{inquire?.status}}" [rounded]="true "*ngIf="inquire?.status=='Waiting'"> </p-tag>
+
 
                             </div>
                         </td>

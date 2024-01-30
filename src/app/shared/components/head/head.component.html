@@ -17,7 +17,7 @@
                 <!-- start notification -->
                 <span (click)="shownot()" style="cursor: pointer; margin-right: 1.25rem;"><img src="assets/images/notification.svg" /></span>
                 <!-- end notification -->
-                <div [ngStyle]="{ 'display':display1} " (click)="ClickedOut($event)" style=" z-index: 999 ; right: 0px;" class=" z-3 rounded-3 bg-white border cfresda ">
+                <div [ngStyle]="{ 'display':display1} " (click)="ClickedOut($event)" style=" z-index: 999 ; right: 0px; margin-top: 2.5rem;" class=" z-3 rounded-3 bg-white border cfresda ">
                     <div class="notifications">
                         <div class="div">
                             <div class="carbon-close"><img (click)="closenotifaction()" style="cursor: pointer;" class="vector" src="../../../../assets/images/carbon_close.svg" /></div>
@@ -41,6 +41,9 @@
                             </div>
                         </div>
                     </div>
+
+
+
                     <!-- <div class="frame">
                         <img class="studiflats" src="img/studiflats-1.svg" />
                         <div class="frame-wrapper">

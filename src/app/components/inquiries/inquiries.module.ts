@@ -1,4 +1,3 @@
-
 import { InquiriesComponent } from './inquiries.component';
 
 import { ViewInquireComponent } from './view-inquire/view-inquire.component';
@@ -15,24 +14,29 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { DropdownModule } from 'primeng/dropdown';
 
-
 import { SharedModule } from 'src/app/shared/shared.module';
- import { TableModule } from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
- import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { CalendarModule } from 'primeng/calendar';
 import { PaginatorModule } from 'primeng/paginator';
-
+import { GalleriaModule } from 'primeng/galleria';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { ChipModule } from 'primeng/chip';
 
 const routes: Routes = [];
 
 @NgModule({
   declarations: [
-    InquiriesComponent,ViewInquireComponent,InquireOfferComponent,InquireEditComponent,CreacteContractComponent
-   ],
+    InquiriesComponent,
+    ViewInquireComponent,
+    InquireOfferComponent,
+    InquireEditComponent,
+    CreacteContractComponent,
+  ],
   imports: [
     CommonModule,
     PaginatorModule,
@@ -47,11 +51,13 @@ const routes: Routes = [];
     ProgressSpinnerModule,
     ButtonModule,
     ToastModule,
-    RouterModule.forChild(routes)
+    GalleriaModule,
+    BreadcrumbModule,
+    ChipModule,
+    RouterModule.forChild(routes),
   ],
-  exports: [ ],
+  exports: [],
   providers: [MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-
 })
-export class InquiriesModule { }
+export class InquiriesModule {}

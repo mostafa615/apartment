@@ -13,22 +13,17 @@
 
     <!-- start content page  -->
     <main class="p-4 col-lg-10 ">
-        <div class="d-md-flex justify-content-between dashboard mt-2">
-            <p class="fw-bold ms-1" style="color: #6c6a6a;">Tenants : {{numberTenants}}</p>
-            <div class="d-flex justify-content-lg-between ">
-                <div class="d-flex justify-content-between ">
-                    <!-- <button class="month rounded-start px-3 py-1 outline-none">This Month</button>
-                    <button class="week rounded-end px-3 py-1 outline-none">Last Week</button> -->
-                </div>
-                <!-- start dropdown button  -->
-                <app-dropdown class="ms-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
-                <!-- end dropdown button  -->
-                <!-- start addUserButton  -->
-                <!-- <app-add-new-button class="ms-3 mt-2" [id]="'app-user-details'"></app-add-new-button> -->
-                <!-- end addUserButton  -->
+      <div class="row justify-content-center align-items-center" style="color: #6c6a6a">
+        <div class="col-10">
+          <p-breadcrumb class="max-w-full" [model]="[{label:'Tenants'}]" [home]="home"></p-breadcrumb>
 
-            </div>
         </div>
+        <div class="col-2">
+          <app-dropdown class="ms-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
+
+        </div>
+     </div>
+
 
         <p-toast></p-toast>
         <div class="card mt-4">
@@ -44,8 +39,8 @@
                 <!-- search input -->
                 <div class="d-flex align-items-center mx-2 mt-2 w-50">
                     <ng-container *ngIf="!search; else searchVisible">
-                        <!-- <i class="pi pi-search cursor ms-auto" style="margin-right: 0.75rem;" (click)="search = true"></i> -->
-                        <img class="pi pi-search cursor ms-auto" style="margin-right: 0.75rem;" (click)="search = true" src="../../../assets/images/search.svg">
+                        <!-- <i class="pi pi-search cursor ms-auto" style="margin-right: 2rem;" (click)="search = true"></i> -->
+                        <img class="pi pi-search cursor ms-auto" style="margin-right: 2rem;" (click)="search = true" src="../../../assets/images/search.svg">
 
                     </ng-container>
                     <ng-template #searchVisible>
@@ -130,14 +125,10 @@
                         </td>
                         <td>
                             <div>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;border-left: none; font-size: 12px!important;" *ngIf="Tenant?.status==true">
+                              <p-tag severity="success" value="Active" [rounded]="true "*ngIf="Tenant?.status==true"> </p-tag>
+                              <p-tag severity="danger" value="Suspended" [rounded]="true "*ngIf="Tenant?.status==false"> </p-tag>
 
-                Active
-            </span>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;border-left: none;font-size: 12px !important;" *ngIf="Tenant?.status==false">
 
-               Suspended
-          </span>
 
                             </div>
                         </td>

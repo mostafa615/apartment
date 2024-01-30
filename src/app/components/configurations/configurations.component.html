@@ -13,22 +13,9 @@
 
     <!-- start content page  -->
     <main class="p-4 col-lg-10 ">
-        <div class="d-md-flex justify-content-between dashboard mt-2">
-            <p class="fw-bold ms-1" style="color: #6c6a6a;">App Config </p>
-            <div class="d-flex justify-content-lg-between ">
-                <div class="d-flex justify-content-between ">
-                    <!-- <button class="month rounded-start px-3 py-1 outline-none">This Month</button>
-              <button class="week rounded-end px-3 py-1 outline-none">Last Week</button> -->
-                </div>
-                <!-- start dropdown button  -->
-                <!-- end dropdown button  -->
-                <!-- start addUserButton  -->
-                <!-- <app-add-new-button class="ms-3 mt-2" [id]="'app-user-details'"></app-add-new-button> -->
-                <!-- end addUserButton  -->
-                <!-- <a *ngIf="partnersRole?.p_Add==true || is_Super==true" class="px-3 py-2 rounded border text-white text-decoration-none" routerLink="/add-partner" style="background-color:#1F4068; cursor: pointer;">
-                    <img src="assets/images/plus.svg" class="me-2 ">Add New
-                </a> -->
-            </div>
+        <div class="row">
+          <p-breadcrumb class="max-w-full" [model]="[{label:'App Configuration'}]" [home]="home"></p-breadcrumb>
+
         </div>
 
         <p-toast></p-toast>
@@ -47,11 +34,11 @@
                     <div class="row" style="margin-bottom: 20px;">
                         <div class="mb-3 col-12 col-md-6">
 
-                            <label for="exampleInputPricepermonth" class="form-label gray fw-bold"> service fee </label>
+                            <label for="exampleInputPricepermonth" class="form-label gray fw-bold"> The allowed period to pay rest of security deposit(days) </label>
                             <input [(ngModel)]="detailconfig.service_Fees" type="number" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
                         </div>
                         <div class="mb-3 col-12 col-md-6">
-                            <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold"> Waiting hours before paying the security deposit  </label>
+                            <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold"> The allowed period to pay part of security deposit(hours)</label>
                             <input [(ngModel)]="detailconfig.security_hours" type="number" class=" form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit" />
 
                         </div>
@@ -59,21 +46,21 @@
                     </div>
                     <div class="row" style="margin-bottom: 20px;">
                         <div>
-                            <label class="fw-bold" style="color: #605D62;">terms and condition EN</label>
+                            <label class="fw-bold" style="color: #605D62;">Terms and Condition EN</label>
                             <textarea [(ngModel)]="detailconfig.terms_En" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
                         </div>
 
                     </div>
                     <div class="row" style="margin-bottom: 20px;">
                         <div>
-                            <label class="fw-bold" style="color: #605D62;">terms and condition DE</label>
+                            <label class="fw-bold" style="color: #605D62;">Terms and Condition DE</label>
                             <textarea [(ngModel)]="detailconfig.terms_De" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
                         </div>
 
                     </div>
                     <div class="row" style="margin-bottom: 20px;">
                         <div>
-                            <label class="fw-bold" style="color: #605D62;">privacy EN</label>
+                            <label class="fw-bold" style="color: #605D62;">Privacy EN</label>
                             <textarea [(ngModel)]="detailconfig.privacy_En" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
                         </div>
 
@@ -82,15 +69,29 @@
 
                     <div class="row" style="margin-bottom: 20px;">
                         <div>
-                            <label class="fw-bold" style="color: #605D62;">privacy DE</label>
+                            <label class="fw-bold" style="color: #605D62;">Privacy DE</label>
                             <textarea [(ngModel)]="detailconfig.privacy_De" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
                         </div>
 
                     </div>
                     <div class="row" style="margin-bottom: 20px;">
+                      <div>
+                          <label class="fw-bold" style="color: #605D62;">Payment Terms EN</label>
+                          <textarea [(ngModel)]="detailconfig.paymentTerms_En" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
+                      </div>
+
+                  </div>
+                  <div class="row" style="margin-bottom: 20px;">
+                    <div>
+                        <label class="fw-bold" style="color: #605D62;">Payment Terms EN DE</label>
+                        <textarea [(ngModel)]="detailconfig.paymentTerms_De" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
+                    </div>
+
+                </div>
+                    <div class="row" style="margin-bottom: 20px;">
                         <div>
-                            <label class="fw-bold" style="color: #605D62;">general rules</label>
-                            <textarea [(ngModel)]="detailconfig.general_Rule" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
+                            <label class="fw-bold" style="color: #605D62;">General rules</label>
+                            <textarea [(ngModel)]="detailconfig.general_Rules" class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;"></textarea>
                         </div>
 
                     </div>
@@ -102,7 +103,7 @@
 
 
                                 <button (click)="AddConfig()" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
-                                save
+                                Save
                   </button>
                                 <!-- <button class="label-wrapper"><div class="label-3">save</div>
                     </button> -->

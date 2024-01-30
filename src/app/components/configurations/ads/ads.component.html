@@ -11,23 +11,10 @@
 
     <!-- start content page  -->
     <main class="p-4 col-lg-10 ">
-        <div class="d-md-flex justify-content-between dashboard mt-2">
-            <p class="fw-bold ms-1" style="color: #6c6a6a;">App Config </p>
-            <div class="d-flex justify-content-lg-between ">
-                <div class="d-flex justify-content-between ">
-                    <!-- <button class="month rounded-start px-3 py-1 outline-none">This Month</button>
-            <button class="week rounded-end px-3 py-1 outline-none">Last Week</button> -->
-                </div>
-                <!-- start dropdown button  -->
-                <!-- end dropdown button  -->
-                <!-- start addUserButton  -->
-                <!-- <app-add-new-button class="ms-3 mt-2" [id]="'app-user-details'"></app-add-new-button> -->
-                <!-- end addUserButton  -->
-                <!-- <a *ngIf="partnersRole?.p_Add==true || is_Super==true" class="px-3 py-2 rounded border text-white text-decoration-none" routerLink="/add-partner" style="background-color:#1F4068; cursor: pointer;">
-                  <img src="assets/images/plus.svg" class="me-2 ">Add New
-              </a> -->
-            </div>
-        </div>
+      <div class="row" style="color: #6c6a6a">
+        <p-breadcrumb class="max-w-full" [model]="[{label:'Ads'}]" [home]="home"></p-breadcrumb>
+
+     </div>
 
         <p-toast></p-toast>
         <div class="card mt-4">

@@ -11,24 +11,21 @@
 
     <main class="p-4 col-lg-10">
 
-        <div class="d-md-flex justify-content-between dashboard mt-2  ">
-            <p class="fw-bold ms-1" style="color: #6c6a6a;">Admins</p>
-            <div class="d-flex justify-content-lg-between cvvvvvvv ">
-                <app-dropdown class="ms-3" style="margin-right: 20px;" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
+          <div class="row justify-content-center align-items-center" style="color: #6c6a6a">
+           <div class="col-9">
+            <p-breadcrumb class="max-w-full" [model]="[{label:'Admins'}]" [home]="home"></p-breadcrumb>
+           </div>
+           <div class="col">
+            <app-dropdown class="ms-3" style="margin-right: 20px;" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
 
-                <!-- start dropdown button  -->
-                <!-- <app-dropdown class="me-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown> -->
-                <!-- end dropdown button  -->
-                <!-- start add button (add new owner) in page  -->
-                <!-- <app-add-new-button [id]="'/owner/create_new'" class="mt-2"></app-add-new-button> -->
-                <a class="px-3 py-2 rounded border text-white text-decoration-none" routerLink="/add-admin" style="background-color:#1F4068; cursor: pointer;">
-                    <img src="assets/images/plus.svg" class="me-2 ">Add New
-                </a>
-                <!-- end add button (add new owner) in page  -->
-            </div>
-            <p-toast></p-toast>
-
-        </div>
+           </div>
+           <div class="col">
+            <a class="px-3 py-2 rounded border text-white text-decoration-none" routerLink="/add-admin" style="background-color:#1F4068; cursor: pointer;">
+              <img src="assets/images/plus.svg" class="me-2 ">Add New
+          </a>
+           </div>
+         </div>
+        <p-toast></p-toast>
         <div class="card mt-4">
 
 
@@ -44,7 +41,7 @@
                 <!-- search input -->
                 <div class="d-flex align-items-center mx-2 mt-2 w-50">
                     <ng-container *ngIf="!search; else searchVisible">
-                        <i class="pi pi-search cursor ms-auto" style="margin-right: 0.75rem;" (click)="search = true"></i>
+                        <i class="pi pi-search cursor ms-auto" style="margin-right: 2rem;" (click)="search = true"></i>
                     </ng-container>
                     <ng-template #searchVisible>
                         <input class="form-control fs-6 ps-3" *ngIf="search" type="text" pInputText [(ngModel)]="searchText" placeholder="Global Search" />
@@ -74,8 +71,7 @@
 
                             </th>
                             <th class="td-name">
-                                what’s app number
-
+                              Whatsapp Number
                             </th>
                             <th class="td-name">
                                 Role
@@ -116,14 +112,11 @@
                         </td> -->
                         <td>
                             <div>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #cfffcf;color: green;" *ngIf="admin?.status==true">
+                              <p-tag severity="success" value="Active" [rounded]="true "*ngIf="admin?.status==true"> </p-tag>
 
-                            <i class="fa fa-circle" aria-hidden="true"  *ngIf="admin?.status==true" style="font-size: .6rem;"></i> active
-                        </span>
-                                <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;" *ngIf="admin?.status!=true">
-                          <i class="fa fa-circle" aria-hidden="true"  *ngIf="admin?.status!=true" style="font-size: .6rem;"></i> inactive
 
-                           </span>
+                              <p-tag severity="danger" value="Non-Active" [rounded]="true "*ngIf="admin?.status==false"> </p-tag>
+
                             </div>
                         </td>
                         <td class="cursor position-relative">

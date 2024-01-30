@@ -16,7 +16,7 @@ export class HeadComponent {
 
   constructor(private uploadFile: UploadFileService, private http: HttpClient,private _adminservices:AdminsService) { }
   ngOnInit(){
-  // this.PushNotification()
+   this.PushNotification()
 }
   showSidebar(): void{
 
@@ -41,8 +41,8 @@ export class HeadComponent {
    }
    display1="none"
    shownot(){
-    this. PushNotification()
-this.display1="block"
+    //this. PushNotification()
+    this.display1="block"
    }
 //    onLikeClicked(event:any){
 //     // event.stopPropagation();
@@ -65,7 +65,7 @@ closenotifaction(){
 ClickedOut(event:any) {
   // debugger
   // if(event.target.className != "cfresda") {
-  //   this.display1 ="none"
+    this.display1 ="none"
   // }
 }
 }

@@ -10,94 +10,112 @@ import { RolesService } from 'src/app/_services/roles/roles.service';
 @Component({
   selector: 'app-edit-admin',
   templateUrl: './edit-admin.component.html',
-  styleUrls: ['./edit-admin.component.css']
+  styleUrls: ['./edit-admin.component.css'],
 })
-export class EditAdminComponent implements OnInit   {
+export class EditAdminComponent implements OnInit {
   createAdmin!: FormGroup;
-  param:any
-  constructor(  private viewportScroller: ViewportScroller,
+  param: any;
+  home: any;
+  gfg: any;
+  constructor(
+    private viewportScroller: ViewportScroller,
     private uploadfile: UploadFileService,
     private messageService: MessageService,
     public router: Router,
-    public _rolesService:RolesService, public _adminservices:AdminsService,
-    public _ActivatedRoute: ActivatedRoute,private uploadFile: UploadFileService) {
-      this.param = _ActivatedRoute.snapshot.paramMap.get('id');
-     this.listAnchors = [
+    public _rolesService: RolesService,
+    public _adminservices: AdminsService,
+    public _ActivatedRoute: ActivatedRoute,
+    private uploadFile: UploadFileService
+  ) {
+    this.param = _ActivatedRoute.snapshot.paramMap.get('id');
+    this.listAnchors = [
       { id: 'Generalinfo', link: 'General info' },
       { id: 'OtherDetails', link: 'Other Details' },
-     ]
-   }
+    ];
+  }
 
   ngOnInit() {
+    this.home = { icon: 'pi pi-home', routerLink: ['/dashboard'] };
+    this.gfg = [
+      {
+        label: 'Admins',
+        routerLink: ['/admins'],
+      },
+      {
+        label: 'Add New Admin',
+      },
+    ];
     this.bindCreateAdmin();
     this.getAllRolles();
-    this.GetProfile() ;
+    this.GetProfile();
     this.checkRole();
   }
-  AdminRole:any
-  is_Super:any
-  checkRole(){
-    const data = localStorage.getItem("user");
-     if (data !== null) {
-
+  AdminRole: any;
+  is_Super: any;
+  checkRole() {
+    const data = localStorage.getItem('user');
+    if (data !== null) {
       let parsedData = JSON.parse(data);
-       this.is_Super=parsedData.is_Super
-      if(parsedData.is_Super==false) {
-  for(let i=0; i<parsedData.permissions.length;i++){
-    if(parsedData.permissions[i].page_Name=="Settings"){
-      this.AdminRole=parsedData.permissions[i];
+      this.is_Super = parsedData.is_Super;
+      if (parsedData.is_Super == false) {
+        for (let i = 0; i < parsedData.permissions.length; i++) {
+          if (parsedData.permissions[i].page_Name == 'Settings') {
+            this.AdminRole = parsedData.permissions[i];
+          }
+        }
+        if (this.AdminRole.p_Update == false && this.is_Super == false) {
+          this.gotopage();
+        }
+      }
     }
   }
-  if(this.AdminRole.p_Update==false &&this.is_Super==false) {
-    this.gotopage( )
-  }
-  }
-
-
-    }
-  }
-  gotopage( ){
-    let url: string = "unlegal";
-      this.router.navigateByUrl(url);
+  gotopage() {
+    let url: string = 'unlegal';
+    this.router.navigateByUrl(url);
   }
   listAnchors: any = [];
 
   showSide: string = '';
 
   addItem(value: string): void {
-    this.showSide = value
+    this.showSide = value;
   }
 
-  roles:any=[]
+  roles: any = [];
   getAllRolles() {
-    this.roles=[]
-     this._rolesService.getAllRolles().subscribe((res) => {
-      this.roles = res;
-     }, (error) => {
-       console.error('Error fetching owners:', error);
-    })
+    this.roles = [];
+    this._rolesService.getAllRolles().subscribe(
+      (res) => {
+        this.roles = res;
+      },
+      (error) => {
+        console.error('Error fetching owners:', error);
+      }
+    );
   }
-  adminsData :any
+  adminsData: any;
   GetProfile() {
-    this.adminsData
-     this._adminservices.GetProfile(this.param).subscribe((res) => {
-
-      this.adminsData = res[0];
-      this.createAdmin.patchValue(res[0]);
-      this.imageUrl=this.createAdmin.get("user_Img")?.value;
-     }, (error) => {
-       console.error('Error fetching owners:', error);
-    })
+    this.adminsData;
+    this._adminservices.GetProfile(this.param).subscribe(
+      (res) => {
+        this.adminsData = res[0];
+        this.createAdmin.patchValue(res[0]);
+        this.imageUrl = this.createAdmin.get('user_Img')?.value;
+      },
+      (error) => {
+        console.error('Error fetching owners:', error);
+      }
+    );
   }
   bindCreateAdmin(): void {
     this.createAdmin = new FormGroup({
-      'full_Name': new FormControl('', [Validators.required]),
-      'email': new FormControl('', [Validators.required]),
-      'phone': new FormControl('', [Validators.email, Validators.required]),
-       'about': new FormControl('', [Validators.required]),
-      'user_Img': new FormControl('', [Validators.required]),
-      'role': new FormControl('', [Validators.required]),
-      'wA_Number': new FormControl('', [Validators.required]),
+      full_Name: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.email, Validators.required]),
+      about: new FormControl('', [Validators.required]),
+      user_Img: new FormControl('', [Validators.required]),
+      role: new FormControl('', [Validators.required]),
+      wA_Number: new FormControl('', [Validators.required]),
     });
   }
   public onClick(elementId: string): void {
@@ -106,10 +124,10 @@ export class EditAdminComponent implements OnInit   {
   link: Array<boolean> = [true];
 
   changeAnchor(index: number): void {
-    this.link = this.link.map(el => el == true ? false : false)
-    this.link[index] = true
+    this.link = this.link.map((el) => (el == true ? false : false));
+    this.link[index] = true;
   }
- titlePage: string = '';
+  titlePage: string = '';
   // @Output() changeImageUrl: EventEmitter<string> = new EventEmitter<string>();
   imageUrl: string = '';
   loadingButton: boolean = false;
@@ -125,55 +143,59 @@ export class EditAdminComponent implements OnInit   {
         this.imageUrl = img[0].file_Path;
         // this.changeImageUrl.emit(img[0].file_Path);
         this.loadingButton = false;
-      })
+      });
     } else if (event == 'delete') {
       this.imageUrl = '';
       // this.changeImageUrl.emit(this.defaultImageUrl());
       this.loadingButton = false;
     }
   }
-  gotopage2( ){
-    let url: string = "admins";
-      this.router.navigateByUrl(url);
+  gotopage2() {
+    let url: string = 'admins';
+    this.router.navigateByUrl(url);
   }
   UpdateAdmin(data: any) {
-
-      this.showEror="false"
-      data.value.wA_Number = String(data.value.wA_Number);
-      data.value.phone = String(data.value.phone);
-      data.value.user_Img=this.imageUrl ;
-      this.loadingButton = true;
-         this._adminservices.UpdateUserAccount({ ...data.value},this.param).subscribe((res) => {
+    this.showEror = 'false';
+    data.value.wA_Number = String(data.value.wA_Number);
+    data.value.phone = String(data.value.phone);
+    data.value.user_Img = this.imageUrl;
+    this.loadingButton = true;
+    this._adminservices
+      .UpdateUserAccount({ ...data.value }, this.param)
+      .subscribe(
+        (res) => {
           this.loadingButton = false;
           this.router.navigate(['/admins']);
-        }, (err) => {
+        },
+        (err) => {
           this.loadingButton = false;
           console.error('Error fetching CreateOwner:', err);
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
-        })
-
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `${err.error.message[0]}`,
+          });
+        }
+      );
 
     /** conver number to string while backend fix this */
-
-
-
   }
   /**
    * defaultImageUrl
    * @returns string
    */
   defaultImageUrl(): string {
-    return 'https://t4.ftcdn.net/jpg/05/50/60/49/360_F_550604961_BZT4vo52ysIku2cQ3Zn8sAQg1rXHBKv0.jpg'
+    return 'https://t4.ftcdn.net/jpg/05/50/60/49/360_F_550604961_BZT4vo52ysIku2cQ3Zn8sAQg1rXHBKv0.jpg';
   }
-  showEror="false"
-  checkConfirm(){
-
-    if(    this.createAdmin.get('password')?.value == this.createAdmin.get('confirm_Password')?.value   ){
-
-      this.showEror="false"
-    }
-    else{
-      this.showEror="true"
+  showEror = 'false';
+  checkConfirm() {
+    if (
+      this.createAdmin.get('password')?.value ==
+      this.createAdmin.get('confirm_Password')?.value
+    ) {
+      this.showEror = 'false';
+    } else {
+      this.showEror = 'true';
     }
   }
 }

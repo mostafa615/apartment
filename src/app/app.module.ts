@@ -1,15 +1,12 @@
-import { RouterModule } from '@angular/router';
-import { PaginatorModule } from 'primeng/paginator';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { CalendarModule } from 'primeng/calendar';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 
-import { ReportsDetailsComponent } from './components/issueReports/reports-details/reports-details.component';
-import { MainFileComponent } from './components/issueReports/main-file/main-file.component';
+
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { AppartmentsModule } from './components/apartments/appartments.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
@@ -35,13 +32,18 @@ import { UserModule } from './components/user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { GoogleMapsModule } from '@angular/google-maps'
-import { PathLocationStrategy, LocationStrategy } from '@angular/common';
+import { PathLocationStrategy } from '@angular/common';
 import { BlockUIModule } from 'ng-block-ui';
 import { BlockUIHttpModule } from 'ng-block-ui/http';
-import { environment } from 'src/environments/environment';
-import { initializeApp } from 'firebase/app';
 
+
+
+
+import { environment } from 'src/environments/environment';
+import { initializeApp } from "firebase/app";
 initializeApp(environment.firebase);
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +70,8 @@ initializeApp(environment.firebase);
     UserModule,
     OwnersModule,
     GoogleMapsModule ,
+
+
     BlockUIModule.forRoot({
       delayStart: 1,
       delayStop: 500,
