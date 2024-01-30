@@ -21,21 +21,32 @@
             </div>
         </div>
         <div class="row">
-            <div class="mb-3 col-12 col-md-6">
+            <div class="mb-3 col-4 col-md-4">
                 <label for="exampleInputPricepermonth" class="form-label gray fw-bold">Price per Month</label>
                 <input formControlName='apt_Price' min="0" type="number" [class.is-invalid]="generalInfoForm.get('apt_Price')!.invalid && generalInfoForm.get('apt_Price')!.touched " class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
                 <span class="text-danger d-block m-2 " *ngIf="generalInfoForm.get('apt_Price')!.invalid && generalInfoForm.get('apt_Price')!.touched ">
             this field is required
         </span>
             </div>
-            <div class="mb-3 col-12 col-md-6">
+
+            <div class="mb-3 col-4 col-md-4">
+              <label for="exampleInputService_Fees" class="form-label gray fw-bold">Service Fees</label>
+              <input formControlName="service_Fees" min="0" type="number" [class.is-invalid]="generalInfoForm.get('service_Fees')!.invalid && generalInfoForm.get('service_Fees')!.touched " class="form-control rounded-2 py-2 fs-6" id="exampleInputService_Fees"
+              />
+              <span class="text-danger d-block m-2 " *ngIf="generalInfoForm.get('apt_SecuirtyDep')!.invalid && generalInfoForm.get('apt_SecuirtyDep')!.touched ">
+                 this field is required
+               </span>
+          </div>
+
+            <div class="mb-3 col-4 col-md-4">
                 <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold">Security Deposit</label>
                 <input formControlName="apt_SecuirtyDep" min="0" type="number" [class.is-invalid]="generalInfoForm.get('apt_SecuirtyDep')!.invalid && generalInfoForm.get('apt_SecuirtyDep')!.touched " class="form-control rounded-2 py-2 fs-6" id="exampleInputSecuritydeposit"
                 />
                 <span class="text-danger d-block m-2 " *ngIf="generalInfoForm.get('apt_SecuirtyDep')!.invalid && generalInfoForm.get('apt_SecuirtyDep')!.touched ">
-            this field is required
-        </span>
+                   this field is required
+                 </span>
             </div>
+
         </div>
         <!--all bills included ?-->
         <div>
