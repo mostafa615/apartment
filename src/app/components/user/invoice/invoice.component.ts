@@ -7,6 +7,7 @@ import { MessageService } from 'primeng/api';
 import { UploadFileService } from 'src/app/_services/UploadFile/upload-file.service';
 import { AdminsService } from 'src/app/_services/admins/admins.service';
 import { InquiresService } from 'src/app/_services/inquires/inquires.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-invoice',
@@ -31,7 +32,7 @@ export class InvoiceComponent implements OnInit {
   }
 
    param:any
-  constructor(private uploadFile: UploadFileService, public _adminservices:AdminsService ,private viewportScroller: ViewportScroller,private _inquiresService:InquiresService,private _ActivatedRoute:ActivatedRoute,private messageService: MessageService,public router: Router) {
+  constructor(private uploadFile: UploadFileService,private _location: Location, public _adminservices:AdminsService ,private viewportScroller: ViewportScroller,private _inquiresService:InquiresService,private _ActivatedRoute:ActivatedRoute,private messageService: MessageService,public router: Router) {
     this.param = _ActivatedRoute.snapshot.paramMap.get('id');
 
   }
@@ -56,6 +57,9 @@ export class InvoiceComponent implements OnInit {
 
 
     }
+  }
+  backClicked() {
+    this._location.back();
   }
   gotopage( ){
     let url: string = "unlegal";

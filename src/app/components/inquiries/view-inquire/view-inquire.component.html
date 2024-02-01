@@ -12,7 +12,7 @@
     <main class="p-4 col-lg-10">
         <!-- start part 1 in page  -->
         <div class="row" style="color: #6c6a6a">
-           <p-breadcrumb class="max-w-full" [model]="gfg" [home]="home"></p-breadcrumb>
+            <p-breadcrumb class="max-w-full" [model]="gfg" [home]="home"></p-breadcrumb>
 
         </div>
         <p-toast></p-toast>
@@ -21,41 +21,35 @@
         <div class="bg-white border rounded-3 mt-3 p-3">
             <div class="row">
                 <div class="col-12 col-md-6 me-4">
-                 <!--    <div class="rounded mb-3" style="overflow: hidde;height: 325px;">
+                    <!--    <div class="rounded mb-3" style="overflow: hidde;height: 325px;">
                         <img [src]="inquire_details?.apt_thumb_Img" class="w-100 h-100" />
                     </div> -->
                     <ng-container>
                         <div class="container testimonial-group">
                             <div class="row mb-3  vcrr" *ngIf="inquire_details">
 
-                               <!--  <div class="col-md-4  " *ngFor="let img of inquire_details?.apt_Imgs">
+                                <!--  <div class="col-md-4  " *ngFor="let img of inquire_details?.apt_Imgs">
 
                                     <a (click)="viewImage(img?.apt_imgs)" style="cursor: pointer;">
                                         <img [src]="img?.apt_imgs && img?.apt_imgs.includes('https') ? img?.apt_imgs : '../../../assets/images/apartmentImages/default_apartment.jpg'" alt="Apartment Image" class="w-100 h-100 maxImg">
                                     </a>
                                 </div> -->
-                                <p-galleria
+                                <p-galleria [value]="prop_imgs" [containerStyle]="{ 'max-width': '640px' }" [numVisible]="5">
+                                    <ng-template pTemplate="item" let-item>
+                                        <a (click)="viewImage(item.apt_imgs)" style="cursor: pointer;">
 
-                                [value]="prop_imgs" [containerStyle]="{ 'max-width': '640px' }" [numVisible]="5">
-                                <ng-template pTemplate="item" let-item>
-                                  <a (click)="viewImage(item.apt_imgs)" style="cursor: pointer;">
-
-                                    <img
-                                    [src]="item.apt_imgs" style="width: 640px; max-height: 480px;max-width:640px" />
-                                    </a>
-                                </ng-template>
+                                            <img [src]="item.apt_imgs" style="width: 640px; max-height: 480px;max-width:640px" />
+                                        </a>
+                                    </ng-template>
 
 
-                                <ng-template pTemplate="thumbnail" let-item >
-                                    <div class="grid  grid-nogutter justify-content-center">
-                                        <img
-                                            [src]="item.apt_imgs" style="height:80px;width: 100px;"
+                                    <ng-template pTemplate="thumbnail" let-item>
+                                        <div class="grid  grid-nogutter justify-content-center">
+                                            <img [src]="item.apt_imgs" style="height:80px;width: 100px;" />
+                                        </div>
+                                    </ng-template>
 
-                                        />
-                                    </div>
-                                </ng-template>
-
-                            </p-galleria>
+                                </p-galleria>
                             </div>
                         </div>
                     </ng-container>
@@ -108,7 +102,7 @@
                     </div>
                     <div style="display: flex; align-items: center;" class="w-96 h-16 px-6 py-4 bg-white justify-start items-center gap-3 inline-flex">
 
-                        <img style="     width: 64px; height: 64px;  border-radius: 50%;;" class="w-10 h-10 rounded-full" [src]="inquire_details?.requested_By_Img" />
+                        <img routerLink="/app-edite-user-details/{{inquire_details?.requested_user_ID}}" style="     width: 64px; height: 64px;  border-radius: 50%;cursor: pointer;" class="w-10 h-10 rounded-full" [src]="inquire_details?.requested_By_Img" />
                         <div class="flex-col justify-start items-start inline-flex">
                             <div class="text-zinc-800 text-sm font-semibold font-['Poppins'] leading-tight">{{ inquire_details?.requested_By }} </div>
                             <div class="text-neutral-400 text-sm font-normal font-['Poppins'] leading-tight"></div>
@@ -169,7 +163,7 @@
 
                                         </div>
                                         <div class="w-96 p-4 bg-white border-b border-gray-200 justify-start items-center gap-36 inline-flex" *ngIf="hidepassport==false">
-                                            <div class="d-flex justify-content-center" >
+                                            <div class="d-flex justify-content-center">
 
                                                 <a [hidden]="item.valid_Passport==false" (click)="onOpenModal1(item)" style="     border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvdd">
                                                   Not Valid
@@ -251,19 +245,19 @@
                                             <p>This contract includes all the necessary information.</p>
                                         </div>
                                         <div class="col-12 col-md-5 d-flex align-items-center">
-                                          <div class="row">
-                                            <div class="col-5">
-                                              <a class="me-3 cursor "  (click)="CreateContractPDF()"><img src="assets/images/apartmentImages/delete.svg" /></a>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <a class="me-3 cursor " (click)="CreateContractPDF()"><img src="assets/images/apartmentImages/delete.svg" /></a>
 
-                                            </div>
-                                            <div class="col-2"></div>
-                                            <div class="col-5">
-                                              <a class="me-3 cursor">
-                                                <input type="file" accept="image/*" multiple="multiple" (change)="selectFile($event)" style="width: 8%;cursor:pointer;top: 59px;height: 34%;" class="ng-star-inserted d-block  file position-absolute">
+                                                </div>
+                                                <div class="col-2"></div>
+                                                <div class="col-5">
+                                                    <a class="me-3 cursor">
+                                                        <input type="file" accept="image/*" multiple="multiple" (change)="selectFile($event)" style="width: 8%;cursor:pointer;top: 59px;height: 34%;" class="ng-star-inserted d-block  file position-absolute">
 
-                                                <img src="../../../../assets/images/Featured icon.svg" /></a>
+                                                        <img src="../../../../assets/images/Featured icon.svg" /></a>
+                                                </div>
                                             </div>
-                                          </div>
 
                                         </div>
                                     </div>

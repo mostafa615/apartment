@@ -114,6 +114,16 @@
     .ptof12 {
         display: block!important;
     }
+    .frist {
+        display: block !important;
+        width: auto !important;
+    }
+    .frist2 {
+        width: auto !important;
+    }
+    .frist3 {
+        display: block !important;
+    }
 }
 
 .ptof11 {
@@ -122,5 +132,144 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: 24px;
+    display: inline-flex
+}
+
+.frist {
+    width: 350px;
+    padding-top: 1px;
+    padding-bottom: 87px;
+    background: #F9F9F9;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+    display: inline-flex
+}
+
+.frist2 {
+    width: 350px;
+    height: 250px;
+    position: relative;
+    background: linear-gradient(0deg, white 0%, white 100%)
+}
+
+.frist3 {
+    align-self: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 32px;
+    display: inline-flex;
+    padding-left: 15px;
+}
+
+.frist4 {
+    flex: 1 1 0;
+    height: 174px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background: #F9F9F9;
+    border-radius: 12px;
+    border: 1px #EBEBEB solid;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+    display: inline-flex
+}
+
+.addsewe {
+    align-self: stretch;
+    flex: 1 1 0;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    display: inline-flex
+}
+
+.apppddd {
+    width: 48px;
+    height: 48px;
+    position: relative
+}
+
+.wewwww {
+    width: 48px;
+    height: 48px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    border-radius: 9999px;
+    -webkit-border-radius: 9999px;
+    -moz-border-radius: 9999px;
+    -ms-border-radius: 9999px;
+    -o-border-radius: 9999px;
+}
+
+.nexr333 {
+    width: 24px;
+    height: 24px;
+    left: 12px;
+    top: 12px;
+    position: absolute
+}
+
+.oooppp {
+    width: 44px;
+    height: 16px;
+    left: -7px;
+    top: -7px;
+    position: absolute;
+}
+
+.flexcverer {
+    flex: 1 1 0;
+    color: #060D15;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 600;
+    line-height: 24px;
+    word-wrap: break-word
+}
+
+.sioi {
+    align-self: stretch;
+    height: 40px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+    display: flex
+}
+
+.mossssaaa {
+    align-self: stretch;
+    color: #1F4068;
+    font-size: 32px;
+    font-family: Poppins;
+    font-weight: 600;
+    line-height: 40px;
+    word-wrap: break-word
+}
+
+.classpaddindd {
+    flex: 1 1 0;
+    height: 174px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background: #F9F9F9;
+    border-radius: 12px;
+    border: 1px #EBEBEB solid;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
     display: inline-flex
 }

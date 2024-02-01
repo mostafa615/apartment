@@ -10,11 +10,12 @@
     <!-- end sidebar  -->
     <!-- start content page  -->
     <main class="p-4 col-lg-10">
+        <p-toast></p-toast>
 
         <!-- <p class="fw-bold" style="color: #6c6a6a"></p> -->
         <div class="fw-inquiries d-flex justify-content-between" style="color: #6c6a6a;">
             <p style=" font-family: Roboto;font-size: 19px;font-weight:600;color:black">Tickets</p>
-            <div class="d-flex justify-content-lg-between cvvvvvvv">
+            <div class="d-flex justify-content-lg-between  ">
                 <app-dropdown class="ms-3" style="margin-right: 20px;" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
 
                 <!-- start dropdown button  -->
@@ -27,7 +28,6 @@
             </div>
             <!-- start add button (add new apartment) in page  -->
             <!-- end add button (add new apartment) in page  -->
-            <p-toast></p-toast>
 
         </div>
         <div class="card mt-4">

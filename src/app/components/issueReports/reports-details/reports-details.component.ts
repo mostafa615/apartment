@@ -209,4 +209,28 @@ this.display22="block"
     this.display22="none"
 
   }
+  display3:any="none";
+  openmodel3(){
+    this.display3="block";
+  }
+  Apointment3:any
+  onCloseModal3(){
+    this.display3="none";
+    this.Apointment3=""
+  }
+  MarkasProgress2( ){
+    this._adminservices.MarkasProgress(this.paramid ,this.Apointment3.toLocaleString()).subscribe((res) => {
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: res["message"] });
+      this.GetIssueByid( )
+      this.onCloseModal3();
+
+
+
+    }, (err: any) => {
+
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
+
+    })
+
+  }
 }

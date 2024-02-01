@@ -25,7 +25,7 @@
                 <input class="form-control fs-6 ps-3" type="text" (ngModelChange)="searchKey($event)" pInputText [(ngModel)]="searchText" placeholder="Skill Search" />
 
                 <!-- start dropdown button  -->
-                <app-dropdown class="ms-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
+                <app-dropdown class="ms-3" style=" margin-right: 14px;margin-top: 2px;" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
                 <!-- end dropdown button  -->
                 <!-- start addUserButton  -->
                 <!-- <app-add-new-button class="ms-3 mt-2" [id]="'app-user-details'"></app-add-new-button> -->
@@ -83,7 +83,8 @@
 
                         <td>
                             <img *ngIf="workers.worker_Img" routerLink="/worker-profile/{{workers.worker_ID}}" [src]="workers?.worker_Img" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px; cursor: pointer;">
-                            <img *ngIf="!workers.worker_Img" routerLink="/worker-profile/{{workers.worker_ID}}" src="../../../assets/images/Frame 1261154899.svg" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;cursor: pointer;">                            {{workers?.worker_FName}} {{workers?.worker_LName}}
+                            <img *ngIf="!workers.worker_Img" routerLink="/worker-profile/{{workers.worker_ID}}" src="../../../assets/images/Frame 1261154899.svg" style="height: 50px;width: 50px;border-radius: 46%;margin-right: 9px;cursor: pointer;"> {{workers?.worker_FName}}
+                            {{workers?.worker_LName}}
 
                         </td>
                         <td>

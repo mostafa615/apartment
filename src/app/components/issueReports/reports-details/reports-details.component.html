@@ -14,7 +14,7 @@
 
         <div class="d-md-flex justify-content-between">
             <div class="d-flex">
-                <a class=" me-2" href="./Issue_Reports" style="color: #6c6a6a;text-decoration: none;">Issue Reports</a>
+                <a class="fw-bold me-2" routerLink="/Issue_Reports" style="color: #6c6a6ac7;text-decoration: none;">Issue Reports</a>
                 <p class="fw-bold me-2">></p>
                 <p class="fw-bold" style="color: #6c6a6a">Reports View</p>
             </div>
@@ -158,6 +158,19 @@
                 </div>
                 <div class="row ">
 
+                    <div class="col-12 col-md-6 mb-4">
+                        <label class="fw-bold" style="color: #605D62;"> selected Appointment    </label>
+                        <input class="form-control w-100" [(ngModel)]="detialIssue.selected_Appointment" type="text">
+                    </div>
+                    <div class="col-12 col-md-6 mb-4">
+                        <button (click)="openmodel3()" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important;margin-top: 21px;">
+  Add New Appointement
+</button>
+                    </div>
+
+                </div>
+                <div class="row ">
+
                     <div class="col-12 col-md-6 mb-4" *ngFor="let item of detialIssue.appointement;let i=index">
                         <label class="fw-bold" style="color: #605D62;">appointement ( {{i+1}}) </label>
                         <input class="form-control w-100" [(ngModel)]="item.appo_Date+' ' +item.appo_Time " type="text">
@@ -210,4 +223,69 @@ close
 
         </div>
     </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display3}" style=" background-color: rgb(23 22 22 / 50%);;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="    margin-top: 150px;">
+            <div class="modal-header" style="background-color:#ffffff; border-bottom: none !important;">
+                <p class="modal-title" style="color: #1C1B1F; font-size: 20px;   font-weight: 600; line-height: 24px; word-wrap: break-word">
+                    <span class="form-label gray fw-bold" style="vertical-align: middle; padding-left:8px">
+                new appointment
+          </span>
+                </p>
+                <button type="button" style="border:none;background-color: #ffffff;width: 68px;height: 50px;" class="close" aria-label="Close" (click)="onCloseModal3()">
+<span aria-hidden="true" style="color: #000000;font-size: 35px;">&times;</span>
+</button>
+
+
+
+            </div>
+
+            <div class="modal-body">
+
+
+                <div id="Bankdetails">
+                    <!-- <p class="fw-bold mb-0"> Bank account information</p> -->
+                    <p style="color: #605D62 !important;">create new appointment to go and solve this problem </p>
+                </div>
+                <!--start Other Details form-->
+
+                <div class="row ">
+
+                    <div class="mb-3 col-12 col-md-12">
+                        <label class="form-label gray fw-bold"> date</label>
+                        <!-- <p-calendar [(ngModel)]="Apointment3"></p-calendar> -->
+                        <p-calendar [(ngModel)]="Apointment3" [showTime]="true" [showSeconds]="true"></p-calendar>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="modal-footer">
+
+                <div class="d-flex justify-content-between">
+                    <div class="py-2 px-3 fw-bold"></div>
+                    <div class="d-flex justify-content-between">
+                        <a (click)="onCloseModal3()" style="    border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvdd">
+                    Cancel
+      </a>
+                        <button (click)="  MarkasProgress2( )" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                    confirm
+      </button>
+                    </div>
+                </div>
+                <!-- Confirm -->
+
+            </div>
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
