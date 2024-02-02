@@ -14,6 +14,7 @@ import { Guid } from 'guid-typescript';
 export class ViewInquireComponent implements OnInit {
   home: MenuItem | undefined;
   gfg: MenuItem[] | undefined;
+  showPassportModal: any;
 
   param: any;
   constructor(
@@ -278,4 +279,11 @@ export class ViewInquireComponent implements OnInit {
   }
 
   ListFiles: any = [];
+  showPassport() {
+    this.showPassportModal = true; // Show-Hide Modal Check
+  }
+  //Bootstrap Modal Close event
+  hidePassport() {
+    this.showPassportModal = false;
+  }
 }

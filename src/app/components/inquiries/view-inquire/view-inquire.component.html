@@ -163,11 +163,60 @@
                                         <div class="w-96 p-4 bg-white border-b border-gray-200 justify-start items-center gap-16 inline-flex">
                                             <div class="w-80 text-zinc-800 text-sm font-semibold font-['Poppins'] leading-tight"> {{item?.guest_Name}}</div>
                                         </div>
-                                        <div class="w-96 h-44 flex-col justify-start items-start gap-4 flex">
-                                            <img style="width:100%;height: 200px;" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img" [src]="item?.passport_Img" />
+                                        <div class="w-96 h-44 flex-col justify-start items-start gap-4 flex text-center">
+                                      <!--     <a  (click)="showPassport()" style="cursor: pointer;" *ngIf="item. isFile==false">
+                                            <img style="width:100%" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img" [src]="item?.passport_Img" />
                                             <img style="width:100%;height: 200px;" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img==''||item.passport_Img==null" src="../../../../assets/images/passport not uploaded.png" />
 
+                                          </a> -->
+                                          <a [href]="'#'+item?.pS_ID" type="" class="" data-bs-toggle="modal" [attr.data-bs-target]="'#'+item?.pS_ID"  *ngIf="item. isFile==false">
+                                            <img style="width:100%" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img" [src]="item?.passport_Img" />
+                                            <img style="width:100%;height: 200px;" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img==''||item.passport_Img==null" src="../../../../assets/images/passport not uploaded.png" />
+                                          </a>
+
+                                          <div class="modal fade" id="{{ item?.pS_ID }}" tabindex="-1" [attr.aria-labelledby]=" item?.pS_ID" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="{{ item?.pS_ID }}">Passport of : {{ item?.guest_Name }}</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                  <!--        include image here-->
+                                                  <img style="width:100%" class="self-stretch grow shrink basis-0 border border-stone-300 img-thumbnail" *ngIf="item.passport_Img" [src]="item?.passport_Img" />
+                                                  <img style="width:100%;height: 200px;" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img==''||item.passport_Img==null" src="../../../../assets/images/passport not uploaded.png" />
+                                                      </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                         <!--  <div [style.display]="showPassportModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h4 class="modal-title" id="myModalLabel">Passport preview</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                  <img [src]="item?.passport_Img" id="imagepreview"  >
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-default" data-dismiss="modal" (click) = "hidePassport()">Close</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            </div> -->
+                                         <a target="_blank" href="{{ item.passport_Img }}" *ngIf="item. isFile==true" style="text-align: center;font-size: xx-large">
+                                              Show Passport
+                                          </a>
+
+
+
                                         </div>
+
+
                                         <div class="w-96 p-4 bg-white border-b border-gray-200 justify-start items-center gap-36 inline-flex" *ngIf="hidepassport==false">
                                             <div class="d-flex justify-content-center" >
 
@@ -215,7 +264,21 @@
                             </div>
                         </div>
 
+                        <div class="accordion-item" *ngIf=" inquire_details?.rejected==true">
+                          <h2 class="accordion-header" id="flush-headingOne2">
+                              <button class="accordion-button ps-0  collapsed text-black fw-bold bg-transparent border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne1transport2" aria-expanded="false" aria-controls="flush-collapseOne1transport2">
+                          Reject Reason
+                      </button>
+                          </h2>
+                          <div id="flush-collapseOne1transport2" class="accordion-collapse collapse mt-3" aria-labelledby="flush-headingOne2" data-bs-parent="#accordionFlushExample">
+                              <div class="mb-3">
 
+                                  <div class="form-control w-100 fs-6 pt-2">{{ inquire_details?.reject_Reason }}</div>
+                              </div>
+
+
+                          </div>
+                      </div>
 
 
 

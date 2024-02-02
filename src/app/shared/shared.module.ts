@@ -15,7 +15,6 @@ import { TableModule } from 'primeng/table';
 import { NgModule } from '@angular/core';
 import { TagModule } from 'primeng/tag';
 
-
 import { ApartmentEquipmentDetailsSectionsComponent } from './components/apartment-equipment-details-sections/apartment-equipment-details-sections.component';
 import { AddNewFieldApartmentButtonComponent } from './components/add-new-field-apartment-button/add-new-field-apartment-button.component';
 import { StatusNewFieldApartmentComponent } from './components/status-new-field-apartment/status-new-field-apartment.component';
@@ -40,7 +39,7 @@ import { TableComponent } from './components/table/table/table.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeadComponent } from './components/head/head.component';
 
-
+import { BadgeModule } from 'primeng/badge';
 
 // import * as index from './../shared/models';
 
@@ -96,7 +95,7 @@ import { HeadComponent } from './components/head/head.component';
     InputFieldComponent,
     DataTableComponent,
     TableComponent,
-    ProgressSpinnerComponent
+    ProgressSpinnerComponent,
   ],
 
   imports: [
@@ -113,8 +112,8 @@ import { HeadComponent } from './components/head/head.component';
     PaginatorModule,
     ConfirmPopupModule,
     BrowserAnimationsModule,
+    BadgeModule,
   ],
   providers: [ConfirmationService],
-
 })
-export class SharedModule { }
+export class SharedModule {}

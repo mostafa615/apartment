@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { CalendarModule } from 'primeng/calendar';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 
-
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { AppartmentsModule } from './components/apartments/appartments.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
@@ -31,37 +30,38 @@ import { AuthModule } from './components/auth/auth.module';
 import { UserModule } from './components/user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule } from '@angular/google-maps';
 import { PathLocationStrategy } from '@angular/common';
 import { BlockUIModule } from 'ng-block-ui';
 import { BlockUIHttpModule } from 'ng-block-ui/http';
 
-
-
+import { BadgeModule } from 'primeng/badge';
 
 import { environment } from 'src/environments/environment';
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 initializeApp(environment.firebase);
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    StatisticsComponent,
-
-  ],
+  declarations: [AppComponent, StatisticsComponent],
   imports: [
-    AppRoutingModule,IssuReportsModule,ConfigurationsModule,
-    BrowserModule,AuthorizationModule,
-    AdminsModule,UnlegalModule,AdsModule,FaqqModule,
+    AppRoutingModule,
+    IssuReportsModule,
+    ConfigurationsModule,
+    BrowserModule,
+    AuthorizationModule,
+    AdminsModule,
+    UnlegalModule,
+    AdsModule,
+    FaqqModule,
     HttpClientModule,
-    InquiriesModule,PartnerModule,
+    InquiriesModule,
+    PartnerModule,
     WorkersModule,
     PaymentsModule,
     RolesModule,
     FormsModule,
     SharedModule,
-     AppartmentsModule,
+    AppartmentsModule,
     ReactiveFormsModule,
     CalendarModule,
     DashboardModule,
@@ -69,25 +69,21 @@ initializeApp(environment.firebase);
     AuthModule,
     UserModule,
     OwnersModule,
-    GoogleMapsModule ,
-
+    GoogleMapsModule,
+    BadgeModule,
 
     BlockUIModule.forRoot({
       delayStart: 1,
       delayStop: 500,
-      message: 'Please Wait ,,,,'
-
-      }),
+      message: 'Please Wait ,,,,',
+    }),
     BlockUIHttpModule.forRoot({
-      blockAllRequestsInProgress: true
-      })
-
+      blockAllRequestsInProgress: true,
+    }),
   ],
 
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
-  providers: [HttpClientModule,   JwtInterceptor,PathLocationStrategy],
-  bootstrap: [AppComponent]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [HttpClientModule, JwtInterceptor, PathLocationStrategy],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
