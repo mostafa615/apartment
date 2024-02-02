@@ -13,20 +13,33 @@
 
     <!-- start content page  -->
     <main class="p-4 col-lg-10 ">
-      <div class="row justify-content-center align-items-center" style="color: #6c6a6a">
-        <div class="col-10">
-          <p-breadcrumb class="max-w-full" [model]="[{label:'Tenants'}]" [home]="home"></p-breadcrumb>
+        <div class="d-md-flex justify-content-between dashboard mt-2">
+            <p class="fw-bold ms-1" style="color: #6c6a6a;">Tenants</p>
+            <div class="d-flex justify-content-lg-between col-3">
+                <div class="d-flex justify-content-between ">
 
-        </div>
-        <div class="col-2">
-          <app-dropdown class="ms-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
+                </div>
 
+                <app-dropdown class="ms-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
+
+
+            </div>
         </div>
-     </div>
+        <!-- <div class="row justify-content-center align-items-center" style="color: #6c6a6a">
+            <div class="col-10">
+                <p-breadcrumb class="max-w-full" [model]="[{label:'Tenants'}]" [home]="home"></p-breadcrumb>
+
+            </div>
+            <div class="col-2">
+                <app-dropdown class="ms-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
+
+            </div>
+        </div> -->
 
 
         <p-toast></p-toast>
         <div class="card mt-4">
+
             <p-table #dt [value]="Tenants" [(selection)]="Tenants" dataKey="id" [filterDelay]="0" />
             <div class="d-flex justify-content-between">
                 <!-- length Of person -->
@@ -125,8 +138,8 @@
                         </td>
                         <td>
                             <div>
-                              <p-tag severity="success" value="Active" [rounded]="true "*ngIf="Tenant?.status==true"> </p-tag>
-                              <p-tag severity="danger" value="Suspended" [rounded]="true "*ngIf="Tenant?.status==false"> </p-tag>
+                                <p-tag severity="success" value="Active" [rounded]="true " *ngIf="Tenant?.status==true"> </p-tag>
+                                <p-tag severity="danger" value="Suspended" [rounded]="true " *ngIf="Tenant?.status==false"> </p-tag>
 
 
 

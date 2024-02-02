@@ -11,20 +11,20 @@
 
     <main class="p-4 col-lg-10">
 
-          <div class="row justify-content-center align-items-center" style="color: #6c6a6a">
-           <div class="col-9">
-            <p-breadcrumb class="max-w-full" [model]="[{label:'Admins'}]" [home]="home"></p-breadcrumb>
-           </div>
-           <div class="col">
-            <app-dropdown class="ms-3" style="margin-right: 20px;" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
+        <div class="row justify-content-center align-items-center" style="color: #6c6a6a">
+            <div class="col-8">
+                <p-breadcrumb class="max-w-full" [model]="[{label:'Admins'}]" [home]="home"></p-breadcrumb>
+            </div>
+            <div class="col">
+                <app-dropdown class="ms-3" style="margin-right: 20px;" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
 
-           </div>
-           <div class="col">
-            <a class="px-3 py-2 rounded border text-white text-decoration-none" routerLink="/add-admin" style="background-color:#1F4068; cursor: pointer;">
-              <img src="assets/images/plus.svg" class="me-2 ">Add New
-          </a>
-           </div>
-         </div>
+            </div>
+            <div class="col">
+                <a class="px-3 py-2 rounded border text-white text-decoration-none" routerLink="/add-admin" style="background-color:#1F4068; cursor: pointer;">
+                    <img src="assets/images/plus.svg" class="me-2 ">Add New
+                </a>
+            </div>
+        </div>
         <p-toast></p-toast>
         <div class="card mt-4">
 
@@ -71,7 +71,7 @@
 
                             </th>
                             <th class="td-name">
-                              Whatsapp Number
+                                Whatsapp Number
                             </th>
                             <th class="td-name">
                                 Role
@@ -112,10 +112,10 @@
                         </td> -->
                         <td>
                             <div>
-                              <p-tag severity="success" value="Active" [rounded]="true "*ngIf="admin?.status==true"> </p-tag>
+                                <p-tag severity="success" value="Active" [rounded]="true " *ngIf="admin?.status==true"> </p-tag>
 
 
-                              <p-tag severity="danger" value="Non-Active" [rounded]="true "*ngIf="admin?.status==false"> </p-tag>
+                                <p-tag severity="danger" value="Non-Active" [rounded]="true " *ngIf="admin?.status==false"> </p-tag>
 
                             </div>
                         </td>

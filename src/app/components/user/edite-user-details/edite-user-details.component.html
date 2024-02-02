@@ -142,7 +142,7 @@
 
                         <div class=" col-12 col-md-6 col-lg-4 mb-4  position-relative px-2 mb-4 h-100" style="height: 393px !important;">
 
-                            <a routerLink="/apartments/apartments-details/{{item.apt_UUID}}" style="height: 46% !important;" class="d-block">
+                            <a routerLink="/apartments/apartments-details/{{item.apt_ID}}" style="height: 46% !important;" class="d-block">
                                 <img [src]="item.apartment_ThumbImg" class="w-100 h-100 apartmentImage">
                                 <p class="fw-bold position-absolute rentedORavailable rounded-pill top-0 m-2 py-1 px-3 " [class.available]="item.statusString != 'Rented'">{{item.apartment_Status}}</p>
                             </a>
@@ -392,7 +392,7 @@
                 <div class="mb-4">
                     <label class="fw-bold" style="color: #605D62;">User Image</label>
                     <div class="d-flex justify-content-center align-items-center">
-                      <img  [src]="Tenant_details.tenant_photo!=''?Tenant_details.tenant_photo:'../../../../assets/images/avatardef.jpg'" class="imageOfPerson rounded-circle ng-star-inserted">
+                        <img [src]="Tenant_details.tenant_photo!=''?Tenant_details.tenant_photo:'../../../../assets/images/avatardef.jpg'" class="imageOfPerson rounded-circle ng-star-inserted">
 
                     </div>
 

@@ -177,7 +177,7 @@ tiggerPageChange(event: any) {
   Apointment3:any
   MarkasProgress2( ){
     this._adminservices.MarkasProgress(this.paramid3 ,this.Apointment3.toLocaleString()).subscribe((res) => {
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Mark as Progress Successfuly '}` });
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: res["message"] });
       this.getAllIssues()
       this.onCloseModal3();
 
