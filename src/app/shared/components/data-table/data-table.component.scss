@@ -12,7 +12,7 @@
 }
 
 .bvngd {
-    font-family: 'Montserrat'!important
+    font-family: 'Montserrat'
 }
 
 .edit-button {
@@ -25,8 +25,8 @@
 
 .active,
 .scheduled {
-    color: #027A48;
-    background-color: #ECFDF3;
+    /* color: #027A48;*/
+    background-color: rgba(31, 64, 104, 0.5);
 }
 
 .offline,
@@ -67,10 +67,10 @@
 td {
     padding: .5rem 0.5rem !important;
     font-size: 14px !important;
-    font-family: 'Montserrat'!important
+    font-family: 'Montserrat'
 }
 
 th {
     font-size: 14px !important;
-    font-family: 'Montserrat'!important
+    font-family: 'Montserrat'
 }

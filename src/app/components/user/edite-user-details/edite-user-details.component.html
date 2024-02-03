@@ -121,14 +121,14 @@
                     <label class="fw-bold" style="color: #605D62;">Guest 2</label>
                     <input type="text" class="form-control w-100">
                 </div> -->
-                <div class="mb-4">
+              <!--   <div class="mb-4">
                     <label class="fw-bold" style="color: #605D62;">Select Your Role*</label>
                     <input type="text" class="form-control w-100">
-                </div>
-                <div class="mb-4">
+                </div> -->
+               <!--  <div class="mb-4">
                     <label class="fw-bold" style="color: #605D62;">Purpose of Coming to Germany</label>
                     <textarea class="border rounded-3 w-100 p-2" rows="5" style="resize: unset;" placeholder="Enter a description"></textarea>
-                </div>
+                </div> -->
                 <!--end Other Details form-->
                 <hr>
                 <!--Currently living-->
@@ -232,7 +232,7 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="accordion-item">
+                    <div class="accordion-item" *ngIf="Tenant_details.tenant_Passport_URL!=''">
                         <h2 class="accordion-header" id="flush-headingTwo">
                             <button class="accordion-button collapsed ps-0  text-black fw-bold bg-transparent border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                         Passport of tenant
@@ -247,6 +247,65 @@
                             </div>
                         </div>
                     </div>
+                    <div class="accordion-item" *ngIf="Tenant_Attach!=null">
+                      <h2 class="accordion-header" id="flush-headingThree">
+                          <button class="accordion-button collapsed ps-0  text-black fw-bold bg-transparent border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                      Attachments
+                    </button>
+                      </h2>
+                      <div id="flush-collapseThree" class="accordion-collapse collapse mt-3" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body mb-3">
+                            <p-table class="table-shopping" [selectionPageOnly]="true" [scrollable]="true" scrollHeight="400px" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="Tenant_Attach">
+                              <ng-template pTemplate="header" class="text-center">
+                                  <tr>
+                                      <ng-container>
+
+
+                                          <th class="td-name">
+                                              File Description
+
+                                          </th>
+
+                                          <th class="td-name">
+                                            Download File
+
+                                          </th>
+                                      </ng-container>
+                                  </tr>
+                              </ng-template>
+                              <ng-template pTemplate="body" let-doc>
+
+                                  <tr>
+
+                                      <td>
+                                          {{doc?.attach_Desc}}
+
+                                      </td>
+
+
+                                      <td>
+<a [href]="doc?.attach_Path" target="_blank">
+  <img src="assets/images/apartmentImages/move.svg" height="32px" width="32px">
+</a>
+                                      </td>
+
+
+
+                                  </tr>
+
+                              </ng-template>
+
+
+                              <ng-template pTemplate="emptymessage">
+                                  <div class="container text-center mt-4">
+                                      <p class="mb-0">No data found.</p>
+                                  </div>
+                              </ng-template>
+
+                          </p-table>
+                          </div>
+                      </div>
+                  </div>
                     <!-- <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-headingthree">
                             <button class="accordion-button ps-0 collapsed text-black fw-bold bg-transparent border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsethree" aria-expanded="false" aria-controls="flush-collapsethree">
@@ -282,7 +341,7 @@
                     </div>
 
                 </div>
-                <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="Tenant_details.invoices">
+                <p-table class="table-shopping" [selectionPageOnly]="true" [scrollable]="true" scrollHeight="400px" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="Tenant_details.invoices">
                     <ng-template pTemplate="header" class="text-center">
                         <tr>
                             <ng-container>

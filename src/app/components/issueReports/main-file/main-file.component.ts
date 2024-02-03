@@ -7,316 +7,364 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-main-file',
   templateUrl: './main-file.component.html',
-  styleUrls: ['./main-file.component.scss']
+  styleUrls: ['./main-file.component.scss'],
 })
 export class MainFileComponent {
   showSide: string = '';
   showEdit: Array<boolean> = [];
 
   products!: Array<object>;
-  issues:any=[];
+  issues: any = [];
   selectedProducts: Array<object> = [];
   headerData: Array<any> = [];
   loading: boolean = true;
-  search:boolean=false
-  listDropDown:Array<object>=[{name:'Today'},{name:'Last week'},{name:'This month'},{name:'This year'}]
+  search: boolean = false;
+  listDropDown: Array<object> = [
+    { name: 'Today' },
+    { name: 'Last week' },
+    { name: 'This month' },
+    { name: 'This year' },
+  ];
 
-  constructor(public _adminservices:AdminsService , private messageService: MessageService,public router: Router) { }
-  totalofPages=0;
+  constructor(
+    public _adminservices: AdminsService,
+    private messageService: MessageService,
+    public router: Router
+  ) {}
+  totalofPages = 0;
   ngOnInit() {
-    this.initFakeData()
-    this.getAllIssues(  )
-    this.checkRole()
+    this.initFakeData();
+    this.getAllIssues();
+    this.checkRole();
 
     const connection = new signalR.HubConnectionBuilder()
 
-    .withUrl(environment.apiUrl + '/notify',{ withCredentials: false})
-    .build();
+      .withUrl(environment.apiUrl + '/notify', { withCredentials: false })
+      .build();
 
-  connection.start().then(function () {
-  }).catch(function (err) {
-    return console.error(err.toString());
-  });
+    connection
+      .start()
+      .then(function () {})
+      .catch(function (err) {
+        return console.error(err.toString());
+      });
 
-  connection.on("NewIssue", (result: any) => {
-    this.getAllIssues();
-    //this.messageService.add({ severity: 'info', summary: 'New Issue', detail: result.noti_Name });
-
-  });
-
-   }
-   IssueRole:any
-   is_Super:any
-   checkRole(){
-     const data = localStorage.getItem("user");
-      if (data !== null) {
-
-       let parsedData = JSON.parse(data);
-        this.is_Super=parsedData.is_Super
-       if(parsedData.is_Super==false) {
-   for(let i=0; i<parsedData.permissions.length;i++){
-     if(parsedData.permissions[i].page_Name=="Issue Reports"){
-       this.IssueRole=parsedData.permissions[i];
-     }
-   }
-   if(this.IssueRole.p_View==false &&this.is_Super==false) {
-     this.gotopage( )
-   }
-   }
-
-
-     }
-   }
-   gotopage( ){
-     let url: string = "unlegal";
-       this.router.navigateByUrl(url);
-   }
-   Date=""
-
-   getAllIssues(  ) {
-    this.issues=[]
-    this.numberissues=0
-    this._adminservices.ListAllIssues( this.pageNumber,this.pagesize,this.Date,this.statusinquire,this.searchText).subscribe((res:any) => {
-      this.issues = res["data"];
-      this.totalRecords=res["totalRecords"]
-
-      this.numberissues = this.issues.length;
-      this.totalofPages=res["totalPages"]
-
-
-     }, (error) => {
-       console.error('Error fetching owners:', error);
-    })
-  }
-  detailperson(event:any,id: any): void {
-    this.showEdit=[]
-    event.stopPropagation()
-
-    this.showEdit[id] == true ? this.showEdit[id] = false : this.showEdit[id] = true
-
-
-
-   }
-   InquireFillterLists: Array<any> = [];
-   InquireFillterSelected: Array<any> = [];
-   initFakeData(): void {
-     this.InquireFillterLists = ["All Issues", "Completed","Pending","Cancelled"];
-     this.InquireFillterSelected = [true];
-    }
-    checkindex=0;
-    statusinquire:any=""
-    clickIquires(index:any){
-      this.checkindex=index;
-      this.InquireFillterSelected = this.InquireFillterSelected.map((data) => data == true ? false : false)
-
-      this.InquireFillterSelected[index] = true
-      if(index == 0){
-        this.statusinquire=""
-        this.getAllIssues();
-      }
-      if(index == 1){
-        this.statusinquire="Completed"
-
-        this.getAllIssues();
-      }
-      if(index == 2){
-        this.statusinquire="Pending"
-
-        this.getAllIssues();
-
-      }
-      if(index == 3){
-        this.statusinquire="Cancelled"
-
-        this.getAllIssues();
-
-      }
-    }
-   hidecard( ){
-    this.showEdit=[]
-
- }
- totalRecords=0
- pageNumber=1;
- numberissues=0;
- pagesize=10;
-tiggerPageChange(event: any) {
-
-      const calcPageNumber = Math.floor(event.first / event.rows) + 1;
-      this.pageNumber=calcPageNumber;
-      console.log(calcPageNumber);
+    connection.on('NewIssue', (result: any) => {
       this.getAllIssues();
+      //this.messageService.add({ severity: 'info', summary: 'New Issue', detail: result.noti_Name });
+    });
+  }
+  IssueRole: any;
+  is_Super: any;
+  checkRole() {
+    const data = localStorage.getItem('user');
+    if (data !== null) {
+      let parsedData = JSON.parse(data);
+      this.is_Super = parsedData.is_Super;
+      if (parsedData.is_Super == false) {
+        for (let i = 0; i < parsedData.permissions.length; i++) {
+          if (parsedData.permissions[i].page_Name == 'Issue Reports') {
+            this.IssueRole = parsedData.permissions[i];
+          }
+        }
+        if (this.IssueRole.p_View == false && this.is_Super == false) {
+          this.gotopage();
+        }
       }
+    }
+  }
+  gotopage() {
+    let url: string = 'unlegal';
+    this.router.navigateByUrl(url);
+  }
+  Date = '';
+
+  getAllIssues() {
+    this.issues = [];
+    this.numberissues = 0;
+    this._adminservices
+      .ListAllIssues(
+        this.pageNumber,
+        this.pagesize,
+        this.Date,
+        this.statusinquire,
+        this.searchText
+      )
+      .subscribe(
+        (res: any) => {
+          this.issues = res['data'];
+          this.totalRecords = res['totalRecords'];
+
+          this.numberissues = this.issues.length;
+          this.totalofPages = res['totalPages'];
+        },
+        (error) => {
+          console.error('Error fetching owners:', error);
+        }
+      );
+  }
+  detailperson(event: any, id: any): void {
+    this.showEdit = [];
+    event.stopPropagation();
+
+    this.showEdit[id] == true
+      ? (this.showEdit[id] = false)
+      : (this.showEdit[id] = true);
+  }
+  InquireFillterLists: Array<any> = [];
+  InquireFillterSelected: Array<any> = [];
+  initFakeData(): void {
+    this.InquireFillterLists = [
+      'All Issues',
+      'Completed',
+      'Pending',
+      'Cancelled',
+    ];
+    this.InquireFillterSelected = [true];
+  }
+  checkindex = 0;
+  statusinquire: any = '';
+  clickIquires(index: any) {
+    this.checkindex = index;
+    this.InquireFillterSelected = this.InquireFillterSelected.map((data) =>
+      data == true ? false : false
+    );
+
+    this.InquireFillterSelected[index] = true;
+    if (index == 0) {
+      this.statusinquire = '';
+      this.getAllIssues();
+    }
+    if (index == 1) {
+      this.statusinquire = 'Completed';
+
+      this.getAllIssues();
+    }
+    if (index == 2) {
+      this.statusinquire = 'Pending';
+
+      this.getAllIssues();
+    }
+    if (index == 3) {
+      this.statusinquire = 'Cancelled';
+
+      this.getAllIssues();
+    }
+  }
+  hidecard() {
+    this.showEdit = [];
+  }
+  totalRecords = 0;
+  pageNumber = 1;
+  numberissues = 0;
+  pagesize = 10;
+  tiggerPageChange(event: any) {
+    const calcPageNumber = Math.floor(event.first / event.rows) + 1;
+    this.pageNumber = calcPageNumber;
+    console.log(calcPageNumber);
+    this.getAllIssues();
+  }
 
   addItem(value: string): void {
-    this.showSide = value
+    this.showSide = value;
   }
 
-
-  selectedfromDropDown(value:any){
-
-    this.Date=value.name;
-    this.getAllIssues()
-    console.log(value)
+  selectedfromDropDown(value: any) {
+    this.Date = value.name;
+    this.getAllIssues();
+    console.log(value);
   }
-  cancelissue(id:any){
-    this._adminservices.CancelIssue(id ).subscribe((res) => {
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'The Issue Canceled '}` });
-      this.getAllIssues()
-
-
-
-    }, (err: any) => {
-
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
-
-    })
-
-
+  cancelissue(id: any) {
+    this._adminservices.CancelIssue(id).subscribe(
+      (res) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: `${'The Issue Canceled '}`,
+        });
+        this.getAllIssues();
+      },
+      (err: any) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: `${err.error.message[0]}`,
+        });
+      }
+    );
   }
-  Apointment3:any
-  MarkasProgress2( ){
-    this._adminservices.MarkasProgress(this.paramid3 ,this.Apointment3.toLocaleString()).subscribe((res) => {
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: res["message"] });
-      this.getAllIssues()
-      this.onCloseModal3();
-
-
-
-    }, (err: any) => {
-
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
-
-    })
-
+  Apointment3: any;
+  MarkasProgress2() {
+    this._adminservices
+      .NewAppointment(this.paramid3, this.Apointment3.toLocaleString())
+      .subscribe(
+        (res) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: res['message'],
+          });
+          this.getAllIssues();
+          this.onCloseModal3();
+        },
+        (err: any) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `${err.error.message[0]}`,
+          });
+        }
+      );
   }
-  MarkasProgress( ){
-    this._adminservices.MarkasProgress(this.paramid ,this.Apointment).subscribe((res) => {
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'Mark as Progress Successfuly '}` });
-      this.getAllIssues()
-      this.onCloseModal1();
-
-
-
-    }, (err: any) => {
-
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
-
-    })
-
+  MarkasProgress() {
+    this._adminservices.MarkasProgress(this.paramid, this.Apointment).subscribe(
+      (res) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: `${'Mark as Progress Successfuly '}`,
+        });
+        this.getAllIssues();
+        this.onCloseModal1();
+      },
+      (err: any) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: `${err.error.message[0]}`,
+        });
+      }
+    );
   }
-  appointement:any=[]
-  display1="none";
-  display2="none";
-  display3="none";
+  appointement: any = [];
+  display1 = 'none';
+  display2 = 'none';
+  display3 = 'none';
 
-  paramid:any
-  Apointment:any
-  onCloseModal1(){
-    this.display1="none";
-
+  paramid: any;
+  Apointment: any;
+  onCloseModal1() {
+    this.display1 = 'none';
   }
-  onCloseModal3(){
-    this.display3="none";
-    this.Apointment3=""
+  onCloseModal3() {
+    this.display3 = 'none';
+    this.Apointment3 = '';
   }
-  onCloseModal2(){
-    this.display2="none";
-    this.Company_gain=0
-    this.worker_cost=0
-    this.Total_cost=0
-    this.discerption=""
-    this.item_Cost=0
+  onCloseModal2() {
+    this.display2 = 'none';
+    this.Company_gain = 0;
+    this.worker_cost = 0;
+    this.Total_cost = 0;
+    this.discerption = '';
+    this.item_Cost = 0;
   }
-  paramid3:any
-  OpenModal3(id:any){
+  paramid3: any;
+  OpenModal3(id: any) {
+    this.paramid3 = id;
 
-    this.paramid3=id
-
-     this.display3="block";
-
+    this.display3 = 'block';
   }
-  OpenModal1(id:any){
-    this.Apointment=[]
-    this.paramid=id
+  OpenModal1(id: any) {
+    this.Apointment = [];
+    this.paramid = id;
 
-    this.GetIssueByid( )
-    this.display1="block";
-
+    this.GetIssueByid();
+    this.display1 = 'block';
   }
-  idmodel2:any
-  OpenModal2(idmodel:any){
-    this.idmodel2=idmodel
-     this.item_Cost=0
-     this.who_will_pay="";this.worker_cost=0;this.Total_cost=0;this.Company_gain=0;this.discerption=""
-    this.display2="block";
-
+  idmodel2: any;
+  OpenModal2(idmodel: any) {
+    this.idmodel2 = idmodel;
+    this.item_Cost = 0;
+    this.who_will_pay = '';
+    this.worker_cost = 0;
+    this.Total_cost = 0;
+    this.Company_gain = 0;
+    this.discerption = '';
+    this.display2 = 'block';
   }
-  GetIssueByid( ) {
+  GetIssueByid() {
+    this._adminservices.GetIssueDetails(this.paramid).subscribe(
+      (res) => {
+        this.appointement = res['appointement'];
 
-    this._adminservices.GetIssueDetails(this.paramid).subscribe((res) => {
-       this.appointement=res["appointement"]
-
-      //  this.createissue.patchValue(res);
-      //  this.createissue.get('issue_Images')?.setValue(res["issue_Images"]);
-     }, (err: any) => {
-
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
-    })
-
-
+        //  this.createissue.patchValue(res);
+        //  this.createissue.get('issue_Images')?.setValue(res["issue_Images"]);
+      },
+      (err: any) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: `${err.error.message[0]}`,
+        });
+      }
+    );
   }
-  handleChange(item:any) {
-    this.Apointment=item.appo_Date +item.appo_Time
+  handleChange(item: any) {
+    this.Apointment = item.appo_Date + item.appo_Time;
   }
-  who_will_pay:any="StudiFlats"
-  handleChange2(item:any){
-    debugger
-    this.who_will_pay= item
+  who_will_pay: any = 'StudiFlats';
+  handleChange2(item: any) {
+    debugger;
+    this.who_will_pay = item;
   }
-   Company_gain:any
-  worker_cost:any=0
-  Total_cost:any=0
-  discerption:any
-  item_Cost:any=0
-  MarkAsSolved( ){
-    this._adminservices.MarkAsSolved(this.idmodel2,this.who_will_pay,this.worker_cost,this.Total_cost,this.Company_gain,this.discerption,this.item_Cost).subscribe((res) => {
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: `${'The Issue was marked as Solved'}` });
-      this.getAllIssues()
+  Company_gain: any;
+  worker_cost: any = 0;
+  Total_cost: any = 0;
+  discerption: any;
+  item_Cost: any = 0;
+  MarkAsSolved() {
+    this._adminservices
+      .MarkAsSolved(
+        this.idmodel2,
+        this.who_will_pay,
+        this.worker_cost,
+        this.Total_cost,
+        this.Company_gain,
+        this.discerption,
+        this.item_Cost
+      )
+      .subscribe(
+        (res) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: `${'The Issue was marked as Solved'}`,
+          });
+          this.getAllIssues();
 
-this.onCloseModal2();
-
-    }, (err: any) => {
-
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: `${ err.error.message[0]}` });
-
-    })
-
-
+          this.onCloseModal2();
+        },
+        (err: any) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `${err.error.message[0]}`,
+          });
+        }
+      );
   }
-  onSearchChange(searchValue: any){
-    debugger
-    this.Total_cost=[]
+  onSearchChange(searchValue: any) {
+    debugger;
+    this.Total_cost = [];
     // this.worker_cost=searchValue.data
-    this.Total_cost= Number(this.item_Cost)+ Number(this.worker_cost)
+    this.Total_cost = Number(this.item_Cost) + Number(this.worker_cost);
   }
-  onSearchChange2(searchValue: any){
+  onSearchChange2(searchValue: any) {
     // this.item_Cost=searchValue.data
-    this.Total_cost =Number(this.Total_cost)+Number(this.item_Cost)
+    this.Total_cost = Number(this.Total_cost) + Number(this.item_Cost);
   }
-  searchText:any=""
+  searchText: any = '';
 
   searchKey(data: string) {
-    debugger
+    debugger;
     this.searchText = data;
     this.getAllIssues();
   }
-  searchTextChange:any
+  searchTextChange: any;
   searchAction() {
     // this.searchTextChange.emit(this.searchText);
     this.search = false;
     this.getAllIssues();
-    this.searchText =""
-
+    this.searchText = '';
   }
 }

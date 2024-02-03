@@ -66,7 +66,7 @@
             </div>
 
 
-            <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="issues">
+            <p-table class="table-shopping " [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="issues">
 
                 <ng-template pTemplate="header" class="text-center">
                     <tr *ngIf="headerData">
@@ -112,8 +112,13 @@
                         <td routerLink="/Report-view/{{issue.issue_ID}}">
                             {{issue?.issue_Code}}
                         </td>
-                        <td>
-                            {{issue?.requsted_By}}
+                        <td routerLink="/app-edite-user-details/{{issue?.user_ID}}">
+
+                            <p-chip label="{{ issue?.requsted_By }}" image="{{  issue?.user_Img}}"></p-chip>
+
+
+
+
                         </td>
                         <td>
                             {{issue?.apartment_Number}}
@@ -126,22 +131,15 @@
                             {{issue?.desc}}
                         </td>
                         <td>
-                            <span class="rounded-5 px-3 py-1" style="background-color: #ffc8c8;color: #930b0b;" *ngIf="issue?.issue_Status=='Cancelled'">
-                             Cancelled
+                          <p-tag severity="Info" *ngIf="issue?.issue_Status=='InProgress'" value="InProgress" [rounded]="true"></p-tag>
+                          <p-tag severity="Success" *ngIf="issue?.issue_Status=='Completed'" value="Completed" [rounded]="true"></p-tag>
+                          <p-tag severity="Warning" *ngIf="issue?.issue_Status=='Pending'" value="Pending" [rounded]="true"></p-tag>
+                          <p-tag severity="Danger" *ngIf="issue?.issue_Status=='Cancelled'" value="Cancelled" [rounded]="true"></p-tag>
 
-                             </span>
-                            <span class="rounded-5 px-3 py-1" style="background-color: #FFFAEB;color: #FFB900;" *ngIf="issue?.issue_Status=='Pending'">
-                              Pending
 
-                              </span>
-                            <span class="rounded-5 px-3 py-1" style="background-color: #ECFDF3;color: #12B76A;" *ngIf="issue?.issue_Status=='Completed'">
-                                Completed
 
-                                </span>
-                            <span class="rounded-5 px-3 py-1" style="background-color: #EFF8FF;color: #175CD3;" *ngIf="issue?.issue_Status=='InProgress'">
-                                  InProgress
 
-                                  </span>
+
 
                         </td>
 
@@ -154,7 +152,7 @@
                                 <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" routerLink="/Report-view/{{issue.issue_ID}}">View Details</button>
 
                                 <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" routerLink="/assgin-issue/{{issue.issue_ID}}"> assign worker  </button>
-                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="OpenModal1(issue.issue_ID) ">Mark it as In-Progress
+                                <button class="d-block border-0 outlin-0 bg-transparent button w-100 text-start py-2" (click)="OpenModal1(issue.issue_ID) " *ngIf="issue.worker!='00000000-0000-0000-0000-000000000000'">Mark it as In-Progress
 
 
                                 </button>
@@ -221,7 +219,7 @@
                     <div class="col-12 col-md-9 mb-4 cardss" *ngFor="let item of appointement;let i=index">
                         <input type="radio" name="drone2" (change)="handleChange(item)">
 
-                        <label class="fw-bold" style="color: #605D62; margin-left: 10px;">appointement ( {{i+1}})
+                        <label class="fw-bold" style="color: #605D62; margin-left: 10px;">appointement ( {{i+1}} )
                           <br>
                           {{item.appo_Date}} {{item.appo_Time}} </label>
                     </div>

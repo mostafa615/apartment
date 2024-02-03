@@ -260,6 +260,19 @@ export class AdminsService {
       Apointment;
     return this.http.put<any>(url, body, { headers: this.headers });
   }
+  NewAppointment(Issue_ID: any, Apointment: any): Observable<any> {
+    let body = {
+      Issue_ID: Issue_ID,
+      Apointment: Apointment,
+    };
+    const url =
+      environment.apiUrl +
+      '/Issues/NewAppointment?Issue_ID=' +
+      Issue_ID +
+      '&Apointment=' +
+      Apointment;
+    return this.http.put<any>(url, body, { headers: this.headers });
+  }
 
   ListPartners(
     PageNumber: number,

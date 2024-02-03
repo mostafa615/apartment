@@ -231,22 +231,21 @@
                             <p class="fw-bold mb-0" id="Paymenthistory">Payment history</p>
                             <p style="color: #605D62 !important;">this section display for admins only</p>
                         </div>
-                        <button class="outlet-0 bg-transparent downloadAll px-3 py-0 rounded-3"><img
-    src="assets/images/download.svg" alt=""> Download all</button>
+
                     </div>
                 </div>
                 <div style="align-self: stretch;  background: white; box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.06); border-radius: 8px; overflow: hidden; border: 1px #EBEBEB solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
 
                     <div class="  mt-4">
 
-                        <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem','height':' 161px'}" [value]="OnwerDetail.invoice_Owners_list">
+                        <p-table class="table-shopping" [scrollable]="true" scrollHeight="400px" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem','height':' 161px'}" [value]="OnwerDetail.invoice_Owners_list">
                             <ng-template pTemplate="header" class="text-center">
                                 <tr>
                                     <ng-container>
 
 
                                         <th class="td-name">
-                                            apartment name
+                                            Apartment name
 
                                         </th>
                                         <th class="td-name">
