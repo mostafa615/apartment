@@ -28,8 +28,6 @@
         <p-toast></p-toast>
 
         <div class="card mt-4">
-
-            <p-table #dt [value]="issues" [(selection)]="issues" dataKey="id" [filterDelay]="0" />
             <div class="d-block d-md-flex justify-content-between my-2 bg-white p-3">
                 <!-- start apartmentLists button  -->
                 <div class="d-flex align-items-center " style="overflow: auto;    font-size: 15px;">
@@ -58,12 +56,14 @@
                         <br>
                         <input class="form-control fs-6 ps-3" *ngIf="search" type="text" pInputText [(ngModel)]="searchText" placeholder="Global Search" />
                         <button class="btn btn-primary ms-2" *ngIf="search" (click)="searchAction()">
-              Search
-          </button>
+          Search
+      </button>
                     </ng-template>
                 </div>
                 <!-- end dropdown button  -->
             </div>
+            <!-- <p-table #dt [value]="issues" [(selection)]="issues" dataKey="id" [filterDelay]="0" /> -->
+
 
 
             <p-table class="table-shopping " [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="issues">
@@ -131,10 +131,10 @@
                             {{issue?.desc}}
                         </td>
                         <td>
-                          <p-tag severity="Info" *ngIf="issue?.issue_Status=='InProgress'" value="InProgress" [rounded]="true"></p-tag>
-                          <p-tag severity="Success" *ngIf="issue?.issue_Status=='Completed'" value="Completed" [rounded]="true"></p-tag>
-                          <p-tag severity="Warning" *ngIf="issue?.issue_Status=='Pending'" value="Pending" [rounded]="true"></p-tag>
-                          <p-tag severity="Danger" *ngIf="issue?.issue_Status=='Cancelled'" value="Cancelled" [rounded]="true"></p-tag>
+                            <p-tag severity="Info" *ngIf="issue?.issue_Status=='InProgress'" value="InProgress" [rounded]="true"></p-tag>
+                            <p-tag severity="Success" *ngIf="issue?.issue_Status=='Completed'" value="Completed" [rounded]="true"></p-tag>
+                            <p-tag severity="Warning" *ngIf="issue?.issue_Status=='Pending'" value="Pending" [rounded]="true"></p-tag>
+                            <p-tag severity="Danger" *ngIf="issue?.issue_Status=='Cancelled'" value="Cancelled" [rounded]="true"></p-tag>
 
 
 

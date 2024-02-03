@@ -377,7 +377,20 @@ export class AdminsService {
     });
     return this.http.post<any>(url, Photo_Attach, { headers: headers1 });
   }
+  AddAttach(User_ID: any, Desc: any, AttachFile: any): Observable<any> {
 
+    debugger;
+    const url =
+      environment.apiUrl +
+      '/Users/AddAttach?User_ID=' +
+      User_ID +
+      '&Desc=' +
+      Desc;
+    const headers1 = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+    });
+    return this.http.post<any>(url, AttachFile, { headers: headers1 });
+  }
   DeleteAds(Ads_ID: any): Observable<any[]> {
     const url = environment.apiUrl + '/Basics/DeleteAds';
     const params = new HttpParams().set('Ads_ID', Ads_ID);

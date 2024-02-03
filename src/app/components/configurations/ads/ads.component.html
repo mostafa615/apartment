@@ -11,16 +11,14 @@
 
     <!-- start content page  -->
     <main class="p-4 col-lg-10 ">
-      <div class="row" style="color: #6c6a6a">
-        <p-breadcrumb class="max-w-full" [model]="[{label:'Ads'}]" [home]="home"></p-breadcrumb>
+        <div class="row" style="color: #6c6a6a">
+            <p-breadcrumb class="max-w-full" [model]="[{label:'Ads'}]" [home]="home"></p-breadcrumb>
 
-     </div>
+        </div>
 
         <p-toast></p-toast>
         <div class="card mt-4">
 
-
-            <p-table #dtk [value]="Ads" />
             <div class="d-flex justify-content-between">
                 <!-- length Of person -->
                 <div class="d-flex mx-2 mt-4">
@@ -34,6 +32,8 @@
                     </a>
                 </div>
             </div>
+            <!-- <p-table #dtk [value]="Ads" /> -->
+
 
 
             <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="Ads">
@@ -215,7 +215,7 @@
                     <div class="position-relative h-124px mb-3">
 
                         <input type="file" accept="image/*" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
-                        <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute" width="907%">
+                        <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute" width="90%">
 
                     </div>
 

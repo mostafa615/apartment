@@ -56,11 +56,13 @@ export class AuthenticationService {
         this.router.navigate(['/login']);
 
     }
-    FCMToken(token:string):Observable<any>{
-      let  url=environment.apiUrl+"/Basics/FCMDashBoard?Token="+token
-      return this.http.post<any>(url, { token }).pipe(
+    FCMToken(token:string){
+      debugger
 
-      )
+
+      let  url=environment.apiUrl+"/Basics/FCMDashBoard?Token="+token;
+      return this.http.post(url, {token} )  ;
+
     }
     public getToken(): string | null {
       return this.isLoggedIn() ? localStorage.getItem("tokenKey") : null;

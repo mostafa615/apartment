@@ -1,10 +1,14 @@
-@import '../node_modules/primeng/resources/primeng.min.css';   
-@import '../node_modules/primeicons/primeicons.css';   
-@import '~bootstrap/dist/css/bootstrap.min.css';  
+@import '../node_modules/primeng/resources/primeng.min.css';
+@import '../node_modules/primeicons/primeicons.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
 @import "primeicons/primeicons.css";
-
 main {
-  margin-top: 90px !important;
-  background-color: #FAFCFF;
+    margin-top: 90px !important;
+    background-color: #FAFCFF;
+}
 
+.p-datatable-wrapper {
+    display: flex;
+    min-height: 33rem;
+    flex-direction: column;
 }
