@@ -104,8 +104,8 @@
 
                         <img routerLink="/app-edite-user-details/{{inquire_details?.requested_user_ID}}" style="     width: 64px; height: 64px;  border-radius: 50%;cursor: pointer;" class="w-10 h-10 rounded-full" [src]="inquire_details?.requested_By_Img" />
                         <div class="flex-col justify-start items-start inline-flex">
-                            <div class="text-zinc-800 text-sm font-semibold font-['Poppins'] leading-tight">{{ inquire_details?.requested_By }} </div>
-                            <div class="text-neutral-400 text-sm font-normal font-['Poppins'] leading-tight"></div>
+                            <div class="text-zinc-800 text-sm font-semibold font-['Montserrat'] leading-tight">{{ inquire_details?.requested_By }} </div>
+                            <div class="text-neutral-400 text-sm font-normal font-['Montserrat'] leading-tight"></div>
                         </div>
                     </div>
                     <div class="accordion accordion-flush mb-5" id="accordionFlushExample">
@@ -155,39 +155,39 @@
 
                                     <div class="bg-white rounded shadow flex-col justify-start items-start flex">
                                         <div class="w-96 p-4 bg-white border-b border-gray-200 justify-start items-center gap-16 inline-flex">
-                                            <div class="w-80 text-zinc-800 text-sm font-semibold font-['Poppins'] leading-tight"> {{item?.guest_Name}}</div>
+                                            <div class="w-80 text-zinc-800 text-sm font-semibold font-['Montserrat'] leading-tight"> {{item?.guest_Name}}</div>
                                         </div>
                                         <div class="w-96 h-44 flex-col justify-start items-start gap-4 flex text-center">
-                                      <!--     <a  (click)="showPassport()" style="cursor: pointer;" *ngIf="item. isFile==false">
+                                            <!--     <a  (click)="showPassport()" style="cursor: pointer;" *ngIf="item. isFile==false">
                                             <img style="width:100%" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img" [src]="item?.passport_Img" />
                                             <img style="width:100%;height: 200px;" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img==''||item.passport_Img==null" src="../../../../assets/images/passport not uploaded.png" />
 
                                           </a> -->
-                                          <a [href]="'#'+item?.pS_ID" type="" class="" data-bs-toggle="modal" [attr.data-bs-target]="'#'+item?.pS_ID"  *ngIf="item. isFile==false">
-                                            <img style="width:100%" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img" [src]="item?.passport_Img" />
-                                            <img style="width:100%;height: 200px;" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img==''||item.passport_Img==null" src="../../../../assets/images/passport not uploaded.png" />
-                                          </a>
+                                            <a [href]="'#'+item?.pS_ID" type="" class="" data-bs-toggle="modal" [attr.data-bs-target]="'#'+item?.pS_ID" *ngIf="item. isFile==false">
+                                                <img style="width:100%" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img" [src]="item?.passport_Img" />
+                                                <img style="width:100%;height: 200px;" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img==''||item.passport_Img==null" src="../../../../assets/images/passport not uploaded.png" />
+                                            </a>
 
-                                          <div class="modal fade" id="{{ item?.pS_ID }}" tabindex="-1" [attr.aria-labelledby]=" item?.pS_ID" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                                              <div class="modal-content">
-                                                <div class="modal-header">
-                                                  <h5 class="modal-title" id="{{ item?.pS_ID }}">Passport of : {{ item?.guest_Name }}</h5>
-                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <div class="modal fade" id="{{ item?.pS_ID }}" tabindex="-1" [attr.aria-labelledby]=" item?.pS_ID" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="{{ item?.pS_ID }}">Passport of : {{ item?.guest_Name }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!--        include image here-->
+                                                            <img style="width:100%" class="self-stretch grow shrink basis-0 border border-stone-300 img-thumbnail" *ngIf="item.passport_Img" [src]="item?.passport_Img" />
+                                                            <img style="width:100%;height: 200px;" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img==''||item.passport_Img==null" src="../../../../assets/images/passport not uploaded.png" />
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="modal-body">
-                                                  <!--        include image here-->
-                                                  <img style="width:100%" class="self-stretch grow shrink basis-0 border border-stone-300 img-thumbnail" *ngIf="item.passport_Img" [src]="item?.passport_Img" />
-                                                  <img style="width:100%;height: 200px;" class="self-stretch grow shrink basis-0 border border-stone-300" *ngIf="item.passport_Img==''||item.passport_Img==null" src="../../../../assets/images/passport not uploaded.png" />
-                                                      </div>
-                                                <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                              </div>
                                             </div>
-                                          </div>
 
-                                         <!--  <div [style.display]="showPassportModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <!--  <div [style.display]="showPassportModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                               <div class="modal-content">
                                                 <div class="modal-header">
@@ -202,7 +202,7 @@
                                               </div>
                                             </div>
                                             </div> -->
-                                         <a target="_blank" href="{{ item.passport_Img }}" *ngIf="item. isFile==true" style="text-align: center;font-size: xx-large">
+                                            <a target="_blank" href="{{ item.passport_Img }}" *ngIf="item. isFile==true" style="text-align: center;font-size: xx-large">
                                               Show Passport
                                           </a>
 
@@ -259,20 +259,20 @@
                         </div>
 
                         <div class="accordion-item" *ngIf=" inquire_details?.rejected==true">
-                          <h2 class="accordion-header" id="flush-headingOne2">
-                              <button class="accordion-button ps-0  collapsed text-black fw-bold bg-transparent border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne1transport2" aria-expanded="false" aria-controls="flush-collapseOne1transport2">
+                            <h2 class="accordion-header" id="flush-headingOne2">
+                                <button class="accordion-button ps-0  collapsed text-black fw-bold bg-transparent border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne1transport2" aria-expanded="false" aria-controls="flush-collapseOne1transport2">
                           Reject Reason
                       </button>
-                          </h2>
-                          <div id="flush-collapseOne1transport2" class="accordion-collapse collapse mt-3" aria-labelledby="flush-headingOne2" data-bs-parent="#accordionFlushExample">
-                              <div class="mb-3">
+                            </h2>
+                            <div id="flush-collapseOne1transport2" class="accordion-collapse collapse mt-3" aria-labelledby="flush-headingOne2" data-bs-parent="#accordionFlushExample">
+                                <div class="mb-3">
 
-                                  <div class="form-control w-100 fs-6 pt-2">{{ inquire_details?.reject_Reason }}</div>
-                              </div>
+                                    <div class="form-control w-100 fs-6 pt-2">{{ inquire_details?.reject_Reason }}</div>
+                                </div>
 
 
-                          </div>
-                      </div>
+                            </div>
+                        </div>
 
 
 
@@ -297,72 +297,72 @@
 
                     </div>
                     <div class="row" *ngIf="inquire_details?.approved!=false">
-                       <div>
-                        <div class="  position-relative h-124px mb-3" style="margin-top: 22px;padding:0px">
-                          <!-- start single img upload and preview -->
-                          <div *ngIf="inquire_details.paid==true">
-                              <ng-container>
+                        <div>
+                            <div class="  position-relative h-124px mb-3" style="margin-top: 22px;padding:0px">
+                                <!-- start single img upload and preview -->
+                                <div *ngIf="inquire_details.paid==true">
+                                    <ng-container>
 
-                                  <div class="row rounded-3 my-4 p-2 pt-3 pb-0" style="border: 1px solid #8fa0b4">
-                                      <div class="col-12 col-md-6">
-                                          <h6>Tenant Contract</h6>
-                                          <p>This contract includes all the necessary information.</p>
-                                      </div>
-                                      <div class="col-12 col-md-5 d-flex align-items-center">
-                                          <div class="row">
-                                              <div class="col-5">
-                                                  <a class="me-3 cursor " (click)="CreateContractPDF()"><img src="assets/images/apartmentImages/delete.svg" /></a>
+                                        <div class="row rounded-3 my-4 p-2 pt-3 pb-0" style="border: 1px solid #8fa0b4">
+                                            <div class="col-12 col-md-6">
+                                                <h6>Tenant Contract</h6>
+                                                <p>This contract includes all the necessary information.</p>
+                                            </div>
+                                            <div class="col-12 col-md-5 d-flex align-items-center">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <a class="me-3 cursor " (click)="CreateContractPDF()"><img src="assets/images/apartmentImages/delete.svg" /></a>
 
-                                              </div>
-                                              <div class="col-2"></div>
-                                              <div class="col-5">
-                                                  <a class="me-3 cursor">
-                                                      <input type="file" accept="image/*" multiple="multiple" (change)="selectFile($event)" style="width: 8%;cursor:pointer;top: 59px;height: 34%;" class="ng-star-inserted d-block  file position-absolute">
+                                                    </div>
+                                                    <div class="col-2"></div>
+                                                    <div class="col-5">
+                                                        <a class="me-3 cursor">
+                                                            <input type="file" accept="image/*" multiple="multiple" (change)="selectFile($event)" style="width: 8%;cursor:pointer;top: 59px;height: 34%;" class="ng-star-inserted d-block  file position-absolute">
 
-                                                      <img src="../../../../assets/images/Featured icon.svg" /></a>
-                                              </div>
-                                          </div>
+                                                            <img src="../../../../assets/images/Featured icon.svg" /></a>
+                                                    </div>
+                                                </div>
 
-                                      </div>
-                                  </div>
-                                  <!-- <input type="file" accept="image/*" multiple="multiple" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                                            </div>
+                                        </div>
+                                        <!-- <input type="file" accept="image/*" multiple="multiple" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
                                   <img *ngIf="!selectedContractImg" src="../../../../assets/images/apartmentImages/11.png" class="position-absolute" width="100%" style="    border: 1px solid #c3bcbcc9;border-radius: 5px;">
                              -->
 
-                              </ng-container>
-                          </div>
-                          <div>
-                              <ng-container *ngIf="selectedContractImg">
-                                  <!-- <div>
+                                    </ng-container>
+                                </div>
+                                <div>
+                                    <ng-container *ngIf="selectedContractImg">
+                                        <!-- <div>
                                       <input type="file" accept=".pdf, image/*" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
                                       <a *ngIf="inquire_details?.contract_Type == 'pdf'" class="position-absolute imgPreviewUploader" [href]="selectedContractImg" target="_blank" style="font-size: large;z-index: 999999;    margin-left: 160px;">View PDF</a>
 
                                       <img *ngIf="inquire_details?.contract_Type != 'pdf'" [src]="selectedContractImg" style=" margin-left: 150px;" class="position-absolute imgPreviewUploader" width="100%">
 
                                   </div> -->
-                                  <!-- <div *ngIf="selectedContractImg=== 'application/pdf'">
+                                        <!-- <div *ngIf="selectedContractImg=== 'application/pdf'">
                                       <a [href]="selectedContractImg" target="_blank" style="font-size: large;">View PDF</a>
                                       <input type="file" accept=".pdf, image/*" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
                                       <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute h-100" width="90%" style="margin-left: 21px;">
 
                                   </div> -->
 
-                              </ng-container>
-                          </div>
-                          <!-- end single img upload and preview -->
-                      </div>
-                       </div>
+                                    </ng-container>
+                                </div>
+                                <!-- end single img upload and preview -->
+                            </div>
+                        </div>
                     </div>
-                   <div *ngIf="inquire_details.paid==true">
-                    <div class="row" *ngIf="inquire_details?.approved!=false" >
-                      <button *ngIf="inquire_details?.contract_Created==false" routerLink="/create-contract/{{param}}" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important;">
+                    <div *ngIf="inquire_details.paid==true">
+                        <div class="row" *ngIf="inquire_details?.approved!=false">
+                            <button *ngIf="inquire_details?.contract_Created==false" routerLink="/create-contract/{{param}}" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important;">
                     &nbsp;&nbsp;   Create Contract
       </button>
-                      <button *ngIf="inquire_details?.contract_Created==true" routerLink="/create-contract/{{param}}" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important;">
+                            <button *ngIf="inquire_details?.contract_Created==true" routerLink="/create-contract/{{param}}" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important;">
          &nbsp;&nbsp;   Edit Contract
 </button>
-                  </div>
-                   </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

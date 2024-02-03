@@ -15,7 +15,7 @@
         <div class="col-4 mt-2 col-lg-3 d-flex justify-content-end">
             <div class="d-flex pe-lg-4 ">
                 <!-- start notification -->
-                <span (click)="shownot()" style="cursor: pointer; margin-right: 1.25rem;">
+                <span (click)="shownot()" style="cursor: pointer; margin-right: 1.25rem;margin-top: 8px;">
                    <!-- <img src="assets/images/notification.svg" /> -->
                    <i class="pi pi-bell mr-4 p-text-secondary"  pBadge severity="danger" style="font-size: 1.5rem" value="{{ NotiCount10 }}"></i>
 
@@ -24,7 +24,7 @@
 
                 </span>
                 <!-- end notification -->
-                <div [ngStyle]="{ 'display':display1} " (click)="ClickedOut($event)" style=" z-index: 999 ; right: 0px; margin-top: 2.5rem;" class=" z-3 rounded-3 bg-white border cfresda ">
+                <div [ngStyle]="{ 'display':display1} " (click)="ClickedOut($event)" style=" z-index: 999 ; right: 0px; margin-top: 2.5rem;position: absolute;" class=" z-3 rounded-3 bg-white border cfresda ">
                     <div class="notifications">
                         <div class="div">
                             <div class="carbon-close"><img (click)="closenotifaction()" style="cursor: pointer;" class="vector" src="../../../../assets/images/carbon_close.svg" /></div>
