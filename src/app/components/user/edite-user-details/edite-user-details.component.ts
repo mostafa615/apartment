@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { InquiresService } from 'src/app/_services/inquires/inquires.service';
 import { AdminsService } from 'src/app/_services/admins/admins.service';
 import { UploadFileService } from 'src/app/_services/UploadFile/upload-file.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-edite-user-details',
   templateUrl: './edite-user-details.component.html',
@@ -231,5 +232,109 @@ export class EditeUserDetailsComponent {
   ratingnumber: any = 0;
   addreating(numberra: any) {
     this.ratingnumber = numberra;
+  }
+  desk=""
+  display1:any="none";
+  onCloseModal1(){
+    this.display1="none";
+this.desk=""
+
+  }
+  openmodel1(){
+    this.display1="block";
+
+  }
+  formdata2= new FormData()
+  uploadPic2(event: any) {
+
+      const selectedFile = event.target.files[0];
+      this.formData2 = new FormData();
+      this.formData2.append('AttachFile', selectedFile, selectedFile.name);
+       console.log(this.formData2);
+
+      // this.uploadFile.uploadSingleFile(formData).subscribe((img: any) => {
+      //   this.imageUrl = img[0].file_Path;
+      //   this.changeImageUrl.emit(img[0].file_Path);
+      //   this.loadingButton = false;
+      // });
+    // } else if (event == 'delete') {
+    //   this.imageUrl = '';
+    //   this.changeImageUrl.emit(this.defaultImageUrl());
+    //   this.loadingButton = false;
+    // }
+
+}
+selectedFiles?: FileList;
+  currentFile?: File;
+  progress = 0;
+  message = '';
+  preview = '';
+  imageInfos?: any = [];
+  ListFiles: any;
+  urls: any = null;
+  counter = 0;
+  link_create_ads: any = '';
+  removeItem() {
+    this.ListFiles = null;
+    this.urls = null;
+  }
+  selectFile(event: any): void {
+    this.message = '';
+    this.preview = '';
+    this.progress = 0;
+    this.selectedFiles = event.target.files;
+
+    let files = event.target.files;
+    this.ListFiles = event.target.files;
+    // this.formData2.append('AttachFile', this.ListFiles , this.ListFiles.name);
+
+    if (files) {
+      for (let file of files) {
+        this.ListFiles = file;
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.urls = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  }
+  readFile(file: File): Observable<string> {
+    return new Observable((obs) => {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        obs.next(reader.result as string);
+        obs.complete();
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+  AddAttach() {
+    debugger;
+    const formData = new FormData();
+
+    formData.append('AttachFile', this.ListFiles, this.ListFiles.name);
+
+    this._adminservices
+      .AddAttach(this.param, this.desk, formData)
+      .subscribe(
+        (res: any) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: res['message'],
+          });
+          this.display1 = 'none';
+          this.urls = null;
+          this.ListFiles = null;
+         },
+        (err: any) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `${err.error.message[0]}`,
+          });
+        }
+      );
   }
 }

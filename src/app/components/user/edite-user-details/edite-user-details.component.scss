@@ -221,8 +221,17 @@
     width: 2.543rem;
     height: 2.143rem;
 }
-.Tenant-Img{
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
+
+.Tenant-Img {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 800px;
+        margin-right: auto;
+        margin-left: auto;
+    }
 }

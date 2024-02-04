@@ -44,10 +44,18 @@ export class AppComponent implements OnInit {
     const messaging = getMessaging();
     getToken(messaging, { vapidKey: environment.firebase.vapidKey })
       .then((currentToken) => {
+        debugger;
         if (currentToken) {
           console.log('Hurraaa!!! we got the token.....');
           console.log(currentToken);
-          this.auth.FCMToken(currentToken).subscribe((response: any) => {});
+          this.auth.FCMToken(currentToken).subscribe(
+            (res) => {
+              debugger;
+            },
+            (error) => {
+              console.error('Error fetching owners:', error);
+            }
+          );
         } else {
           console.log(
             'No registration token available. Request permission to generate one.'
