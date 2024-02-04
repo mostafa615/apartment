@@ -1,4 +1,4 @@
-.block-ui-wrapper::ng-deep {
+::ng-deep .block-ui-wrapper {
   display: none;
   position: fixed;
   height: 100%;
@@ -16,7 +16,7 @@
   position: absolute
 }
 
-.block-ui-wrapper.mactive {
+::ng-deep .block-ui-wrapper .active {
   display: block;
   background-color: rgba(31, 64, 104, 0.5) !important;
 
