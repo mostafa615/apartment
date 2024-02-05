@@ -59,7 +59,7 @@ export class AuthenticationService {
   }
   FCMToken(token: string): Observable<any> {
     let url = environment.apiUrl + '/Basics/FCMDashBoard?Token=' + token;
-    return this.http.post<any>(url, token);
+    return this.http.post(url, token, { responseType: 'text' });
   }
   public getToken(): string | null {
     return this.isLoggedIn() ? localStorage.getItem('tokenKey') : null;
