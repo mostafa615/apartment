@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { CalendarModule } from 'primeng/calendar';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
@@ -39,10 +39,20 @@ import { BadgeModule } from 'primeng/badge';
 
 import { environment } from 'src/environments/environment';
 import { initializeApp } from 'firebase/app';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import {
+  FaConfig,
+  FaIconLibrary,
+  FontAwesomeModule,
+} from '@fortawesome/angular-fontawesome';
+
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 initializeApp(environment.firebase);
 
 @NgModule({
-  declarations: [AppComponent, StatisticsComponent],
+  declarations: [AppComponent, StatisticsComponent, SpinnerComponent],
   imports: [
     AppRoutingModule,
     IssuReportsModule,
@@ -71,6 +81,7 @@ initializeApp(environment.firebase);
     OwnersModule,
     GoogleMapsModule,
     BadgeModule,
+    FontAwesomeModule,
 
     BlockUIModule.forRoot({
       delayStart: 1,
@@ -83,7 +94,20 @@ initializeApp(environment.firebase);
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [HttpClientModule, JwtInterceptor, PathLocationStrategy],
+  providers: [
+    HttpClientModule,
+    JwtInterceptor,
+    PathLocationStrategy,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas, far);
+  }
+}

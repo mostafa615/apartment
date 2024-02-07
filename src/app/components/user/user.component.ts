@@ -215,7 +215,6 @@ export class UserComponent {
   searchText: any = '';
 
   searchKey(data: string) {
-    debugger;
     this.searchText = data;
     this.getAllTenants();
   }

@@ -126,12 +126,13 @@
                         <!-- <td>
                     <p class="d-flex align-items-center fw-bold mt-2">{{admin?.status}}</p>
                 </td> -->
-                        <td>
+                        <td class="text-center">
                             <div>
-                                <span class="rounded-5 px-3 py-1" style="background-color:#e6e6e6cf;;color: rgb(0, 0, 0);font-size: 12px !important;" [class.active]="Tenant?.user_Behavior=='Approved'">
+                              <p-tag severity="success" value=" {{Tenant?.user_Behavior}}" [rounded]="true " *ngIf="Tenant?.user_Behavior=='Excellent'"> </p-tag>
+                              <p-tag severity="danger" value=" {{Tenant?.user_Behavior}}" [rounded]="true " *ngIf="Tenant?.user_Behavior=='Bad'"> </p-tag>
+                              <p-tag severity="info" value=" {{Tenant?.user_Behavior}}" [rounded]="true " *ngIf="Tenant?.user_Behavior=='Good'"> </p-tag>
 
-                     {{Tenant?.user_Behavior}}
-                </span>
+
 
 
                             </div>

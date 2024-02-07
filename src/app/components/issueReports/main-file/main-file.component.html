@@ -131,10 +131,10 @@
                             {{issue?.desc}}
                         </td>
                         <td>
-                            <p-tag severity="Info" *ngIf="issue?.issue_Status=='InProgress'" value="InProgress" [rounded]="true"></p-tag>
-                            <p-tag severity="Success" *ngIf="issue?.issue_Status=='Completed'" value="Completed" [rounded]="true"></p-tag>
-                            <p-tag severity="Warning" *ngIf="issue?.issue_Status=='Pending'" value="Pending" [rounded]="true"></p-tag>
-                            <p-tag severity="Danger" *ngIf="issue?.issue_Status=='Cancelled'" value="Cancelled" [rounded]="true"></p-tag>
+                            <p-tag severity="info" *ngIf="issue?.issue_Status=='InProgress'" value="InProgress" [rounded]="true"></p-tag>
+                            <p-tag severity="success" *ngIf="issue?.issue_Status=='Completed'" value="Completed" [rounded]="true"></p-tag>
+                            <p-tag severity="warning" *ngIf="issue?.issue_Status=='Pending'" value="Pending" [rounded]="true"></p-tag>
+                            <p-tag severity="danger" *ngIf="issue?.issue_Status=='Cancelled'" value="Cancelled" [rounded]="true"></p-tag>
 
 
 

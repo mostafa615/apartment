@@ -304,7 +304,6 @@ export class MainFileComponent {
   }
   who_will_pay: any = 'StudiFlats';
   handleChange2(item: any) {
-    debugger;
     this.who_will_pay = item;
   }
   Company_gain: any;
@@ -344,7 +343,6 @@ export class MainFileComponent {
       );
   }
   onSearchChange(searchValue: any) {
-    debugger;
     this.Total_cost = [];
     // this.worker_cost=searchValue.data
     this.Total_cost = Number(this.item_Cost) + Number(this.worker_cost);
@@ -356,7 +354,6 @@ export class MainFileComponent {
   searchText: any = '';
 
   searchKey(data: string) {
-    debugger;
     this.searchText = data;
     this.getAllIssues();
   }

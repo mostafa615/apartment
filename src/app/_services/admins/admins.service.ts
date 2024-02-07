@@ -365,7 +365,6 @@ export class AdminsService {
   }
 
   CreateAds(URL: any, Button_Name: any, Photo_Attach: any): Observable<any> {
-    debugger;
     const url =
       environment.apiUrl +
       '/Basics/CreateAds?URL=' +
@@ -378,8 +377,6 @@ export class AdminsService {
     return this.http.post<any>(url, Photo_Attach, { headers: headers1 });
   }
   AddAttach(User_ID: any, Desc: any, AttachFile: any): Observable<any> {
-
-    debugger;
     const url =
       environment.apiUrl +
       '/Users/AddAttach?User_ID=' +
@@ -540,5 +537,20 @@ export class AdminsService {
     const url = environment.apiUrl + '/PushNotification/NotiCount';
 
     return this.http.get<any[]>(url, { headers: this.headers });
+  }
+
+  MarkPushRead(id: any): Observable<any> {
+    const url =
+      environment.apiUrl + '/PushNotification/MarkRead?Alert_ID=' + id;
+    return this.http.put<any>(url, id, { headers: this.headers });
+  }
+  MarkPushUnRead(id: any): Observable<any> {
+    const url =
+      environment.apiUrl + '/PushNotification/MarkUnRead?Alert_ID=' + id;
+    return this.http.put<any>(url, id, { headers: this.headers });
+  }
+  MarkAllRead(): Observable<any> {
+    const url = environment.apiUrl + '/PushNotification/MarkAllRead';
+    return this.http.put<any>(url, null, { headers: this.headers });
   }
 }
