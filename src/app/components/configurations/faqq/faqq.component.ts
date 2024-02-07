@@ -383,7 +383,6 @@ export class FaqqComponent implements OnInit {
   }
   button_name: any = '';
   CreateAds() {
-    debugger;
     const formData = new FormData();
 
     formData.append('Photo_Attach', this.ListFiles, this.ListFiles.name);
@@ -416,7 +415,6 @@ export class FaqqComponent implements OnInit {
   searchText: any = '';
 
   searchKey(data: string) {
-    debugger;
     this.searchText = data;
     this.getAllFAQ();
   }

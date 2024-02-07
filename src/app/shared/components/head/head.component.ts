@@ -2,6 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
 import { UploadFileService } from 'src/app/_services/UploadFile/upload-file.service';
 import { AdminsService } from 'src/app/_services/admins/admins.service';
+import { MessageService } from 'primeng/api';
+import {
+  FaConfig,
+  FaIconLibrary,
+  FontAwesomeModule,
+} from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-head',
@@ -17,7 +23,8 @@ export class HeadComponent {
   constructor(
     private uploadFile: UploadFileService,
     private http: HttpClient,
-    private _adminservices: AdminsService
+    private _adminservices: AdminsService,
+    private messageService: MessageService
   ) {}
   ngOnInit() {
     this.PushNotification();
@@ -42,9 +49,14 @@ export class HeadComponent {
     this.showEdit = [];
   }
   display1 = 'none';
+
   shownot() {
     //this. PushNotification()
-    this.display1 = 'block';
+    if (this.display1 == 'none') {
+      this.display1 = 'block';
+    } else {
+      this.display1 = 'none';
+    }
   }
   //    onLikeClicked(event:any){
   //     // event.stopPropagation();
@@ -53,12 +65,12 @@ export class HeadComponent {
   //    }
   NotifiList: any = [];
   NotiCount: any;
+  NCount: any;
   NotiCount10: any;
 
   PushNotification() {
     this._adminservices.PushNotification().subscribe(
       (res: any) => {
-        debugger;
         this.NotifiList = res;
       },
       (error) => {
@@ -69,8 +81,8 @@ export class HeadComponent {
   PushNotificationCount() {
     this._adminservices.PushNotificationCount().subscribe(
       (res: any) => {
-        debugger;
         this.NotiCount = res;
+        this.NCount = this.NotiCount.count;
         if (this.NotiCount.count > 10) {
           this.NotiCount10 = 10 + '+';
         } else {
@@ -89,6 +101,73 @@ export class HeadComponent {
     // debugger
     // if(event.target.className != "cfresda") {
     this.display1 = 'none';
+
     // }
+  }
+  MarkReaded(id: any) {
+    this._adminservices.MarkPushRead(id).subscribe(
+      (res) => {
+        /* this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Marked as Readed',
+        }); */
+
+        this.PushNotification();
+        //this.closenotifaction();
+        this.PushNotificationCount();
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'error',
+          detail: 'error',
+        });
+      }
+    );
+  }
+  MarkUnReaded(id: any) {
+    this._adminservices.MarkPushUnRead(id).subscribe(
+      (res) => {
+        /*  this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Marked as Un-Readed',
+        }); */
+
+        this.PushNotification();
+        //this.closenotifaction();
+        this.PushNotificationCount();
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'error',
+          detail: 'error',
+        });
+      }
+    );
+  }
+  MarkAllRead() {
+    this._adminservices.MarkAllRead().subscribe(
+      (res) => {
+        /*  this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'All Marked as Readed',
+        }); */
+
+        this.PushNotification();
+        //this.closenotifaction();
+        this.PushNotificationCount();
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'error',
+          detail: 'error',
+        });
+      }
+    );
   }
 }

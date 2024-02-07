@@ -44,14 +44,11 @@ export class AppComponent implements OnInit {
     const messaging = getMessaging();
     getToken(messaging, { vapidKey: environment.firebase.vapidKey })
       .then((currentToken) => {
-        debugger;
         if (currentToken) {
           console.log('Hurraaa!!! we got the token.....');
           console.log(currentToken);
           this.auth.FCMToken(currentToken).subscribe(
-            (res) => {
-              debugger;
-            },
+            (res) => {},
             (error) => {
               console.error('Error fetching owners:', error);
             }
