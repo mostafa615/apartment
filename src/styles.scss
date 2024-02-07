@@ -2,6 +2,8 @@
 @import '../node_modules/primeicons/primeicons.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "primeicons/primeicons.css";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
 main {
     margin-top: 90px !important;
     background-color: #FAFCFF;
@@ -12,3 +14,4 @@ main {
     min-height: 33rem;
     flex-direction: column;
 }
+

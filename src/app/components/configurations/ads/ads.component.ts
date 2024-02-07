@@ -301,7 +301,6 @@ export class AdsComponent implements OnInit {
   }
   button_name: any = '';
   CreateAds() {
-    debugger;
     const formData = new FormData();
 
     formData.append('Photo_Attach', this.ListFiles, this.ListFiles.name);
@@ -396,7 +395,6 @@ export class AdsComponent implements OnInit {
       );
   }
   openmodupdateads(item: any) {
-    debugger;
     this.ListFiles2 = null;
     this.link_create_ads_update = ' ';
     this.button_name_update = '';
@@ -415,7 +413,6 @@ export class AdsComponent implements OnInit {
   searchText: any = '';
 
   searchKey(data: string) {
-    debugger;
     this.searchText = data;
     this.GetAds();
   }
