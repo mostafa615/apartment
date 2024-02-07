@@ -16,11 +16,26 @@
 
     <!-- start content page  -->
     <main class="p-4 col-lg-10 ">
-        <div class="row">
+        <!-- <div class="row">
             <p-breadcrumb class="max-w-full" [model]="[{label:'FAQ'}]" [home]="home"></p-breadcrumb>
 
-        </div>
+        </div> -->
+        <div class="fw-inquiries d-flex justify-content-between" style="color: #6c6a6a;">
+            <p style=" font-family: Montserrat;font-size: 16px;font-weight:600;color:black">FAQ</p>
+            <div class="d-flex justify-content-lg-between  ">
 
+                <!-- start dropdown button  -->
+                <!-- <app-dropdown class="me-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown> -->
+                <!-- end dropdown button  -->
+                <!-- start add button (add new owner) in page  -->
+                <!-- <app-add-new-button [id]="'/owner/create_new'" class="mt-2"></app-add-new-button> -->
+
+                <!-- end add button (add new owner) in page  -->
+            </div>
+            <!-- start add button (add new apartment) in page  -->
+            <!-- end add button (add new apartment) in page  -->
+
+        </div>
         <p-toast></p-toast>
         <div class="card mt-4">
             <div class="d-flex justify-content-between">
@@ -31,7 +46,7 @@
                 </div>
                 <!-- search input -->
                 <div class="d-flex align-items-center mx-2 mt-2 w-50">
-                    <a class="px-3 py-2 rounded border text-white text-decoration-none" (click)="openmodelcreatefaq()" style="background-color:#1F4068; cursor: pointer;margin-left: 423px;">
+                    <a class="px-3 py-2 rounded border text-white text-decoration-none  marmodify" (click)="openmodelcreatefaq()" style="background-color:#1F4068; cursor: pointer; ">
                         <img src="assets/images/plus.svg" class="me-2 ">Add New
                     </a>
                 </div>
@@ -74,7 +89,7 @@
                             {{fqq?.faq_Ans}}
                         </td>
 
-                        <td class="cursor position-relative">
+                        <td class="cursor position-relative" style="text-align: center;">
                             <button class="border-0 outlin-0 bg-transparent" (click)="detailperson($event,fqq.faq_ID)">
     <img src="assets/images/edit.svg">
 </button>

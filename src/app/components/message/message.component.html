@@ -14,9 +14,9 @@
 
         <!-- <p class="fw-bold" style="color: #6c6a6a"></p> -->
         <div class="fw-inquiries d-flex justify-content-between" style="color: #6c6a6a;">
-            <p style=" font-family: Roboto;font-size: 19px;font-weight:600;color:black">Tickets</p>
+            <p style=" font-family: Montserrat;font-size: 19px;font-weight:600;color:black">Tickets</p>
             <div class="d-flex justify-content-lg-between  ">
-                <app-dropdown class="ms-3" style="margin-right: 20px;" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
+                <app-dropdown class="ms-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
 
                 <!-- start dropdown button  -->
                 <!-- <app-dropdown class="me-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown> -->
@@ -131,7 +131,7 @@
 
                             </div>
                         </td>
-                        <td class="cursor position-relative">
+                        <td class="cursor position-relative" style="text-align: center;">
                             <button class="border-0 outlin-0 bg-transparent" *ngIf="inquire?.status=='Opened'" (click)="detailperson( $event,inquire.ticket_ID)">
                 <img src="assets/images/edit.svg">
             </button>

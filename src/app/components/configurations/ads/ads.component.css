@@ -22,3 +22,13 @@
 .w-145px {
     width: 145px;
 }
+
+@media (min-width: 768px) {
+    .marmodify {
+        margin-left: 486px;
+    }
+}
+
+td {
+    padding: 1.5rem !important;
+}

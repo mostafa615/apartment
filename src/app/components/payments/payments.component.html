@@ -11,10 +11,10 @@
     <!-- start content page  -->
     <main class="p-4 col-lg-10 ">
         <!-- start part 1 in page  -->
-        <div class="fw-payments d-flex justify-content-between" style="color: #6c6a6a;">
-            <p style=" font-family: Roboto;font-size: 19px;font-weight:600;color:black">payments</p>
-            <div class="d-flex justify-content-lg-between cvvvvvvv">
-                <app-dropdown class="ms-3" style="margin-right: 20px;" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
+        <div class="fw-inquiries d-flex justify-content-between" style="color: #6c6a6a;">
+            <p style=" font-family: Montserrat;font-size: 19px;font-weight:600;color:black">payments</p>
+            <div class="d-flex justify-content-lg-between  ">
+                <app-dropdown class="ms-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown>
 
                 <!-- start dropdown button  -->
                 <!-- <app-dropdown class="me-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown> -->
@@ -26,9 +26,11 @@
             </div>
             <!-- start add button (add new apartment) in page  -->
             <!-- end add button (add new apartment) in page  -->
-            <p-toast></p-toast>
 
         </div>
+
+        <p-toast></p-toast>
+
         <!-- end part 1 in page  -->
         <!-- start part 2 in page  -->
 
@@ -56,7 +58,7 @@
                 <div class="d-flex align-items-center mx-2 mt-2  ">
 
                     <ng-container *ngIf="!search; else searchVisible">
-                        <img class="pi pi-search cursor ms-auto" style="margin-right: 2rem;" (click)="search = true" src="../../../assets/images/search.svg">
+                        <img class="pi pi-search cursor ms-auto" (click)="search = true" src="../../../assets/images/search.svg">
                         <!-- <i class="pi pi-search cursor ms-auto" style="margin-right: 2rem;" (click)="search = true"></i> -->
                     </ng-container>
                     <ng-template #searchVisible>
@@ -166,7 +168,7 @@
 
                             </div>
                         </td>
-                        <td class="cursor position-relative">
+                        <td class="cursor position-relative" style="text-align: center;">
                             <button class="border-0 outlin-0 bg-transparent" (click)="detailperson( $event,payment.inv_ID)">
                   <img src="assets/images/edit.svg">
               </button>
