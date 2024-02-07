@@ -183,7 +183,7 @@ export class FirstStepComponent implements OnInit {
       this.generalInfoForm.get('apt_Imgs')?.patchValue(parsedData.apt_Imgs);
       this.apt_imgs = parsedData.apt_Imgs;
       this.bills = parsedData.bills;
-      debugger;
+
       this.billinclude = parsedData.apt_AllBillsIncludes;
 
       this.generalInfoForm.get('apt_Area')?.setValue(parsedData.apt_Area);
@@ -336,7 +336,6 @@ export class FirstStepComponent implements OnInit {
   }
 
   DoyouCreatebills(value: any) {
-    debugger;
     console.log(value.target.value);
     this.bills = value.target.value;
     this.billinclude = value.target.value == 'Yes' ? true : false;
@@ -541,13 +540,10 @@ export class FirstStepComponent implements OnInit {
   }
 
   transport(value: any): void {
-    debugger;
-
     console.log(this.localapt_Transports);
     this.Createtransport.push(value);
   }
   RemoveActionButton(index: number) {
-    debugger;
     this.Createtransport.slice(0, index);
   }
   index = 0;

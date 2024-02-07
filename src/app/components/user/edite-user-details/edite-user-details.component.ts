@@ -233,38 +233,34 @@ export class EditeUserDetailsComponent {
   addreating(numberra: any) {
     this.ratingnumber = numberra;
   }
-  desk=""
-  display1:any="none";
-  onCloseModal1(){
-    this.display1="none";
-this.desk=""
-
+  desk = '';
+  display1: any = 'none';
+  onCloseModal1() {
+    this.display1 = 'none';
+    this.desk = '';
   }
-  openmodel1(){
-    this.display1="block";
-
+  openmodel1() {
+    this.display1 = 'block';
   }
-  formdata2= new FormData()
+  formdata2 = new FormData();
   uploadPic2(event: any) {
+    const selectedFile = event.target.files[0];
+    this.formData2 = new FormData();
+    this.formData2.append('AttachFile', selectedFile, selectedFile.name);
+    console.log(this.formData2);
 
-      const selectedFile = event.target.files[0];
-      this.formData2 = new FormData();
-      this.formData2.append('AttachFile', selectedFile, selectedFile.name);
-       console.log(this.formData2);
-
-      // this.uploadFile.uploadSingleFile(formData).subscribe((img: any) => {
-      //   this.imageUrl = img[0].file_Path;
-      //   this.changeImageUrl.emit(img[0].file_Path);
-      //   this.loadingButton = false;
-      // });
+    // this.uploadFile.uploadSingleFile(formData).subscribe((img: any) => {
+    //   this.imageUrl = img[0].file_Path;
+    //   this.changeImageUrl.emit(img[0].file_Path);
+    //   this.loadingButton = false;
+    // });
     // } else if (event == 'delete') {
     //   this.imageUrl = '';
     //   this.changeImageUrl.emit(this.defaultImageUrl());
     //   this.loadingButton = false;
     // }
-
-}
-selectedFiles?: FileList;
+  }
+  selectedFiles?: FileList;
   currentFile?: File;
   progress = 0;
   message = '';
@@ -310,31 +306,28 @@ selectedFiles?: FileList;
     });
   }
   AddAttach() {
-    debugger;
     const formData = new FormData();
 
     formData.append('AttachFile', this.ListFiles, this.ListFiles.name);
 
-    this._adminservices
-      .AddAttach(this.param, this.desk, formData)
-      .subscribe(
-        (res: any) => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: res['message'],
-          });
-          this.display1 = 'none';
-          this.urls = null;
-          this.ListFiles = null;
-         },
-        (err: any) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: `${err.error.message[0]}`,
-          });
-        }
-      );
+    this._adminservices.AddAttach(this.param, this.desk, formData).subscribe(
+      (res: any) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: res['message'],
+        });
+        this.display1 = 'none';
+        this.urls = null;
+        this.ListFiles = null;
+      },
+      (err: any) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: `${err.error.message[0]}`,
+        });
+      }
+    );
   }
 }
