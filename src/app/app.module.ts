@@ -25,7 +25,7 @@ import { PartnerModule } from './components/partner/partner.module';
 import { ConfigurationsModule } from './components/configurations/configurations.module';
 import { AdsModule } from './components/configurations/ads/ads.module';
 import { FaqqModule } from './components/configurations/faqq/faqq.module';
-
+import { AppMsgsModule } from './components/appmsgs/appmsgs.module';
 import { AuthModule } from './components/auth/auth.module';
 import { UserModule } from './components/user/user.module';
 import { SharedModule } from './shared/shared.module';
@@ -34,7 +34,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { PathLocationStrategy } from '@angular/common';
 import { BlockUIModule } from 'ng-block-ui';
 import { BlockUIHttpModule } from 'ng-block-ui/http';
-
+import { PushmsgsModule } from './components/pushmsgs/pushmsgs.module';
 import { BadgeModule } from 'primeng/badge';
 
 import { environment } from 'src/environments/environment';
@@ -80,7 +80,8 @@ initializeApp(environment.firebase);
     GoogleMapsModule,
     BadgeModule,
     FontAwesomeModule,
-
+    AppMsgsModule,
+    PushmsgsModule,
     BlockUIModule.forRoot({
       delayStart: 1,
       delayStop: 500,

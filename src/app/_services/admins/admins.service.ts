@@ -294,6 +294,55 @@ export class AdminsService {
 
     return this.http.get<any>(url, { headers: this.headers });
   }
+
+  GetMsgs(PageNumber: number, PageSize: number): Observable<any> {
+    const url = environment.apiUrl + '/Various/AppMsgs';
+    const params = new HttpParams()
+      .set('PageNumber', PageNumber)
+      .set('PageSize', PageSize);
+    return this.http.get<any>(url, { headers: this.headers, params: params });
+  }
+  GetPushMsgs(PageNumber: number, PageSize: number): Observable<any> {
+    const url = environment.apiUrl + '/Various/GetPushMsgs';
+    const params = new HttpParams()
+      .set('PageNumber', PageNumber)
+      .set('PageSize', PageSize);
+    return this.http.get<any>(url, { headers: this.headers, params: params });
+  }
+  GetAppUsers(): Observable<any> {
+    const url = environment.apiUrl + '/Various/AppUsers';
+
+    return this.http.get<any>(url, { headers: this.headers });
+  }
+  SendNotification(
+    User_ID: any,
+    Msg_Title: any,
+    Msg_Body: any
+  ): Observable<any[]> {
+    const url = environment.apiUrl + '/Various/SendNotification';
+    const params = new HttpParams()
+      .set('User_ID', User_ID)
+      .set('Msg_Title', Msg_Title)
+      .set('Msg_Body', Msg_Body);
+
+    return this.http.post<any>(url, User_ID, {
+      headers: this.headers,
+      params: params,
+    });
+  }
+  EditMsgs(Msg_ID: any, Msg_EN: any, Msg_De: any): Observable<any[]> {
+    const url = environment.apiUrl + '/Various/EditMsgs';
+    const params = new HttpParams()
+      .set('Msg_ID', Msg_ID)
+      .set('Msg_EN', Msg_EN)
+      .set('Msg_De', Msg_De);
+
+    return this.http.put<any>(url, Msg_ID, {
+      headers: this.headers,
+      params: params,
+    });
+  }
+
   UpdateFAQ(Faq_ID: any, Qest: any, Answ: any): Observable<any[]> {
     const url = environment.apiUrl + '/Basics/UpdateFAQ';
     const params = new HttpParams()

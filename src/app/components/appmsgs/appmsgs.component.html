@@ -1,0 +1,307 @@
+
+<header>
+  <app-head (newItemEvent)="addItem($event)" [titleModule]="'App Messages'"></app-head>
+</header>
+
+<div class="row m-0">
+
+  <!-- start sidebar  -->
+  <app-sidebar class="col-lg-2" [showSide]="showSide" [titlepage]="'App Messages'"></app-sidebar>
+  <!-- end sidebar  -->
+
+  <!-- start content page  -->
+  <main class="p-4 col-lg-10 ">
+      <!-- <div class="row">
+          <p-breadcrumb class="max-w-full" [model]="[{label:'Msg'}]" [home]="home"></p-breadcrumb>
+
+      </div> -->
+      <div class="fw-inquiries d-flex justify-content-between" style="color: #6c6a6a;">
+          <p style=" font-family: Montserrat;font-size: 16px;font-weight:600;color:black">App Messages</p>
+          <div class="d-flex justify-content-lg-between  ">
+
+              <!-- start dropdown button  -->
+              <!-- <app-dropdown class="me-3" [list]="listDropDown" (selected)="selectedfromDropDown($event)"></app-dropdown> -->
+              <!-- end dropdown button  -->
+              <!-- start add button (add new owner) in page  -->
+              <!-- <app-add-new-button [id]="'/owner/create_new'" class="mt-2"></app-add-new-button> -->
+
+              <!-- end add button (add new owner) in page  -->
+          </div>
+          <!-- start add button (add new apartment) in page  -->
+          <!-- end add button (add new apartment) in page  -->
+
+      </div>
+      <p-toast></p-toast>
+      <div class="card mt-2">
+          <div class="d-flex justify-content-between">
+              <!-- length Of person -->
+              <div class="d-flex mx-2 mt-4">
+                  <p class="me-2 fs-5 fw-bold ml-8">Messages : {{numberMsgs}}</p>
+
+              </div>
+              <!-- search input -->
+
+          </div>
+          <!-- <p-table #dt1 [value]="Msg" [(selection)]="selectppdd" dataKey="id1" [filterDelay]="0" /> -->
+
+
+
+          <p-table class="table-shopping" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem' ,'min-': '50rem'}" [value]="Msgs">
+              <ng-template pTemplate="header" class="text-center">
+                  <tr *ngIf="headerData">
+                      <ng-container>
+
+                          <th class="td-name">
+                              Message EN
+
+                          </th>
+                          <th class="td-name">
+                              Message DE
+
+
+                          </th>
+
+                          <th class="td-name">
+
+
+                          </th>
+                      </ng-container>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-fqq>
+
+                  <tr style="cursor: pointer;" (click)="hidecard()">
+
+
+                      <td>
+                          {{fqq?.msg_EN}}
+                      </td>
+                      <td>
+                          {{fqq?.msg_De}}
+                      </td>
+
+                      <td class="cursor position-relative" style="text-align: center;">
+                          <button class="border-0 outlin-0 bg-transparent" (click)="detailperson($event,fqq.msg_ID)">
+  <img src="assets/images/edit.svg">
+</button>
+                          <div *ngIf="showEdit[fqq.msg_ID] " style="width: 191px;z-index: 999;right: 98px;" class="position-absolute z-3 rounded-3 bg-white border edit-button">
+                              <button class="d-block border-0 outlin-0 bg-transparent my-2 button text-start py-2 w-100" (click)="openmodel2updateMsgs(fqq)">Update</button>
+
+
+                          </div>
+
+                      </td>
+
+                  </tr>
+
+              </ng-template>
+
+
+              <ng-template pTemplate="emptymessage">
+                  <div class="container text-center mt-4">
+                      <p class="mb-0">No data found.</p>
+                  </div>
+              </ng-template>
+
+          </p-table>
+          <p-paginator (onPageChange)="tiggerPageChange($event)" [rows]="pagesize" [totalRecords]="totalRecords" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+
+          <!-- <div style="width: 100%; height: 72px; padding-top: 12px; padding-bottom: 16px; padding-left: 24px; padding-right: 24px;   justify-content: space-between; align-items: center; display: inline-flex">
+      <div style="border-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+
+          <button (click)="decreamentPage( )" [disabled]="disableperv" class="  cvxs" style="text-align: center; color: #1F4068; font-size: 16px; font-family: 'Montserrat'; font-weight: 500; line-height: 20px; word-wrap: break-word">
+        Previous
+  </button>
+      </div>
+      <div style="color: #484649; font-size: 14px; font-family: 'Montserrat'; font-weight: 400; line-height: 20px; word-wrap: break-word">Page {{pageNumber}} of {{totalofPages}}</div>
+      <div style="border-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+
+          <button [disabled]="disablenext" (click)="   incrementpage( )" class="  cvxs" style="text-align: center; color: #1F4068; font-size: 16px; font-family: 'Montserrat'; font-weight: 500; line-height: 20px; word-wrap: break-word">
+            Next
+  </button>
+      </div>
+  </div> -->
+      </div>
+  </main>
+  <!-- end content page  -->
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display1}" style=" background-color: rgb(23 22 22 / 50%);;">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content" style="    margin-top: 150px;">
+          <div class="modal-header" style="background-color:#ffffff; border-bottom: none !important;">
+              <p class="modal-title" style="color: #1C1B1F; font-size: 20px;   font-weight: 600; line-height: 24px; word-wrap: break-word">
+                  <span class="form-label gray fw-bold" style="vertical-align: middle; padding-left:8px">
+              Add Msg
+      </span>
+              </p>
+              <button type="button" style="border:none;background-color: #ffffff;width: 68px;height: 50px;" class="close" aria-label="Close" (click)="onCloseModal1()">
+<span aria-hidden="true" style="color: #000000;font-size: 35px;">&times;</span>
+</button>
+
+
+
+          </div>
+
+          <div class="modal-body">
+
+
+              <div class="row">
+                  <div class="mb-3 col-12 col-md-12">
+                      <label for="exampleInputPricepermonth" class="form-label gray fw-bold">Message EN</label>
+                      <textarea type="text" [(ngModel)]="Question_title" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth"></textarea>
+
+                  </div>
+                  <div class="mb-3 col-12 col-md-12">
+                      <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold">Message DE</label>
+                      <textarea class="border p-3 pt-3 rounded-2 w-100" [(ngModel)]="question_answer" rows="5" style="resize: inherit"></textarea>
+
+                  </div>
+              </div>
+
+          </div>
+
+
+
+
+
+
+
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display2}" style=" background-color: rgb(23 22 22 / 50%);;">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content" style="    margin-top: 150px;">
+          <div class="modal-header" style="background-color:#ffffff; border-bottom: none !important;">
+              <p class="modal-title" style="color: #1C1B1F; font-size: 20px;   font-weight: 600; line-height: 24px; word-wrap: break-word">
+                  <span class="form-label gray fw-bold" style="vertical-align: middle; padding-left:8px">
+              Update Message
+      </span>
+              </p>
+              <button type="button" style="border:none;background-color: #ffffff;width: 68px;height: 50px;" class="close" aria-label="Close" (click)="onCloseModal2()">
+<span aria-hidden="true" style="color: #000000;font-size: 35px;">&times;</span>
+</button>
+
+
+
+          </div>
+
+          <div class="modal-body">
+
+
+              <div class="row">
+                <div class="mb-3 col-12 col-md-12">
+                  <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold">Message EN</label>
+                  <textarea class="border p-3 pt-3 rounded-2 w-100" [(ngModel)]="Question_title_update" rows="3" style="resize: inherit"></textarea>
+
+              </div>
+
+
+                  <div class="mb-3 col-12 col-md-12">
+                      <label for="exampleInputSecuritydeposit" class="form-label gray fw-bold">Message DE</label>
+                      <textarea class="border p-3 pt-3 rounded-2 w-100" [(ngModel)]="question_answer_update" rows="3" style="resize: inherit"></textarea>
+
+                  </div>
+              </div>
+
+          </div>
+
+
+
+
+          <div class="modal-footer">
+
+              <div class="d-flex justify-content-between">
+                  <div class="py-2 px-3 fw-bold"></div>
+                  <div class="d-flex justify-content-between">
+                      <a (click)="onCloseModal2()" style="    border: 1px solid;" class="backcancel text-decoration-none cursor bg-white rounded-2 py-2 px-3 fw-bold mx-2 xcvddmodel">
+                Cancel
+  </a>
+                      <button (click)="UpdateMsgs()" class="rounded-2 text-white rounded-2 border-0 py-2 px-4" style="background-color: #1f4068 !important">
+                Confirm
+  </button>
+                  </div>
+              </div>
+              <!-- Confirm -->
+
+          </div>
+
+
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display3}" style=" background-color: rgb(23 22 22 / 50%);;">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content" style="    margin-top: 150px;">
+          <div class="modal-header" style="background-color:#ffffff; border-bottom: none !important;">
+              <p class="modal-title" style="color: #1C1B1F; font-size: 20px;   font-weight: 600; line-height: 24px; word-wrap: break-word">
+                  <span class="form-label gray fw-bold" style="vertical-align: middle; padding-left:8px">
+              add new advertisement
+    </span>
+              </p>
+              <button type="button" style="border:none;background-color: #ffffff;width: 68px;height: 50px;" class="close" aria-label="Close" (click)="onCloseModal3()">
+<span aria-hidden="true" style="color: #000000;font-size: 35px;">&times;</span>
+</button>
+
+
+
+          </div>
+
+          <div class="modal-body">
+
+
+              <div class="row">
+
+                  <label class="form-label gray fw-bold"> Upload picture
+          </label>
+                  <div class="position-relative h-124px mb-3">
+
+                      <input type="file" accept="image/*" (change)="selectFile($event)" class="ng-star-inserted d-block w-100 h-124px file position-absolute">
+                      <img src="assets/images/apartmentImages/_File upload base.svg" class="position-absolute" width="907%">
+
+                  </div>
+
+              </div>
+              <div class="row" *ngIf="urls != null">
+                  <div class="col-md-2 card33">
+                      <a (click)="removeItem()" style="border: none;   margin-bottom: 10px; position: absolute;">
+                          <img class="imageRemove" src="../../../../../../assets/images/delete.svg" width="32px" height="32px;">
+                      </a>
+                      <img [src]="urls" alt="Avatar" style="width:350px;height:205px ; ">
+
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="mb-3 col-12 col-md-12">
+                      <label for="exampleInputPricepermonth" class="form-label gray fw-bold">link</label>
+                      <input type="text" [(ngModel)]="link_create_ads" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="mb-3 col-12 col-md-12">
+                      <label for="exampleInputPricepermonth" class="form-label gray fw-bold">button name</label>
+                      <input type="text" [(ngModel)]="button_name" class="form-control rounded-2 py-2 fs-6" id="exampleInputPricepermonth" />
+
+                  </div>
+              </div>
+          </div>
+
+
+
+
+
+
+
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

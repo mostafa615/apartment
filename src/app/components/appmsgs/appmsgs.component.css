@@ -1,0 +1,34 @@
+@media (min-width: 776px) {
+  .modal-dialog {
+      max-width: 800px;
+      margin-right: auto;
+      margin-left: auto;
+  }
+  .xcvddmodel {
+      margin-right: 535px !important;
+  }
+}
+
+.file {
+  z-index: 3 !important;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.h-124px {
+  height: 124px !important;
+}
+
+.w-145px {
+  width: 145px;
+}
+
+@media (min-width: 768px) {
+  .marmodify {
+      margin-left: 520px;
+  }
+}
+
+td {
+  padding: 1.5rem !important;
+}
